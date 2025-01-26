@@ -4,6 +4,7 @@ import Label from "./Label";
 import VerticalWrapper from "./VerticalWrapper";
 import HorizontalLine from "./HorizontalLine";
 import HorizontalWrapper from "./HorizontalWrapper";
+import ShowError from "./ShowError";
 
 export {
   Input,
@@ -12,4 +13,5 @@ export {
   VerticalWrapper,
   HorizontalLine,
   HorizontalWrapper,
+  ShowError,
 };

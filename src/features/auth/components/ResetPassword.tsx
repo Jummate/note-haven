@@ -1,23 +1,25 @@
-import React, { useState } from "react";
 import {
   Input,
   Button,
   Label,
   VerticalWrapper,
   HorizontalLine,
-  HorizontalWrapper,
+  ShowError,
 } from "../../../shared/components";
 
 import logo from "../../../assets/logo.svg";
-import { Link } from "react-router-dom";
 
-interface ResetPasswordProps {
-  styles?: string;
-}
+import { useForm } from "../../../shared/hooks/useForm";
+import { validationRules } from "../../../shared/utils/validation";
 
 function ResetPassword() {
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    initialValues: { password: "", confirmPassword: "" },
+    validationRules,
+    onSubmit: (values) => {
+      console.log("Form Submitted", values);
+    },
+  });
 
   return (
     <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
@@ -40,31 +42,48 @@ function ResetPassword() {
         </span>
       </div>
       <form
-        action=""
         className="flex flex-col gap-6"
+        onSubmit={handleSubmit}
       >
         <VerticalWrapper styles="gap-1">
-          <Label>New Password</Label>
+          <Label
+            htmlFor="password"
+            isRequired
+          >
+            New Password
+          </Label>
           <Input
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
+            name="password"
+            onChange={handleChange}
+            value={values.password}
+            styles={errors.password ? "error-border" : ""}
           />
+          {errors.password && <ShowError message={errors.password} />}
         </VerticalWrapper>
 
         <VerticalWrapper styles="gap-1">
-          <Label>Confirm New Password</Label>
+          <Label
+            htmlFor="confirmPassword"
+            isRequired
+          >
+            Confirm New Password
+          </Label>
           <Input
             type="password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            value={confirmPassword}
+            name="confirmPassword"
+            onChange={handleChange}
+            value={values.confirmPassword}
+            styles={errors.confirmPassword ? "error-border" : ""}
           />
+          {errors.confirmPassword && (
+            <ShowError message={errors.confirmPassword} />
+          )}
         </VerticalWrapper>
 
         <Button
           type="submit"
           styles="font-bold hover:bg-opacity-95"
-          onClick={() => console.log("Login")}
         >
           Reset Password
         </Button>

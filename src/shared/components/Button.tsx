@@ -4,7 +4,7 @@ interface ButtonProps {
   type?: "submit" | "reset" | "button";
   children: ReactNode;
   styles?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function Button({

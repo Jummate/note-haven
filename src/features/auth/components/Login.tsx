@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   Input,
   Button,
@@ -6,18 +7,21 @@ import {
   VerticalWrapper,
   HorizontalLine,
   HorizontalWrapper,
+  ShowError,
 } from "../../../shared/components";
-
 import logo from "../../../assets/logo.svg";
-import { Link } from "react-router-dom";
 
-interface LoginProps {
-  styles?: string;
-}
+import { useForm } from "../../../shared/hooks/useForm";
+import { validationRules } from "../../../shared/utils/validation";
 
 function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    initialValues: { email: "", password: "" },
+    validationRules,
+    onSubmit: (values) => {
+      console.log("Form Submitted", values);
+    },
+  });
 
   return (
     <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
@@ -40,17 +44,25 @@ function Login() {
         </span>
       </div>
       <form
-        action=""
         className="flex flex-col gap-6"
+        onSubmit={handleSubmit}
       >
         <VerticalWrapper styles="gap-1">
-          <Label>Email</Label>
+          <Label
+            htmlFor="email"
+            isRequired
+          >
+            Email
+          </Label>
           <Input
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            name="email"
+            onChange={handleChange}
+            value={values.email}
             placeholder="email@gmail.com"
+            styles={errors.email ? "error-border" : ""}
           />
+          {errors.email && <ShowError message={errors.email} />}
         </VerticalWrapper>
         <Link
           to="/forgot-password"
@@ -61,18 +73,25 @@ function Login() {
         {/* <div className="text-right -mb-7">
         </div> */}
         <VerticalWrapper styles="gap-1">
-          <Label>Password</Label>
+          <Label
+            htmlFor="password"
+            isRequired
+          >
+            Password
+          </Label>
           <Input
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
+            name="password"
+            onChange={handleChange}
+            value={values.password}
+            styles={errors.password ? "error-border" : ""}
           />
+          {errors.password && <ShowError message={errors.password} />}
         </VerticalWrapper>
 
         <Button
           type="submit"
           styles="font-bold hover:bg-opacity-95"
-          onClick={() => console.log("Login")}
         >
           Login
         </Button>

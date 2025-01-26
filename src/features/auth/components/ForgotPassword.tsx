@@ -1,19 +1,24 @@
-import { useState } from "react";
 import {
   Input,
   Button,
   Label,
   VerticalWrapper,
+  ShowError,
 } from "../../../shared/components";
 
 import logo from "../../../assets/logo.svg";
 
-interface ForgotPasswordProps {
-  styles?: string;
-}
+import { useForm } from "../../../shared/hooks/useForm";
+import { validationRules } from "../../../shared/utils/validation";
 
 function ForgotPassword() {
-  const [email, setEmail] = useState<string>("");
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    initialValues: { email: "" },
+    validationRules,
+    onSubmit: (values) => {
+      console.log("Form Submitted", values);
+    },
+  });
 
   return (
     <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
@@ -37,23 +42,30 @@ function ForgotPassword() {
         </span>
       </div>
       <form
-        action=""
         className="flex flex-col gap-6"
+        onSubmit={handleSubmit}
       >
         <VerticalWrapper styles="gap-1">
-          <Label>Email</Label>
+          <Label
+            htmlFor="email"
+            isRequired
+          >
+            Email
+          </Label>
           <Input
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            name="email"
+            onChange={handleChange}
+            value={values.email}
             placeholder="email@gmail.com"
+            styles={errors.email ? "error-border" : ""}
           />
+          {errors.email && <ShowError message={errors.email} />}
         </VerticalWrapper>
 
         <Button
           type="submit"
           styles="font-bold hover:bg-opacity-95"
-          onClick={() => console.log("Login")}
         >
           Send Reset Link
         </Button>
