@@ -27,6 +27,9 @@ export default {
         inter: ["Inter", "sans-serif"],
         pacifico: ["Pacifico", "cursive"],
       },
+      boxShadow: {
+        "all-edges": "0 0 10px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [],
