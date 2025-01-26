@@ -13,5 +13,18 @@ html {
 body {
   font-size: 1.6rem;
 }
+input {
+  /* border: none; */
+  /* outline: none; */
+}
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .error-text {
+    @apply text-red-500 text-lg -mt-4;
+  }
+  .error-border {
+    @apply border-red-500;
+  }
+}
