@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-type ValidationFunction = (value: string) => string | null;
+import { SignupType } from "../../features/auth/types";
+
+type ValidationFunction = (value: string, password?: string) => string | null;
 
 interface UseFormProps {
   initialValues: Record<string, string>;
   validationRules: Record<string, ValidationFunction>;
-  onSubmit: (values: Record<string, string>) => void;
+  //   onSubmit: (values: SignupType) => void;
+  onSubmit: (values: Record<string, string>) => Promise<any>;
 }
 
 export function useForm({
@@ -15,6 +18,7 @@ export function useForm({
 }: UseFormProps) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,19 +26,25 @@ export function useForm({
 
     // Validate on change
     if (validationRules[name]) {
-      const error = validationRules[name](value);
+      const error = validationRules[name](
+        value,
+        name === "confirmPassword" ? values.password : undefined
+      );
       setErrors((prev) => ({ ...prev, [name]: error || "" }));
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate all fields
     const newErrors: Record<string, string> = {};
     for (const field in initialValues) {
       if (validationRules[field]) {
-        const error = validationRules[field](values[field]);
+        const error = validationRules[field](
+          values[field],
+          field === "confirmPassword" ? values.password : undefined
+        );
         if (error) newErrors[field] = error;
       }
     }
@@ -42,9 +52,16 @@ export function useForm({
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      onSubmit(values);
+      setLoading(true);
+      const result = await onSubmit(values);
+      if (result.success) {
+        setValues(initialValues);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
     }
   };
 
-  return { values, errors, handleChange, handleSubmit };
+  return { values, errors, handleChange, handleSubmit, loading, setLoading };
 }

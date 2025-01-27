@@ -14,13 +14,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../../shared/hooks/useForm";
 import { validationRules } from "../../../shared/utils/validation";
 
+import { createUser } from "../../../shared/services/authService";
+
 function Signup() {
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { email: "", password: "", confirmPassword: "" },
     validationRules,
-    onSubmit: (values) => {
-      console.log("Form Submitted", values);
-    },
+    onSubmit: (values) => createUser(values),
   });
 
   return (
@@ -103,9 +103,10 @@ function Signup() {
 
         <Button
           type="submit"
-          styles="font-bold hover:bg-opacity-95"
+          disabled={loading}
+          styles={`font-bold hover:bg-opacity-95 ${loading ? "disabled" : ""}`}
         >
-          Sign up
+          {loading ? "Processing..." : "Sign up"}
         </Button>
         <HorizontalLine />
       </form>
