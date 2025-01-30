@@ -2,19 +2,25 @@ import { useState } from "react";
 
 import { SignupType } from "../../features/auth/types";
 
-type ValidationFunction = (value: string, password?: string) => string | null;
+type ValidationFunction = (
+  value: string,
+  password?: string,
+  component?: string
+) => string | null;
 
 interface UseFormProps {
   initialValues: Record<string, string>;
   validationRules: Record<string, ValidationFunction>;
   //   onSubmit: (values: SignupType) => void;
   onSubmit: (values: Record<string, string>) => Promise<any>;
+  component?: string;
 }
 
 export function useForm({
   initialValues,
   validationRules,
   onSubmit,
+  component,
 }: UseFormProps) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -28,7 +34,8 @@ export function useForm({
     if (validationRules[name]) {
       const error = validationRules[name](
         value,
-        name === "confirmPassword" ? values.password : undefined
+        name === "confirmPassword" ? values.password : undefined,
+        component
       );
       setErrors((prev) => ({ ...prev, [name]: error || "" }));
     }
@@ -43,7 +50,8 @@ export function useForm({
       if (validationRules[field]) {
         const error = validationRules[field](
           values[field],
-          field === "confirmPassword" ? values.password : undefined
+          field === "confirmPassword" ? values.password : undefined,
+          component
         );
         if (error) newErrors[field] = error;
       }

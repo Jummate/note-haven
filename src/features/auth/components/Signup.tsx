@@ -21,6 +21,7 @@ function Signup() {
     initialValues: { email: "", password: "", confirmPassword: "" },
     validationRules,
     onSubmit: (values) => createUser(values),
+    component: "signup",
   });
 
   return (
