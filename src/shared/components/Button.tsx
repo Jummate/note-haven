@@ -19,7 +19,9 @@ function Button({
     <button
       type={type}
       disabled={disabled}
-      className={`rounded-xl p-4 w-full bg-primary-500 text-white focus:border-secondary-950 focus:outline-none ${styles}`}
+      className={`rounded-xl p-4 w-full bg-primary-500 text-white focus:border-secondary-950 focus:outline-none ${styles} ${
+        disabled ? "cursor-not-allowed" : "cursor-pointer"
+      }`}
       onClick={onClick}
     >
       {children}

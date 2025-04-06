@@ -4,7 +4,7 @@ export const validationRules: Record<
   string,
   (value: string, password?: string, component?: string) => ValidationResult
 > = {
-  email: (value: string, component?: string) => {
+  email: (value: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!value) return "Email is required.";
     if (!emailRegex.test(value)) return "Please enter a valid email.";
@@ -16,7 +16,7 @@ export const validationRules: Record<
       return "Password must be at least 8 characters.";
     return null;
   },
-  confirmPassword: (value: string, password?: string, component?: string) => {
+  confirmPassword: (value: string, password?: string) => {
     if (!value) return "Confirm Password is required.";
     if (value.length < 8)
       return "Confirm Password must be at least 8 characters.";

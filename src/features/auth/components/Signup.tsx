@@ -9,18 +9,20 @@ import {
 } from "../../../shared/components";
 
 import logo from "../../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "../../../shared/hooks/useForm";
 import { validationRules } from "../../../shared/utils/validation";
 
 import { createUser } from "../../../shared/services/authService";
+import { notify } from "../../../shared/services/toastService";
 
 function Signup() {
+  const navigate = useNavigate();
   const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { email: "", password: "", confirmPassword: "" },
     validationRules,
-    onSubmit: (values) => createUser(values),
+    onSubmit: (values) => createUser(values, navigate),
     component: "signup",
   });
 

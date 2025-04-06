@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import { SignupType } from "../../features/auth/types";
+import { notify } from "../services/toastService";
+import { NavigateFunction } from "react-router-dom";
 
 type ValidationFunction = (
   value: string,
@@ -12,7 +14,10 @@ interface UseFormProps {
   initialValues: Record<string, string>;
   validationRules: Record<string, ValidationFunction>;
   //   onSubmit: (values: SignupType) => void;
-  onSubmit: (values: Record<string, string>) => Promise<any>;
+  onSubmit: (
+    values: Record<string, string>,
+    navigate?: NavigateFunction
+  ) => Promise<any>;
   component?: string;
 }
 
@@ -63,7 +68,7 @@ export function useForm({
       setLoading(true);
       const result = await onSubmit(values);
       if (result.success) {
-        setValues(initialValues);
+        component != "forgotPassword" && setValues(initialValues);
         setLoading(false);
       } else {
         setLoading(false);

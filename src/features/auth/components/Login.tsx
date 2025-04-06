@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Input,
@@ -16,10 +16,11 @@ import { validationRules } from "../../../shared/utils/validation";
 import { login } from "../../../shared/services/authService";
 
 function Login() {
+  const navigate = useNavigate();
   const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { email: "", password: "" },
     validationRules,
-    onSubmit: (values) => login(values),
+    onSubmit: (values) => login(values, navigate),
     component: "login",
   });
 

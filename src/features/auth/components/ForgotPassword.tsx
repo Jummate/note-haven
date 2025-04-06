@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Input,
   Button,
@@ -10,15 +12,29 @@ import logo from "../../../assets/logo.svg";
 
 import { useForm } from "../../../shared/hooks/useForm";
 import { validationRules } from "../../../shared/utils/validation";
+import { forgotPassword } from "../../../shared/services/authService";
+import ResendEmail from "../../../shared/components/ResendEmail";
+
+// type TimerProps = {
+//   time: number;
+//   callback: () => void;
+// };
 
 function ForgotPassword() {
+  const [submitted, setSubmitted] = useState<boolean>(false);
   const { values, errors, handleChange, handleSubmit } = useForm({
     initialValues: { email: "" },
     validationRules,
-    onSubmit: (values) => {
-      console.log("Form Submitted", values);
-    },
+    onSubmit: (values) =>
+      forgotPassword(values, () => {
+        setSubmitted(true), setRecipient(values.email);
+      }),
+    component: "forgotPassword",
   });
+
+  const [enableResend, setEnableResend] = useState<boolean>(false);
+  const [resendKey, setResendKey] = useState(0);
+  const [recipient, setRecipient] = useState("");
 
   return (
     <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
@@ -34,12 +50,21 @@ function ForgotPassword() {
 
       <div className="flex flex-col gap-2 items-center justify-center mb-10">
         <h1 className="text-3xl mb-3 text-secondary-950 font-bold">
-          Welcome to Note Haven
+          Forgotten Your Password?
         </h1>
-        <span className="text-secondary-600 text-center">
-          Enter your email below, and we'll send you a link to reset your
-          password
-        </span>
+        {!submitted && (
+          <span className="text-secondary-600 text-center">
+            Enter your email below, and we'll send you a link to reset your
+            password
+          </span>
+        )}
+        {submitted && (
+          <ResendEmail
+            key={resendKey}
+            email={recipient}
+            callback={setEnableResend}
+          />
+        )}
       </div>
       <form
         className="flex flex-col gap-6"
@@ -63,12 +88,26 @@ function ForgotPassword() {
           {errors.email && <ShowError message={errors.email} />}
         </VerticalWrapper>
 
-        <Button
-          type="submit"
-          styles="font-bold hover:bg-opacity-95"
-        >
-          Send Reset Link
-        </Button>
+        {!submitted && (
+          <Button
+            type="submit"
+            styles="font-bold hover:bg-opacity-95"
+          >
+            Send Reset Link
+          </Button>
+        )}
+        {submitted && (
+          <Button
+            type="submit"
+            styles={`font-bold hover:bg-opacity-95 ${
+              !enableResend ? "bg-gray-300" : ""
+            }`}
+            disabled={!enableResend}
+            onClick={() => setResendKey((prev) => prev + 1)}
+          >
+            Resend Email
+          </Button>
+        )}
       </form>
     </div>
   );
