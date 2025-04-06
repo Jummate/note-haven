@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Input,
@@ -13,14 +13,15 @@ import logo from "../../../assets/logo.svg";
 
 import { useForm } from "../../../shared/hooks/useForm";
 import { validationRules } from "../../../shared/utils/validation";
+import { login } from "../../../shared/services/authService";
 
 function Login() {
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const navigate = useNavigate();
+  const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { email: "", password: "" },
     validationRules,
-    onSubmit: (values) => {
-      console.log("Form Submitted", values);
-    },
+    onSubmit: (values) => login(values, navigate),
+    component: "login",
   });
 
   return (
@@ -93,7 +94,7 @@ function Login() {
           type="submit"
           styles="font-bold hover:bg-opacity-95"
         >
-          Login
+          {loading ? "Processing..." : "Login"}
         </Button>
         <HorizontalLine />
       </form>

@@ -1,3 +1,4 @@
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import {
   Input,
   Button,
@@ -11,15 +12,28 @@ import logo from "../../../assets/logo.svg";
 
 import { useForm } from "../../../shared/hooks/useForm";
 import { validationRules } from "../../../shared/utils/validation";
+import { resetPassword } from "../../../shared/services/authService";
 
 function ResetPassword() {
+  const navigate = useNavigate();
+  const { token } = useParams();
   const { values, errors, handleChange, handleSubmit } = useForm({
-    initialValues: { password: "", confirmPassword: "" },
-    validationRules,
-    onSubmit: (values) => {
-      console.log("Form Submitted", values);
+    initialValues: {
+      password: "",
+      confirmPassword: "",
+      token: token || "",
     },
+    validationRules,
+    onSubmit: (values) => resetPassword(values, navigate),
   });
+
+  if (!token)
+    return (
+      <Navigate
+        to="/page-not-found"
+        replace
+      />
+    );
 
   return (
     <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">

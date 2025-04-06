@@ -9,18 +9,21 @@ import {
 } from "../../../shared/components";
 
 import logo from "../../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "../../../shared/hooks/useForm";
 import { validationRules } from "../../../shared/utils/validation";
 
+import { createUser } from "../../../shared/services/authService";
+import { notify } from "../../../shared/services/toastService";
+
 function Signup() {
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const navigate = useNavigate();
+  const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { email: "", password: "", confirmPassword: "" },
     validationRules,
-    onSubmit: (values) => {
-      console.log("Form Submitted", values);
-    },
+    onSubmit: (values) => createUser(values, navigate),
+    component: "signup",
   });
 
   return (
@@ -103,9 +106,10 @@ function Signup() {
 
         <Button
           type="submit"
-          styles="font-bold hover:bg-opacity-95"
+          disabled={loading}
+          styles={`font-bold hover:bg-opacity-95 ${loading ? "disabled" : ""}`}
         >
-          Sign up
+          {loading ? "Processing..." : "Sign up"}
         </Button>
         <HorizontalLine />
       </form>
