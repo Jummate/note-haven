@@ -11,15 +11,15 @@ function Display() {
       <div className="h-[10%] px-8 py-12 border-b-2 flex items-center">
         <div className="flex justify-between items-center flex-1">
           <h1 className="font-bold text-4xl font-inter">All Notes</h1>
-          <div className="flex justify-center items-center gap-8">
+          <div className="flex justify-center items-center gap-8 w-[35%]">
             <Input
               name="search"
               type="search"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              styles="py-2 text-xl"
+              styles="py-3 text-2xl"
             />
-            <LuSettings className="text-4xl text-secondary-500" />
+            <LuSettings className="text-4xl text-secondary-500 cursor-pointer" />
           </div>
         </div>
       </div>
