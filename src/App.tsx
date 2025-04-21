@@ -9,7 +9,8 @@ import Login from "./features/auth/components/Login";
 import PageNotFound from "./features/auth/components/PageNotFound";
 import ForgotPassword from "./features/auth/components/ForgotPassword";
 import ResetPassword from "./features/auth/components/ResetPassword";
-import Dashboard from "./features/notes/Dashboard";
+import Dashboard from "./features/notes/components/Dashboard";
+import Container from "./shared/components/Container";
 const Signup = lazy(() => import("./features/auth/components/Signup"));
 
 // import Signup from "./features/auth/components/Signup";
@@ -19,27 +20,48 @@ function App() {
     <>
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
-          <div className="bg-secondary-100 min-h-screen flex items-center justify-center">
+          {/* <div className="bg-secondary-100 min-h-screen flex items-center justify-center"> */}
+          <div className="">
             <Routes>
               <Route
                 path="/"
-                element={<Login />}
+                element={
+                  <Container>
+                    <Login />
+                  </Container>
+                }
               />
               <Route
                 path="/login"
-                element={<Login />}
+                element={
+                  <Container>
+                    <Login />
+                  </Container>
+                }
               />
               <Route
                 path="/signup"
-                element={<Signup />}
+                element={
+                  <Container>
+                    <Signup />
+                  </Container>
+                }
               />
               <Route
                 path="/forgot-password"
-                element={<ForgotPassword />}
+                element={
+                  <Container>
+                    <ForgotPassword />
+                  </Container>
+                }
               />
               <Route
                 path="/reset-password/:token"
-                element={<ResetPassword />}
+                element={
+                  <Container>
+                    <ResetPassword />
+                  </Container>
+                }
               />
               <Route
                 path="/dashboard/"
@@ -47,7 +69,11 @@ function App() {
               />
               <Route
                 path="*"
-                element={<PageNotFound />}
+                element={
+                  <Container>
+                    <PageNotFound />
+                  </Container>
+                }
               />
             </Routes>
             {/* <Login /> */}
