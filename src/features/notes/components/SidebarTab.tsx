@@ -1,35 +1,46 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, SVGProps } from "react";
 
-// import chevronRight from "../../../assets/icon-chevron-right.svg";
-
-import ChevronRight from "../../../assets/icon-chevron-right.svg?react";
-import HomeIcon from "../../../assets/icon-home.svg?react";
+import { IconType } from "react-icons";
+import { IoHomeOutline } from "react-icons/io5";
+import { BiChevronRight } from "react-icons/bi";
 
 type SidebarTabProps = {
-  icon: ReactNode;
+  //   icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  icon: IconType;
   text: string;
+  isActive?: boolean;
+  onClick: () => void;
 };
 
-function SidebarTab({ icon, text }: SidebarTabProps) {
+function SidebarTab({
+  icon: Icon,
+  isActive = false,
+  text,
+  onClick,
+}: SidebarTabProps) {
   return (
-    <div className="flex justify-between bg-primary-50 p-5 rounded-xl">
-      <div className="flex gap-3">
-        <HomeIcon className="text-primary-500" />
-        {/* <img
-          src={icon}
-          alt=""
-          className="border text-green-400"
-        />{" "} */}
-
+    <div
+      className={`flex justify-between ${
+        isActive ? " bg-primary-50" : ""
+      } rounded-xl p-5 py-4 items-center cursor-default`}
+      onClick={onClick}
+    >
+      <div
+        className={`flex gap-3 items-center ${
+          isActive ? " font-semibold" : ""
+        } text-secondary-800`}
+      >
+        <Icon
+          className={`${isActive ? "text-primary-500" : ""}`}
+          size={20}
+        />
         {text}
       </div>
-      <div>
-        <ChevronRight />
-        {/* <img
-          src={ChevronRight}
-          alt=""
-        /> */}
-      </div>
+      {isActive && (
+        <div>
+          <BiChevronRight size={20} />
+        </div>
+      )}
     </div>
   );
 }

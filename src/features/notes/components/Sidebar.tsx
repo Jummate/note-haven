@@ -3,10 +3,14 @@ import logo from "../../../assets/logo.svg";
 import homeIcon from "../../../assets/icon-home.svg";
 import SidebarTab from "./SidebarTab";
 
+import { IoHomeOutline } from "react-icons/io5";
+import { MdOutlineArchive } from "react-icons/md";
+
 type SidebarProps = {};
 
 function Sidebar() {
-  const [activeTab, setActiveTab] = useState<string>("dashboard");
+  const [activeTab, setActiveTab] = useState<string>("allNotes");
+
   return (
     <aside className="h-screen border-r-2 border-gray-200 px-8">
       <div className="py-12">
@@ -18,7 +22,15 @@ function Sidebar() {
       <div className="py-4">
         <SidebarTab
           text="All Notes"
-          icon={homeIcon}
+          icon={IoHomeOutline}
+          isActive={activeTab == "allNotes"}
+          onClick={() => setActiveTab("allNotes")}
+        />
+        <SidebarTab
+          text="Archived Notes"
+          icon={MdOutlineArchive}
+          isActive={activeTab == "archivedNotes"}
+          onClick={() => setActiveTab("archivedNotes")}
         />
       </div>
     </aside>
