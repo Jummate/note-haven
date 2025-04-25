@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
 
-// import { Input } from "../../../shared/components";
+import { Input } from "../../../shared/components";
 
-// import { LuSettings } from "react-icons/lu";
+import { LuSettings } from "react-icons/lu";
 
-function Display() {
-  //   const [searchInput, setSearchInput] = useState<string>("");
-
+function Header() {
+  const [searchInput, setSearchInput] = useState<string>("");
   return (
-    <div>
-      {/* <div className="h-[10%] px-8 py-12 border-b-2 flex items-center">
+    <header>
+      <div className="h-[10%] px-8 py-12 border-b-2 flex items-center">
         <div className="flex justify-between items-center flex-1">
           <h1 className="font-bold text-4xl font-inter">All Notes</h1>
           <div className="flex justify-center items-center gap-8 w-[35%]">
@@ -24,10 +22,9 @@ function Display() {
             <LuSettings className="text-4xl text-secondary-500 cursor-pointer" />
           </div>
         </div>
-      </div> */}
-      <Outlet />
-    </div>
+      </div>
+    </header>
   );
 }
 
-export default Display;
+export default Header;

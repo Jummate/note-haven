@@ -11,6 +11,8 @@ import ForgotPassword from "./features/auth/components/ForgotPassword";
 import ResetPassword from "./features/auth/components/ResetPassword";
 import Dashboard from "./features/notes/components/Dashboard";
 import Container from "./shared/components/Container";
+import AllNotes from "./features/notes/pages/AllNotes";
+import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
 const Signup = lazy(() => import("./features/auth/components/Signup"));
 
 // import Signup from "./features/auth/components/Signup";
@@ -63,10 +65,23 @@ function App() {
                   </Container>
                 }
               />
-              <Route
+              {/* <Route
                 path="/dashboard/"
                 element={<Dashboard />}
-              />
+              /> */}
+              <Route
+                path="/notes"
+                element={<Dashboard />}
+              >
+                <Route
+                  path="allnotes"
+                  element={<AllNotes />}
+                />
+                <Route
+                  path="archivednotes"
+                  element={<ArchivedNotes />}
+                />
+              </Route>
               <Route
                 path="*"
                 element={

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import homeIcon from "../../../assets/icon-home.svg";
 import SidebarTab from "./SidebarTab";
@@ -10,6 +12,7 @@ type SidebarProps = {};
 
 function Sidebar() {
   const [activeTab, setActiveTab] = useState<string>("allNotes");
+  const navigate = useNavigate();
 
   return (
     <aside className="h-screen border-r-2 border-gray-200 px-8">
@@ -19,18 +22,24 @@ function Sidebar() {
           alt=""
         />
       </div>
-      <div className="py-4">
+      <div className="py-4 border-b-2">
         <SidebarTab
           text="All Notes"
           icon={IoHomeOutline}
           isActive={activeTab == "allNotes"}
-          onClick={() => setActiveTab("allNotes")}
+          onClick={() => {
+            setActiveTab("allNotes");
+            navigate("/notes/allnotes");
+          }}
         />
         <SidebarTab
           text="Archived Notes"
           icon={MdOutlineArchive}
           isActive={activeTab == "archivedNotes"}
-          onClick={() => setActiveTab("archivedNotes")}
+          onClick={() => {
+            setActiveTab("archivedNotes");
+            navigate("/notes/archivednotes");
+          }}
         />
       </div>
     </aside>
