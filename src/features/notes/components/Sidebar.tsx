@@ -7,11 +7,13 @@ import SidebarTab from "./SidebarTab";
 
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineArchive } from "react-icons/md";
+import { useTabStore } from "../stores/tabStore";
 
 type SidebarProps = {};
 
 function Sidebar() {
-  const [activeTab, setActiveTab] = useState<string>("allNotes");
+  const activeTab = useTabStore((state) => state.activeTab);
+  const setActiveTab = useTabStore((state) => state.setActiveTab);
   const navigate = useNavigate();
 
   return (
