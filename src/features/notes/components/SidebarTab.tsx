@@ -5,9 +5,9 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BiChevronRight } from "react-icons/bi";
 
 type SidebarTabProps = {
-  //   icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
   icon: IconType;
   text: string;
+  key?: string;
   isActive?: boolean;
   onClick: () => void;
 };

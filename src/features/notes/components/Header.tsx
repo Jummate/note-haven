@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Input } from "../../../shared/components";
 
 import { LuSettings } from "react-icons/lu";
+import { useTabStore } from "../stores/tabStore";
+import { tabsMap } from "../constants/tabs";
 
 function Header() {
   const [searchInput, setSearchInput] = useState<string>("");
+  const activeTab = useTabStore((state) => state.activeTab);
+  const { text: activeTabText } = tabsMap[activeTab];
+
   return (
     <header>
       <div className="h-[10%] px-8 py-12 border-b-2 flex items-center">
         <div className="flex justify-between items-center flex-1">
-          <h1 className="font-bold text-4xl font-inter">All Notes</h1>
+          <h1 className="font-bold text-4xl font-inter">{activeTabText}</h1>
           <div className="flex justify-center items-center gap-8 w-[35%]">
             <Input
               name="search"

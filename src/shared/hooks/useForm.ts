@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { SignupType } from "../../features/auth/types";
-import { notify } from "../services/toastService";
 import { NavigateFunction } from "react-router-dom";
 
 type ValidationFunction = (

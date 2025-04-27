@@ -5,17 +5,14 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import Login from "./features/auth/components/Login";
-import PageNotFound from "./features/auth/components/PageNotFound";
-import ForgotPassword from "./features/auth/components/ForgotPassword";
-import ResetPassword from "./features/auth/components/ResetPassword";
+import Login from "./features/auth/pages/Login";
+import PageNotFound from "./shared/pages/PageNotFound";
 import Dashboard from "./features/notes/components/Dashboard";
 import Container from "./shared/components/Container";
 import AllNotes from "./features/notes/pages/AllNotes";
 import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
-const Signup = lazy(() => import("./features/auth/components/Signup"));
-
-// import Signup from "./features/auth/components/Signup";
+import { authRoutes } from "./features/auth/routes";
+import { noteRoutes } from "./features/notes/routes";
 
 function App() {
   return (
@@ -33,7 +30,15 @@ function App() {
                   </Container>
                 }
               />
-              <Route
+              {authRoutes.map(({ path, component }) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={component}
+                />
+              ))}
+
+              {/* <Route
                 path="/login"
                 element={
                   <Container>
@@ -64,23 +69,27 @@ function App() {
                     <ResetPassword />
                   </Container>
                 }
-              />
+              /> */}
               {/* <Route
                 path="/dashboard/"
                 element={<Dashboard />}
               /> */}
+
               <Route
                 path="/notes"
                 element={<Dashboard />}
               >
                 <Route
-                  path="allnotes"
+                  index
                   element={<AllNotes />}
                 />
-                <Route
-                  path="archivednotes"
-                  element={<ArchivedNotes />}
-                />
+                {noteRoutes.map(({ path, component }) => (
+                  <Route
+                    key={path}
+                    path={path}
+                    element={component}
+                  />
+                ))}
               </Route>
               <Route
                 path="*"
@@ -91,8 +100,6 @@ function App() {
                 }
               />
             </Routes>
-            {/* <Login /> */}
-            {/* <Signup /> */}
           </div>
         </Suspense>
       </Router>

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { Button } from "../../../shared/components";
 import { logout } from "../../../shared/services/authService";
@@ -8,6 +8,7 @@ import Header from "./Header";
 
 function Dashboard() {
   // const navigate = useNavigate();
+  console.log("Dashboard loaded");
   return (
     <div className="grid grid-cols-[300px_minmax(900px,_1fr)]">
       <div className="hidden md:block">
@@ -17,7 +18,8 @@ function Dashboard() {
         <div className="hidden md:block">
           <Header />
         </div>
-        <Display />
+        <Outlet />
+        {/* <Display /> */}
       </div>
       {/* <Button
         type="button"
