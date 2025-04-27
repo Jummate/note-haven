@@ -3,8 +3,8 @@ import logo from "../../../assets/logo.svg";
 import SidebarTab from "./SidebarTab";
 
 import { useTabStore } from "../stores/tabStore";
-import { TabKey, tabs } from "../constants/tabs";
-import { tabIcons } from "../../../shared/icons/tabIcons";
+import { TabKey, tabs, SideBarTabs } from "../constants/tabs";
+import { Icons } from "../../../shared/icons/Icons";
 
 type SidebarProps = {};
 
@@ -27,15 +27,19 @@ function Sidebar() {
         />
       </div>
       <div className="py-4 border-b-2">
-        {tabs.map(({ key, text, path }) => (
-          <SidebarTab
-            key={key}
-            text={text}
-            icon={tabIcons[key]}
-            isActive={activeTab == key}
-            onClick={() => handleClick(key, path)}
-          />
-        ))}
+        {tabs.map(({ key, text, path }) => {
+          return (
+            SideBarTabs.includes(key) && (
+              <SidebarTab
+                key={key}
+                text={text}
+                icon={Icons[key]}
+                isActive={activeTab == key}
+                onClick={() => handleClick(key, path)}
+              />
+            )
+          );
+        })}
       </div>
     </aside>
   );

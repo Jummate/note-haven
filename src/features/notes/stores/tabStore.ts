@@ -10,7 +10,7 @@ interface TabStore {
 export const useTabStore = create<TabStore>()(
   persist(
     (set) => ({
-      activeTab: "allNotes", // Default tab value
+      activeTab: "notes", // Default tab value
       setActiveTab: (tab) => set({ activeTab: tab }),
     }),
     {

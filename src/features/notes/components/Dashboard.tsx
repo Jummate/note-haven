@@ -5,21 +5,24 @@ import { logout } from "../../../shared/services/authService";
 import Sidebar from "./Sidebar";
 import Display from "./Display";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function Dashboard() {
   // const navigate = useNavigate();
-  console.log("Dashboard loaded");
   return (
     <div className="grid grid-cols-[300px_minmax(900px,_1fr)]">
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <Sidebar />
       </div>
-      <div>
-        <div className="hidden md:block">
+      <div className="relative min-h-screen">
+        <div className="hidden lg:block">
           <Header />
         </div>
         <Outlet />
         {/* <Display /> */}
+        <div className="lg:hidden">
+          <Footer />
+        </div>
       </div>
       {/* <Button
         type="button"

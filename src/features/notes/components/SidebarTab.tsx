@@ -7,7 +7,6 @@ import { BiChevronRight } from "react-icons/bi";
 type SidebarTabProps = {
   icon: IconType;
   text: string;
-  key?: string;
   isActive?: boolean;
   onClick: () => void;
 };
