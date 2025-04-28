@@ -5,6 +5,7 @@ import { BsTag } from "react-icons/bs";
 import { LuSettings } from "react-icons/lu";
 
 import { BiChevronRight } from "react-icons/bi";
+import { FaPlus } from "react-icons/fa";
 
 export const Icons = {
   notes: IoHomeOutline,
@@ -14,4 +15,5 @@ export const Icons = {
   tags: BsTag,
   settings: LuSettings,
   chevronRight: BiChevronRight,
+  plus: FaPlus,
 } as const;
