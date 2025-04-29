@@ -9,7 +9,7 @@ function AllNotes() {
   return (
     <div>
       <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] h-[90%]">
-        <div className="p-10 border border-r-2 h-screen">
+        <div className="p-10 border border-r-1 border-y-0 border-l-0 h-screen">
           <div className="mb-12">
             <Button styles="flex items-center gap-3 justify-center md:text-md">
               <Icon
@@ -37,7 +37,7 @@ function AllNotes() {
         {!noNotes && <div className="">3</div>}
       </div>
 
-      <div className="lg:hidden bg-primary-50">
+      <div className="lg:hidden bg-primary-50 h-screen w-screen">
         <div>This is the header</div>
         <div className="flex flex-1 w-screen">
           {noNotes ? (

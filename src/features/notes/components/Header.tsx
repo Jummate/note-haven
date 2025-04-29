@@ -13,7 +13,7 @@ function Header() {
 
   return (
     <header>
-      <div className="h-[10%] px-8 py-12 border-b-2 flex items-center">
+      <div className="h-[10%] px-8 py-12 border border-b-1 border-x-0 flex items-center">
         <div className="flex justify-between items-center flex-1">
           <h1 className="font-bold text-4xl font-inter">{activeTabText}</h1>
           <div className="flex justify-center items-center gap-8 w-[35%]">

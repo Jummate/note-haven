@@ -1,7 +1,7 @@
 // import { useState } from "react";
 // import "./index.css";
 
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -10,7 +10,7 @@ import PageNotFound from "./shared/pages/PageNotFound";
 import Dashboard from "./features/notes/components/Dashboard";
 import Container from "./shared/components/Container";
 import AllNotes from "./features/notes/pages/AllNotes";
-import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
+// import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
 

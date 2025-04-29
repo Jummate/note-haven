@@ -6,7 +6,7 @@ import { useTabStore } from "../stores/tabStore";
 import { TabKey, tabs, SideBarTabs } from "../constants/tabs";
 import { Icons } from "../../../shared/icons/Icons";
 
-type SidebarProps = {};
+// type SidebarProps = {};
 
 function Sidebar() {
   const activeTab = useTabStore((state) => state.activeTab);
@@ -19,7 +19,7 @@ function Sidebar() {
   };
 
   return (
-    <aside className="h-screen border-r-2 border-gray-200 px-8">
+    <aside className="h-screen border border-r-1 border-y-0 border-l-0 border-gray-200 px-8">
       <div className="py-12">
         <img
           src={logo}
