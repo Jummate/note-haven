@@ -11,11 +11,11 @@ function Dashboard() {
   // const navigate = useNavigate();
   return (
     <div className="min-h-screen cont flex flex-col">
-      <div className="lg:hidden relative flex-1">
-        This is mobile
+      <div className="lg:hidden relative flex flex-col flex-1">
+        <Outlet />
         <Footer />
       </div>
-      <div className="hidden lg:grid grid-cols-[300px_1fr] flex-1">
+      <div className="hidden lg:grid grid-cols-[250px_1fr] flex-1">
         <Sidebar />
         <main className="grid grid-rows-[100px_1fr]">
           <Header />
