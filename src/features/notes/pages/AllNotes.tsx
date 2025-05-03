@@ -4,6 +4,7 @@ import { Icons } from "../../../shared/icons/Icons";
 import logo from "../../../assets/logo.svg";
 import { useTabStore } from "../stores/tabStore";
 import { tabsMap } from "../constants/tabs";
+import EmptyNote from "../components/EmptyNote";
 
 function AllNotes() {
   const Icon = Icons["plus"];
@@ -27,16 +28,7 @@ function AllNotes() {
           </div>
 
           <div>
-            {noNotes ? (
-              <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3">
-                <p>
-                  You don’t have any notes yet. Start a new note to capture your
-                  thoughts and ideas.
-                </p>
-              </div>
-            ) : (
-              <div>There is something there</div>
-            )}
+            {noNotes ? <EmptyNote /> : <div>There is something there</div>}
           </div>
         </div>
         {!noNotes && <div className="">2</div>}
@@ -58,12 +50,7 @@ function AllNotes() {
               <h1 className="font-bold text-4xl font-inter mb-4">
                 {activeTabText}
               </h1>
-              <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3">
-                <p>
-                  You don’t have any notes yet. Start a new note to capture your
-                  thoughts and ideas.
-                </p>
-              </div>
+              <EmptyNote />
               <hr className="hidden sm:block mt-7" />
             </div>
           ) : (
