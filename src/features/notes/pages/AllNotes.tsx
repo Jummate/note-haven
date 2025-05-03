@@ -1,33 +1,38 @@
 import React from "react";
 import { Button } from "../../../shared/components";
 import { Icons } from "../../../shared/icons/Icons";
+import logo from "../../../assets/logo.svg";
+import { useTabStore } from "../stores/tabStore";
+import { tabsMap } from "../constants/tabs";
+import EmptyNote from "../components/EmptyNote";
+import { useTabText } from "../hooks/useTabText";
 
 function AllNotes() {
   const Icon = Icons["plus"];
   const allNotes: string[] = [];
   const noNotes = allNotes && allNotes.length == 0;
+
+  const { activeTabText } = useTabText();
+  //   const activeTab = useTabStore((state) => state.activeTab);
+
+  //   const { text: activeTabText } = tabsMap[activeTab];
   return (
-    <div className="flex flex-col flex-1 h-full">
-      {/* <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] h-full bg-amber-700">
-        <div className="p-10 border border-r-1 border-y-0 border-l-0 bg-red-300">
+    <div className="flex-1 flex flex-col">
+      <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] flex-1">
+        <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
           <div className="mb-12">
             <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
-              <Icon
+              {/* <Icon
                 size={10}
                 // className="inline"
-              />
-              Create New Note
+              /> */}
+              + Create New Note
             </Button>
           </div>
 
           <div>
             {noNotes ? (
-              <div className="rounded-xl bg-secondary-100 p-4 text-secondary-900 font-inter shadow-all-edges">
-                <p>
-                  You don’t have any notes yet. Start a new note to capture your
-                  thoughts and ideas.
-                </p>
-              </div>
+              <EmptyNote noteType="notes" />
             ) : (
               <div>There is something there</div>
             )}
@@ -35,20 +40,30 @@ function AllNotes() {
         </div>
         {!noNotes && <div className="">2</div>}
         {!noNotes && <div className="">3</div>}
-      </div> */}
+      </div>
 
-      <div className="flex flex-col flex-1 lg:hidden bg-green-300">
-        <div>This is the header</div>
-        <div className="flex flex-1 overflow-auto">
+      <div className="flex flex-col flex-1 lg:hidden bg-secondary-100">
+        <div className="p-8">
+          <div className="">
+            <img
+              src={logo}
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="flex flex-1 justify-center">
           {noNotes ? (
-            <div className="rounded-xl bg-secondary-100 p-4 text-secondary-900 font-inter shadow-all-edges w-full">
-              <p>
-                You don’t have any notes yet. Start a new note to capture your
-                thoughts and ideas.
-              </p>
+            <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+              <h1 className="font-bold text-4xl font-inter mb-4">
+                {activeTabText}
+              </h1>
+              <EmptyNote noteType="notes" />
+              <hr className="hidden sm:block mt-7" />
             </div>
           ) : (
-            <div>There is something there</div>
+            <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+              There is something there
+            </div>
           )}
         </div>
       </div>
