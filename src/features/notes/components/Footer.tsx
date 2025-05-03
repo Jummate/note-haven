@@ -48,7 +48,7 @@ function Footer() {
     navigate(path);
   };
   return (
-    <footer className="absolute bottom-0 w-screen flex justify-evenly py-4 shadow-all-edges">
+    <div className="absolute left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
       {tabs.map(({ key, text, path }) => {
         return (
           FooterTabs.includes(key) && (
@@ -63,7 +63,7 @@ function Footer() {
           )
         );
       })}
-    </footer>
+    </div>
   );
 }
 

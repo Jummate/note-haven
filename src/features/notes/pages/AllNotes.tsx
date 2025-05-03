@@ -7,11 +7,11 @@ function AllNotes() {
   const allNotes: string[] = [];
   const noNotes = allNotes && allNotes.length == 0;
   return (
-    <div>
-      <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] h-[90%]">
-        <div className="p-10 border border-r-1 border-y-0 border-l-0 h-screen">
+    <div className="flex flex-col flex-1 h-full">
+      {/* <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] h-full bg-amber-700">
+        <div className="p-10 border border-r-1 border-y-0 border-l-0 bg-red-300">
           <div className="mb-12">
-            <Button styles="flex items-center gap-3 justify-center md:text-md">
+            <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
               <Icon
                 size={10}
                 // className="inline"
@@ -35,11 +35,11 @@ function AllNotes() {
         </div>
         {!noNotes && <div className="">2</div>}
         {!noNotes && <div className="">3</div>}
-      </div>
+      </div> */}
 
-      <div className="lg:hidden bg-primary-50 h-screen w-screen">
+      <div className="flex flex-col flex-1 lg:hidden bg-green-300">
         <div>This is the header</div>
-        <div className="flex flex-1 w-screen">
+        <div className="flex flex-1 overflow-auto">
           {noNotes ? (
             <div className="rounded-xl bg-secondary-100 p-4 text-secondary-900 font-inter shadow-all-edges w-full">
               <p>

@@ -3,33 +3,25 @@ import { Outlet } from "react-router-dom";
 // import { Button } from "../../../shared/components";
 // import { logout } from "../../../shared/services/authService";
 import Sidebar from "./Sidebar";
-// import Display from "./Display";
+import Display from "./Display";
 import Header from "./Header";
 import Footer from "./Footer";
 
 function Dashboard() {
   // const navigate = useNavigate();
   return (
-    <div className="grid grid-cols-[300px_minmax(900px,_1fr)]">
-      <div className="hidden lg:block">
+    <div className="min-h-screen cont flex flex-col">
+      <div className="lg:hidden relative flex-1">
+        This is mobile
+        <Footer />
+      </div>
+      <div className="hidden lg:grid grid-cols-[300px_1fr] flex-1">
         <Sidebar />
-      </div>
-      <div className="relative min-h-screen">
-        <div className="hidden lg:block">
+        <main className="grid grid-rows-[100px_1fr]">
           <Header />
-        </div>
-        <Outlet />
-        {/* <Display /> */}
-        <div className="lg:hidden">
-          <Footer />
-        </div>
+          <Outlet />
+        </main>
       </div>
-      {/* <Button
-        type="button"
-        onClick={() => logout(navigate)}
-      >
-        Log out
-      </Button> */}
     </div>
   );
 }

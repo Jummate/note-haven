@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 function Display() {
   return (
-    <div>
+    <div className="flex flex-1 w-full">
       <Outlet />
     </div>
   );

@@ -19,7 +19,7 @@ function Sidebar() {
   };
 
   return (
-    <aside className="h-screen border border-r-1 border-y-0 border-l-0 border-gray-200 px-8">
+    <div className="h-full border border-r-1 border-y-0 border-l-0 border-gray-200 px-8">
       <div className="py-12">
         <img
           src={logo}
@@ -41,7 +41,7 @@ function Sidebar() {
           );
         })}
       </div>
-    </aside>
+    </div>
   );
 }
 
