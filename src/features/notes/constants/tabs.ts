@@ -19,7 +19,7 @@ export const tabs = [
   { key: "home", text: "All Notes", path: "/notes" },
   { key: "notes", text: "All Notes", path: "/notes/allnotes" },
   { key: "search", text: "Search", path: "/notes/search" },
-  { key: "archived", text: "Archived", path: "/notes/archivednotes" },
+  { key: "archived", text: "Archived Notes", path: "/notes/archivednotes" },
   { key: "tags", text: "Tags", path: "/notes/tags" },
   { key: "settings", text: "Settings", path: "/notes/settings" },
 ] as const;

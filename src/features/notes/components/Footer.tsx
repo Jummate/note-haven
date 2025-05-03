@@ -16,6 +16,16 @@ type FooterTabProps = {
 };
 
 function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
+  let modifiedText = "";
+
+  if (text == "All Notes") {
+    modifiedText = "Home";
+  } else if (text == "Archived Notes") {
+    modifiedText = "Archived";
+  } else {
+    modifiedText = text;
+  }
+
   return (
     <div
       className={`flex flex-col gap-1 items-center ${
@@ -32,7 +42,7 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
           isActive ? "text-primary-500" : ""
         }`}
       >
-        {text == "All Notes" ? "Home" : text}
+        {modifiedText}
       </h1>
     </div>
   );

@@ -5,18 +5,21 @@ import logo from "../../../assets/logo.svg";
 import { useTabStore } from "../stores/tabStore";
 import { tabsMap } from "../constants/tabs";
 import EmptyNote from "../components/EmptyNote";
+import { useTabText } from "../hooks/useTabText";
 
 function AllNotes() {
   const Icon = Icons["plus"];
   const allNotes: string[] = [];
   const noNotes = allNotes && allNotes.length == 0;
-  const activeTab = useTabStore((state) => state.activeTab);
 
-  const { text: activeTabText } = tabsMap[activeTab];
+  const { activeTabText } = useTabText();
+  //   const activeTab = useTabStore((state) => state.activeTab);
+
+  //   const { text: activeTabText } = tabsMap[activeTab];
   return (
     <div className="flex-1 flex flex-col">
       <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] flex-1">
-        <div className="p-10 border border-r-1 border-y-0 border-l-0">
+        <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
           <div className="mb-12">
             <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
               {/* <Icon
@@ -28,7 +31,11 @@ function AllNotes() {
           </div>
 
           <div>
-            {noNotes ? <EmptyNote /> : <div>There is something there</div>}
+            {noNotes ? (
+              <EmptyNote noteType="notes" />
+            ) : (
+              <div>There is something there</div>
+            )}
           </div>
         </div>
         {!noNotes && <div className="">2</div>}
@@ -36,7 +43,7 @@ function AllNotes() {
       </div>
 
       <div className="flex flex-col flex-1 lg:hidden bg-secondary-100">
-        <div className="px-8 py-8">
+        <div className="p-8">
           <div className="">
             <img
               src={logo}
@@ -50,7 +57,7 @@ function AllNotes() {
               <h1 className="font-bold text-4xl font-inter mb-4">
                 {activeTabText}
               </h1>
-              <EmptyNote />
+              <EmptyNote noteType="notes" />
               <hr className="hidden sm:block mt-7" />
             </div>
           ) : (
