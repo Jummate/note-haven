@@ -22,7 +22,7 @@ function EmptyNote({ noteType }: EmptyNoteProps) {
         <p>
           No notes have been archived yet. Move notes here for safekeeping, or{" "}
           <Link
-            to="/notes/create"
+            to="/notes/createnote"
             className="underline"
           >
             create a new note.
