@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Button } from "../../../shared/components";
 import EmptyNote from "./EmptyNote";
 import logo from "../../../assets/logo.svg";
@@ -9,13 +9,7 @@ type EmptyPageProps = {
   noteType: string;
 };
 
-// <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
-// {/* <Icon
-//   size={10}
-//   // className="inline"
-// /> */}
-// + Create New Note
-// </Button>
+
 
 function EmptyPage({ noteType }: EmptyPageProps) {
   const { activeTabText } = useTabText();

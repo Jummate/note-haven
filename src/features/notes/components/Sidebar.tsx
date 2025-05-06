@@ -5,6 +5,7 @@ import SidebarTab from "./SidebarTab";
 import { useTabStore } from "../stores/tabStore";
 import { TabKey, tabs, SideBarTabs } from "../constants/tabs";
 import { Icons } from "../../../shared/icons/Icons";
+import Tags from "./Tags";
 
 // type SidebarProps = {};
 
@@ -40,7 +41,9 @@ function Sidebar() {
             )
           );
         })}
+
       </div>
+        <Tags />
     </div>
   );
 }

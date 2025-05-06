@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 import { FooterTabs, tabs, TabKey } from "../constants/tabs";
 import { Icons } from "../../../shared/icons/Icons";
