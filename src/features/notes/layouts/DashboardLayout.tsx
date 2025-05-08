@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 
-import Sidebar from "./Sidebar";
+import Sidebar from "../containers/Sidebar";
 // import Display from "./Display";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import Footer from "../containers/Footer";
 
-function Dashboard() {
+function DashboardLayout() {
   // const navigate = useNavigate();
   return (
     <div className="min-h-screen cont flex flex-col">
@@ -24,4 +24,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DashboardLayout;

@@ -6,16 +6,16 @@ import { Icons } from "../../../shared/icons/Icons";
 // import { tabsMap } from "../constants/tabs";
 // import EmptyNote from "../components/EmptyNote";
 // import { useTabText } from "../hooks/useTabText";
-import CreateNewNoteIcon from "../shared/components/CreateNewNoteIcon";
-import NotePage from "../shared/containers/NotePage";
-import DesktopContainer from "../shared/containers/DesktopContainer";
-import MobileContainer from "../shared/containers/MobileContainer";
+import FloatingCreateNoteButton from "../shared/components/FloatingCreateNoteButton";
+import NoteLayout from "../layouts/NoteLayout";
+import DesktopLayout from "../layouts/DesktopLayout";
+import MobileLayout from "../layouts/MobileLayout";
 // import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
-import EmptyPage from "../components/EmptyPage";
+import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
 import PageHeader from "../shared/components/PageHeader";
 
-function NoteDetails() {
+function NotePreview() {
   const TagIcon = Icons["tags"];
   const ClockIcon = Icons["clock"];
   return (
@@ -55,7 +55,7 @@ function NoteDetails() {
   );
 }
 
-function AllNotes() {
+function NoteDashboard() {
   // const PlusIcon = Icons["plus"];
   const ArchivedIcon = Icons["archived"];
   const DeleteIcon = Icons["delete"];
@@ -69,8 +69,8 @@ function AllNotes() {
   return (
     <div className="flex-1 flex flex-col">
       {hasNotes ? (
-        <NotePage>
-          <DesktopContainer>
+        <NoteLayout>
+          <DesktopLayout>
             <div className="p-10 px-7">
               <div className="mb-12">
                 <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
@@ -82,7 +82,7 @@ function AllNotes() {
               </div>
             </div>
             <div className="border border-r-1 border-y-0 border-l-1 relative flex">
-              <NoteDetails />
+              <NotePreview />
               <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
                 <Button styles="md:text-md w-auto">Save Note</Button>
                 <Button
@@ -103,8 +103,8 @@ function AllNotes() {
                 </Button>
               </div>
             </div>
-          </DesktopContainer>
-          <MobileContainer>
+          </DesktopLayout>
+          <MobileLayout>
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader />
@@ -113,14 +113,14 @@ function AllNotes() {
                 </div>
               </div>
             </div>
-            <CreateNewNoteIcon />
-          </MobileContainer>
-        </NotePage>
+            <FloatingCreateNoteButton />
+          </MobileLayout>
+        </NoteLayout>
       ) : (
-        <EmptyPage noteType="notes" />
+        <EmptyPageContainer noteType="notes" />
       )}
     </div>
   );
 }
 
-export default AllNotes;
+export default NoteDashboard;

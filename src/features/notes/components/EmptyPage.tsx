@@ -2,17 +2,16 @@
 import { Button } from "../../../shared/components";
 import EmptyNote from "./EmptyNote";
 import logo from "../../../assets/logo.svg";
-import { useTabText } from "../hooks/useTabText";
-import CreateNewNoteIcon from "../shared/components/CreateNewNoteIcon";
+import FloatingCreateNoteButton from "../shared/components/FloatingCreateNoteButton";
 
 type EmptyPageProps = {
   noteType: string;
+  activeTabText: string;
 };
 
 
 
-function EmptyPage({ noteType }: EmptyPageProps) {
-  const { activeTabText } = useTabText();
+function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
   return (
     <>
       <div className="hidden lg:grid grid-cols-[1fr_2fr] flex-1">
@@ -47,7 +46,7 @@ function EmptyPage({ noteType }: EmptyPageProps) {
             </h1>
             <EmptyNote noteType={noteType} />
             {noteType == "notes" && <hr className="hidden sm:block mt-7" />}
-            <CreateNewNoteIcon />
+            <FloatingCreateNoteButton />
           </div>
         </div>
       </div>
@@ -55,34 +54,5 @@ function EmptyPage({ noteType }: EmptyPageProps) {
   );
 }
 
-// function EmptyNote({ noteType }: EmptyNoteProps) {
-//   return noteType == "notes" ? (
-
-//     <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3">
-//       <p>
-//         You don’t have any notes yet. Start a new note to capture your thoughts
-//         and ideas.
-//       </p>
-//     </div>
-//   ) : (
-//     <>
-//       <div>
-//         All your archived notes are stored here. You can restore or delete them
-//         anytime.
-//       </div>
-//       <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3 mt-6">
-//         <p>
-//           No notes have been archived yet. Move notes here for safekeeping, or{" "}
-//           <Link
-//             to="/notes/createnote"
-//             className="underline"
-//           >
-//             create a new note.
-//           </Link>
-//         </p>
-//       </div>
-//     </>
-//   );
-// }
 
 export default EmptyPage;

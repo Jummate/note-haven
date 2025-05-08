@@ -14,27 +14,27 @@
 
 // export default ArchivedNotes;
 
-import React from "react";
-import { Button } from "../../../shared/components";
-import { Icons } from "../../../shared/icons/Icons";
-import logo from "../../../assets/logo.svg";
-import { useTabStore } from "../stores/tabStore";
-import { tabsMap } from "../constants/tabs";
-import EmptyNote from "../components/EmptyNote";
-import { useTabText } from "../hooks/useTabText";
-import MobileContainer from "../shared/containers/MobileContainer";
-import NotePage from "../shared/containers/NotePage";
-import DesktopContainer from "../shared/containers/DesktopContainer";
-import CreateNewNoteIcon from "../shared/components/CreateNewNoteIcon";
-import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
-import EmptyPage from "../components/EmptyPage";
+// import React from "react";
+// import { Button } from "../../../shared/components";
+// import { Icons } from "../../../shared/icons/Icons";
+// import logo from "../../../assets/logo.svg";
+// import { useTabStore } from "../stores/tabStore";
+// import { tabsMap } from "../constants/tabs";
+// import EmptyNote from "../components/EmptyNote";
+// import { useTabText } from "../hooks/useTabText";
+// import MobileContainer from "../layouts/MobileLayout";
+// import NoteLayout from "../layouts/NoteLayout";
+// import DesktopContainer from "../layouts/DesktopLayout";
+// import CreateNewNoteIcon from "../shared/components/FloatingCreateNoteButton";
+// import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
+import EmptyPageContainer from "../containers/EmptyPageContainer";
 
 function ArchivedNotes() {
-  const Icon = Icons["plus"];
-  const allNotes: string[] = [];
-  const noNotes = allNotes && allNotes.length == 0;
+  // const Icon = Icons["plus"];
+  // const allNotes: string[] = [];
+  // const noNotes = allNotes && allNotes.length == 0;
 
-  const { activeTabText } = useTabText();
+  // const { activeTabText } = useTabText();
   //   const activeTab = useTabStore((state) => state.activeTab);
 
   //   const { text: activeTabText } = tabsMap[activeTab];
@@ -80,7 +80,7 @@ function ArchivedNotes() {
     // </NotePage>
 
     <div className="flex-1 flex flex-col">
-      <EmptyPage noteType="archived" />
+      <EmptyPageContainer noteType="archived" />
     </div>
   );
 }

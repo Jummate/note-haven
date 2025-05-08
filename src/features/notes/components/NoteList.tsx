@@ -1,6 +1,6 @@
 // import React from "react";
 
-function NoteListItem() {
+function Note() {
   return (
     <div className="flex flex-col gap-3 py-3">
       <h1 className="font-bold text-2xl">React Performance Optimisation</h1>
@@ -22,7 +22,7 @@ function NoteList({ notes }: { notes: string[] }) {
   return (
     <>
       {notes.map((_, index) => (
-        <NoteListItem key={index} />
+        <Note key={index} />
       ))}
     </>
   );

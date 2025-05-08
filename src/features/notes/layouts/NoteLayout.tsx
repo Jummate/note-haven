@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
-function NotePage({ children }: PropsWithChildren) {
+function NoteLayout({ children }: PropsWithChildren) {
   return <div className="flex-1 flex flex-col">{children}</div>;
 }
 
-export default NotePage;
+export default NoteLayout;

@@ -2,7 +2,7 @@
 import { Icons } from "../../../../shared/icons/Icons";
 import { useNavigate } from "react-router-dom";
 
-function CreateNewNoteIcon() {
+function FloatingCreateNoteButton() {
   const navigate = useNavigate();
   const PlusIcon = Icons["plus"];
   return (
@@ -19,4 +19,4 @@ function CreateNewNoteIcon() {
   );
 }
 
-export default CreateNewNoteIcon;
+export default FloatingCreateNoteButton;

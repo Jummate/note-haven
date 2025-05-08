@@ -1,6 +1,6 @@
 import { lazy } from "react";
 
-const AllNotes = lazy(() => import("./pages/AllNotes"));
+const AllNotes = lazy(() => import("./pages/NoteDashboard"));
 const ArchivedNotes = lazy(() => import("./pages/ArchivedNotes"));
 
 export const noteRoutes = [

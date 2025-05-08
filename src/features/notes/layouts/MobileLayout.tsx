@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
-import logo from "../../../../assets/logo.svg";
+import logo from "../../../assets/logo.svg"
 
-function MobileContainer({ children }: PropsWithChildren) {
+function MobileLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex flex-col flex-1 lg:hidden bg-secondary-100 relative">
       <div className="p-8">
@@ -15,4 +15,4 @@ function MobileContainer({ children }: PropsWithChildren) {
   );
 }
 
-export default MobileContainer;
+export default MobileLayout;

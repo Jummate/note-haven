@@ -1,7 +1,7 @@
-import React, { ReactNode, SVGProps } from "react";
+// import React, { ReactNode, SVGProps } from "react";
 
 import { IconType } from "react-icons";
-import { IoHomeOutline } from "react-icons/io5";
+// import { IoHomeOutline } from "react-icons/io5";
 import { BiChevronRight } from "react-icons/bi";
 
 type SidebarTabProps = {
