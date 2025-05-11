@@ -13,6 +13,7 @@ import AllNotes from "./features/notes/pages/NoteDashboard";
 // import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
+import Settings from "./features/notes/pages/Settings";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <div className="">
             <Routes>
               <Route
-                path="/"
+                path="/login"
                 element={
                   <Container>
                     <Login />
@@ -76,21 +77,49 @@ function App() {
               /> */}
 
               <Route
-                path="/notes"
+                path="/"
                 element={<Dashboard />}
               >
-                <Route
+                {/* <Route
                   index
                   element={<AllNotes />}
-                />
-                {noteRoutes.map(({ path, component }) => (
+                /> */}
+                {/* <Route path="archived" element/> */}
+                <Route
+                  path="/notes"
+                  element={<AllNotes />}
+                >
                   <Route
-                    key={path}
-                    path={path}
-                    element={component}
+                    index
+                    element={<AllNotes />}
                   />
-                ))}
+                  {noteRoutes.map(({ path, component }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={component}
+                    />
+                  ))}
+                </Route>
+                <Route
+                  path="/settings"
+                  element={<Settings />}
+                >
+                  <Route
+                    path="color-theme"
+                    element={<Settings />}
+                  />
+                  <Route
+                    path="font-theme"
+                    element={<Settings />}
+                  />
+                  <Route
+                    path="change-password"
+                    element={<Settings />}
+                  />
+                </Route>
               </Route>
+
               <Route
                 path="*"
                 element={

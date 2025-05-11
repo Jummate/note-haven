@@ -13,11 +13,11 @@ export const noteRoutes = [
     component: <NoteDashboard />,
   },
   {
-    path: "archivednotes",
+    path: "archived",
     component: <ArchivedNotesPage />,
   },
   {
-    path: "createnote",
+    path: "create",
     component: <CreateNotePage />,
   },
   {
@@ -28,8 +28,8 @@ export const noteRoutes = [
     path: "tags",
     component: <TagsPage />,
   },
-  {
-    path: "search",
-    component: <SearchPage />,
-  },
+  // {
+  //   path: "search",
+  //   component: <SearchPage />,
+  // },
 ];

@@ -14,6 +14,7 @@ import MobileLayout from "../layouts/MobileLayout";
 import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
 import PageHeader from "../shared/components/PageHeader";
+import CreateNoteButton from "../shared/components/CreateNoteButton";
 
 function NotePreview() {
   const TagIcon = Icons["tags"];
@@ -59,7 +60,14 @@ function NoteDashboard() {
   // const PlusIcon = Icons["plus"];
   const ArchivedIcon = Icons["archived"];
   const DeleteIcon = Icons["delete"];
-  const allNotes: string[] = ["okay", "Hello", "World", "You", "are", "Welcome"];
+  const allNotes: string[] = [
+    "okay",
+    "Hello",
+    "World",
+    "You",
+    "are",
+    "Welcome",
+  ];
   const hasNotes = allNotes && allNotes.length > 0;
 
   // const { activeTabText } = useTabText();
@@ -73,9 +81,7 @@ function NoteDashboard() {
           <DesktopLayout>
             <div className="p-10 px-7">
               <div className="mb-12">
-                <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
-                  + Create New Note
-                </Button>
+                <CreateNoteButton />
               </div>
               <div className="divide-y divide-secondary-200">
                 <NoteList notes={allNotes} />
@@ -95,10 +101,16 @@ function NoteDashboard() {
             </div>
             <div className="p-5">
               <div className="flex flex-col gap-3">
-                <Button variant="outline" styles="md:text-md">
+                <Button
+                  variant="outline"
+                  styles="md:text-md"
+                >
                   <ArchivedIcon size={20} /> Archive Note
                 </Button>
-                <Button variant="outline" styles="md:text-md">
+                <Button
+                  variant="outline"
+                  styles="md:text-md"
+                >
                   <DeleteIcon /> Delete Note
                 </Button>
               </div>

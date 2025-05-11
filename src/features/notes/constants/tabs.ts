@@ -18,14 +18,14 @@
 export const tabs = [
   { key: "home", text: "All Notes", path: "/notes" },
   { key: "notes", text: "All Notes", path: "/notes/allnotes" },
-  { key: "search", text: "Search", path: "/notes/search" },
-  { key: "archived", text: "Archived Notes", path: "/notes/archivednotes" },
+  //   { key: "search", text: "Search", path: "/notes/search" },
+  { key: "archived", text: "Archived Notes", path: "/notes/archived" },
   { key: "tags", text: "Tags", path: "/notes/tags" },
   { key: "settings", text: "Settings", path: "/notes/settings" },
 ] as const;
 
 export const SideBarTabs = ["notes", "archived"];
-export const FooterTabs = ["home", "archived", "search", "tags", "settings"];
+export const FooterTabs = ["home", "archived", "tags", "settings"];
 
 export type Tab = (typeof tabs)[number];
 

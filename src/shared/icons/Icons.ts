@@ -6,6 +6,7 @@ import { LuSettings, LuClock4 } from "react-icons/lu";
 
 import { BiChevronRight } from "react-icons/bi";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { MdSettingsBackupRestore } from "react-icons/md";
 
 export const Icons = {
   notes: IoHomeOutline,
@@ -16,6 +17,7 @@ export const Icons = {
   settings: LuSettings,
   chevronRight: BiChevronRight,
   plus: FaPlus,
-  delete:FaTrash,
-  clock:LuClock4
+  delete: FaTrash,
+  clock: LuClock4,
+  restore: MdSettingsBackupRestore,
 } as const;
