@@ -107,15 +107,15 @@ function App() {
                 >
                   <Route
                     path="color-theme"
-                    element={<Settings />}
+                    element={<Settings.ColorTheme />}
                   />
                   <Route
                     path="font-theme"
-                    element={<Settings />}
+                    element={<Settings.FontTheme />}
                   />
                   <Route
                     path="change-password"
-                    element={<Settings />}
+                    element={<Settings.ChangePassword />}
                   />
                 </Route>
               </Route>

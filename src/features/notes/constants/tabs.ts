@@ -21,11 +21,20 @@ export const tabs = [
   //   { key: "search", text: "Search", path: "/notes/search" },
   { key: "archived", text: "Archived Notes", path: "/notes/archived" },
   { key: "tags", text: "Tags", path: "/notes/tags" },
-  { key: "settings", text: "Settings", path: "/notes/settings" },
+  { key: "settings", text: "Settings", path: "/settings" },
+
+  { key: "color-theme", text: "Color Theme", path: "/settings/color-theme" },
+  { key: "font-theme", text: "Font Theme", path: "/settings/font-theme" },
+  {
+    key: "change-password",
+    text: "Change Password",
+    path: "/settings/change-password",
+  },
 ] as const;
 
 export const SideBarTabs = ["notes", "archived"];
 export const FooterTabs = ["home", "archived", "tags", "settings"];
+export const SettingsTabs = ["font-theme", "color-theme", "change-password"];
 
 export type Tab = (typeof tabs)[number];
 
