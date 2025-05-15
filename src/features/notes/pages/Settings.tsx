@@ -8,30 +8,36 @@ import logo from "../../../assets/logo.svg";
 import ColorTheme from "../containers/ColorTheme";
 import FontTheme from "../containers/FontTheme";
 import ChangePassword from "../containers/ChangePassword";
-import { SettingsTabs, tabs } from "../constants/tabs";
-import SidebarTab from "../components/SidebarTab";
+import { settingsTabs, SettingsTabKey } from "../constants/tabs";
+// import SidebarTab from "../components/SidebarTab";
 
 import { useNavigate } from "react-router-dom";
 import { Icons } from "../../../shared/icons/Icons";
+import { useTabStore } from "../stores/tabStore";
+import SettingsTab from "../components/SettingsTab";
 
 function Settings() {
+  const { activeTabs, setActiveTab } = useTabStore();
   const navigate = useNavigate();
+
+  const handleClick = (activeTab: SettingsTabKey, path: string) => {
+    setActiveTab("settings", activeTab);
+    navigate(path);
+  };
   return (
     <>
       <div className="hidden lg:grid grid-cols-[1fr_2fr] flex-1">
         <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
           <div className="mb-12">
-            {tabs.map(({ key, text, path }) => {
+            {settingsTabs.map(({ key, text, path }) => {
               return (
-                SettingsTabs.includes(key) && (
-                  <SidebarTab
-                    key={key}
-                    text={text}
-                    icon={Icons[key]}
-                    // isActive={activeTab == key}
-                    onClick={() => navigate(path)}
-                  />
-                )
+                <SettingsTab
+                  key={key}
+                  text={text}
+                  icon={Icons[key]}
+                  isActive={activeTabs.settings == key}
+                  onClick={() => handleClick(key, path)}
+                />
               );
             })}
           </div>

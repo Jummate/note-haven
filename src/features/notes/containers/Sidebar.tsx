@@ -3,19 +3,19 @@ import logo from "../../../assets/logo.svg";
 import SidebarTab from "../components/SidebarTab";
 
 import { useTabStore } from "../stores/tabStore";
-import { TabKey, tabs, SideBarTabs } from "../constants/tabs";
+import { sideBarTabs, SideBarTabKey } from "../constants/tabs";
 import { Icons } from "../../../shared/icons/Icons";
 import Tags from "../components/Tags";
 
 // type SidebarProps = {};
 
 function Sidebar() {
-  const activeTab = useTabStore((state) => state.activeTab);
-  const setActiveTab = useTabStore((state) => state.setActiveTab);
+  const { activeTabs, setActiveTab } = useTabStore();
+
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: TabKey, path: string) => {
-    setActiveTab(activeTab);
+  const handleClick = (activeTab: SideBarTabKey, path: string) => {
+    setActiveTab("sidebar", activeTab);
     navigate(path);
   };
 
@@ -28,22 +28,19 @@ function Sidebar() {
         />
       </div>
       <div className="py-4 border-b-2">
-        {tabs.map(({ key, text, path }) => {
+        {sideBarTabs.map(({ key, text, path }) => {
           return (
-            SideBarTabs.includes(key) && (
-              <SidebarTab
-                key={key}
-                text={text}
-                icon={Icons[key]}
-                isActive={activeTab == key}
-                onClick={() => handleClick(key, path)}
-              />
-            )
+            <SidebarTab
+              key={key}
+              text={text}
+              icon={Icons[key]}
+              isActive={activeTabs.sidebar == key}
+              onClick={() => handleClick(key, path)}
+            />
           );
         })}
-
       </div>
-        <Tags />
+      <Tags />
     </div>
   );
 }

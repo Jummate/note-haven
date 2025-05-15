@@ -1,6 +1,6 @@
 // import React from "react";
 
-import { FooterTabs, tabs, TabKey } from "../constants/tabs";
+import { footerTabs, FooterTabKey } from "../constants/tabs";
 import { Icons } from "../../../shared/icons/Icons";
 import { IconType } from "react-icons";
 
@@ -49,28 +49,27 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
 }
 
 function Footer() {
-  const activeTab = useTabStore((state) => state.activeTab);
-  const setActiveTab = useTabStore((state) => state.setActiveTab);
+  // const {activeTab} = useTabStore((state) => state.activeTab);
+  // const setActiveTab = useTabStore((state) => state.setActiveTab);
+  const { activeTabs, setActiveTab } = useTabStore();
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: TabKey, path: string) => {
-    setActiveTab(activeTab);
+  const handleClick = (activeTab: FooterTabKey, path: string) => {
+    setActiveTab("footer", activeTab);
     navigate(path);
   };
   return (
     <div className="absolute left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
-      {tabs.map(({ key, text, path }) => {
+      {footerTabs.map(({ key, text, path }) => {
         return (
-          FooterTabs.includes(key) && (
-            <FooterTab
-              key={key}
-              text={text}
-              path={path}
-              icon={Icons[key]}
-              isActive={activeTab == key}
-              onClick={() => handleClick(key, path)}
-            />
-          )
+          <FooterTab
+            key={key}
+            text={text}
+            path={path}
+            icon={Icons[key]}
+            isActive={activeTabs.footer == key}
+            onClick={() => handleClick(key, path)}
+          />
         );
       })}
     </div>

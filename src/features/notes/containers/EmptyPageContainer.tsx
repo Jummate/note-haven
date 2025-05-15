@@ -6,9 +6,14 @@ type EmptyPageContainerProps = {
 };
 
 function EmptyPageContainer({ noteType }: EmptyPageContainerProps) {
-  const { activeTabText } = useTabText();
+  // const { activeTabText } = useTabText();
 
-  return <EmptyPage noteType={noteType} activeTabText={activeTabText} />;
+  return (
+    <EmptyPage
+      noteType={noteType}
+      // activeTabText={activeTabText}
+    />
+  );
 }
 
 export default EmptyPageContainer;

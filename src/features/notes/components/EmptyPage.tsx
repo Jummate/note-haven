@@ -6,10 +6,8 @@ import FloatingCreateNoteButton from "../shared/components/FloatingCreateNoteBut
 
 type EmptyPageProps = {
   noteType: string;
-  activeTabText: string;
+  activeTabText?: string;
 };
-
-
 
 function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
   return (
@@ -53,6 +51,5 @@ function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
     </>
   );
 }
-
 
 export default EmptyPage;
