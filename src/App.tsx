@@ -9,7 +9,7 @@ import Login from "./features/auth/pages/Login";
 import PageNotFound from "./shared/pages/PageNotFound";
 import Dashboard from "./features/notes/layouts/DashboardLayout";
 import Container from "./shared/components/Container";
-import AllNotes from "./features/notes/pages/NoteDashboard";
+import NoteDashboard from "./features/notes/pages/NoteDashboard";
 // import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
@@ -80,27 +80,18 @@ function App() {
                 path="/"
                 element={<Dashboard />}
               >
-                {/* <Route
-                  index
-                  element={<AllNotes />}
-                /> */}
-                {/* <Route path="archived" element/> */}
                 <Route
-                  path="/notes"
-                  element={<AllNotes />}
-                >
+                  index
+                  element={<NoteDashboard />}
+                />
+                {/* <Route path="archived" element/> */}
+                {noteRoutes.map(({ path, component }) => (
                   <Route
-                    index
-                    element={<AllNotes />}
+                    key={path}
+                    path={path}
+                    element={component}
                   />
-                  {noteRoutes.map(({ path, component }) => (
-                    <Route
-                      key={path}
-                      path={path}
-                      element={component}
-                    />
-                  ))}
-                </Route>
+                ))}
                 <Route
                   path="/settings"
                   element={<Settings />}

@@ -6,6 +6,7 @@ import { IconType } from "react-icons";
 
 import { useTabStore } from "../stores/tabStore";
 import { useNavigate } from "react-router-dom";
+import { useHeaderStore } from "../stores/headerStore";
 
 type FooterTabProps = {
   text: string;
@@ -52,10 +53,12 @@ function Footer() {
   // const {activeTab} = useTabStore((state) => state.activeTab);
   // const setActiveTab = useTabStore((state) => state.setActiveTab);
   const { activeTabs, setActiveTab } = useTabStore();
+  const { setHeaderText } = useHeaderStore();
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: FooterTabKey, path: string) => {
+  const handleClick = (activeTab: FooterTabKey, path: string, text: string) => {
     setActiveTab("footer", activeTab);
+    setHeaderText(text);
     navigate(path);
   };
   return (
@@ -68,7 +71,7 @@ function Footer() {
             path={path}
             icon={Icons[key]}
             isActive={activeTabs.footer == key}
-            onClick={() => handleClick(key, path)}
+            onClick={() => handleClick(key, path, text)}
           />
         );
       })}

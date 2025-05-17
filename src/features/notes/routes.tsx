@@ -9,15 +9,15 @@ const Settings = lazy(() => import("./pages/Settings"));
 
 export const noteRoutes = [
   {
-    path: "allnotes",
+    path: "notes",
     component: <NoteDashboard />,
   },
   {
-    path: "archived",
+    path: "notes/archived",
     component: <ArchivedNotesPage />,
   },
   {
-    path: "create",
+    path: "notes/create",
     component: <CreateNotePage />,
   },
   {
@@ -25,7 +25,7 @@ export const noteRoutes = [
     component: <Settings />,
   },
   {
-    path: "tags",
+    path: "notes/tags",
     component: <TagsPage />,
   },
   // {

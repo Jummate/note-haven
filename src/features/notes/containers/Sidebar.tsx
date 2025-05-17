@@ -6,16 +6,24 @@ import { useTabStore } from "../stores/tabStore";
 import { sideBarTabs, SideBarTabKey } from "../constants/tabs";
 import { Icons } from "../../../shared/icons/Icons";
 import Tags from "../components/Tags";
+import { useHeaderStore } from "../stores/headerStore";
 
 // type SidebarProps = {};
 
 function Sidebar() {
   const { activeTabs, setActiveTab } = useTabStore();
+  const { setHeaderText } = useHeaderStore();
 
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: SideBarTabKey, path: string) => {
+  const handleClick = (
+    activeTab: SideBarTabKey,
+    path: string,
+    text: string
+  ) => {
     setActiveTab("sidebar", activeTab);
+    setHeaderText(text);
+
     navigate(path);
   };
 
@@ -35,7 +43,7 @@ function Sidebar() {
               text={text}
               icon={Icons[key]}
               isActive={activeTabs.sidebar == key}
-              onClick={() => handleClick(key, path)}
+              onClick={() => handleClick(key, path, text)}
             />
           );
         })}

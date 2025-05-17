@@ -23,7 +23,7 @@ export const footerTabs = [
 ] as const;
 
 export const sideBarTabs = [
-  { key: "notes", text: "All Notes", path: "/notes/allnotes" },
+  { key: "notes", text: "All Notes", path: "/notes" },
   { key: "archived", text: "Archived Notes", path: "/notes/archived" },
 ] as const;
 

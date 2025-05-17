@@ -16,6 +16,8 @@ import NoteList from "../components/NoteList";
 import PageHeader from "../shared/components/PageHeader";
 import CreateNoteButton from "../shared/components/CreateNoteButton";
 
+import { useHeaderStore } from "../stores/headerStore";
+
 function NotePreview() {
   const TagIcon = Icons["tags"];
   const ClockIcon = Icons["clock"];
@@ -57,6 +59,8 @@ function NotePreview() {
 }
 
 function NoteDashboard() {
+  // const { setHeaderText } = useHeaderStore();
+  // setHeaderText("All Notes");
   // const PlusIcon = Icons["plus"];
   const ArchivedIcon = Icons["archived"];
   const DeleteIcon = Icons["delete"];
@@ -119,7 +123,8 @@ function NoteDashboard() {
           <MobileLayout>
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
-                <PageHeader />
+                <PageHeader headerText="All Notes" />
+                <h2>okay</h2>
                 <div className="divide-y divide-secondary-200">
                   <NoteList notes={allNotes} />
                 </div>
