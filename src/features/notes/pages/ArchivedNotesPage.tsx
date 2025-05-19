@@ -115,7 +115,10 @@ function ArchivedNotes() {
                 <CreateNoteButton />
               </div>
               <div className="divide-y divide-secondary-200">
-                <NoteList notes={allArchivedNotes} />
+                <NoteList
+                  notes={allArchivedNotes}
+                  path="/notes/archived"
+                />
               </div>
             </div>
             <div className="border border-r-1 border-y-0 border-l-1 relative flex">
@@ -151,9 +154,11 @@ function ArchivedNotes() {
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader headerText="Archived Notes" />
-                <h2>All right</h2>
                 <div className="divide-y divide-secondary-200">
-                  <NoteList notes={allArchivedNotes} />
+                  <NoteList
+                    notes={allArchivedNotes}
+                    path="/notes/archived"
+                  />
                 </div>
               </div>
             </div>

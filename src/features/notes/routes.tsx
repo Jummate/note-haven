@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import NoteDetailsPage from "./pages/NoteDetailsPage";
 
 const NoteDashboard = lazy(() => import("./pages/NoteDashboard"));
 const ArchivedNotesPage = lazy(() => import("./pages/ArchivedNotesPage"));
@@ -13,11 +14,19 @@ export const noteRoutes = [
     component: <NoteDashboard />,
   },
   {
-    path: "notes/archived",
+    path: ":id/:noteSlug",
+    component: <NoteDetailsPage />,
+  },
+  {
+    path: "archived",
     component: <ArchivedNotesPage />,
   },
   {
-    path: "notes/create",
+    path: "archived/:id/:noteSlug",
+    component: <ArchivedNotesPage />,
+  },
+  {
+    path: "create",
     component: <CreateNotePage />,
   },
   {

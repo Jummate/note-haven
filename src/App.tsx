@@ -14,6 +14,7 @@ import NoteDashboard from "./features/notes/pages/NoteDashboard";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
 import Settings from "./features/notes/pages/Settings";
+import ResponsiveLayout from "./features/notes/layouts/ResponsiveLayout";
 
 function App() {
   return (
@@ -84,20 +85,27 @@ function App() {
                   index
                   element={<NoteDashboard />}
                 />
-                {/* <Route path="archived" element/> */}
-                {noteRoutes.map(({ path, component }) => (
-                  <Route
-                    key={path}
-                    path={path}
-                    element={component}
-                  />
-                ))}
+
+                <Route
+                  path="/notes"
+                  element={<NoteDashboard />}
+                >
+                  {noteRoutes.map(({ path, component }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={component}
+                    />
+                  ))}
+                </Route>
+
                 <Route
                   path="/settings"
                   element={<Settings />}
                 >
                   <Route
                     path="color-theme"
+                    index
                     element={<Settings.ColorTheme />}
                   />
                   <Route

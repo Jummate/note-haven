@@ -4,22 +4,27 @@ import Sidebar from "../containers/Sidebar";
 // import Display from "./Display";
 import Header from "../components/Header";
 import Footer from "../containers/Footer";
+import { useResponsive } from "../../../shared/hooks/useResponsive";
 
 function DashboardLayout() {
   // const navigate = useNavigate();
+  const isMobile = useResponsive();
   return (
     <div className="min-h-screen cont flex flex-col">
-      <div className="lg:hidden relative flex flex-col flex-1">
-        <Outlet />
-        <Footer />
-      </div>
-      <div className="hidden lg:grid grid-cols-[250px_1fr] flex-1 text-2xl">
-        <Sidebar />
-        <main className="grid grid-rows-[100px_1fr]">
-          <Header />
+      {isMobile ? (
+        <div className="relative flex flex-col flex-1">
           <Outlet />
-        </main>
-      </div>
+          <Footer />
+        </div>
+      ) : (
+        <div className="lg:grid grid-cols-[250px_1fr] flex-1 text-2xl">
+          <Sidebar />
+          <main className="grid grid-rows-[100px_1fr]">
+            <Header />
+            <Outlet />
+          </main>
+        </div>
+      )}
     </div>
   );
 }

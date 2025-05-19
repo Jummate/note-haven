@@ -1,13 +1,22 @@
 // import React from "react";
 
-function Note() {
+import { useNavigate } from "react-router-dom";
+import { generateSlug } from "../../../shared/utils/slugify";
+
+function Note({ onClick }: { onClick?: () => void }) {
   return (
-    <div className="flex flex-col gap-3 py-3">
+    <div
+      className="flex flex-col gap-3 py-3"
+      onClick={onClick}
+    >
       <h1 className="font-bold text-2xl">React Performance Optimisation</h1>
 
       <div className="flex gap-3 text-lg">
         {["Dev", "React"].map((tag) => (
-          <span key={tag} className="bg-secondary-200 px-3 rounded-md">
+          <span
+            key={tag}
+            className="bg-secondary-200 px-3 rounded-md"
+          >
             {tag}
           </span>
         ))}
@@ -18,13 +27,24 @@ function Note() {
   );
 }
 
-function NoteList({ notes }: { notes: string[] }) {
+function NoteList({ notes, path }: { notes: string[]; path: string }) {
+  const navigate = useNavigate();
+
   return (
-    <>
-      {notes.map((_, index) => (
-        <Note key={index} />
-      ))}
-    </>
+    <div className="divide-y divide-secondary-200">
+      {notes.map((_, index) => {
+        const slug = generateSlug(
+          "Would you like me to help organize your file"
+        );
+        const actualPath = `${path}/345678/${slug}`;
+        return (
+          <Note
+            key={index}
+            onClick={() => navigate(actualPath)}
+          />
+        );
+      })}
+    </div>
   );
 }
 
