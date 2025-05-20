@@ -86,7 +86,14 @@ function App() {
                   element={<NoteDashboard />}
                 />
 
-                <Route
+                  {noteRoutes.map(({ path, component }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={component}
+                    />
+                  ))}
+                {/* <Route
                   path="/notes"
                   element={<NoteDashboard />}
                 >
@@ -97,7 +104,7 @@ function App() {
                       element={component}
                     />
                   ))}
-                </Route>
+                </Route> */}
 
                 <Route
                   path="/settings"

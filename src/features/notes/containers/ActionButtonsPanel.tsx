@@ -1,49 +1,23 @@
 import React from "react";
-import { Button } from "../../../shared/components";
-import { Icons } from "../../../shared/icons/Icons";
+
+import { useResponsive } from "../../../shared/hooks/useResponsive";
+import ActionButtonsMobile from "../components/ActionButtonsMobile";
+import ActionButtonsDesktop from "../components/ActionButtonsDesktop";
+
+type ActionButtonsPanelProps = {
+  type?:"active" | "archived"
+  showNote?: boolean;
+};
 
 function ActionButtonsPanel({
-  type = "active",
-}: {
-  type?: "active" | "archive";
-}) {
-  const ArchivedIcon = Icons["archived"];
-  const DeleteIcon = Icons["delete"];
-  return (
-    <div className="flex flex-col gap-3">
-      {type == "active" ? (
-        <>
-          <Button
-            variant="outline"
-            styles="md:text-md"
-          >
-            <ArchivedIcon size={20} /> Archive Note
-          </Button>
-          <Button
-            variant="outline"
-            styles="md:text-md"
-          >
-            <DeleteIcon /> Delete Note
-          </Button>
-        </>
-      ) : (
-        <>
-          <Button
-            variant="outline"
-            styles="md:text-md"
-          >
-            <ArchivedIcon size={20} /> Restore Note
-          </Button>
-          <Button
-            variant="outline"
-            styles="md:text-md"
-          >
-            <DeleteIcon /> Delete Note
-          </Button>
-        </>
-      )}
-    </div>
-  );
+  showNote = true,
+  type="active"
+}: ActionButtonsPanelProps) {
+
+  const isMobile = useResponsive();
+
+  if (!showNote) return null;
+  return isMobile ? <ActionButtonsMobile type={type}/> : <ActionButtonsDesktop type={type}/>
 }
 
 export default ActionButtonsPanel;

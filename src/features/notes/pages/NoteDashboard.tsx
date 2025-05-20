@@ -1,6 +1,6 @@
 // import React from "react";
-import { Button } from "../../../shared/components";
-import { Icons } from "../../../shared/icons/Icons";
+// import { Button } from "../../../shared/components";
+// import { Icons } from "../../../shared/icons/Icons";
 // import logo from "../../../assets/logo.svg";
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";
@@ -16,10 +16,10 @@ import NoteList from "../components/NoteList";
 import PageHeader from "../shared/components/PageHeader";
 import CreateNoteButton from "../shared/components/CreateNoteButton";
 
-import { useHeaderStore } from "../stores/headerStore";
+// import { useHeaderStore } from "../stores/headerStore";
 import NotePreview from "../components/NotePreview";
-import { Outlet } from "react-router-dom";
-import { useResponsive } from "../../../shared/hooks/useResponsive";
+// import { Outlet } from "react-router-dom";
+// import { useResponsive } from "../../../shared/hooks/useResponsive";
 import ResponsiveLayout from "../layouts/ResponsiveLayout";
 import ActionButtonsPanel from "../containers/ActionButtonsPanel";
 
@@ -27,8 +27,8 @@ function NoteDashboard() {
   // const { setHeaderText } = useHeaderStore();
   // setHeaderText("All Notes");
   // const PlusIcon = Icons["plus"];
-  const ArchivedIcon = Icons["archived"];
-  const DeleteIcon = Icons["delete"];
+  // const ArchivedIcon = Icons["archived"];
+  // const DeleteIcon = Icons["delete"];
   const allNotes: string[] = [
     "okay",
     "Hello",
@@ -75,7 +75,8 @@ function NoteDashboard() {
               </div>
               <div className="border border-r-1 border-y-0 border-l-1 relative flex">
                 {/* <p>Select a note to view</p> */}
-                <Outlet />
+                {/* <Outlet /> */}
+                <NotePreview />
               </div>
               <div className="p-5">
                 <ActionButtonsPanel />

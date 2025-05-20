@@ -12,12 +12,12 @@ function DashboardLayout() {
   return (
     <div className="min-h-screen cont flex flex-col">
       {isMobile ? (
-        <div className="relative flex flex-col flex-1">
+        <div className="relative flex flex-col flex-1 text-2xl">
           <Outlet />
           <Footer />
         </div>
       ) : (
-        <div className="lg:grid grid-cols-[250px_1fr] flex-1 text-2xl">
+        <div className="grid grid-cols-[250px_1fr] flex-1 text-2xl">
           <Sidebar />
           <main className="grid grid-rows-[100px_1fr]">
             <Header />

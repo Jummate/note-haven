@@ -1,19 +1,24 @@
-import { PropsWithChildren } from "react";
+import { ReactNode } from "react";
 import logo from "../../../assets/logo.svg";
 import { Outlet } from "react-router-dom";
+import clsx from "clsx";
 
-function MobileLayout({ children }: PropsWithChildren) {
-  console.log("using mobile");
+type MobilelayoutProps = {
+  children: ReactNode;
+  showHeader?: boolean;
+  styles?:string;
+};
+
+function MobileLayout({ children, styles, showHeader = true }: MobilelayoutProps) {
   return (
-    <div className="flex flex-col flex-1 lg:hidden bg-secondary-100 relative">
-      <div className="p-8">
-        <div className="">
-          <img
-            src={logo}
-            alt=""
-          />
+    <div className={clsx("flex flex-col flex-1 bg-secondary-100 relative", styles)}>
+      {showHeader && (
+        <div className="p-8">
+          <div className="">
+            <img src={logo} alt="" />
+          </div>
         </div>
-      </div>
+      )}
 
       {children}
     </div>

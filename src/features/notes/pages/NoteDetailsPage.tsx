@@ -19,6 +19,8 @@ import CreateNoteButton from "../shared/components/CreateNoteButton";
 import { useHeaderStore } from "../stores/headerStore";
 import NotePreview from "../components/NotePreview";
 import { useParams } from "react-router-dom";
+import ActionButtonsPanel from "../containers/ActionButtonsPanel";
+import ResponsiveLayout from "../layouts/ResponsiveLayout";
 
 function NoteDetailsPage() {
   // const { setHeaderText } = useHeaderStore();
@@ -37,88 +39,58 @@ function NoteDetailsPage() {
     "are",
     "Welcome",
   ];
-  const hasNotes = allNotes && allNotes.length > 0;
+
+  // const hasNotes = allNotes && allNotes.length > 0;
 
   // const { activeTabText } = useTabText();
   //   const activeTab = useTabStore((state) => state.activeTab);
 
   //   const { text: activeTabText } = tabsMap[activeTab];
   return (
-    <div className="border border-r-1 border-y-0 border-l-1 relative flex">
-      <NotePreview />
-      <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
-        <Button styles="md:text-md w-auto">Save Note</Button>
-        <Button
-          variant="outline"
-          styles="md:text-md bg-secondary-200 border-none w-auto"
-        >
-          Cancel
-        </Button>
-      </div>
+    <div className="flex-1 flex flex-col">
+      <NoteLayout>
+        <ResponsiveLayout
+          mobile={
+            <MobileLayout>
+              <div className="flex flex-1 justify-center">
+                <div className="p-8 flex flex-col text-secondary-900 font-inter w-full bg-white gap-7">
+                  {/* <PageHeader headerText="All Notes" styles="px-8"/> */}
+                  <ActionButtonsPanel/>
+                  <hr />
+                  <NotePreview />
+                </div>
+              </div>
+              <FloatingCreateNoteButton />
+            </MobileLayout>
+          }
+          desktop={
+            <DesktopLayout>
+              <div className="p-10 px-7">
+                <div className="mb-12">
+                  <CreateNoteButton />
+                </div>
+                <NoteList notes={allNotes} path="/notes" />
+              </div>
+              <div className="border border-r-1 border-y-0 border-l-1 relative flex p-8">
+                <NotePreview/>
+                <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
+                  <Button styles="md:text-md w-auto">Save Note</Button>
+                  <Button
+                    variant="outline"
+                    styles="md:text-md bg-secondary-200 border-none w-auto"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+              <div className="p-5">
+                <ActionButtonsPanel showNote={true}/>
+              </div>
+            </DesktopLayout>
+          }
+        />
+      </NoteLayout>
     </div>
-    // <div className="flex-1 flex flex-col">
-    //   {hasNotes ? (
-    //     <NoteLayout>
-    //       <DesktopLayout>
-    //         <div className="p-10 px-7">
-    //           <div className="mb-12">
-    //             <CreateNoteButton />
-    //           </div>
-    //           <div className="divide-y divide-secondary-200">
-    //             <NoteList
-    //               notes={allNotes}
-    //               path="/notes"
-    //             />
-    //           </div>
-    //         </div>
-    //         <div className="border border-r-1 border-y-0 border-l-1 relative flex">
-    //           <NotePreview />
-    //           <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
-    //             <Button styles="md:text-md w-auto">Save Note</Button>
-    //             <Button
-    //               variant="outline"
-    //               styles="md:text-md bg-secondary-200 border-none w-auto"
-    //             >
-    //               Cancel
-    //             </Button>
-    //           </div>
-    //         </div>
-    //         <div className="p-5">
-    //           <div className="flex flex-col gap-3">
-    //             <Button
-    //               variant="outline"
-    //               styles="md:text-md"
-    //             >
-    //               <ArchivedIcon size={20} /> Archive Note
-    //             </Button>
-    //             <Button
-    //               variant="outline"
-    //               styles="md:text-md"
-    //             >
-    //               <DeleteIcon /> Delete Note
-    //             </Button>
-    //           </div>
-    //         </div>
-    //       </DesktopLayout>
-    //       <MobileLayout>
-    //         <div className="flex flex-1 justify-center">
-    //           <div className="p-8 text-secondary-900 font-inter w-full bg-white">
-    //             <PageHeader headerText="All Notes" />
-    //             <div className="divide-y divide-secondary-200">
-    //               <NoteList
-    //                 notes={allNotes}
-    //                 path="/notes"
-    //               />
-    //             </div>
-    //           </div>
-    //         </div>
-    //         <FloatingCreateNoteButton />
-    //       </MobileLayout>
-    //     </NoteLayout>
-    //   ) : (
-    //     <EmptyPageContainer noteType="notes" />
-    //   )}
-    // </div>
   );
 }
 

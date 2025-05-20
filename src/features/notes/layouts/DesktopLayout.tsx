@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 function DesktopLayout({ children }: PropsWithChildren) {
   return (
-    <div className="hidden lg:grid grid-cols-[1fr_2fr_1fr] flex-1">
+    <div className="grid grid-cols-[1fr_2fr_1fr] flex-1">
       {children}
     </div>
 
