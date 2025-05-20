@@ -6,9 +6,14 @@ import { Icons } from "../../../shared/icons/Icons";
 type ActionButtonsMobileProps = {
   type?: "active" | "archived";
   styles?: string;
+  showActionButtons?: boolean;
 };
 
-function ActionButtonsMobile({ styles, type }: ActionButtonsMobileProps) {
+function ActionButtonsMobile({
+  styles,
+  type,
+  showActionButtons,
+}: ActionButtonsMobileProps) {
   const ArchivedIcon = Icons["archived"];
   const DeleteIcon = Icons["delete"];
   const RestoreIcon = Icons["restore"];
@@ -20,20 +25,22 @@ function ActionButtonsMobile({ styles, type }: ActionButtonsMobileProps) {
           <ChevronLeftIcon className="text-secondary-500 text-4xl" />
           Go Back
         </div>
-        <div className="flex gap-5 items-center text-2xl">
-          <DeleteIcon className="cursor-pointer" />
-          {type == "active" ? (
-            <>
-              <ArchivedIcon className="cursor-pointer" />
-            </>
-          ) : (
-            <>
-              <RestoreIcon className="cursor-pointer" />
-            </>
-          )}
-          <span className="text-secondary-500 cursor-pointer">Cancel</span>
-          <span className="text-primary-500 cursor-pointer">Save Note</span>
-        </div>
+        {showActionButtons && (
+          <div className="flex gap-5 items-center text-2xl">
+            <DeleteIcon className="cursor-pointer" />
+            {type == "active" ? (
+              <>
+                <ArchivedIcon className="cursor-pointer" />
+              </>
+            ) : (
+              <>
+                <RestoreIcon className="cursor-pointer" />
+              </>
+            )}
+            <span className="text-secondary-500 cursor-pointer">Cancel</span>
+            <span className="text-primary-500 cursor-pointer">Save Note</span>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { generateSlug } from "../../../shared/utils/slugify";
+import clsx from "clsx";
 
 function Note({ onClick }: { onClick?: () => void }) {
   return (
@@ -27,11 +28,19 @@ function Note({ onClick }: { onClick?: () => void }) {
   );
 }
 
-function NoteList({ notes, path }: { notes: string[]; path: string }) {
+function NoteList({
+  notes,
+  path,
+  styles,
+}: {
+  notes: string[];
+  path: string;
+  styles?: string;
+}) {
   const navigate = useNavigate();
 
   return (
-    <div className="divide-y divide-secondary-200">
+    <div className={clsx("divide-y divide-secondary-200", styles)}>
       {notes.map((_, index) => {
         const slug = generateSlug(
           "Would you like me to help organize your file"

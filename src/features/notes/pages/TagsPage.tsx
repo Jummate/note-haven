@@ -1,11 +1,86 @@
-import React from 'react';
+import React from "react";
+import ResponsiveLayout from "../layouts/ResponsiveLayout";
+import NoteLayout from "../layouts/NoteLayout";
+import Tags from "../components/Tags";
+import MobileLayout from "../layouts/MobileLayout";
+import DesktopLayout from "../layouts/DesktopLayout";
+import CreateNoteButton from "../shared/components/CreateNoteButton";
+import NoteList from "../components/NoteList";
+import NotePreview from "../components/NotePreview";
+import { Button } from "../../../shared/components";
+import ActionButtonsPanel from "../containers/ActionButtonsPanel";
+import FloatingCreateNoteButton from "../shared/components/FloatingCreateNoteButton";
+import { useParams } from "react-router-dom";
 
 function TagPage() {
-    return (
-        <div>
-            This is where you will see all tags
-        </div>
-    );
+  const { tagSlug } = useParams();
+  return (
+    <NoteLayout>
+      <ResponsiveLayout
+        mobile={
+          <MobileLayout showHeader>
+            <div className="flex flex-col gap-5">
+              <ActionButtonsPanel showActionButtons={false} />
+              {tagSlug ? (
+                <>
+                  <h1 className="text-3xl font-semibold text-secondary-700">
+                    Notes Tagged: <span className="font-bold">{tagSlug}</span>
+                  </h1>
+                  <p>All notes with the tag "{tagSlug}" are shown here</p>
+                  <NoteList
+                    notes={["noteTags1", "noteTags2"]}
+                    path="/notes"
+                    styles="p-4"
+                  />
+                </>
+              ) : (
+                <Tags
+                  divider="vertical"
+                  styles="p-4"
+                  titleStyles="font-bold text-3xl"
+                  listItemStyles="text-xl text-secondary-800"
+                />
+              )}
+            </div>
+
+            <FloatingCreateNoteButton />
+          </MobileLayout>
+        }
+        desktop={
+          <DesktopLayout
+            firstItem={
+              <>
+                <CreateNoteButton />
+                <NoteList
+                  notes={[]}
+                  path="/notes"
+                />
+              </>
+            }
+            secondItem={
+              tagSlug ? (
+                <>
+                  <NotePreview />
+                  <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
+                    <Button styles="md:text-md w-auto">Save Note</Button>
+                    <Button
+                      variant="outline"
+                      styles="md:text-md bg-secondary-200 border-none w-auto"
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <p>Select a tag show</p>
+              )
+            }
+            thirdItem={tagSlug && <ActionButtonsPanel showNote={true} />}
+          />
+        }
+      />
+    </NoteLayout>
+  );
 }
 
 export default TagPage;

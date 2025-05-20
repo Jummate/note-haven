@@ -48,7 +48,7 @@ function Sidebar() {
           );
         })}
       </div>
-      <Tags />
+      <Tags styles="py-8" />
     </div>
   );
 }

@@ -45,47 +45,39 @@ function NoteDashboard() {
   //   const { text: activeTabText } = tabsMap[activeTab];
   if (!hasNotes) return <EmptyPageContainer noteType="notes" />;
   return (
-    <div className="flex-1 flex flex-col">
-      <NoteLayout>
-        <ResponsiveLayout
-          mobile={
-            <MobileLayout>
-              <div className="flex flex-1 justify-center">
-                <div className="p-8 text-secondary-900 font-inter w-full bg-white">
-                  <PageHeader headerText="All Notes" />
-                  <NoteList
-                    notes={allNotes}
-                    path="/notes"
-                  />
-                </div>
-              </div>
-              <FloatingCreateNoteButton />
-            </MobileLayout>
-          }
-          desktop={
-            <DesktopLayout>
-              <div className="p-10 px-7">
-                <div className="mb-12">
-                  <CreateNoteButton />
-                </div>
+    <NoteLayout>
+      <ResponsiveLayout
+        mobile={
+          <MobileLayout>
+            <div className="flex flex-1 justify-center">
+              <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+                <PageHeader headerText="All Notes" />
                 <NoteList
                   notes={allNotes}
                   path="/notes"
                 />
               </div>
-              <div className="border border-r-1 border-y-0 border-l-1 relative flex">
-                {/* <p>Select a note to view</p> */}
-                {/* <Outlet /> */}
-                <NotePreview />
-              </div>
-              <div className="p-5">
-                <ActionButtonsPanel />
-              </div>
-            </DesktopLayout>
-          }
-        />
-      </NoteLayout>
-    </div>
+            </div>
+            <FloatingCreateNoteButton />
+          </MobileLayout>
+        }
+        desktop={
+          <DesktopLayout
+            firstItem={
+              <>
+                <CreateNoteButton />
+                <NoteList
+                  notes={allNotes}
+                  path="/notes"
+                />
+              </>
+            }
+            secondItem={<NotePreview showNote={false} />}
+            thirdItem={<ActionButtonsPanel showNote={false} />}
+          />
+        }
+      />
+    </NoteLayout>
   );
 }
 

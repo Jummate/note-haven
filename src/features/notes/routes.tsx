@@ -37,12 +37,15 @@ export const noteRoutes = [
     path: "notes/tags",
     component: <TagsPage />,
   },
+  {
+    path: "notes/tags/:tagSlug",
+    component: <TagsPage />,
+  },
   // {
   //   path: "search",
   //   component: <SearchPage />,
   // },
 ];
-
 
 // export const noteRoutes = [
 //   {

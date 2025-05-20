@@ -47,32 +47,30 @@ function NoteDetailsPage() {
 
   //   const { text: activeTabText } = tabsMap[activeTab];
   return (
-    <div className="flex-1 flex flex-col">
-      <NoteLayout>
-        <ResponsiveLayout
-          mobile={
-            <MobileLayout>
-              <div className="flex flex-1 justify-center">
-                <div className="p-8 flex flex-col text-secondary-900 font-inter w-full bg-white gap-7">
-                  {/* <PageHeader headerText="All Notes" styles="px-8"/> */}
-                  <ActionButtonsPanel/>
-                  <hr />
-                  <NotePreview />
-                </div>
-              </div>
-              <FloatingCreateNoteButton />
-            </MobileLayout>
-          }
-          desktop={
-            <DesktopLayout>
-              <div className="p-10 px-7">
-                <div className="mb-12">
-                  <CreateNoteButton />
-                </div>
-                <NoteList notes={allNotes} path="/notes" />
-              </div>
-              <div className="border border-r-1 border-y-0 border-l-1 relative flex p-8">
-                <NotePreview/>
+    <NoteLayout>
+      <ResponsiveLayout
+        mobile={
+          <MobileLayout>
+            <ActionButtonsPanel />
+            <hr className=" bg-secondary-100 my-6 h-1" />
+            <NotePreview />
+            <FloatingCreateNoteButton />
+          </MobileLayout>
+        }
+        desktop={
+          <DesktopLayout
+            firstItem={
+              <>
+                <CreateNoteButton />
+                <NoteList
+                  notes={allNotes}
+                  path="/notes"
+                />
+              </>
+            }
+            secondItem={
+              <>
+                <NotePreview />
                 <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
                   <Button styles="md:text-md w-auto">Save Note</Button>
                   <Button
@@ -82,15 +80,13 @@ function NoteDetailsPage() {
                     Cancel
                   </Button>
                 </div>
-              </div>
-              <div className="p-5">
-                <ActionButtonsPanel showNote={true}/>
-              </div>
-            </DesktopLayout>
-          }
-        />
-      </NoteLayout>
-    </div>
+              </>
+            }
+            thirdItem={<ActionButtonsPanel />}
+          />
+        }
+      />
+    </NoteLayout>
   );
 }
 

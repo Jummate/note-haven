@@ -2,21 +2,24 @@
 import { Icons } from "../../../shared/icons/Icons";
 // import { useLocation } from "react-router-dom";
 
-
-
 type NotePreviewprops = {
   showNote?: boolean;
-}
+};
 
-function NotePreview({showNote=true}:NotePreviewprops) {
+function NotePreview({ showNote = true }: NotePreviewprops) {
   const TagIcon = Icons["tags"];
   const ClockIcon = Icons["clock"];
 
-  if(!showNote) return <div className="flex flex-col flex-1 justify-center items-center font-bold text-4xl"><p>Select a note to preview</p></div>
+  if (!showNote)
+    return (
+      <div className="flex flex-col flex-1 justify-center items-center font-bold text-4xl">
+        <p>Select a note to preview</p>
+      </div>
+    );
   return (
     <article className="flex flex-col flex-1">
       <div className="flex flex-col gap-4">
-        <h1 className="font-bold">React Performance Optimisation</h1>
+        <h1 className="font-bold text-3xl">React Performance Optimisation</h1>
 
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-[150px_1fr]">
@@ -31,7 +34,7 @@ function NotePreview({showNote=true}:NotePreviewprops) {
             </span>
             <span>29 Oct 2024</span>
           </div>
-          <hr className="w-full" />
+          <hr className="w-full bg-secondary-200 h-1 my-4" />
         </div>
 
         <div>
