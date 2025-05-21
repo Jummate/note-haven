@@ -43,7 +43,7 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
             className={clsx("py-4 cursor-pointer", listItemStyles)}
             onClick={() => {
               setHeaderText(`Showing result for ${tag}`);
-              navigate(`${tag}`);
+              navigate(`notes/tags/${tag}`);
             }}
           >
             <TagIcon className="inline" /> {tag}

@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 import { useResponsive } from "../../../shared/hooks/useResponsive";
 import ActionButtonsMobile from "../components/ActionButtonsMobile";
@@ -8,9 +9,11 @@ type ActionButtonsPanelProps = {
   type?: "active" | "archived";
   showNote?: boolean;
   showActionButtons?: boolean;
+  styles?: string;
 };
 
 function ActionButtonsPanel({
+  styles,
   showNote = true,
   type = "active",
   showActionButtons = true,
@@ -22,9 +25,13 @@ function ActionButtonsPanel({
     <ActionButtonsMobile
       type={type}
       showActionButtons={showActionButtons}
+      styles={styles}
     />
   ) : (
-    <ActionButtonsDesktop type={type} />
+    <ActionButtonsDesktop
+      type={type}
+      styles={styles}
+    />
   );
 }
 

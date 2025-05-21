@@ -20,7 +20,10 @@ function TagPage() {
         mobile={
           <MobileLayout showHeader>
             <div className="flex flex-col gap-5">
-              <ActionButtonsPanel showActionButtons={false} />
+              <ActionButtonsPanel
+                showActionButtons={false}
+                styles="mb-6"
+              />
               {tagSlug ? (
                 <>
                   <h1 className="text-3xl font-semibold text-secondary-700">
@@ -30,7 +33,7 @@ function TagPage() {
                   <NoteList
                     notes={["noteTags1", "noteTags2"]}
                     path="/notes"
-                    styles="p-4"
+                    styles="p-2 mt-5"
                   />
                 </>
               ) : (
@@ -72,7 +75,7 @@ function TagPage() {
                   </div>
                 </>
               ) : (
-                <p>Select a tag show</p>
+                <p>Select an item to read. Nothing is selected</p>
               )
             }
             thirdItem={tagSlug && <ActionButtonsPanel showNote={true} />}
