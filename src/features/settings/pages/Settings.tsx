@@ -13,7 +13,7 @@ import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 
 import { useNavigate } from "react-router-dom";
 import { Icons } from "../../../shared/icons/Icons";
-import { useTabStore } from "../stores/tabStore";
+import { useTabStore } from "../../notes/stores/tabStore";
 import SettingsTab from "../components/SettingsTab";
 
 function Settings() {

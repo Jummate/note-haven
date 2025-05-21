@@ -1,9 +1,9 @@
 import React from "react";
 import clsx from "clsx";
 
-import { useResponsive } from "../../../shared/hooks/useResponsive";
-import ActionButtonsMobile from "../components/ActionButtonsMobile";
-import ActionButtonsDesktop from "../components/ActionButtonsDesktop";
+import { useResponsive } from "../hooks/useResponsive";
+import ActionButtonsMobile from "../../features/notes/components/ActionButtonsMobile";
+import ActionButtonsDesktop from "../../features/notes/components/ActionButtonsDesktop";
 
 type ActionButtonsPanelProps = {
   type?: "active" | "archived";

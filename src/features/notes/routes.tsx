@@ -4,9 +4,9 @@ import NoteDetailsPage from "./pages/NoteDetailsPage";
 const NoteDashboard = lazy(() => import("./pages/NoteDashboard"));
 const ArchivedNotesPage = lazy(() => import("./pages/ArchivedNotesPage"));
 const CreateNotePage = lazy(() => import("./pages/CreateNotePage"));
-const TagsPage = lazy(() => import("./pages/TagsPage"));
+const TagsPage = lazy(() => import("../tags/pages/TagsPage"));
 // const SearchPage = lazy(() => import("./pages/SearchPage"));
-const Settings = lazy(() => import("./pages/Settings"));
+const Settings = lazy(() => import("../settings/pages/Settings"));
 
 export const noteRoutes = [
   {

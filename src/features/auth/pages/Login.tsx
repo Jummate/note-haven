@@ -11,8 +11,8 @@ import {
 } from "../../../shared/components";
 import logo from "../../../assets/logo.svg";
 
-import { useForm } from "../../../shared/hooks/useForm";
-import { validationRules } from "../../../shared/utils/validation";
+import { useForm } from "../hooks/useForm";
+import { validationRules } from "../utils/validation";
 import { login } from "../../../shared/services/authService";
 
 function Login() {

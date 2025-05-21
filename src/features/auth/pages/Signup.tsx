@@ -11,8 +11,8 @@ import {
 import logo from "../../../assets/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useForm } from "../../../shared/hooks/useForm";
-import { validationRules } from "../../../shared/utils/validation";
+import { useForm } from "../hooks/useForm";
+import { validationRules } from "../utils/validation";
 
 import { createUser } from "../../../shared/services/authService";
 import { notify } from "../../../shared/services/toastService";

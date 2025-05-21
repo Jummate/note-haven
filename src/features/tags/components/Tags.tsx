@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import { useNavigate } from "react-router-dom";
 
-import { useHeaderStore } from "../stores/headerStore";
+import { useHeaderStore } from "../../notes/stores/headerStore";
 
 type TagsProps = {
   divider?: "vertical" | "horizontal";
@@ -43,7 +43,7 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
             className={clsx("py-4 cursor-pointer", listItemStyles)}
             onClick={() => {
               setHeaderText(`Showing result for ${tag}`);
-              navigate(`notes/tags/${tag}`);
+              navigate(`/notes/tags/${tag}`);
             }}
           >
             <TagIcon className="inline" /> {tag}

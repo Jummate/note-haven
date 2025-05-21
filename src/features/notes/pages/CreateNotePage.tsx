@@ -6,14 +6,14 @@ import { Icons } from "../../../shared/icons/Icons";
 // import { tabsMap } from "../constants/tabs";
 // import EmptyNote from "../components/EmptyNote";
 // import { useTabText } from "../hooks/useTabText";
-import NoteLayout from "../layouts/NoteLayout";
-import DesktopLayout from "../layouts/DesktopLayout";
-import MobileLayout from "../layouts/MobileLayout";
+import NoteLayout from "../../../shared/layouts/NoteLayout";
+import DesktopLayout from "../../../shared/layouts/DesktopLayout";
+import MobileLayout from "../../../shared/layouts/MobileLayout";
 // import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
 import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
 import PageHeader from "../shared/components/PageHeader";
-import CreateNoteButton from "../shared/components/CreateNoteButton";
+import CreateNoteButton from "../components/CreateNoteButton";
 
 // function NotePreview() {
 //   const TagIcon = Icons["tags"];

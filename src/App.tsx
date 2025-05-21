@@ -7,14 +7,14 @@ import { ToastContainer } from "react-toastify";
 
 import Login from "./features/auth/pages/Login";
 import PageNotFound from "./shared/pages/PageNotFound";
-import Dashboard from "./features/notes/layouts/DashboardLayout";
+import Dashboard from "./layout/DashboardLayout";
 import Container from "./shared/components/Container";
 import NoteDashboard from "./features/notes/pages/NoteDashboard";
 // import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
-import Settings from "./features/notes/pages/Settings";
-import ResponsiveLayout from "./features/notes/layouts/ResponsiveLayout";
+import Settings from "./features/settings/pages/Settings";
+import ResponsiveLayout from "./shared/layouts/ResponsiveLayout";
 
 function App() {
   return (
@@ -86,13 +86,13 @@ function App() {
                   element={<NoteDashboard />}
                 />
 
-                  {noteRoutes.map(({ path, component }) => (
-                    <Route
-                      key={path}
-                      path={path}
-                      element={component}
-                    />
-                  ))}
+                {noteRoutes.map(({ path, component }) => (
+                  <Route
+                    key={path}
+                    path={path}
+                    element={component}
+                  />
+                ))}
                 {/* <Route
                   path="/notes"
                   element={<NoteDashboard />}

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import SidebarTab from "../components/SidebarTab";
+import SidebarTab from "../shared/components/SidebarTab";
 
-import { useTabStore } from "../stores/tabStore";
-import { sideBarTabs, SideBarTabKey } from "../constants/tabs";
-import { Icons } from "../../../shared/icons/Icons";
-import Tags from "../components/Tags";
-import { useHeaderStore } from "../stores/headerStore";
+import { useTabStore } from "../features/notes/stores/tabStore";
+import { sideBarTabs, SideBarTabKey } from "../features/notes/constants/tabs";
+import { Icons } from "../shared/icons/Icons";
+import Tags from "../features/tags/components/Tags";
+import { useHeaderStore } from "../features/notes/stores/headerStore";
 
 // type SidebarProps = {};
 

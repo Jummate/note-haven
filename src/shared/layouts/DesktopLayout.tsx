@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactNode } from "react";
-import Sidebar from "../containers/Sidebar";
-import Header from "../components/Header";
+import Sidebar from "../../layout/Sidebar";
+import Header from "../../layout/Header";
 import { Outlet } from "react-router-dom";
 
 type DesktopLayoutProps = {

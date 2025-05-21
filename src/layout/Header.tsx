@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import { Input } from "../../../shared/components";
+import { Input } from "../shared/components";
 
 import { LuSettings } from "react-icons/lu";
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";
-import PageHeader from "../shared/components/PageHeader";
+import PageHeader from "../features/notes/shared/components/PageHeader";
 import { useNavigate } from "react-router-dom";
-import { useHeaderStore } from "../stores/headerStore";
+import { useHeaderStore } from "../features/notes/stores/headerStore";
 
 function Header() {
   const [searchInput, setSearchInput] = useState<string>("");

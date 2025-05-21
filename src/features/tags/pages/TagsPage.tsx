@@ -1,15 +1,15 @@
 import React from "react";
-import ResponsiveLayout from "../layouts/ResponsiveLayout";
-import NoteLayout from "../layouts/NoteLayout";
+import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
+import NoteLayout from "../../../shared/layouts/NoteLayout";
 import Tags from "../components/Tags";
-import MobileLayout from "../layouts/MobileLayout";
-import DesktopLayout from "../layouts/DesktopLayout";
-import CreateNoteButton from "../shared/components/CreateNoteButton";
-import NoteList from "../components/NoteList";
-import NotePreview from "../components/NotePreview";
+import MobileLayout from "../../../shared/layouts/MobileLayout";
+import DesktopLayout from "../../../shared/layouts/DesktopLayout";
+import CreateNoteButton from "../../notes/components/CreateNoteButton";
+import NoteList from "../../notes/components/NoteList";
+import NotePreview from "../../notes/components/NotePreview";
 import { Button } from "../../../shared/components";
-import ActionButtonsPanel from "../containers/ActionButtonsPanel";
-import FloatingCreateNoteButton from "../shared/components/FloatingCreateNoteButton";
+import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
+import FloatingCreateNoteButton from "../../notes/components/FloatingCreateNoteButton";
 import { useParams } from "react-router-dom";
 
 function TagPage() {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../../shared/components";
+import { Button } from "../../../shared/components";
 
 function CreateNoteButton() {
   const navigate = useNavigate();

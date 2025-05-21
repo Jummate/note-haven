@@ -6,21 +6,21 @@ import { Icons } from "../../../shared/icons/Icons";
 // import { tabsMap } from "../constants/tabs";
 // import EmptyNote from "../components/EmptyNote";
 // import { useTabText } from "../hooks/useTabText";
-import FloatingCreateNoteButton from "../shared/components/FloatingCreateNoteButton";
-import NoteLayout from "../layouts/NoteLayout";
-import DesktopLayout from "../layouts/DesktopLayout";
-import MobileLayout from "../layouts/MobileLayout";
+import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
+import NoteLayout from "../../../shared/layouts/NoteLayout";
+import DesktopLayout from "../../../shared/layouts/DesktopLayout";
+import MobileLayout from "../../../shared/layouts/MobileLayout";
 // import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
 import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
 import PageHeader from "../shared/components/PageHeader";
-import CreateNoteButton from "../shared/components/CreateNoteButton";
+import CreateNoteButton from "../components/CreateNoteButton";
 
 import { useHeaderStore } from "../stores/headerStore";
 import NotePreview from "../components/NotePreview";
 import { useParams } from "react-router-dom";
-import ActionButtonsPanel from "../containers/ActionButtonsPanel";
-import ResponsiveLayout from "../layouts/ResponsiveLayout";
+import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
+import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 
 function NoteDetailsPage() {
   // const { setHeaderText } = useHeaderStore();

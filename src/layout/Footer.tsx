@@ -1,12 +1,12 @@
 // import React from "react";
 
-import { footerTabs, FooterTabKey } from "../constants/tabs";
-import { Icons } from "../../../shared/icons/Icons";
+import { footerTabs, FooterTabKey } from "./constants/tabs";
+import { Icons } from "../shared/icons/Icons";
 import { IconType } from "react-icons";
 
-import { useTabStore } from "../stores/tabStore";
+import { useTabStore } from "../features/notes/stores/tabStore";
 import { useNavigate } from "react-router-dom";
-import { useHeaderStore } from "../stores/headerStore";
+import { useHeaderStore } from "../features/notes/stores/headerStore";
 
 type FooterTabProps = {
   text: string;

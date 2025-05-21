@@ -10,8 +10,8 @@ import {
 
 import logo from "../../../assets/logo.svg";
 
-import { useForm } from "../../../shared/hooks/useForm";
-import { validationRules } from "../../../shared/utils/validation";
+import { useForm } from "../hooks/useForm";
+import { validationRules } from "../utils/validation";
 import { resetPassword } from "../../../shared/services/authService";
 
 function ResetPassword() {
