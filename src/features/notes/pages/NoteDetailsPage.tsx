@@ -21,25 +21,24 @@ import NotePreview from "../components/NotePreview";
 import { useParams } from "react-router-dom";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
+import { useNoteStore } from "../stores/noteStore";
 
 function NoteDetailsPage() {
   // const { setHeaderText } = useHeaderStore();
   // setHeaderText("All Notes");
   // const PlusIcon = Icons["plus"];
 
-  const { noteSlug } = useParams();
+  const { noteSlug, noteId } = useParams();
 
   const ArchivedIcon = Icons["archived"];
   const DeleteIcon = Icons["delete"];
-  const allNotes: string[] = [
-    "okay",
-    "Hello",
-    "World",
-    "You",
-    "are",
-    "Welcome",
-  ];
 
+  const getNotes = useNoteStore((state) => state.getNotes)
+  const allNotes = getNotes()
+  const getNoteById  = useNoteStore((state) => state.getNoteById)
+  const singleNote  = getNoteById(noteId || "")
+
+  
   // const hasNotes = allNotes && allNotes.length > 0;
 
   // const { activeTabText } = useTabText();
@@ -53,7 +52,7 @@ function NoteDetailsPage() {
           <MobileLayout>
             <ActionButtonsPanel />
             <hr className=" bg-secondary-100 my-6 h-1" />
-            <NotePreview />
+            <NotePreview note={singleNote} />
             <FloatingCreateNoteButton />
           </MobileLayout>
         }
@@ -63,14 +62,14 @@ function NoteDetailsPage() {
               <>
                 <CreateNoteButton />
                 <NoteList
-                  notes={allNotes}
+                 data={allNotes}
                   path="/notes"
                 />
               </>
             }
             secondItem={
               <>
-                <NotePreview />
+                <NotePreview note={singleNote}/>
                 <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
                   <Button styles="md:text-md w-auto">Save Note</Button>
                   <Button

@@ -93,6 +93,7 @@ function Login() {
         <Button
           type="submit"
           styles="font-bold hover:bg-opacity-95"
+          disabled={loading}
         >
           {loading ? "Processing..." : "Login"}
         </Button>

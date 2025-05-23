@@ -3,11 +3,8 @@ import { Button } from "../../../shared/components";
 import EmptyNote from "./EmptyNote";
 import logo from "../../../assets/logo.svg";
 import FloatingCreateNoteButton from "./FloatingCreateNoteButton";
+import { EmptyPageProps } from "../types";
 
-type EmptyPageProps = {
-  noteType: string;
-  activeTabText?: string;
-};
 
 function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
   return (

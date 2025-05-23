@@ -15,7 +15,6 @@ import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 
 import { createUser } from "../services/authService";
-import { notify } from "../../../shared/services/toastService";
 
 function Signup() {
   const navigate = useNavigate();

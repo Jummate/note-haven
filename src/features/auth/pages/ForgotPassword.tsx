@@ -15,10 +15,7 @@ import { validationRules } from "../utils/validation";
 import { forgotPassword } from "../services/authService";
 import ResendEmail from "../../../shared/components/ResendEmail";
 
-// type TimerProps = {
-//   time: number;
-//   callback: () => void;
-// };
+
 
 function ForgotPassword() {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -27,7 +24,7 @@ function ForgotPassword() {
     validationRules,
     onSubmit: (values) =>
       forgotPassword(values, () => {
-        setSubmitted(true), setRecipient(values.email);
+        setSubmitted(true); setRecipient(values.email);
       }),
     component: "forgotPassword",
   });

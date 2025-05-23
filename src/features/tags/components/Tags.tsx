@@ -5,18 +5,16 @@ import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 
 import { useHeaderStore } from "../../notes/stores/headerStore";
+import { TagsProps } from "../types";
+import { useNoteStore } from "../../notes/stores/noteStore";
 
-type TagsProps = {
-  divider?: "vertical" | "horizontal";
-  styles?: string;
-  titleStyles?: string;
-  listItemStyles?: string;
-};
-// divide-y divide-secondary-200
+
 function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   const navigate = useNavigate();
   const { setHeaderText } = useHeaderStore();
   const TagIcon = Icons["tags"];
+
+  // const getAllTags = useNoteStore((state) => state.get)
   const tags: string[] = [
     "Cooking",
     "Dev",

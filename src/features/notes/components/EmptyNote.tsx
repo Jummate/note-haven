@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
+import { EmptyNoteProps } from "../types";
 
-type EmptyNoteProps = {
-  noteType: string;
-};
+
 
 function EmptyNote({ noteType }: EmptyNoteProps) {
   return noteType == "notes" ? (

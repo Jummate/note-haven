@@ -14,7 +14,7 @@ export const noteRoutes = [
     component: <NoteDashboard />,
   },
   {
-    path: "notes/:id/:noteSlug",
+    path: "notes/:noteId/:noteSlug",
     component: <NoteDetailsPage />,
   },
   {
@@ -22,7 +22,7 @@ export const noteRoutes = [
     component: <ArchivedNotesPage />,
   },
   {
-    path: "notes/archived/:id/:noteSlug",
+    path: "notes/archived/:noteId/:noteSlug",
     component: <ArchivedNotesPage />,
   },
   {

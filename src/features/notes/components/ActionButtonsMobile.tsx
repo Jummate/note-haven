@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import clsx from "clsx";
 import { Button } from "../../../shared/components";
 import { Icons } from "../../../shared/icons/Icons";
-import { ActionButtons } from "../types";
+import { ActionButtonsMobileProps } from "../types";
 
-type ActionButtonsMobileProps = Partial<ActionButtons>;
+
 
 function ActionButtonsMobile({
   styles,
