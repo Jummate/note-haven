@@ -14,7 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 
-import { createUser } from "../../../shared/services/authService";
+import { createUser } from "../services/authService";
 import { notify } from "../../../shared/services/toastService";
 
 function Signup() {

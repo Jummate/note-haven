@@ -12,7 +12,7 @@ import logo from "../../../assets/logo.svg";
 
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
-import { resetPassword } from "../../../shared/services/authService";
+import { resetPassword } from "../services/authService";
 
 function ResetPassword() {
   const navigate = useNavigate();

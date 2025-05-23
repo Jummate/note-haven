@@ -13,7 +13,7 @@ import logo from "../../../assets/logo.svg";
 
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
-import { login } from "../../../shared/services/authService";
+import { login } from "../services/authService";
 
 function Login() {
   const navigate = useNavigate();

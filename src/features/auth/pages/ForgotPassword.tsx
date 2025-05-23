@@ -12,7 +12,7 @@ import logo from "../../../assets/logo.svg";
 
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
-import { forgotPassword } from "../../../shared/services/authService";
+import { forgotPassword } from "../services/authService";
 import ResendEmail from "../../../shared/components/ResendEmail";
 
 // type TimerProps = {

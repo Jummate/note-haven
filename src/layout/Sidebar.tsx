@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../../../assets/logo.svg";
+import logo from "../assets/logo.svg";
 import SidebarTab from "../shared/components/SidebarTab";
 
 import { useTabStore } from "../features/notes/stores/tabStore";

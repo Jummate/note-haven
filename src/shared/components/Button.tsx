@@ -2,9 +2,10 @@ import { ReactNode } from "react";
 import clsx from "clsx";
 
 type ButtonVariant = "primary" | "outline" | "danger" | "secondary";
+type ButtonType = "submit" | "reset" | "button";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  type?: "submit" | "reset" | "button";
+  type?: ButtonType;
   disabled?: boolean;
   children: ReactNode;
   onClick?: () => void;

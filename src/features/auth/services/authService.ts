@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import apiClient from "./apiClient";
-import { convertToSnakeCase } from "../utils/conversion";
-import { notify } from "./toastService";
+import apiClient from "../../../shared/services/apiClient";
+import { convertToSnakeCase } from "../../../shared/utils/conversion";
+import { notify } from "../../../shared/services/toastService";
 
 export const createUser = async (
   data: Record<string, string>,

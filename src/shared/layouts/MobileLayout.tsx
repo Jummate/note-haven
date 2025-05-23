@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import logo from "../../../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import { Outlet } from "react-router-dom";
 import clsx from "clsx";
 

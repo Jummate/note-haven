@@ -2,11 +2,11 @@ import React, { ReactNode } from "react";
 import clsx from "clsx";
 import { Button } from "../../../shared/components";
 import { Icons } from "../../../shared/icons/Icons";
+import { ActionButtons, NoteType } from "../types";
 
-type ActionButtonsDesktopProps = {
-  type?: "active" | "archived";
-  styles?: string;
-};
+type ActionButtonsDesktopProps = Partial<
+  Omit<ActionButtons, "showActionButtons">
+>;
 
 function ActionButtonsDesktop({
   styles,
@@ -17,7 +17,10 @@ function ActionButtonsDesktop({
   const RestoreIcon = Icons["restore"];
   return (
     <div className={clsx("flex flex-col gap-3", styles)}>
-      <Button variant="outline" styles="md:text-md">
+      <Button
+        variant="outline"
+        styles="md:text-md"
+      >
         {type == "active" ? (
           <ArchivedIcon size={20} />
         ) : (
@@ -25,7 +28,10 @@ function ActionButtonsDesktop({
         )}
         {type == "active" ? "Archive Note" : "Restore Note"}
       </Button>
-      <Button variant="outline" styles="md:text-md">
+      <Button
+        variant="outline"
+        styles="md:text-md"
+      >
         <DeleteIcon /> Delete Note
       </Button>
     </div>
