@@ -4,7 +4,7 @@ import SidebarTab from "../shared/components/SidebarTab";
 
 import { useTabStore } from "../features/notes/stores/tabStore";
 import { sideBarTabs, SideBarTabKey } from "../features/notes/constants/tabs";
-import { Icons } from "../shared/icons/Icons";
+import { AppIcons } from "../shared/icons/Icons";
 import Tags from "../features/tags/components/Tags";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
 
@@ -32,7 +32,7 @@ function Sidebar() {
       <div className="py-12">
         <img
           src={logo}
-          alt=""
+          alt="Notes Haven logo"
         />
       </div>
       <div className="py-4 border-b-2">
@@ -41,7 +41,7 @@ function Sidebar() {
             <SidebarTab
               key={key}
               text={text}
-              icon={Icons[key]}
+              icon={AppIcons[key]}
               isActive={activeTabs.sidebar == key}
               onClick={() => handleClick(key, path, text)}
             />

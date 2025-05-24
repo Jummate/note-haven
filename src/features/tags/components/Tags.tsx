@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Icons } from "../../../shared/icons/Icons";
+import { AppIcons } from "../../../shared/icons/Icons";
 import clsx from "clsx";
 
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import { useNoteStore } from "../../notes/stores/noteStore";
 function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   const navigate = useNavigate();
   const { setHeaderText } = useHeaderStore();
-  const TagIcon = Icons["tags"];
+  const TagIcon = AppIcons["tags"];
 
   const tags = useNoteStore((state) => state.tagMap);
 

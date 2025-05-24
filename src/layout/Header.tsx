@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { Input } from "../shared/components";
 
-import { LuSettings } from "react-icons/lu";
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";
 import PageHeader from "../features/notes/shared/components/PageHeader";
 import { useNavigate } from "react-router-dom";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
+import { AppIcons } from "../shared/icons/Icons";
 
 function Header() {
   const [searchInput, setSearchInput] = useState<string>("");
@@ -16,6 +16,8 @@ function Header() {
 
   const { headerText } = useHeaderStore();
   const navigate = useNavigate();
+
+  const SettingsIcon = AppIcons["settings"];
 
   return (
     <div>
@@ -30,7 +32,7 @@ function Header() {
               onChange={(e) => setSearchInput(e.target.value)}
               styles="py-3 text-2xl"
             />
-            <LuSettings
+            <SettingsIcon
               className="text-4xl text-secondary-500 cursor-pointer"
               onClick={() => navigate("/settings")}
             />

@@ -11,7 +11,7 @@ import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 // import SidebarTab from "../components/SidebarTab";
 
 import { useNavigate } from "react-router-dom";
-import { Icons } from "../../../shared/icons/Icons";
+import { AppIcons } from "../../../shared/icons/Icons";
 import { useTabStore } from "../../notes/stores/tabStore";
 import SettingsTab from "../components/SettingsTab";
 
@@ -33,7 +33,7 @@ function Settings() {
                 <SettingsTab
                   key={key}
                   text={text}
-                  icon={Icons[key]}
+                  icon={AppIcons[key]}
                   isActive={activeTabs.settings == key}
                   onClick={() => handleClick(key, path)}
                 />

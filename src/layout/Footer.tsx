@@ -1,7 +1,7 @@
 // import React from "react";
 
 import { footerTabs, FooterTabKey } from "./constants/tabs";
-import { Icons } from "../shared/icons/Icons";
+import { AppIcons } from "../shared/icons/Icons";
 import { IconType } from "react-icons";
 
 import { useTabStore } from "../features/notes/stores/tabStore";
@@ -69,7 +69,7 @@ function Footer() {
             key={key}
             text={text}
             path={path}
-            icon={Icons[key]}
+            icon={AppIcons[key]}
             isActive={activeTabs.footer == key}
             onClick={() => handleClick(key, path, text)}
           />

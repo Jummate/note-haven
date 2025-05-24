@@ -8,11 +8,11 @@ import {
   ShowError,
 } from "../../../shared/components";
 
-import logo from "../../../assets/logo.svg";
-
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 import { resetPassword } from "../services/authService";
+import AuthLayout from "../layouts/AuthLayout";
+import { FormWrapper } from "../../../shared/components/FormWrapper";
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -36,75 +36,62 @@ function ResetPassword() {
     );
 
   return (
-    <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
-      <div className="text-center mb-5">
-        <VerticalWrapper styles="items-center">
-          <img
-            src={logo}
-            alt=""
-          />
-        </VerticalWrapper>
-        {/* <span className="font-pacifico text-6xl font-medium">notes haven</span> */}
-      </div>
-
-      <div className="flex flex-col gap-2 items-center justify-center mb-10">
-        <h1 className="text-3xl mb-3 text-secondary-950 font-bold">
-          Reset Your Password
-        </h1>
+    <AuthLayout
+      heading="Reset Your Password"
+      firstItem={
         <span className="text-secondary-600 text-center">
           Choose a new password to secure your account.
         </span>
-      </div>
-      <form
-        className="flex flex-col gap-6"
-        onSubmit={handleSubmit}
-      >
-        <VerticalWrapper styles="gap-1">
-          <Label
-            htmlFor="password"
-            isRequired
-          >
-            New Password
-          </Label>
-          <Input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={values.password}
-            styles={errors.password ? "error-border" : ""}
-          />
-          {errors.password && <ShowError message={errors.password} />}
-        </VerticalWrapper>
+      }
+      secondItem={
+        <FormWrapper onSubmit={handleSubmit}>
+          <VerticalWrapper styles="gap-1">
+            <Label
+              htmlFor="password"
+              isRequired
+            >
+              New Password
+            </Label>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              value={values.password}
+              styles={errors.password ? "error-border" : ""}
+            />
+            {errors.password && <ShowError message={errors.password} />}
+          </VerticalWrapper>
 
-        <VerticalWrapper styles="gap-1">
-          <Label
-            htmlFor="confirmPassword"
-            isRequired
-          >
-            Confirm New Password
-          </Label>
-          <Input
-            type="password"
-            name="confirmPassword"
-            onChange={handleChange}
-            value={values.confirmPassword}
-            styles={errors.confirmPassword ? "error-border" : ""}
-          />
-          {errors.confirmPassword && (
-            <ShowError message={errors.confirmPassword} />
-          )}
-        </VerticalWrapper>
+          <VerticalWrapper styles="gap-1">
+            <Label
+              htmlFor="confirmPassword"
+              isRequired
+            >
+              Confirm New Password
+            </Label>
+            <Input
+              type="password"
+              name="confirmPassword"
+              onChange={handleChange}
+              value={values.confirmPassword}
+              styles={errors.confirmPassword ? "error-border" : ""}
+            />
+            {errors.confirmPassword && (
+              <ShowError message={errors.confirmPassword} />
+            )}
+          </VerticalWrapper>
 
-        <Button
-          type="submit"
-          styles="font-bold hover:bg-opacity-95"
-          disabled={loading}
-        >
-          {loading ? "Processing" : " Reset Password"}
-        </Button>
-        <HorizontalLine />
-      </form>
-    </div>
+          <Button
+            type="submit"
+            styles="font-bold hover:bg-opacity-95"
+            disabled={loading}
+          >
+            {loading ? "Processing" : " Reset Password"}
+          </Button>
+          <HorizontalLine />
+        </FormWrapper>
+      }
+    />
   );
 }
 

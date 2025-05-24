@@ -1,13 +1,18 @@
 type ShowErrorProps = {
   message: string;
+  id?: string;
 };
 
-function ShowError({ message }: ShowErrorProps) {
+function ShowError({ message, id }: ShowErrorProps) {
   return (
     // <div>
 
     // </div>
-    <p className="error-text flex items-center gap-3">
+    <p
+      id={id}
+      className="error-text flex items-center gap-3"
+      role="alert"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="w-6 h-6 text-red-500"

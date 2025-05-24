@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import clsx from "clsx";
 
 interface LabelProps {
   styles?: string;
@@ -7,19 +8,12 @@ interface LabelProps {
   isRequired?: boolean;
 }
 function Label({ children, styles, htmlFor, isRequired }: LabelProps) {
-  return isRequired ? (
+  return (
     <label
       htmlFor={htmlFor}
-      className={`text-secondary-950 font-bold ${styles ?? ""}`}
+      className={clsx("text-secondary-950 font-bold", styles)}
     >
-      {children} {<sup className="text-red-500">*</sup>}
-    </label>
-  ) : (
-    <label
-      htmlFor={htmlFor}
-      className={`text-secondary-950 font-bold ${styles}`}
-    >
-      {children}
+      {children} {isRequired ?? <sup className="text-red-500">*</sup>}
     </label>
   );
 }

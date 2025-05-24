@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
-import hidePasswordIcon from "../../assets/icon-hide-password.svg";
-import showPasswordIcon from "../../assets/icon-show-password.svg";
-import { CiSearch } from "react-icons/ci";
+import React, { useRef } from "react";
+import { AppIcons } from "../icons/Icons";
+import clsx from "clsx";
+import { usePasswordToggle } from "../../features/auth/hooks/usePasswordToggle";
 
 type InputType =
   | "text"
@@ -12,14 +12,9 @@ type InputType =
   | "tel"
   | "url";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   styles?: string;
-  name: string;
   type?: InputType;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-  placeholder?: string;
-  id?: string;
 }
 
 const defaultStyle =
@@ -27,128 +22,114 @@ const defaultStyle =
 const eyeStyle = "absolute right-3 w-8 h-8 z-10 cursor-pointer";
 const searchStyle = "absolute left-3 w-8 h-8 z-10 cursor-pointer";
 
-function TextInput({
-  type,
-  styles,
-  name,
-  onChange,
-  placeholder,
-  value,
-}: InputProps) {
+function TextInput({ styles, ...props }: InputProps) {
   return (
     <input
-      type={type}
-      name={name}
-      id={name}
-      className={`${defaultStyle} ${styles ?? ""}`}
-      onChange={onChange}
-      value={value}
-      placeholder={placeholder}
+      {...props}
+      className={clsx(defaultStyle, styles)}
     />
   );
 }
 
-function PasswordInput({
-  styles,
-  name,
-  onChange,
-  placeholder,
-  value,
-}: InputProps) {
-  const [showInput, setShowInput] = useState(false);
+function PasswordInput({ styles, ...props }: InputProps) {
+  const { visible, inputType, toggle, ariaLabel } = usePasswordToggle();
+  const HidePasswordIcon = AppIcons["hidePassword"];
+  const ShowPasswordIcon = AppIcons["showPassword"];
 
   return (
     <div className="w-full relative flex items-center justify-center">
       <input
-        type={showInput ? "text" : "password"}
-        name={name}
-        id={name}
-        className={`${defaultStyle} pr-14 ${styles ?? ""}`}
-        onChange={onChange}
-        value={value}
-        placeholder={placeholder || "Enter your password"}
+        {...props}
+        type={inputType}
+        className={clsx(defaultStyle, "pr-14", styles)}
+        placeholder={props.placeholder ?? "Enter your password"}
       />
-      {showInput ? (
-        <img
-          className={eyeStyle}
-          src={hidePasswordIcon}
-          onClick={() => setShowInput(!showInput)}
-          aria-label="Hide password"
-          title="Hide password"
-        />
-      ) : (
-        <img
-          className={eyeStyle}
-          src={showPasswordIcon}
-          onClick={() => setShowInput(!showInput)}
-          aria-label="Show password"
-          title="Show password"
-        />
-      )}
+
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label={ariaLabel}
+        title={ariaLabel}
+        className={eyeStyle}
+      >
+        {visible ? (
+          <HidePasswordIcon aria-hidden />
+        ) : (
+          <ShowPasswordIcon aria-hidden />
+        )}
+      </button>
     </div>
   );
 }
 
-function SearchInput({
-  styles,
-  name,
-  onChange,
-  placeholder,
-  value,
-}: InputProps) {
+function SearchInput({ styles, ...props }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const SearchIcon = AppIcons["search"];
   return (
     <div className="w-full relative flex items-center justify-center">
       <input
+        {...props}
         type="search"
-        name={name}
-        id={name}
-        className={`${defaultStyle} pl-14 ${styles ?? ""}`}
-        onChange={onChange}
-        value={value}
-        placeholder={placeholder || "Search by title, content, or tags..."}
+        className={clsx(defaultStyle, "pl-14", styles)}
+        placeholder={
+          props.placeholder ?? "Search by title, content, or tags..."
+        }
         ref={inputRef}
       />
 
-      <CiSearch
+      <button
         className={searchStyle}
-        aria-label="Search with keywords"
-        title="Search with keywords"
+        aria-label="Focus search input"
         onClick={() => inputRef?.current?.focus()}
-      />
+      >
+        <SearchIcon aria-hidden="true" />
+      </button>
     </div>
   );
 }
 
 function Input({ type = "text", ...props }: InputProps) {
-  let input = null;
-
   switch (type) {
     case "password":
-      input = <PasswordInput {...props} />;
-      break;
-    case "search":
-      input = <SearchInput {...props} />;
-      break;
-    default:
-      input = (
-        <TextInput
-          type={type}
+      return (
+        <PasswordInput
           {...props}
+          type={type}
         />
       );
-      break;
+    case "search":
+      return <SearchInput {...props} />;
+    default:
+      return (
+        <TextInput
+          {...props}
+          type={type}
+        />
+      );
   }
-
-  return input;
-  // return type === "password" ? (
-  //   <PasswordInput {...props} />
-  // ) : (
-  //   <TextInput
-  //     type={type}
-  //     {...props}
-  //   />
-  // );
 }
+
+// function Input({ type = "text", ...props }: InputProps) {
+//   let input = null;
+
+//   switch (type) {
+//     case "password":
+//       input = <PasswordInput {...props} />;
+//       break;
+//     case "search":
+//       input = <SearchInput {...props} />;
+//       break;
+//     default:
+//       input = (
+//         <TextInput
+//           type={type}
+//           {...props}
+//         />
+//       );
+//       break;
+//   }
+
+//   return input;
+// }
 
 export default Input;

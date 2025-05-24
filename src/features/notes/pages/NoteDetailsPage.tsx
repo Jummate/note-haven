@@ -1,6 +1,5 @@
 // import React from "react";
 import { Button } from "../../../shared/components";
-import { Icons } from "../../../shared/icons/Icons";
 // import logo from "../../../assets/logo.svg";
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";

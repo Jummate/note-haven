@@ -1,15 +1,15 @@
 import clsx from "clsx";
 import { Button } from "../../../shared/components";
-import { Icons } from "../../../shared/icons/Icons";
+import { AppIcons } from "../../../shared/icons/Icons";
 import { ActionButtonsDesktopProps } from "../types";
 
 function ActionButtonsDesktop({
   styles,
   type = "active",
 }: ActionButtonsDesktopProps) {
-  const ArchivedIcon = Icons["archived"];
-  const DeleteIcon = Icons["delete"];
-  const RestoreIcon = Icons["restore"];
+  const ArchivedIcon = AppIcons["archived"];
+  const DeleteIcon = AppIcons["delete"];
+  const RestoreIcon = AppIcons["restore"];
   return (
     <div className={clsx("flex flex-col gap-3", styles)}>
       <Button

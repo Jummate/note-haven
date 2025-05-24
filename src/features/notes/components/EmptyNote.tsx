@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { EmptyNoteProps } from "../types";
 
-
-
 function EmptyNote({ noteType }: EmptyNoteProps) {
   return noteType == "notes" ? (
     <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3">
@@ -19,7 +17,7 @@ function EmptyNote({ noteType }: EmptyNoteProps) {
       </div>
       <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3 mt-6">
         <p>
-          No notes have been archived yet. Move notes here for safekeeping, or{" "}
+          No notes have been archived yet. Move notes here for safekeeping, or
           <Link
             to="/notes/createnote"
             className="underline"

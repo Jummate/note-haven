@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Icons } from "../../../shared/icons/Icons";
+import { AppIcons } from "../../../shared/icons/Icons";
 import { ActionButtonsMobileProps } from "../types";
 
 function ActionButtonsMobile({
@@ -7,10 +7,10 @@ function ActionButtonsMobile({
   type,
   showActionButtons,
 }: ActionButtonsMobileProps) {
-  const ArchivedIcon = Icons["archived"];
-  const DeleteIcon = Icons["delete"];
-  const RestoreIcon = Icons["restore"];
-  const ChevronLeftIcon = Icons["chevronLeft"];
+  const ArchivedIcon = AppIcons["archived"];
+  const DeleteIcon = AppIcons["delete"];
+  const RestoreIcon = AppIcons["restore"];
+  const ChevronLeftIcon = AppIcons["chevronLeft"];
   return (
     <div className={clsx("flex gap-3", styles)}>
       <div className="flex flex-1 justify-between">

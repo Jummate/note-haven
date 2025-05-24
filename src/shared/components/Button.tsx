@@ -2,13 +2,10 @@ import { ReactNode } from "react";
 import clsx from "clsx";
 
 type ButtonVariant = "primary" | "outline" | "danger" | "secondary";
-type ButtonType = "submit" | "reset" | "button";
+// type ButtonType = "submit" | "reset" | "button";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  type?: ButtonType;
-  disabled?: boolean;
   children: ReactNode;
-  onClick?: () => void;
   styles?: string;
   variant?: ButtonVariant;
 }
@@ -24,12 +21,12 @@ function Button({
   type = "button",
   disabled = false,
   children,
-  onClick,
-  styles = "",
+  styles,
   variant = "primary",
+  ...props
 }: ButtonProps) {
   const baseStyle =
-    "flex items-center gap-3 justify-center text-nowrap rounded-xl p-4 w-full focus:outline-none";
+    "flex items-center gap-3 justify-center whitespace-nowrap rounded-xl p-4 w-full";
   const cursorStyle = disabled ? "cursor-not-allowed" : "cursor-pointer";
   const variantClass = variantStyles[variant];
 
@@ -37,8 +34,9 @@ function Button({
     <button
       type={type}
       disabled={disabled}
-      onClick={onClick}
+      // onClick={onClick}
       className={clsx(baseStyle, variantClass, cursorStyle, styles)}
+      {...props}
     >
       {children}
     </button>
