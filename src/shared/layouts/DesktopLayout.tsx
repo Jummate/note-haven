@@ -1,7 +1,4 @@
-import React, { PropsWithChildren, ReactNode } from "react";
-import Sidebar from "../../layout/Sidebar";
-import Header from "../../layout/Header";
-import { Outlet } from "react-router-dom";
+import { ReactNode } from "react";
 
 type DesktopLayoutProps = {
   firstItem: ReactNode;

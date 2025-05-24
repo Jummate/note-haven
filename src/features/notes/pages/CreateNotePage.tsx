@@ -1,6 +1,5 @@
 // import React from "react";
 import { Button } from "../../../shared/components";
-import { Icons } from "../../../shared/icons/Icons";
 // import logo from "../../../assets/logo.svg";
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";
@@ -12,7 +11,6 @@ import MobileLayout from "../../../shared/layouts/MobileLayout";
 // import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
 import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
-import PageHeader from "../shared/components/PageHeader";
 import CreateNoteButton from "../components/CreateNoteButton";
 
 // function NotePreview() {

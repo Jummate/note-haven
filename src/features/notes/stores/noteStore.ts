@@ -3,7 +3,7 @@ import { getAllTags } from "../../tags/stores/tagStore";
 import { TagType } from "../../tags/types";
 import { NoteForReviewType, NoteProps, PopulatedNote } from "../types";
 
-export const notes: NoteProps[] = [
+export const rawnotes: NoteProps[] = [
   {
     id: "note1",
     userId: "user1",
@@ -37,93 +37,99 @@ export const notes: NoteProps[] = [
 ];
 
 interface NoteState {
-  notes: NoteProps[];
+  notes: PopulatedNote[];
   tags: TagType[];
-  notesById: Map<string | number, NoteProps>;
+  notesById: Map<string | number, PopulatedNote>;
   tagMap: Map<string | number, TagType>;
+  notesByTag: Map<string, PopulatedNote[]>;
 
   getNotes: () => PopulatedNote[] | undefined;
   getNoteById: (id: string | number) => NoteForReviewType | undefined;
-  setNotes: (notes: NoteProps[]) => void;
+  setNotes: (notes: PopulatedNote[]) => void;
   setTags: (tags: TagType[]) => void;
+  getNotesByTag: (tag: string) => PopulatedNote[] | undefined;
 }
 
 export const useNoteStore = create<NoteState>((set, get) => {
   const initialTags = getAllTags();
+  const populatedNotes = populateNotesEfficiently(rawnotes, initialTags);
+
+  const notesById = new Map(populatedNotes.map((note) => [note.id, note]));
+  const tagMap = new Map(initialTags.map((tag) => [tag.id, tag]));
+
+  const notesByTag = new Map<string, PopulatedNote[]>();
+  for (const note of populatedNotes) {
+    for (const tag of note.tags) {
+      if (!notesByTag.has(tag.name)) {
+        notesByTag.set(tag.name, []);
+      }
+      notesByTag.get(tag.name)?.push(note);
+    }
+  }
 
   return {
-    notes,
+    notes: populatedNotes,
     tags: initialTags,
-    notesById: new Map(notes.map(note => [note.id, note])),
-    tagMap: new Map(initialTags.map(tag => [tag.id, tag])),
+    notesById,
+    tagMap,
+    notesByTag,
 
     getNotes: () => {
-        const { tagMap } = get();
-        return populateNotesEfficiently(notes, initialTags, tagMap)
+      return get().notes;
     },
 
     getNoteById: (id: string | number) => {
-      const { notesById, tagMap } = get();
-      const note = notesById.get(id);
+      const note = get().notesById.get(id);
       if (!note) return undefined;
 
-      const tags = note.tagIds
-        .map((tagId:string | number) => tagMap.get(tagId))
+      const tags = note.tags
+        .map((tag: TagType) => tagMap.get(tag.id))
         .filter(Boolean) as TagType[];
 
       return { ...note, tags };
     },
 
-    setNotes: (notes:NoteProps[]) => {
+    setNotes: (notes: PopulatedNote[]) => {
+      const notesById = new Map(notes.map((note) => [note.id, note]));
+      const notesByTag = new Map<string, PopulatedNote[]>();
+      for (const note of notes) {
+        for (const tag of note.tags) {
+          if (!notesByTag.has(tag.name)) {
+            notesByTag.set(tag.name, []);
+          }
+          notesByTag.get(tag.name)?.push(note);
+        }
+      }
+
       set({
         notes,
-        notesById: new Map(notes.map(note => [note.id, note]))
+        notesById,
+        notesByTag,
       });
     },
 
-    setTags: (tags:TagType[]) => {
+    setTags: (tags: TagType[]) => {
       set({
         tags,
-        tagMap: new Map(tags.map(tag => [tag.id, tag]))
+        tagMap: new Map(tags.map((tag) => [tag.id, tag])),
       });
+    },
+
+    getNotesByTag: (tagName: string): PopulatedNote[] | undefined => {
+      return get().notesByTag.get(tagName);
     },
   };
 });
-
-// export function populateNotesEfficiently(notes: NoteProps[], tags: TagType[]): PopulatedNote[] {
-//   const tagMap = new Map(tags.map(tag => [tag.id, tag]));
-
-//   return notes.map(note => ({
-//     ...note, 
-//     tags: note.tagIds 
-//       .map(id => tagMap.get(id)) 
-//       .filter(Boolean) as TagType[], 
-//   }));
-// }
 
 export function populateNotesEfficiently(
   notes: NoteProps[],
   tags: TagType[] = [],
   tagMap?: Map<string | number, TagType>
 ): PopulatedNote[] {
-  const map = tagMap ?? new Map(tags.map(tag => [tag.id, tag]));
+  const map = tagMap ?? new Map(tags.map((tag) => [tag.id, tag]));
 
-  return notes.map(note => ({
+  return notes.map((note) => ({
     ...note,
-    tags: note.tagIds.map(id => map.get(id)).filter(Boolean) as TagType[],
+    tags: note.tagIds.map((id) => map.get(id)).filter(Boolean) as TagType[],
   }));
 }
-
-
-export const getAllNotes = () => {
-    const tags = getAllTags();
-    return populateNotesEfficiently(notes, tags)
-}
-
-export const getNote = (noteId:string | number) => {
-    const allNotes = getAllNotes()
-    const noteMap = new Map(allNotes.map(note => [note.id, note]));
-    return noteMap.get(noteId)
-
-}
-

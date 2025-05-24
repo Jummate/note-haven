@@ -1,5 +1,4 @@
 import EmptyPage from "../components/EmptyPage";
-import { useTabText } from "../hooks/useTabText";
 
 type EmptyPageContainerProps = {
   noteType: string;

@@ -1,8 +1,6 @@
 // import React from 'react';
 import clsx from "clsx";
 
-import { useHeaderStore } from "../../stores/headerStore";
-
 type PageHeaderProps = {
   headerText: string;
   styles?: string;

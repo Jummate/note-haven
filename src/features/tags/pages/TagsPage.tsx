@@ -1,4 +1,3 @@
-import React from "react";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import Tags from "../components/Tags";
@@ -11,9 +10,20 @@ import { Button } from "../../../shared/components";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import FloatingCreateNoteButton from "../../notes/components/FloatingCreateNoteButton";
 import { useParams } from "react-router-dom";
+import { useNoteStore } from "../../notes/stores/noteStore";
 
 function TagPage() {
   const { tagSlug } = useParams();
+
+  // const { noteId } = useParams();
+
+  const getNotes = useNoteStore((state) => state.getNotes);
+  const allNotes = getNotes();
+
+  const getNotesByTag = useNoteStore((state) => state.getNotesByTag);
+  // const notesFilteredByTag = tagSlug ? getNotesByTag(tagSlug) : undefined;
+  const notesToShow = tagSlug ? getNotesByTag(tagSlug) : allNotes;
+
   return (
     <NoteLayout>
       <ResponsiveLayout
@@ -31,7 +41,7 @@ function TagPage() {
                   </h1>
                   <p>All notes with the tag "{tagSlug}" are shown here</p>
                   <NoteList
-                    notes={["noteTags1", "noteTags2"]}
+                    data={notesToShow}
                     path="/notes"
                     styles="p-2 mt-5"
                   />
@@ -55,7 +65,7 @@ function TagPage() {
               <>
                 <CreateNoteButton />
                 <NoteList
-                  notes={[]}
+                  data={notesToShow}
                   path="/notes"
                 />
               </>
@@ -63,7 +73,7 @@ function TagPage() {
             secondItem={
               tagSlug ? (
                 <>
-                  <NotePreview />
+                  <NotePreview note={undefined} />
                   <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
                     <Button styles="md:text-md w-auto">Save Note</Button>
                     <Button

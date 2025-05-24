@@ -1,6 +1,3 @@
-import React from "react";
-import clsx from "clsx";
-
 import { useResponsive } from "../hooks/useResponsive";
 import ActionButtonsMobile from "../../features/notes/components/ActionButtonsMobile";
 import ActionButtonsDesktop from "../../features/notes/components/ActionButtonsDesktop";

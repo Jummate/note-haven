@@ -5,10 +5,7 @@ import { generateSlug } from "../../../shared/utils/slugify";
 import clsx from "clsx";
 import { NoteItem, PopulatedNote } from "../types";
 
-
-
-function Note({ onNoteSelect, note:{tags, title, createdAt} }: NoteItem 
-) {
+function Note({ onNoteSelect, note: { tags, title, createdAt } }: NoteItem) {
   return (
     <div
       className="flex flex-col gap-3 py-3"
@@ -17,7 +14,7 @@ function Note({ onNoteSelect, note:{tags, title, createdAt} }: NoteItem
       <h1 className="font-bold text-2xl">{title}</h1>
 
       <div className="flex gap-3 text-lg">
-        {tags?.map(({id, name}) => (
+        {tags?.map(({ id, name }) => (
           <span
             key={id}
             className="bg-secondary-200 px-3 rounded-md"
@@ -43,14 +40,12 @@ function NoteList<T extends PopulatedNote>({
 }) {
   const navigate = useNavigate();
 
-  if(!data || data.length < 1) return <p>No note to display</p>
+  if (!data || data.length < 1) return <p>No note to display</p>;
 
   return (
     <div className={clsx("divide-y divide-secondary-200", styles)}>
       {data.map((item) => {
-        const slug = generateSlug(
-          item.title
-        );
+        const slug = generateSlug(item.title);
         const actualPath = `${path}/${item.id}/${slug}`;
         return (
           <Note

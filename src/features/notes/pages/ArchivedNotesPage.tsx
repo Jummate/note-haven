@@ -89,7 +89,6 @@ function NotePreview() {
 }
 
 function ArchivedNotes() {
-  const { setHeaderText } = useHeaderStore();
   // setHeaderText("Archived Notes");
   // const Icon = Icons["plus"];
   // const allNotes: string[] = [];

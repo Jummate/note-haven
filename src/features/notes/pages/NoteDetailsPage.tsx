@@ -11,12 +11,9 @@ import NoteLayout from "../../../shared/layouts/NoteLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import MobileLayout from "../../../shared/layouts/MobileLayout";
 // import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
-import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
-import PageHeader from "../shared/components/PageHeader";
 import CreateNoteButton from "../components/CreateNoteButton";
 
-import { useHeaderStore } from "../stores/headerStore";
 import NotePreview from "../components/NotePreview";
 import { useParams } from "react-router-dom";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
@@ -28,17 +25,13 @@ function NoteDetailsPage() {
   // setHeaderText("All Notes");
   // const PlusIcon = Icons["plus"];
 
-  const { noteSlug, noteId } = useParams();
+  const { noteId } = useParams();
 
-  const ArchivedIcon = Icons["archived"];
-  const DeleteIcon = Icons["delete"];
+  const getNotes = useNoteStore((state) => state.getNotes);
+  const allNotes = getNotes();
+  const getNoteById = useNoteStore((state) => state.getNoteById);
+  const singleNote = getNoteById(noteId || "");
 
-  const getNotes = useNoteStore((state) => state.getNotes)
-  const allNotes = getNotes()
-  const getNoteById  = useNoteStore((state) => state.getNoteById)
-  const singleNote  = getNoteById(noteId || "")
-
-  
   // const hasNotes = allNotes && allNotes.length > 0;
 
   // const { activeTabText } = useTabText();
@@ -62,14 +55,14 @@ function NoteDetailsPage() {
               <>
                 <CreateNoteButton />
                 <NoteList
-                 data={allNotes}
+                  data={allNotes}
                   path="/notes"
                 />
               </>
             }
             secondItem={
               <>
-                <NotePreview note={singleNote}/>
+                <NotePreview note={singleNote} />
                 <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
                   <Button styles="md:text-md w-auto">Save Note</Button>
                   <Button

@@ -96,7 +96,6 @@ function SearchInput({
   placeholder,
   value,
 }: InputProps) {
-  const [showInput, setShowInput] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="w-full relative flex items-center justify-center">

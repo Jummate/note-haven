@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
 import { useResponsive } from "../hooks/useResponsive";
-import MobileLayout from "./MobileLayout";
-import DesktopLayout from "./DesktopLayout";
 
 const ResponsiveLayout = ({
   mobile,

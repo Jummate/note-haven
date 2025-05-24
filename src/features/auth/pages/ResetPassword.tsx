@@ -17,7 +17,7 @@ import { resetPassword } from "../services/authService";
 function ResetPassword() {
   const navigate = useNavigate();
   const { token } = useParams();
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: {
       password: "",
       confirmPassword: "",
@@ -98,8 +98,9 @@ function ResetPassword() {
         <Button
           type="submit"
           styles="font-bold hover:bg-opacity-95"
+          disabled={loading}
         >
-          Reset Password
+          {loading ? "Processing" : " Reset Password"}
         </Button>
         <HorizontalLine />
       </form>

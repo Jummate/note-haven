@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 // import MobileLayout from '../layouts/MobileLayout';
 // import NoteLayout from '../layouts/NoteLayout';

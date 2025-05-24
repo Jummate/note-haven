@@ -15,16 +15,15 @@ import { validationRules } from "../utils/validation";
 import { forgotPassword } from "../services/authService";
 import ResendEmail from "../../../shared/components/ResendEmail";
 
-
-
 function ForgotPassword() {
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { email: "" },
     validationRules,
     onSubmit: (values) =>
       forgotPassword(values, () => {
-        setSubmitted(true); setRecipient(values.email);
+        setSubmitted(true);
+        setRecipient(values.email);
       }),
     component: "forgotPassword",
   });
@@ -89,8 +88,9 @@ function ForgotPassword() {
           <Button
             type="submit"
             styles="font-bold hover:bg-opacity-95"
+            disabled={loading}
           >
-            Send Reset Link
+            {loading ? "Processing..." : "Send Reset Link"}
           </Button>
         )}
         {submitted && (

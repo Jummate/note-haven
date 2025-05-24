@@ -14,7 +14,6 @@ import NoteDashboard from "./features/notes/pages/NoteDashboard";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
 import Settings from "./features/settings/pages/Settings";
-import ResponsiveLayout from "./shared/layouts/ResponsiveLayout";
 
 function App() {
   return (
