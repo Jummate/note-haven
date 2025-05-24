@@ -1,11 +1,15 @@
+type FormWrapperProps = React.FormHTMLAttributes<HTMLFormElement>;
+
 export function FormWrapper({
   onSubmit,
   children,
-}: React.PropsWithChildren<{ onSubmit: React.FormEventHandler }>) {
+  ...props
+}: React.PropsWithChildren<FormWrapperProps>) {
   return (
     <form
       className="flex flex-col gap-6"
       onSubmit={onSubmit}
+      {...props}
     >
       {children}
     </form>

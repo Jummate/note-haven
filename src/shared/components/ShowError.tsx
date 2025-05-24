@@ -12,6 +12,7 @@ function ShowError({ message, id }: ShowErrorProps) {
       id={id}
       className="error-text flex items-center gap-3"
       role="alert"
+      aria-live="polite"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

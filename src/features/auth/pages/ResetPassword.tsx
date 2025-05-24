@@ -44,7 +44,19 @@ function ResetPassword() {
         </span>
       }
       secondItem={
-        <FormWrapper onSubmit={handleSubmit}>
+        <FormWrapper
+          onSubmit={handleSubmit}
+          aria-busy={loading}
+        >
+          {loading && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="sr-only"
+            >
+              Processing your request...
+            </p>
+          )}
           <VerticalWrapper styles="gap-1">
             <Label
               htmlFor="password"
@@ -55,11 +67,19 @@ function ResetPassword() {
             <Input
               type="password"
               name="password"
+              id="password"
               onChange={handleChange}
               value={values.password}
               styles={errors.password ? "error-border" : ""}
+              aria-describedby={errors.password ? "password-error" : undefined}
+              aria-invalid={errors.password ? "true" : "false"}
             />
-            {errors.password && <ShowError message={errors.password} />}
+            {errors.password && (
+              <ShowError
+                message={errors.password}
+                id="password-error"
+              />
+            )}
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
@@ -72,12 +92,20 @@ function ResetPassword() {
             <Input
               type="password"
               name="confirmPassword"
+              id="confirmPassword"
               onChange={handleChange}
               value={values.confirmPassword}
               styles={errors.confirmPassword ? "error-border" : ""}
+              aria-describedby={
+                errors.confirmPassword ? "confirmPassword-error" : undefined
+              }
+              aria-invalid={errors.confirmPassword ? "true" : "false"}
             />
             {errors.confirmPassword && (
-              <ShowError message={errors.confirmPassword} />
+              <ShowError
+                message={errors.confirmPassword}
+                id="confirmPassword-error"
+              />
             )}
           </VerticalWrapper>
 
@@ -86,7 +114,7 @@ function ResetPassword() {
             styles="font-bold hover:bg-opacity-95"
             disabled={loading}
           >
-            {loading ? "Processing" : " Reset Password"}
+            {loading ? "Processing" : "Reset Password"}
           </Button>
           <HorizontalLine />
         </FormWrapper>

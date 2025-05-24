@@ -35,7 +35,19 @@ function Signup() {
         </span>
       }
       secondItem={
-        <FormWrapper onSubmit={handleSubmit}>
+        <FormWrapper
+          onSubmit={handleSubmit}
+          aria-busy={loading}
+        >
+          {loading && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="sr-only"
+            >
+              Processing your request...
+            </p>
+          )}
           <VerticalWrapper styles="gap-1">
             <Label
               htmlFor="email"
@@ -46,12 +58,20 @@ function Signup() {
             <Input
               type="email"
               name="email"
+              id="email"
               onChange={handleChange}
               value={values.email}
               placeholder="email@gmail.com"
               styles={errors.email ? "error-border" : ""}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              aria-invalid={errors.email ? "true" : "false"}
             />
-            {errors.email && <ShowError message={errors.email} />}
+            {errors.email && (
+              <ShowError
+                message={errors.email}
+                id="email-error"
+              />
+            )}
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
@@ -64,11 +84,19 @@ function Signup() {
             <Input
               type="password"
               name="password"
+              id="password"
               onChange={handleChange}
               value={values.password}
               styles={errors.password ? "error-border" : ""}
+              aria-describedby={errors.password ? "password-error" : undefined}
+              aria-invalid={errors.password ? "true" : "false"}
             />
-            {errors.password && <ShowError message={errors.password} />}
+            {errors.password && (
+              <ShowError
+                message={errors.password}
+                id="password-error"
+              />
+            )}
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
@@ -76,17 +104,25 @@ function Signup() {
               htmlFor="confirmPassword"
               isRequired
             >
-              Confirm Password
+              Confirm New Password
             </Label>
             <Input
               type="password"
               name="confirmPassword"
+              id="confirmPassword"
               onChange={handleChange}
               value={values.confirmPassword}
               styles={errors.confirmPassword ? "error-border" : ""}
+              aria-describedby={
+                errors.confirmPassword ? "confirmPassword-error" : undefined
+              }
+              aria-invalid={errors.confirmPassword ? "true" : "false"}
             />
             {errors.confirmPassword && (
-              <ShowError message={errors.confirmPassword} />
+              <ShowError
+                message={errors.confirmPassword}
+                id="confirmPassword-error"
+              />
             )}
           </VerticalWrapper>
 

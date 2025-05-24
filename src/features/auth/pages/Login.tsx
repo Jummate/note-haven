@@ -34,7 +34,20 @@ function Login() {
         </span>
       }
       secondItem={
-        <FormWrapper onSubmit={handleSubmit}>
+        <FormWrapper
+          onSubmit={handleSubmit}
+          aria-busy={loading}
+        >
+          {loading && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="sr-only"
+            >
+              Processing your request...
+            </p>
+          )}
+
           <VerticalWrapper styles="gap-1">
             <Label
               htmlFor="email"
@@ -45,12 +58,20 @@ function Login() {
             <Input
               type="email"
               name="email"
+              id="email"
               onChange={handleChange}
               value={values.email}
               placeholder="email@gmail.com"
               styles={errors.email ? "error-border" : ""}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              aria-invalid={errors.email ? "true" : "false"}
             />
-            {errors.email && <ShowError message={errors.email} />}
+            {errors.email && (
+              <ShowError
+                message={errors.email}
+                id="email-error"
+              />
+            )}
           </VerticalWrapper>
           <Link
             to="/forgot-password"
@@ -70,11 +91,19 @@ function Login() {
             <Input
               type="password"
               name="password"
+              id="password"
               onChange={handleChange}
               value={values.password}
               styles={errors.password ? "error-border" : ""}
+              aria-describedby={errors.password ? "password-error" : undefined}
+              aria-invalid={errors.password ? "true" : "false"}
             />
-            {errors.password && <ShowError message={errors.password} />}
+            {errors.password && (
+              <ShowError
+                message={errors.password}
+                id="email-error"
+              />
+            )}
           </VerticalWrapper>
 
           <Button

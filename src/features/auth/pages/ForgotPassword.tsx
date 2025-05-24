@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   Input,
@@ -31,6 +31,13 @@ function ForgotPassword() {
   const [enableResend, setEnableResend] = useState<boolean>(false);
   const [resendKey, setResendKey] = useState(0);
   const [recipient, setRecipient] = useState("");
+  const resendBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (submitted && resendBtnRef.current) {
+      resendBtnRef.current.focus();
+    }
+  }, [submitted]);
 
   return (
     <AuthLayout
@@ -52,7 +59,20 @@ function ForgotPassword() {
         </>
       }
       secondItem={
-        <FormWrapper onSubmit={handleSubmit}>
+        <FormWrapper
+          onSubmit={handleSubmit}
+          aria-busy={loading}
+        >
+          {loading && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="sr-only"
+            >
+              Processing your request...
+            </p>
+          )}
+
           <VerticalWrapper styles="gap-1">
             <Label
               htmlFor="email"
@@ -71,7 +91,12 @@ function ForgotPassword() {
               aria-describedby={errors.email ? "email-error" : undefined}
               aria-invalid={errors.email ? "true" : "false"}
             />
-            {errors.email && <ShowError message={errors.email} />}
+            {errors.email && (
+              <ShowError
+                message={errors.email}
+                id="email-error"
+              />
+            )}
           </VerticalWrapper>
 
           {submitted ? (
@@ -82,6 +107,7 @@ function ForgotPassword() {
               }`}
               disabled={!enableResend}
               onClick={() => setResendKey((prev) => prev + 1)}
+              ref={resendBtnRef}
             >
               Resend Email
             </Button>
