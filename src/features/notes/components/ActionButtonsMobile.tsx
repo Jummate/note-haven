@@ -14,24 +14,54 @@ function ActionButtonsMobile({
   return (
     <div className={clsx("flex gap-3", styles)}>
       <div className="flex flex-1 justify-between">
-        <div className="flex gap-2 items-center text-2xl cursor-pointer">
+        <div
+          className="flex gap-2 items-center text-2xl cursor-pointer"
+          role="button"
+          tabIndex={0}
+          aria-label="Go Back"
+        >
           <ChevronLeftIcon className="text-secondary-500 text-4xl" />
           Go Back
         </div>
         {showActionButtons && (
           <div className="flex gap-5 items-center text-2xl">
-            <DeleteIcon className="cursor-pointer" />
-            {type == "active" ? (
-              <>
-                <ArchivedIcon className="cursor-pointer" />
-              </>
+            <DeleteIcon
+              className="cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-label="Delete Note"
+            />
+            {type === "active" ? (
+              <ArchivedIcon
+                className="cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label="Archive Note"
+              />
             ) : (
-              <>
-                <RestoreIcon className="cursor-pointer" />
-              </>
+              <RestoreIcon
+                className="cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label="Restore Note"
+              />
             )}
-            <span className="text-secondary-500 cursor-pointer">Cancel</span>
-            <span className="text-primary-500 cursor-pointer">Save Note</span>
+            <span
+              className="text-secondary-500 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-label="Cancel"
+            >
+              Cancel
+            </span>
+            <span
+              className="text-primary-500 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              aria-label="Save Note"
+            >
+              Save Note
+            </span>
           </div>
         )}
       </div>

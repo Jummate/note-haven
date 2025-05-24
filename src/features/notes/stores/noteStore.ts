@@ -4,36 +4,36 @@ import { TagType } from "../../tags/types";
 import { NoteForReviewType, NoteProps, PopulatedNote } from "../types";
 
 export const rawnotes: NoteProps[] = [
-  {
-    id: "note1",
-    userId: "user1",
-    title: "Buy groceries",
-    content: "Milk, eggs, bread",
-    isArchived: false,
-    createdAt: "2025-05-21T10:00:00Z",
-    updatedAt: "2025-05-21T10:00:00Z",
-    tagIds: ["tag1", "tag2"],
-  },
-  {
-    id: "note2",
-    userId: "user1",
-    title: "Buy groceries",
-    content: "Milk, eggs, bread",
-    isArchived: false,
-    createdAt: "2025-05-21T10:00:00Z",
-    updatedAt: "2025-05-21T10:00:00Z",
-    tagIds: ["tag1", "tag3"],
-  },
-  {
-    id: "note3",
-    userId: "user1",
-    title: "Buy groceries",
-    content: "Milk, eggs, bread",
-    isArchived: false,
-    createdAt: "2025-05-21T10:00:00Z",
-    updatedAt: "2025-05-21T10:00:00Z",
-    tagIds: ["tag1", "tag2"],
-  },
+  // {
+  //   id: "note1",
+  //   userId: "user1",
+  //   title: "Buy groceries",
+  //   content: "Milk, eggs, bread",
+  //   isArchived: false,
+  //   createdAt: "2025-05-21T10:00:00Z",
+  //   updatedAt: "2025-05-21T10:00:00Z",
+  //   tagIds: ["tag1", "tag2"],
+  // },
+  // {
+  //   id: "note2",
+  //   userId: "user1",
+  //   title: "Buy groceries",
+  //   content: "Milk, eggs, bread",
+  //   isArchived: false,
+  //   createdAt: "2025-05-21T10:00:00Z",
+  //   updatedAt: "2025-05-21T10:00:00Z",
+  //   tagIds: ["tag1", "tag3"],
+  // },
+  // {
+  //   id: "note3",
+  //   userId: "user1",
+  //   title: "Buy groceries",
+  //   content: "Milk, eggs, bread",
+  //   isArchived: false,
+  //   createdAt: "2025-05-21T10:00:00Z",
+  //   updatedAt: "2025-05-21T10:00:00Z",
+  //   tagIds: ["tag1", "tag2"],
+  // },
 ];
 
 interface NoteState {

@@ -4,7 +4,7 @@ import EmptyNote from "./EmptyNote";
 import logo from "../../../assets/logo.svg";
 import FloatingCreateNoteButton from "./FloatingCreateNoteButton";
 import { EmptyPageProps } from "../types";
-
+import CreateNoteButton from "./CreateNoteButton";
 
 function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
   return (
@@ -12,13 +12,7 @@ function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
       <div className="hidden lg:grid grid-cols-[1fr_2fr] flex-1">
         <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
           <div className="mb-12">
-            <Button styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold">
-              {/* <Icon
-      size={10}
-      // className="inline"
-      /> */}
-              + Create New Note
-            </Button>
+            <CreateNoteButton />
           </div>
 
           <EmptyNote noteType={noteType} />
@@ -30,7 +24,7 @@ function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
           <div className="">
             <img
               src={logo}
-              alt=""
+              alt="Note Haven Logo"
             />
           </div>
         </div>

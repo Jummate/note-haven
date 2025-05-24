@@ -5,8 +5,9 @@ function CreateNoteButton() {
   const navigate = useNavigate();
   return (
     <Button
-      styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold"
+      styles="flex items-center gap-3 justify-center md:text-md text-nowrap font-semibold focus:outline-none focus:ring-2 focus:ring-primary-400 hover:opacity-80"
       onClick={() => navigate("/notes/create")}
+      aria-label="Create a new note"
     >
       + Create New Note
     </Button>

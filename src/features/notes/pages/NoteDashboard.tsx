@@ -14,12 +14,10 @@ import { useParams } from "react-router-dom";
 
 function NoteDashboard() {
   const { noteId } = useParams();
+  const { getNotes, getNoteById } = useNoteStore();
 
-  const getNotes = useNoteStore((state) => state.getNotes);
   const allNotes = getNotes();
-  const getNoteById = useNoteStore((state) => state.getNoteById);
   const singleNote = getNoteById(noteId || "");
-
   const hasNotes = allNotes && allNotes.length > 0;
 
   if (!hasNotes) return <EmptyPageContainer noteType="notes" />;
@@ -31,7 +29,10 @@ function NoteDashboard() {
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader headerText="All Notes" />
-                <NoteList data={allNotes} path="/notes" />
+                <NoteList
+                  data={allNotes}
+                  path="/notes"
+                />
               </div>
             </div>
             <FloatingCreateNoteButton />
@@ -42,11 +43,24 @@ function NoteDashboard() {
             firstItem={
               <>
                 <CreateNoteButton />
-                <NoteList data={allNotes} path="/notes" />
+                <NoteList
+                  data={allNotes}
+                  path="/notes"
+                />
               </>
             }
-            secondItem={<NotePreview note={singleNote} showNote={false} />}
-            thirdItem={<ActionButtonsPanel showNote={false} />}
+            secondItem={
+              <NotePreview
+                note={singleNote}
+                showNote={!!noteId && !!singleNote && hasNotes}
+                // showNote={false}
+              />
+            }
+            thirdItem={
+              <ActionButtonsPanel
+                showNote={!!noteId && !!singleNote && hasNotes}
+              />
+            }
           />
         }
       />

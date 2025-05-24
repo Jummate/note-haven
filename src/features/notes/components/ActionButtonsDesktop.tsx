@@ -13,6 +13,7 @@ function ActionButtonsDesktop({
   return (
     <div className={clsx("flex flex-col gap-3", styles)}>
       <Button
+        type="button"
         variant="outline"
         styles="md:text-md"
       >
@@ -21,7 +22,7 @@ function ActionButtonsDesktop({
         ) : (
           <RestoreIcon size={20} />
         )}
-        {type == "active" ? "Archive Note" : "Restore Note"}
+        {type === "active" ? "Archive Note" : "Restore Note"}
       </Button>
       <Button
         variant="outline"

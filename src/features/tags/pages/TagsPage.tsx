@@ -11,6 +11,7 @@ import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import FloatingCreateNoteButton from "../../notes/components/FloatingCreateNoteButton";
 import { useParams } from "react-router-dom";
 import { useNoteStore } from "../../notes/stores/noteStore";
+import NoContent from "../../../shared/components/NoContent";
 
 function TagPage() {
   const { tagSlug } = useParams();
@@ -73,7 +74,10 @@ function TagPage() {
             secondItem={
               tagSlug ? (
                 <>
-                  <NotePreview note={undefined} />
+                  <NotePreview
+                    note={undefined}
+                    showNote={!!notesToShow}
+                  />
                   <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
                     <Button styles="md:text-md w-auto">Save Note</Button>
                     <Button
@@ -85,10 +89,12 @@ function TagPage() {
                   </div>
                 </>
               ) : (
-                <p>Select an item to read. Nothing is selected</p>
+                <NoContent text="Select an item to read. Nothing is selected" />
               )
             }
-            thirdItem={tagSlug && <ActionButtonsPanel showNote={true} />}
+            thirdItem={
+              tagSlug && <ActionButtonsPanel showNote={!!notesToShow} />
+            }
           />
         }
       />

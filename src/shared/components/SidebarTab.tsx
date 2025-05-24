@@ -1,8 +1,6 @@
-// import React, { ReactNode, SVGProps } from "react";
-
 import { IconType } from "react-icons";
-// import { IoHomeOutline } from "react-icons/io5";
-import { BiChevronRight } from "react-icons/bi";
+import { AppIcons } from "../icons/Icons";
+import clsx from "clsx";
 
 type SidebarTabProps = {
   icon: IconType;
@@ -17,27 +15,33 @@ function SidebarTab({
   text,
   onClick,
 }: SidebarTabProps) {
+  const ChevRonRight = AppIcons.chevronRight;
   return (
     <div
-      className={`flex justify-between ${
-        isActive ? " bg-primary-50" : ""
-      } rounded-xl p-5 py-4 items-center cursor-default`}
+      className={clsx(
+        "flex justify-between rounded-xl p-5 py-4 items-center cursor-default",
+        { "bg-primary-50": isActive }
+      )}
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && onClick()}
+      aria-selected={isActive}
     >
       <div
-        className={`flex gap-3 items-center ${
-          isActive ? " font-semibold" : ""
-        } text-secondary-800`}
+        className={clsx("flex gap-3 items-center text-secondary-800", {
+          "font-semibold": isActive,
+        })}
       >
         <Icon
-          className={`${isActive ? "text-primary-500" : ""}`}
+          className={clsx({ "text-primary-500": isActive })}
           size={20}
         />
         {text}
       </div>
       {isActive && (
         <div>
-          <BiChevronRight size={20} />
+          <ChevRonRight size={20} />
         </div>
       )}
     </div>

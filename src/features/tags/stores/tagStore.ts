@@ -6,4 +6,4 @@ export const tags: TagType[] = [
   { id: "tag3", name: "Personal" },
 ];
 
-export const getAllTags = () => tags
+export const getAllTags = () => tags;

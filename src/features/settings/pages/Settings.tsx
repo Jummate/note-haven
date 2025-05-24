@@ -13,7 +13,7 @@ import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 import { useNavigate } from "react-router-dom";
 import { AppIcons } from "../../../shared/icons/Icons";
 import { useTabStore } from "../../notes/stores/tabStore";
-import SettingsTab from "../components/SettingsTab";
+import SidebarTab from "../../../shared/components/SidebarTab";
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();
@@ -30,7 +30,7 @@ function Settings() {
           <div className="mb-12">
             {settingsTabs.map(({ key, text, path }) => {
               return (
-                <SettingsTab
+                <SidebarTab
                   key={key}
                   text={text}
                   icon={AppIcons[key]}

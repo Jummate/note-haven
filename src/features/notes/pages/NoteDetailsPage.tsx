@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import { useNoteStore } from "../stores/noteStore";
+import NoteActionButtons from "../components/NoteActionButtons";
 
 function NoteDetailsPage() {
   // const { setHeaderText } = useHeaderStore();
@@ -25,13 +26,12 @@ function NoteDetailsPage() {
   // const PlusIcon = Icons["plus"];
 
   const { noteId } = useParams();
+  const { getNotes, getNoteById } = useNoteStore();
 
-  const getNotes = useNoteStore((state) => state.getNotes);
   const allNotes = getNotes();
-  const getNoteById = useNoteStore((state) => state.getNoteById);
   const singleNote = getNoteById(noteId || "");
 
-  // const hasNotes = allNotes && allNotes.length > 0;
+  const hasNotes = allNotes && allNotes.length > 0;
 
   // const { activeTabText } = useTabText();
   //   const activeTab = useTabStore((state) => state.activeTab);
@@ -44,7 +44,10 @@ function NoteDetailsPage() {
           <MobileLayout>
             <ActionButtonsPanel />
             <hr className=" bg-secondary-100 my-6 h-1" />
-            <NotePreview note={singleNote} />
+            <NotePreview
+              note={singleNote}
+              showNote={!!noteId && !!singleNote && hasNotes}
+            />
             <FloatingCreateNoteButton />
           </MobileLayout>
         }
@@ -61,19 +64,21 @@ function NoteDetailsPage() {
             }
             secondItem={
               <>
-                <NotePreview note={singleNote} />
-                <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
-                  <Button styles="md:text-md w-auto">Save Note</Button>
-                  <Button
-                    variant="outline"
-                    styles="md:text-md bg-secondary-200 border-none w-auto"
-                  >
-                    Cancel
-                  </Button>
-                </div>
+                <NotePreview
+                  note={singleNote}
+                  showNote={!!noteId && !!singleNote && hasNotes}
+                />
+                <NoteActionButtons
+                  onCancel={() => console.log("note cancelled")}
+                  onNoteSave={() => console.log("note saved")}
+                />
               </>
             }
-            thirdItem={<ActionButtonsPanel />}
+            thirdItem={
+              <ActionButtonsPanel
+                showNote={!!noteId && !!singleNote && hasNotes}
+              />
+            }
           />
         }
       />
