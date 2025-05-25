@@ -14,10 +14,6 @@ html {
 body {
   font-size: 1.6rem;
 }
-input {
-  /* border: none; */
-  /* outline: none; */
-}
 
 @tailwind components;
 @tailwind utilities;

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware"; // Correctly import the persist middleware
+
 import { FooterTabKey } from "../../../layout/constants/tabs";
 import { SideBarTabKey } from "../constants/tabs";
 import { SettingsTabKey } from "../../settings/constants/tabs";

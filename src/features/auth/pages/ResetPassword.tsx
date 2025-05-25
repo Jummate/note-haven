@@ -1,4 +1,5 @@
 import { useNavigate, useParams, Navigate } from "react-router-dom";
+
 import {
   Input,
   Button,
@@ -7,12 +8,12 @@ import {
   HorizontalLine,
   ShowError,
 } from "../../../shared/components";
-
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 import { resetPassword } from "../services/authService";
 import AuthLayout from "../layouts/AuthLayout";
 import { FormWrapper } from "../../../shared/components/FormWrapper";
+import { PAGE_NOT_FOUND_URL } from "../../../shared/constants/urls";
 
 function ResetPassword() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function ResetPassword() {
   if (!token)
     return (
       <Navigate
-        to="/page-not-found"
+        to={PAGE_NOT_FOUND_URL}
         replace
       />
     );

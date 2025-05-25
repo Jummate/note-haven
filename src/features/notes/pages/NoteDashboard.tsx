@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
@@ -10,7 +12,6 @@ import NotePreview from "../components/NotePreview";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import { useNoteStore } from "../stores/noteStore";
-import { useParams } from "react-router-dom";
 
 function NoteDashboard() {
   const { noteId } = useParams();

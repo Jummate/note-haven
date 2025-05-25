@@ -9,12 +9,12 @@ import {
   HorizontalWrapper,
   ShowError,
 } from "../../../shared/components";
-
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 import { login } from "../services/authService";
 import AuthLayout from "../layouts/AuthLayout";
 import { FormWrapper } from "../../../shared/components/FormWrapper";
+import { FORGOT_PASSWORD_URL, SIGNUP_URL } from "../constants/urls";
 
 function Login() {
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ function Login() {
             )}
           </VerticalWrapper>
           <Link
-            to="/forgot-password"
+            to={`/${FORGOT_PASSWORD_URL}`}
             className="hover:text-primary-500 cursor-pointer -mb-7 self-end"
           >
             <small>Forgot Password?</small>
@@ -120,7 +120,7 @@ function Login() {
       <HorizontalWrapper styles="justify-center items-center gap-3">
         <span className="text-secondary-600">Not have an account yet?</span>
         <Link
-          to="/signup"
+          to={SIGNUP_URL}
           className="text-secondary-950 cursor-pointer hover:text-primary-500"
         >
           Sign Up

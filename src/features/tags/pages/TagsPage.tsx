@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import Tags from "../components/Tags";
@@ -9,9 +11,9 @@ import NotePreview from "../../notes/components/NotePreview";
 import { Button } from "../../../shared/components";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import FloatingCreateNoteButton from "../../notes/components/FloatingCreateNoteButton";
-import { useParams } from "react-router-dom";
 import { useNoteStore } from "../../notes/stores/noteStore";
 import NoContent from "../../../shared/components/NoContent";
+import { NOTES_URL } from "../../notes/constants/urls";
 
 function TagPage() {
   const { tagSlug } = useParams();
@@ -43,7 +45,7 @@ function TagPage() {
                   <p>All notes with the tag "{tagSlug}" are shown here</p>
                   <NoteList
                     data={notesToShow}
-                    path="/notes"
+                    path={NOTES_URL}
                     styles="p-2 mt-5"
                   />
                 </>
@@ -67,7 +69,7 @@ function TagPage() {
                 <CreateNoteButton />
                 <NoteList
                   data={notesToShow}
-                  path="/notes"
+                  path={NOTES_URL}
                 />
               </>
             }

@@ -21,9 +21,10 @@
 
 // export default FloatingCreateNoteButton;
 
+import { useNavigate } from "react-router-dom";
+
 import { Button } from "../../../shared/components";
 import { AppIcons } from "../../../shared/icons/Icons";
-import { useNavigate } from "react-router-dom";
 
 function FloatingCreateNoteButton() {
   const navigate = useNavigate();

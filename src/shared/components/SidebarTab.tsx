@@ -1,6 +1,7 @@
 import { IconType } from "react-icons";
-import { AppIcons } from "../icons/Icons";
 import clsx from "clsx";
+
+import { AppIcons } from "../icons/Icons";
 
 type SidebarTabProps = {
   icon: IconType;
@@ -19,7 +20,7 @@ function SidebarTab({
   return (
     <div
       className={clsx(
-        "flex justify-between rounded-xl p-5 py-4 items-center cursor-default",
+        "flex justify-between rounded-xl p-5 py-4 items-center cursor-pointer",
         { "bg-primary-50": isActive }
       )}
       onClick={onClick}

@@ -6,6 +6,12 @@ const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 
 import Container from "../../shared/components/Container";
 import Login from "./pages/Login";
+import {
+  FORGOT_PASSWORD_URL,
+  LOGIN_URL,
+  RESET_PASSWORD_URL,
+  SIGNUP_URL,
+} from "./constants/urls";
 
 const withContainer = (Component: React.ComponentType) => (
   <Container>
@@ -15,13 +21,13 @@ const withContainer = (Component: React.ComponentType) => (
 
 export const authRoutes = [
   {
-    path: "auth/login",
+    path: LOGIN_URL,
     component: withContainer(Login),
   },
-  { path: "/auth/signup", component: withContainer(Signup) },
-  { path: "/auth/forgot-password", component: withContainer(ForgotPassword) },
+  { path: SIGNUP_URL, component: withContainer(Signup) },
+  { path: FORGOT_PASSWORD_URL, component: withContainer(ForgotPassword) },
   {
-    path: "/auth/reset-password/:token",
+    path: RESET_PASSWORD_URL,
     component: withContainer(ResetPassword),
   },
 ];

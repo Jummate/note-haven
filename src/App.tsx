@@ -14,6 +14,8 @@ import NoteDashboard from "./features/notes/pages/NoteDashboard";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
 import Settings from "./features/settings/pages/Settings";
+import { LOGIN_URL } from "./features/auth/constants/urls";
+import { settingsRoutes } from "./features/settings/routes";
 
 function App() {
   return (
@@ -24,7 +26,7 @@ function App() {
           <div className="">
             <Routes>
               <Route
-                path="/login"
+                path={LOGIN_URL}
                 element={
                   <Container>
                     <Login />
@@ -109,19 +111,13 @@ function App() {
                   path="/settings"
                   element={<Settings />}
                 >
-                  <Route
-                    path="color-theme"
-                    index
-                    element={<Settings.ColorTheme />}
-                  />
-                  <Route
-                    path="font-theme"
-                    element={<Settings.FontTheme />}
-                  />
-                  <Route
-                    path="change-password"
-                    element={<Settings.ChangePassword />}
-                  />
+                  {settingsRoutes.map(({ path, component }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={component}
+                    />
+                  ))}
                 </Route>
               </Route>
 

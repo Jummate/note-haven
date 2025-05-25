@@ -1,5 +1,4 @@
 // import { Link } from "react-router-dom";
-import { Button } from "../../../shared/components";
 import EmptyNote from "./EmptyNote";
 import logo from "../../../assets/logo.svg";
 import FloatingCreateNoteButton from "./FloatingCreateNoteButton";

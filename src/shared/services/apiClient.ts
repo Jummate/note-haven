@@ -1,12 +1,12 @@
 import axios from "axios";
-import { BASE_URL } from "../constant";
+import { BASE_URL } from "../constants/urls";
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 export default apiClient;

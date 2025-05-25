@@ -1,13 +1,14 @@
 // import React from 'react';
-import { AppIcons } from "../../../shared/icons/Icons";
-import clsx from "clsx";
-
 import { useNavigate } from "react-router-dom";
 
+import clsx from "clsx";
+
+import { AppIcons } from "../../../shared/icons/Icons";
 import { useHeaderStore } from "../../notes/stores/headerStore";
 import { TagsProps } from "../types";
 import { useNoteStore } from "../../notes/stores/noteStore";
 import NoContent from "../../../shared/components/NoContent";
+import { TAGS_URL } from "../../notes/constants/urls";
 
 function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   const navigate = useNavigate();
@@ -50,12 +51,12 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setHeaderText(`Showing result for ${value.name}`);
-                navigate(`/notes/tags/${value.name}`);
+                navigate(`${TAGS_URL}/${value.name}`);
               }
             }}
             onClick={() => {
               setHeaderText(`Showing result for ${value.name}`);
-              navigate(`/notes/tags/${value.name}`);
+              navigate(`${TAGS_URL}/${value.name}`);
             }}
           >
             <TagIcon className="inline mr-2 text-secondary-600" /> {value.name}

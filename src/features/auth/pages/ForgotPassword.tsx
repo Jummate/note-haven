@@ -7,7 +7,6 @@ import {
   VerticalWrapper,
   ShowError,
 } from "../../../shared/components";
-
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 import { forgotPassword } from "../services/authService";

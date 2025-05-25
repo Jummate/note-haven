@@ -1,3 +1,5 @@
+import { Link, useNavigate } from "react-router-dom";
+
 import {
   Input,
   Button,
@@ -7,15 +9,13 @@ import {
   HorizontalWrapper,
   ShowError,
 } from "../../../shared/components";
-
-import { Link, useNavigate } from "react-router-dom";
-
 import { useForm } from "../hooks/useForm";
 import { validationRules } from "../utils/validation";
 
 import { createUser } from "../services/authService";
 import AuthLayout from "../layouts/AuthLayout";
 import { FormWrapper } from "../../../shared/components/FormWrapper";
+import { LOGIN_URL } from "../constants/urls";
 
 function Signup() {
   const navigate = useNavigate();
@@ -142,7 +142,7 @@ function Signup() {
       <HorizontalWrapper styles="justify-center items-center gap-3">
         <span className="text-secondary-600">Already have an account?</span>
         <Link
-          to="/login"
+          to={LOGIN_URL}
           className="text-secondary-950 cursor-pointer hover:text-primary-500"
         >
           Log in

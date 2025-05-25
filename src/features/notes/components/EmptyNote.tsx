@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { EmptyNoteProps } from "../types";
 
 function EmptyNote({ noteType }: EmptyNoteProps) {

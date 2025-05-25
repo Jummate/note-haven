@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 import { VerticalWrapper } from "../../../shared/components";
-
 import logo from "../../../assets/logo.svg";
 
 type AuthLayoutProps = {

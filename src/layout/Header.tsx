@@ -1,11 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Input } from "../shared/components";
-
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";
 import PageHeader from "../features/notes/shared/components/PageHeader";
-import { useNavigate } from "react-router-dom";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
 import { AppIcons } from "../shared/icons/Icons";
 

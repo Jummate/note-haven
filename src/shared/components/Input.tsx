@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import { AppIcons } from "../icons/Icons";
 import clsx from "clsx";
+
+import { AppIcons } from "../icons/Icons";
 import { usePasswordToggle } from "../../features/auth/hooks/usePasswordToggle";
 
 type InputType =

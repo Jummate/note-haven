@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 // import MobileLayout from '../layouts/MobileLayout';
 // import NoteLayout from '../layouts/NoteLayout';
 // import DesktopLayout from '../layouts/DesktopLayout';
@@ -10,7 +10,6 @@ import ChangePassword from "../containers/ChangePassword";
 import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 // import SidebarTab from "../components/SidebarTab";
 
-import { useNavigate } from "react-router-dom";
 import { AppIcons } from "../../../shared/icons/Icons";
 import { useTabStore } from "../../notes/stores/tabStore";
 import SidebarTab from "../../../shared/components/SidebarTab";

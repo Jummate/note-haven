@@ -1,51 +1,59 @@
-import {
-  NavigateFunction,
-} from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 
 import apiClient from "../../../shared/services/apiClient";
 import { convertToSnakeCase } from "../../../shared/utils/conversion";
 import { notify } from "../../../shared/services/toastService";
-import { ApiResponse, AuthResponseData, ResetPasswordResponseData, SignupResponseData } from "../types";
+import {
+  ApiResponse,
+  AuthResponseData,
+  ResetPasswordResponseData,
+  SignupResponseData,
+} from "../types";
 import { apiCall } from "../utils/apiHelpers";
-
+import { DASHBOARD_URL } from "../../../shared/constants/urls";
+import {
+  API_FORGOT_PASSWORD_URL,
+  API_LOGIN_URL,
+  API_LOGOUT_URL,
+  API_RESET_PASSWORD_URL,
+  API_SIGNUP_URL,
+  LOGIN_URL,
+} from "../constants/urls";
 
 export const createUser = async (
   data: Record<string, string>,
   navigate: NavigateFunction
 ): Promise<ApiResponse<SignupResponseData>> => {
-     const result = await apiCall<SignupResponseData>(
-    () => apiClient.post("/api/auth/signup/", convertToSnakeCase(data)),
+  const result = await apiCall<SignupResponseData>(
+    () => apiClient.post(API_SIGNUP_URL, convertToSnakeCase(data)),
     "Failed to create user."
   );
 
-    if (result.success) {
+  if (result.success) {
     notify({
       message: "Account successfully created",
-      action: () => navigate("/dashboard", { replace: true }),
+      action: () => navigate(DASHBOARD_URL, { replace: true }),
     });
   }
-   return result
+  return result;
 };
 
 export const login = async (
   data: Record<string, string>,
   navigate: NavigateFunction
 ): Promise<ApiResponse<AuthResponseData>> => {
-
-    const result = await apiCall<AuthResponseData>(
-    () => apiClient.post("/api/auth/signup/", convertToSnakeCase(data)),
+  const result = await apiCall<AuthResponseData>(
+    () => apiClient.post(API_LOGIN_URL, convertToSnakeCase(data)),
     "Failed to log in."
   );
 
-    if (result.success) {
+  if (result.success) {
     notify({
       message: "You are now logged in",
-      action: () => navigate("/dashboard", { replace: true }),
+      action: () => navigate(DASHBOARD_URL, { replace: true }),
     });
   }
-   return result
-
-
+  return result;
 
   // try {
   //   const response = await apiClient.post<Record<string, string>>(
@@ -84,13 +92,12 @@ export const login = async (
   //   return response.data;
 };
 
-
 export const logout = async (
   navigate: NavigateFunction
 ): Promise<ApiResponse<null>> => {
   return apiCall(async () => {
-    await apiClient.post("/api/auth/logout/", {}, { withCredentials: true });
-    navigate("/login", { replace: true });
+    await apiClient.post(API_LOGOUT_URL, {}, { withCredentials: true });
+    navigate(LOGIN_URL, { replace: true });
     return { data: null }; // match the return type expected by apiCall
   }, "Failed to log out.");
 };
@@ -99,9 +106,8 @@ export const forgotPassword = async (
   data: Record<string, string>,
   callback: () => void
 ) => {
-
-const result = await apiCall(
-    () => apiClient.post("/api/auth/forgot-password/", convertToSnakeCase(data)),
+  const result = await apiCall(
+    () => apiClient.post(API_FORGOT_PASSWORD_URL, convertToSnakeCase(data)),
     "Failed to generate a reset link."
   );
 
@@ -110,7 +116,6 @@ const result = await apiCall(
   }
 
   return result;
-
 
   // try {
   //   const response = await apiClient.post(
@@ -136,12 +141,12 @@ export const resetPassword = async (
   data: Record<string, string>,
   navigate: NavigateFunction
 ) => {
-     if (!data.token) {
+  if (!data.token) {
     notify({ type: "error", message: "Missing token" });
     return { success: false, error: "Missing token" };
-     }
-    const result = await apiCall<ResetPasswordResponseData>(
-    () => apiClient.post("/api/auth/reset-password/", convertToSnakeCase(data)),
+  }
+  const result = await apiCall<ResetPasswordResponseData>(
+    () => apiClient.post(API_RESET_PASSWORD_URL, convertToSnakeCase(data)),
     "Failed to reset password."
   );
 
@@ -149,12 +154,11 @@ export const resetPassword = async (
     notify({
       message:
         "Your password has been successfully reset. You can now log in with your new credentials",
-      action: () => navigate("/login", { replace: true }),
+      action: () => navigate(LOGIN_URL, { replace: true }),
     });
   }
 
   return result;
-  
 
   //   const { token } = data;
   //   if (!token) return notify({ type: "error", message: "Missing token" });

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+
 import { Button } from "../../../shared/components";
 
 function CreateNoteButton() {

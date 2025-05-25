@@ -1,8 +1,10 @@
 // import React from "react";
 
 import { useNavigate } from "react-router-dom";
-import { generateSlug } from "../../../shared/utils/slugify";
+
 import clsx from "clsx";
+
+import { generateSlug } from "../../../shared/utils/slugify";
 import { NoteItem, PopulatedNote } from "../types";
 import NoContent from "../../../shared/components/NoContent";
 

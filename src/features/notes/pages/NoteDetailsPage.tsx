@@ -1,20 +1,12 @@
-// import React from "react";
-import { Button } from "../../../shared/components";
-// import logo from "../../../assets/logo.svg";
-// import { useTabStore } from "../stores/tabStore";
-// import { tabsMap } from "../constants/tabs";
-// import EmptyNote from "../components/EmptyNote";
-// import { useTabText } from "../hooks/useTabText";
+import { useParams } from "react-router-dom";
+
 import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import MobileLayout from "../../../shared/layouts/MobileLayout";
-// import EmptyPageMobile from "../shared/containers/EmptyPageMobile";
 import NoteList from "../components/NoteList";
 import CreateNoteButton from "../components/CreateNoteButton";
-
 import NotePreview from "../components/NotePreview";
-import { useParams } from "react-router-dom";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import { useNoteStore } from "../stores/noteStore";

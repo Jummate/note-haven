@@ -1,44 +1,48 @@
 import { lazy } from "react";
 import NoteDetailsPage from "./pages/NoteDetailsPage";
-
+import {
+  ARCHIVED_DETAILS_URL,
+  ARCHIVED_URL,
+  CREATE_NOTE_URL,
+  NOTES_DETAILS_URL,
+  NOTES_URL,
+  TAG_DETAILS_URL,
+  TAGS_URL,
+} from "./constants/urls";
 const NoteDashboard = lazy(() => import("./pages/NoteDashboard"));
 const ArchivedNotesPage = lazy(() => import("./pages/ArchivedNotesPage"));
 const CreateNotePage = lazy(() => import("./pages/CreateNotePage"));
 const TagsPage = lazy(() => import("../tags/pages/TagsPage"));
 // const SearchPage = lazy(() => import("./pages/SearchPage"));
-const Settings = lazy(() => import("../settings/pages/Settings"));
 
 export const noteRoutes = [
   {
-    path: "notes",
+    path: NOTES_URL,
     component: <NoteDashboard />,
   },
   {
-    path: "notes/:noteId/:noteSlug",
+    path: NOTES_DETAILS_URL,
     component: <NoteDetailsPage />,
   },
   {
-    path: "notes/archived",
+    path: ARCHIVED_URL,
     component: <ArchivedNotesPage />,
   },
   {
-    path: "notes/archived/:noteId/:noteSlug",
+    path: ARCHIVED_DETAILS_URL,
     component: <ArchivedNotesPage />,
   },
   {
-    path: "notes/create",
+    path: CREATE_NOTE_URL,
     component: <CreateNotePage />,
   },
+
   {
-    path: "settings",
-    component: <Settings />,
-  },
-  {
-    path: "notes/tags",
+    path: TAGS_URL,
     component: <TagsPage />,
   },
   {
-    path: "notes/tags/:tagSlug",
+    path: TAG_DETAILS_URL,
     component: <TagsPage />,
   },
   // {
