@@ -1,11 +1,11 @@
-import React from "react";
-
-import { FooterTabs, tabs, TabKey } from "../constants/tabs";
-import { Icons } from "../../../shared/icons/Icons";
+// import React from "react";
+import { useNavigate } from "react-router-dom";
 import { IconType } from "react-icons";
 
-import { useTabStore } from "../stores/tabStore";
-import { useNavigate } from "react-router-dom";
+import { footerTabs, FooterTabKey } from "./constants/tabs";
+import { AppIcons } from "../shared/icons/Icons";
+import { useTabStore } from "../features/notes/stores/tabStore";
+import { useHeaderStore } from "../features/notes/stores/headerStore";
 
 type FooterTabProps = {
   text: string;
@@ -49,28 +49,29 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
 }
 
 function Footer() {
-  const activeTab = useTabStore((state) => state.activeTab);
-  const setActiveTab = useTabStore((state) => state.setActiveTab);
+  // const {activeTab} = useTabStore((state) => state.activeTab);
+  // const setActiveTab = useTabStore((state) => state.setActiveTab);
+  const { activeTabs, setActiveTab } = useTabStore();
+  const { setHeaderText } = useHeaderStore();
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: TabKey, path: string) => {
-    setActiveTab(activeTab);
+  const handleClick = (activeTab: FooterTabKey, path: string, text: string) => {
+    setActiveTab("footer", activeTab);
+    setHeaderText(text);
     navigate(path);
   };
   return (
     <div className="absolute left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
-      {tabs.map(({ key, text, path }) => {
+      {footerTabs.map(({ key, text, path }) => {
         return (
-          FooterTabs.includes(key) && (
-            <FooterTab
-              key={key}
-              text={text}
-              path={path}
-              icon={Icons[key]}
-              isActive={activeTab == key}
-              onClick={() => handleClick(key, path)}
-            />
-          )
+          <FooterTab
+            key={key}
+            text={text}
+            path={path}
+            icon={AppIcons[key]}
+            isActive={activeTabs.footer == key}
+            onClick={() => handleClick(key, path, text)}
+          />
         );
       })}
     </div>

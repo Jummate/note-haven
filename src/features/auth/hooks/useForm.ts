@@ -15,7 +15,7 @@ interface UseFormProps {
   onSubmit: (
     values: Record<string, string>,
     navigate?: NavigateFunction
-  ) => Promise<any>;
+  ) => Promise<{ success: boolean; error?: string }>;
   component?: string;
 }
 
@@ -44,6 +44,10 @@ export function useForm({
     }
   };
 
+  const setFieldValue = (name: string, value: string) => {
+    setValues((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -66,7 +70,9 @@ export function useForm({
       setLoading(true);
       const result = await onSubmit(values);
       if (result.success) {
-        component != "forgotPassword" && setValues(initialValues);
+        if (component !== "forgotPassword") {
+          setValues(initialValues);
+        }
         setLoading(false);
       } else {
         setLoading(false);
@@ -74,5 +80,13 @@ export function useForm({
     }
   };
 
-  return { values, errors, handleChange, handleSubmit, loading, setLoading };
+  return {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    loading,
+    setLoading,
+    setFieldValue,
+  };
 }

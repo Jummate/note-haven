@@ -1,4 +1,5 @@
 import { useNavigate, useParams, Navigate } from "react-router-dom";
+
 import {
   Input,
   Button,
@@ -7,17 +8,17 @@ import {
   HorizontalLine,
   ShowError,
 } from "../../../shared/components";
-
-import logo from "../../../assets/logo.svg";
-
-import { useForm } from "../../../shared/hooks/useForm";
-import { validationRules } from "../../../shared/utils/validation";
-import { resetPassword } from "../../../shared/services/authService";
+import { useForm } from "../hooks/useForm";
+import { validationRules } from "../utils/validation";
+import { resetPassword } from "../services/authService";
+import AuthLayout from "../layouts/AuthLayout";
+import { FormWrapper } from "../../../shared/components/FormWrapper";
+import { PAGE_NOT_FOUND_URL } from "../../../shared/constants/urls";
 
 function ResetPassword() {
   const navigate = useNavigate();
   const { token } = useParams();
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: {
       password: "",
       confirmPassword: "",
@@ -30,80 +31,96 @@ function ResetPassword() {
   if (!token)
     return (
       <Navigate
-        to="/page-not-found"
+        to={PAGE_NOT_FOUND_URL}
         replace
       />
     );
 
   return (
-    <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
-      <div className="text-center mb-5">
-        <VerticalWrapper styles="items-center">
-          <img
-            src={logo}
-            alt=""
-          />
-        </VerticalWrapper>
-        {/* <span className="font-pacifico text-6xl font-medium">notes haven</span> */}
-      </div>
-
-      <div className="flex flex-col gap-2 items-center justify-center mb-10">
-        <h1 className="text-3xl mb-3 text-secondary-950 font-bold">
-          Reset Your Password
-        </h1>
+    <AuthLayout
+      heading="Reset Your Password"
+      firstItem={
         <span className="text-secondary-600 text-center">
           Choose a new password to secure your account.
         </span>
-      </div>
-      <form
-        className="flex flex-col gap-6"
-        onSubmit={handleSubmit}
-      >
-        <VerticalWrapper styles="gap-1">
-          <Label
-            htmlFor="password"
-            isRequired
-          >
-            New Password
-          </Label>
-          <Input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={values.password}
-            styles={errors.password ? "error-border" : ""}
-          />
-          {errors.password && <ShowError message={errors.password} />}
-        </VerticalWrapper>
-
-        <VerticalWrapper styles="gap-1">
-          <Label
-            htmlFor="confirmPassword"
-            isRequired
-          >
-            Confirm New Password
-          </Label>
-          <Input
-            type="password"
-            name="confirmPassword"
-            onChange={handleChange}
-            value={values.confirmPassword}
-            styles={errors.confirmPassword ? "error-border" : ""}
-          />
-          {errors.confirmPassword && (
-            <ShowError message={errors.confirmPassword} />
-          )}
-        </VerticalWrapper>
-
-        <Button
-          type="submit"
-          styles="font-bold hover:bg-opacity-95"
+      }
+      secondItem={
+        <FormWrapper
+          onSubmit={handleSubmit}
+          aria-busy={loading}
         >
-          Reset Password
-        </Button>
-        <HorizontalLine />
-      </form>
-    </div>
+          {loading && (
+            <p
+              role="status"
+              aria-live="polite"
+              className="sr-only"
+            >
+              Processing your request...
+            </p>
+          )}
+          <VerticalWrapper styles="gap-1">
+            <Label
+              htmlFor="password"
+              isRequired
+            >
+              New Password
+            </Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              value={values.password}
+              styles={errors.password ? "error-border" : ""}
+              aria-describedby={errors.password ? "password-error" : undefined}
+              aria-invalid={errors.password ? "true" : "false"}
+            />
+            {errors.password && (
+              <ShowError
+                message={errors.password}
+                id="password-error"
+              />
+            )}
+          </VerticalWrapper>
+
+          <VerticalWrapper styles="gap-1">
+            <Label
+              htmlFor="confirmPassword"
+              isRequired
+            >
+              Confirm New Password
+            </Label>
+            <Input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              onChange={handleChange}
+              value={values.confirmPassword}
+              styles={errors.confirmPassword ? "error-border" : ""}
+              aria-describedby={
+                errors.confirmPassword ? "confirmPassword-error" : undefined
+              }
+              aria-invalid={errors.confirmPassword ? "true" : "false"}
+            />
+            {errors.confirmPassword && (
+              <ShowError
+                message={errors.confirmPassword}
+                id="confirmPassword-error"
+              />
+            )}
+          </VerticalWrapper>
+
+          <Button
+            type="submit"
+            styles="font-bold hover:bg-opacity-95"
+            disabled={loading}
+          >
+            {loading ? "Processing" : "Reset Password"}
+          </Button>
+          <HorizontalLine />
+        </FormWrapper>
+      }
+    />
   );
 }
 

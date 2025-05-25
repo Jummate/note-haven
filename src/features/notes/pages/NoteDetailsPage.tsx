@@ -1,0 +1,75 @@
+import { useParams } from "react-router-dom";
+
+import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
+import NoteLayout from "../../../shared/layouts/NoteLayout";
+import DesktopLayout from "../../../shared/layouts/DesktopLayout";
+import MobileLayout from "../../../shared/layouts/MobileLayout";
+import NoteList from "../components/NoteList";
+import CreateNoteButton from "../components/CreateNoteButton";
+import NotePreview from "../components/NotePreview";
+import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
+import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
+import NoteActionButtons from "../components/NoteActionButtons";
+import { NOTES_URL } from "../constants/urls";
+import { useNotes } from "../hooks/useNotes";
+import { NoteForReviewType, PopulatedNote } from "../types";
+
+function NoteDetailsPage() {
+  const { noteId } = useParams();
+
+  const activeNotes = useNotes({ type: "active" }) as
+    | PopulatedNote[]
+    | undefined;
+  const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
+  const hasNotes = activeNotes && activeNotes.length > 0;
+
+  return (
+    <NoteLayout>
+      <ResponsiveLayout
+        mobile={
+          <MobileLayout>
+            <ActionButtonsPanel type="archived" />
+            <hr className=" bg-secondary-100 my-6 h-1" />
+            <NotePreview
+              note={singleNote}
+              showNote={!!noteId && !!singleNote && hasNotes}
+            />
+            <FloatingCreateNoteButton />
+          </MobileLayout>
+        }
+        desktop={
+          <DesktopLayout
+            firstItem={
+              <>
+                <CreateNoteButton />
+                <NoteList
+                  data={activeNotes}
+                  path={NOTES_URL}
+                />
+              </>
+            }
+            secondItem={
+              <>
+                <NotePreview
+                  note={singleNote}
+                  showNote={!!noteId && !!singleNote && hasNotes}
+                />
+                <NoteActionButtons
+                  onCancel={() => console.log("note cancelled")}
+                  onNoteSave={() => console.log("note saved")}
+                />
+              </>
+            }
+            thirdItem={
+              <ActionButtonsPanel
+                showNote={!!noteId && !!singleNote && hasNotes}
+              />
+            }
+          />
+        }
+      />
+    </NoteLayout>
+  );
+}
+
+export default NoteDetailsPage;

@@ -1,21 +1,64 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware"; // Correctly import the persist middleware
-import { TabKey } from "../constants/tabs";
+
+import { FooterTabKey } from "../../../layout/constants/tabs";
+import { SideBarTabKey } from "../constants/tabs";
+import { SettingsTabKey } from "../../settings/constants/tabs";
+
+// import { TabKey } from "../constants/tabs";
+
+// interface TabStore {
+//   activeTab: string;
+//   setActiveTab: (tab: string) => void;
+// }
+
+// type TabSection = "footer" | "sidebar" | "settings";
+
+type TabKeysBySection = {
+  footer: FooterTabKey;
+  sidebar: SideBarTabKey;
+  settings: SettingsTabKey;
+};
 
 interface TabStore {
-  activeTab: TabKey;
-  setActiveTab: (tab: TabKey) => void;
+  activeTabs: {
+    [K in keyof TabKeysBySection]: TabKeysBySection[K];
+  };
+  setActiveTab: <T extends keyof TabKeysBySection>(
+    section: T,
+    tab: TabKeysBySection[T]
+  ) => void;
 }
 
 export const useTabStore = create<TabStore>()(
   persist(
     (set) => ({
-      activeTab: "notes", // Default tab value
-      setActiveTab: (tab) => set({ activeTab: tab }),
+      activeTabs: {
+        footer: "home",
+        sidebar: "notes",
+        settings: "color-theme",
+      },
+      setActiveTab: (section, tab) =>
+        set((state) => ({
+          activeTabs: { ...state.activeTabs, [section]: tab },
+        })),
     }),
     {
-      name: "tab-store", // Unique name for persistence
-      storage: createJSONStorage(() => sessionStorage), // Default is localStorage, you can change to sessionStorage if needed
+      name: "tab-store",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
+
+// export const useTabStore = create<TabStore>()(
+//   persist(
+//     (set) => ({
+//       activeTab: "notes", // Default tab value
+//       setActiveTab: (tab) => set({ activeTab: tab }),
+//     }),
+//     {
+//       name: "tab-store", // Unique name for persistence
+//       storage: createJSONStorage(() => sessionStorage), // Default is localStorage, you can change to sessionStorage if needed
+//     }
+//   )
+// );

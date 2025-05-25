@@ -7,12 +7,15 @@ import { ToastContainer } from "react-toastify";
 
 import Login from "./features/auth/pages/Login";
 import PageNotFound from "./shared/pages/PageNotFound";
-import Dashboard from "./features/notes/components/Dashboard";
+import Dashboard from "./layout/DashboardLayout";
 import Container from "./shared/components/Container";
-import AllNotes from "./features/notes/pages/AllNotes";
+import NoteDashboard from "./features/notes/pages/NoteDashboard";
 // import ArchivedNotes from "./features/notes/pages/ArchivedNotes";
 import { authRoutes } from "./features/auth/routes";
 import { noteRoutes } from "./features/notes/routes";
+import Settings from "./features/settings/pages/Settings";
+import { LOGIN_URL } from "./features/auth/constants/urls";
+import { settingsRoutes } from "./features/settings/routes";
 
 function App() {
   return (
@@ -23,7 +26,7 @@ function App() {
           <div className="">
             <Routes>
               <Route
-                path="/"
+                path={LOGIN_URL}
                 element={
                   <Container>
                     <Login />
@@ -76,13 +79,14 @@ function App() {
               /> */}
 
               <Route
-                path="/notes"
+                path="/"
                 element={<Dashboard />}
               >
                 <Route
                   index
-                  element={<AllNotes />}
+                  element={<NoteDashboard />}
                 />
+
                 {noteRoutes.map(({ path, component }) => (
                   <Route
                     key={path}
@@ -90,7 +94,33 @@ function App() {
                     element={component}
                   />
                 ))}
+                {/* <Route
+                  path="/notes"
+                  element={<NoteDashboard />}
+                >
+                  {noteRoutes.map(({ path, component }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={component}
+                    />
+                  ))}
+                </Route> */}
+
+                <Route
+                  path="/settings"
+                  element={<Settings />}
+                >
+                  {settingsRoutes.map(({ path, component }) => (
+                    <Route
+                      key={path}
+                      path={path}
+                      element={component}
+                    />
+                  ))}
+                </Route>
               </Route>
+
               <Route
                 path="*"
                 element={
