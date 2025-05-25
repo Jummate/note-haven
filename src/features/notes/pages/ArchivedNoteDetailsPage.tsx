@@ -4,41 +4,35 @@ import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import MobileLayout from "../../../shared/layouts/MobileLayout";
-import EmptyPageContainer from "../containers/EmptyPageContainer";
 import NoteList from "../components/NoteList";
-import PageHeader from "../shared/components/PageHeader";
 import CreateNoteButton from "../components/CreateNoteButton";
 import NotePreview from "../components/NotePreview";
-import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
-import { NOTES_URL } from "../constants/urls";
-import { useNotes } from "../hooks/useNotes";
+import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
+import { ARCHIVED_URL } from "../constants/urls";
 import { NoteForReviewType, PopulatedNote } from "../types";
+import { useNotes } from "../hooks/useNotes";
 
-function NoteDashboard() {
+function ArchivedNoteDetailsPage() {
   const { noteId } = useParams();
 
-  const activeNotes = useNotes({ type: "active" }) as
+  const archivedNotes = useNotes({ type: "active" }) as
     | PopulatedNote[]
     | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
-  const hasNotes = activeNotes && activeNotes.length > 0;
+  const hasNotes = archivedNotes && archivedNotes.length > 0;
 
-  if (!hasNotes) return <EmptyPageContainer noteType="active" />;
   return (
     <NoteLayout>
       <ResponsiveLayout
         mobile={
           <MobileLayout>
-            <div className="flex flex-1 justify-center">
-              <div className="p-8 text-secondary-900 font-inter w-full bg-white">
-                <PageHeader headerText="All Notes" />
-                <NoteList
-                  data={activeNotes}
-                  path={NOTES_URL}
-                />
-              </div>
-            </div>
+            <ActionButtonsPanel type="archived" />
+            <hr className=" bg-secondary-100 my-6 h-1" />
+            <NotePreview
+              note={singleNote}
+              showNote={!!noteId && !!singleNote && hasNotes}
+            />
             <FloatingCreateNoteButton />
           </MobileLayout>
         }
@@ -48,8 +42,8 @@ function NoteDashboard() {
               <>
                 <CreateNoteButton />
                 <NoteList
-                  data={activeNotes}
-                  path={NOTES_URL}
+                  data={archivedNotes}
+                  path={ARCHIVED_URL}
                 />
               </>
             }
@@ -57,12 +51,12 @@ function NoteDashboard() {
               <NotePreview
                 note={singleNote}
                 showNote={!!noteId && !!singleNote && hasNotes}
-                // showNote={false}
               />
             }
             thirdItem={
               <ActionButtonsPanel
                 showNote={!!noteId && !!singleNote && hasNotes}
+                type="archived"
               />
             }
           />
@@ -72,4 +66,4 @@ function NoteDashboard() {
   );
 }
 
-export default NoteDashboard;
+export default ArchivedNoteDetailsPage;

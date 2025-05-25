@@ -7,8 +7,6 @@ import MobileLayout from "../../../shared/layouts/MobileLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import CreateNoteButton from "../../notes/components/CreateNoteButton";
 import NoteList from "../../notes/components/NoteList";
-import NotePreview from "../../notes/components/NotePreview";
-import { Button } from "../../../shared/components";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import FloatingCreateNoteButton from "../../notes/components/FloatingCreateNoteButton";
 import { useNoteStore } from "../../notes/stores/noteStore";
@@ -73,29 +71,15 @@ function TagPage() {
                 />
               </>
             }
-            secondItem={
-              tagSlug ? (
-                <>
-                  <NotePreview
-                    note={undefined}
-                    showNote={!!notesToShow}
-                  />
-                  <div className="absolute bottom-0 left-0 border border-x-0 border-t-1 border-b-0 flex w-full flex-1 p-7 gap-5">
-                    <Button styles="md:text-md w-auto">Save Note</Button>
-                    <Button
-                      variant="outline"
-                      styles="md:text-md bg-secondary-200 border-none w-auto"
-                    >
-                      Cancel
-                    </Button>
-                  </div>
-                </>
-              ) : (
-                <NoContent text="Select an item to read. Nothing is selected" />
-              )
-            }
+            secondItem={<NoContent text="Select a note to preview" />}
             thirdItem={
-              tagSlug && <ActionButtonsPanel showNote={!!notesToShow} />
+              tagSlug && (
+                <ActionButtonsPanel
+                  // showNote={!!notesToShow}
+                  showActionButtons={false}
+                  type="active"
+                />
+              )
             }
           />
         }

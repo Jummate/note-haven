@@ -51,12 +51,12 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setHeaderText(`Showing result for ${value.name}`);
-                navigate(`${TAGS_URL}/${value.name}`);
+                navigate(`/${TAGS_URL}/${value.name}`);
               }
             }}
             onClick={() => {
               setHeaderText(`Showing result for ${value.name}`);
-              navigate(`${TAGS_URL}/${value.name}`);
+              navigate(`/${TAGS_URL}/${value.name}`);
             }}
           >
             <TagIcon className="inline mr-2 text-secondary-600" /> {value.name}

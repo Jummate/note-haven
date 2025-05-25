@@ -11,6 +11,9 @@ import {
 } from "./constants/urls";
 const NoteDashboard = lazy(() => import("./pages/NoteDashboard"));
 const ArchivedNotesPage = lazy(() => import("./pages/ArchivedNotesPage"));
+const ArchivedNoteDetailsPage = lazy(
+  () => import("./pages/ArchivedNoteDetailsPage")
+);
 const CreateNotePage = lazy(() => import("./pages/CreateNotePage"));
 const TagsPage = lazy(() => import("../tags/pages/TagsPage"));
 // const SearchPage = lazy(() => import("./pages/SearchPage"));
@@ -30,7 +33,7 @@ export const noteRoutes = [
   },
   {
     path: ARCHIVED_DETAILS_URL,
-    component: <ArchivedNotesPage />,
+    component: <ArchivedNoteDetailsPage />,
   },
   {
     path: CREATE_NOTE_URL,

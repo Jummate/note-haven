@@ -67,7 +67,7 @@ function NoteList<T extends PopulatedNote>({
     <div className={clsx("divide-y divide-secondary-200", styles)}>
       {data.map((item) => {
         const slug = generateSlug(item.title);
-        const actualPath = `${path}/${item.id}/${slug}`;
+        const actualPath = `/${path}/${item.id}/${slug}`;
         return (
           <Note
             key={item.id}

@@ -9,32 +9,26 @@ import CreateNoteButton from "../components/CreateNoteButton";
 import NotePreview from "../components/NotePreview";
 import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
-import { useNoteStore } from "../stores/noteStore";
 import NoteActionButtons from "../components/NoteActionButtons";
+import { NOTES_URL } from "../constants/urls";
+import { useNotes } from "../hooks/useNotes";
+import { NoteForReviewType, PopulatedNote } from "../types";
 
 function NoteDetailsPage() {
-  // const { setHeaderText } = useHeaderStore();
-  // setHeaderText("All Notes");
-  // const PlusIcon = Icons["plus"];
-
   const { noteId } = useParams();
-  const { getNotes, getNoteById } = useNoteStore();
 
-  const allNotes = getNotes();
-  const singleNote = getNoteById(noteId || "");
+  const activeNotes = useNotes({ type: "active" }) as
+    | PopulatedNote[]
+    | undefined;
+  const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
+  const hasNotes = activeNotes && activeNotes.length > 0;
 
-  const hasNotes = allNotes && allNotes.length > 0;
-
-  // const { activeTabText } = useTabText();
-  //   const activeTab = useTabStore((state) => state.activeTab);
-
-  //   const { text: activeTabText } = tabsMap[activeTab];
   return (
     <NoteLayout>
       <ResponsiveLayout
         mobile={
           <MobileLayout>
-            <ActionButtonsPanel />
+            <ActionButtonsPanel type="archived" />
             <hr className=" bg-secondary-100 my-6 h-1" />
             <NotePreview
               note={singleNote}
@@ -49,8 +43,8 @@ function NoteDetailsPage() {
               <>
                 <CreateNoteButton />
                 <NoteList
-                  data={allNotes}
-                  path="/notes"
+                  data={activeNotes}
+                  path={NOTES_URL}
                 />
               </>
             }

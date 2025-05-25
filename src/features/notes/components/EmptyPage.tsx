@@ -33,7 +33,7 @@ function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
               {activeTabText}
             </h1>
             <EmptyNote noteType={noteType} />
-            {noteType == "notes" && <hr className="hidden sm:block mt-7" />}
+            {noteType == "active" && <hr className="hidden sm:block mt-7" />}
             <FloatingCreateNoteButton />
           </div>
         </div>

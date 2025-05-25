@@ -12,7 +12,7 @@ type ActionButtonsPanelProps = {
 function ActionButtonsPanel({
   styles,
   showNote = true,
-  type = "active",
+  type,
   showActionButtons = true,
 }: ActionButtonsPanelProps) {
   const isMobile = useResponsive();
@@ -27,6 +27,7 @@ function ActionButtonsPanel({
   ) : (
     <ActionButtonsDesktop
       type={type}
+      showActionButtons={showActionButtons}
       styles={styles}
     />
   );

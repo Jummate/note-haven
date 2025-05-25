@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
 import { EmptyNoteProps } from "../types";
+import { CREATE_NOTE_URL } from "../constants/urls";
 
 function EmptyNote({ noteType }: EmptyNoteProps) {
-  if (noteType == "notes") {
+  if (noteType == "active") {
     return (
       <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3">
         <p>
@@ -24,7 +25,8 @@ function EmptyNote({ noteType }: EmptyNoteProps) {
         <p>
           No notes have been archived yet. Move notes here for safekeeping, or{" "}
           <Link
-            to="/notes/create"
+            to={CREATE_NOTE_URL}
+            // to="/notes/create"
             className="underline text-primary-600 hover:text-primary-700"
           >
             create a new note

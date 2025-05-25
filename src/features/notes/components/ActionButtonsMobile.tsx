@@ -26,20 +26,23 @@ function ActionButtonsMobile({
         </div>
         {showActionButtons && (
           <div className="flex gap-5 items-center text-2xl">
-            <DeleteIcon
-              className="cursor-pointer"
-              role="button"
-              tabIndex={0}
-              aria-label="Delete Note"
-            />
-            {type === "active" ? (
+            {type && (
+              <DeleteIcon
+                className="cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label="Delete Note"
+              />
+            )}
+            {type === "active" && (
               <ArchivedIcon
                 className="cursor-pointer"
                 role="button"
                 tabIndex={0}
                 aria-label="Archive Note"
               />
-            ) : (
+            )}
+            {type === "archived" && (
               <RestoreIcon
                 className="cursor-pointer"
                 role="button"
