@@ -1,5 +1,4 @@
 import { useNoteStore } from "../stores/noteStore";
-import { NoteForReviewType, PopulatedNote } from "../types";
 
 type UseNotesProps = {
   type?: "active" | "archived" | "all";

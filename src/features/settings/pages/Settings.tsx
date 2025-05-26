@@ -1,8 +1,7 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 // import MobileLayout from '../layouts/MobileLayout';
 // import NoteLayout from '../layouts/NoteLayout';
 // import DesktopLayout from '../layouts/DesktopLayout';
-import logo from "../../../assets/logo.svg";
 
 import ColorTheme from "../containers/ColorTheme";
 import FontTheme from "../containers/FontTheme";
@@ -13,6 +12,11 @@ import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 import { AppIcons } from "../../../shared/icons/Icons";
 import { useTabStore } from "../../notes/stores/tabStore";
 import SidebarTab from "../../../shared/components/SidebarTab";
+import NoteLayout from "../../../shared/layouts/NoteLayout";
+import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
+import TwoColumnLayout from "../../../shared/layouts/TwoColumnLayout";
+import DesktopLayout from "../../../shared/layouts/DesktopLayout";
+import { VerticalWrapper } from "../../../shared/components";
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();
@@ -22,45 +26,122 @@ function Settings() {
     setActiveTab("settings", activeTab);
     navigate(path);
   };
-  return (
-    <>
-      <div className="hidden lg:grid grid-cols-[1fr_2fr] flex-1">
-        <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
-          <div className="mb-12">
-            {settingsTabs.map(({ key, text, path }) => {
-              return (
-                <SidebarTab
-                  key={key}
-                  text={text}
-                  icon={AppIcons[key]}
-                  isActive={activeTabs.settings == key}
-                  onClick={() => handleClick(key, path)}
-                />
-              );
-            })}
-          </div>
-        </div>
-        {/* <div>Show content here</div> */}
-        <Outlet />
-      </div>
 
-      <div className="flex flex-col flex-1 lg:hidden bg-secondary-100">
-        <div className="p-8">
-          <div className="">
-            <img
-              src={logo}
-              alt=""
-            />
-          </div>
-        </div>
-        <div className="flex flex-1 justify-center">
+  const location = useLocation();
+  const isBaseSettings = location.pathname === "/settings";
+
+  return (
+    <ResponsiveLayout
+      mobile={
+        <NoteLayout>
           <div className="p-8 text-secondary-900 font-inter w-full bg-white">
-            <h1 className="font-bold text-4xl font-inter mb-4">Settings</h1>
+            {isBaseSettings ? (
+              <>
+                <h1 className="font-bold text-4xl font-inter mb-4">Settings</h1>
+                <div className="mb-12">
+                  {settingsTabs.map(({ key, text, path }) => {
+                    return (
+                      <SidebarTab
+                        key={key}
+                        text={text}
+                        icon={AppIcons[key]}
+                        isActive={activeTabs.settings == key}
+                        onClick={() => handleClick(key, path)}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <Outlet />
+            )}
           </div>
-        </div>
-      </div>
-    </>
+        </NoteLayout>
+      }
+      desktop={
+        <DesktopLayout
+          firstItem={
+            // <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
+
+            // </div>
+            <div className="mb-12">
+              {settingsTabs.map(({ key, text, path }) => {
+                return (
+                  <SidebarTab
+                    key={key}
+                    text={text}
+                    icon={AppIcons[key]}
+                    isActive={activeTabs.settings == key}
+                    onClick={() => handleClick(key, path)}
+                  />
+                );
+              })}
+            </div>
+          }
+          secondItem={
+            <VerticalWrapper styles="flex-1">
+              <Outlet />
+            </VerticalWrapper>
+          }
+        ></DesktopLayout>
+      }
+    />
   );
+
+  // return (
+  //   <>
+  //     <div className="hidden lg:grid grid-cols-[1fr_2fr] flex-1">
+  //       <div className="p-10 px-7 border border-r-1 border-y-0 border-l-0">
+  //         <div className="mb-12">
+  //           {settingsTabs.map(({ key, text, path }) => {
+  //             return (
+  //               <SidebarTab
+  //                 key={key}
+  //                 text={text}
+  //                 icon={AppIcons[key]}
+  //                 isActive={activeTabs.settings == key}
+  //                 onClick={() => handleClick(key, path)}
+  //               />
+  //             );
+  //           })}
+  //         </div>
+  //       </div>
+  //       {/* <div>Show content here</div> */}
+  //       <Outlet />
+  //     </div>
+
+  //     <div className="flex flex-col flex-1 lg:hidden bg-secondary-100">
+  //       <div className="p-8">
+  //         <div className="">
+  //           <img
+  //             src={logo}
+  //             alt=""
+  //           />
+  //         </div>
+  //       </div>
+  //       <div className="flex flex-1 justify-center">
+  //         <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+  //           <h1 className="font-bold text-4xl font-inter mb-4">
+  //             Settings Mobile
+  //           </h1>
+  //           <div className="mb-12">
+  //             {settingsTabs.map(({ key, text, path }) => {
+  //               return (
+  //                 <SidebarTab
+  //                   key={key}
+  //                   text={text}
+  //                   icon={AppIcons[key]}
+  //                   isActive={activeTabs.settings == key}
+  //                   onClick={() => handleClick(key, path)}
+  //                 />
+  //               );
+  //             })}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </>
+  // );
 }
 
 Settings.ChangePassword = ChangePassword;
