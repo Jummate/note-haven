@@ -29,6 +29,6 @@ export const AppIcons = {
   "color-theme": MdOutlineLightMode,
   "font-theme": RiFontSize2,
   logout: TbLogout,
-  hidePassword: IoEyeOutline,
-  showPassword: IoEyeOffOutline,
+  hidePasswordIcon: IoEyeOutline,
+  showPasswordIcon: IoEyeOffOutline,
 } as const;

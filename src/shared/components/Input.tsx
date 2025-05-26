@@ -34,8 +34,8 @@ function TextInput({ styles, ...props }: InputProps) {
 
 function PasswordInput({ styles, ...props }: InputProps) {
   const { visible, inputType, toggle, ariaLabel } = usePasswordToggle();
-  const HidePasswordIcon = AppIcons["hidePassword"];
-  const ShowPasswordIcon = AppIcons["showPassword"];
+  const HidePasswordIcon = AppIcons["hidePasswordIcon"];
+  const ShowPasswordIcon = AppIcons["showPasswordIcon"];
 
   return (
     <div className="w-full relative flex items-center justify-center">
