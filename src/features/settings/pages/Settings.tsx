@@ -14,7 +14,6 @@ import { useTabStore } from "../../notes/stores/tabStore";
 import SidebarTab from "../../../shared/components/SidebarTab";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
-import TwoColumnLayout from "../../../shared/layouts/TwoColumnLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import { VerticalWrapper } from "../../../shared/components";
 
