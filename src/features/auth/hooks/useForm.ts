@@ -12,7 +12,7 @@ interface UseFormProps {
   initialValues: Record<string, string>;
   validationRules: Record<string, ValidationFunction>;
   //   onSubmit: (values: SignupType) => void;
-  onSubmit?: (
+  onSubmit?: (              //make this compulsory later important
     values: Record<string, string>,
     navigate?: NavigateFunction
   ) => Promise<{ success: boolean; error?: string }>;
@@ -69,7 +69,7 @@ export function useForm({
       setErrors(newErrors);
     } else {
       setLoading(true);
-      const result = onSubmit && await onSubmit(values);
+      const result = onSubmit && await onSubmit(values); //remove onSubmit && later. It's not needed here
       if (result?.success) {
         if (component !== "forgotPassword") {
           setValues(initialValues);

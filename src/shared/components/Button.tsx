@@ -32,7 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyle =
-      "flex items-center gap-3 justify-center whitespace-nowrap rounded-xl p-4 w-full";
+      "flex items-center gap-3 justify-center whitespace-nowrap rounded-xl p-4 w-full hover:opacity-80";
     const cursorStyle = disabled ? "cursor-not-allowed" : "cursor-pointer";
     const variantClass = variantStyles[variant];
 

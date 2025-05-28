@@ -46,6 +46,7 @@ function ArchivedNotes() {
                 <NoteList
                   data={archivedNotes}
                   path={ARCHIVED_URL}
+                  styles="mt-4"
                 />
               </>
             }

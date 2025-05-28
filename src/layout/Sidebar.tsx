@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import SidebarTab from "../shared/components/SidebarTab";
 import { useTabStore } from "../features/notes/stores/tabStore";
-import { sideBarTabs, SideBarTabKey } from "../features/notes/constants/tabs";
+import { sideBarTabs } from "../features/notes/constants/tabs";
 import { AppIcons } from "../shared/icons/Icons";
 import Tags from "../features/tags/components/Tags";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
@@ -17,7 +17,7 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const handleClick = (
-    activeTab: SideBarTabKey,
+    activeTab: string,
     path: string,
     text: string
   ) => {

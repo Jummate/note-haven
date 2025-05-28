@@ -31,7 +31,7 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
   return (
     <button
     type="button"
-      className={clsx("flex flex-col gap-1 items-center p-2 px-6 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500", {"bg-primary-50":isActive})}
+      className={clsx("flex flex-col gap-1 items-center p-2 px-6 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 hover:text-primary-500/80", {"bg-primary-50":isActive})}
       onClick={onClick}
       aria-selected={isActive}
       aria-label={modifiedText}

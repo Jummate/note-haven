@@ -45,6 +45,7 @@ function NoteDetailsPage() {
                 <NoteList
                   data={activeNotes}
                   path={NOTES_URL}
+                  styles="mt-4"
                 />
               </>
             }

@@ -68,6 +68,7 @@ function TagPage() {
                 <NoteList
                   data={notesToShow}
                   path={NOTES_URL}
+                  styles="mt-4"
                 />
               </>
             }

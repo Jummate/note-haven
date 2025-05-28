@@ -20,7 +20,7 @@ function SidebarTab({
   return (
     <div
       className={clsx(
-        "flex justify-between rounded-xl p-5 py-4 items-center cursor-pointer",
+        "flex justify-between rounded-xl p-3 py-4 items-center cursor-pointer",
         { "bg-primary-50": isActive }
       )}
       onClick={onClick}
@@ -30,7 +30,7 @@ function SidebarTab({
       aria-selected={isActive}
     >
       <div
-        className={clsx("flex gap-3 items-center text-secondary-800 whitespace-nowrap", {
+        className={clsx("flex gap-3 items-center text-secondary-800 whitespace-nowrap hover:text-primary-500/80", {
           "font-semibold": isActive,
         })}
       >

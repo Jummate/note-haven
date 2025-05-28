@@ -18,7 +18,7 @@ function ActionButtonsDesktop({
       <Button
         type="button"
         variant="outline"
-        styles="md:text-md"
+        styles="md:text-md hover:bg-secondary-100"
       >
         {type == "active" ? <ArchivedIcon size={20} /> : null}
         {type == "archived" ? <RestoreIcon size={20} /> : null}
@@ -27,9 +27,9 @@ function ActionButtonsDesktop({
       </Button>
       <Button
         variant="outline"
-        styles="md:text-md"
+        styles="md:text-md hover:bg-secondary-100"
       >
-        <DeleteIcon /> Delete Note
+        <DeleteIcon size={20}/> Delete Note
       </Button>
     </div>
   );
