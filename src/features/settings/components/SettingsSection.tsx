@@ -1,5 +1,4 @@
 import { PropsWithChildren } from "react";
-import { Button, Input } from "../../../shared/components";
 import { useResponsive } from "../../../shared/hooks/useResponsive";
 import { AppIcons } from "../../../shared/icons/Icons";
 import clsx from "clsx";

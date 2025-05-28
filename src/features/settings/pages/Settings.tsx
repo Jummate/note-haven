@@ -15,15 +15,18 @@ import SidebarTab from "../../../shared/components/SidebarTab";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
-import { VerticalWrapper } from "../../../shared/components";
+import { HorizontalLine, VerticalWrapper } from "../../../shared/components";
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: SettingsTabKey, path: string) => {
+  const handleClick = (activeTab: SettingsTabKey, path: string = "") => {
     setActiveTab("settings", activeTab);
-    navigate(path);
+    if(path){
+
+      navigate(path);
+    }
   };
 
   const location = useLocation();
@@ -75,6 +78,13 @@ function Settings() {
                   />
                 );
               })}
+              <HorizontalLine styles="mb-2"/>
+              <SidebarTab
+                    text="Logout"
+                    icon={AppIcons["logout"]}
+                    isActive={activeTabs.settings == "logout"}
+                    onClick={() => handleClick("logout")}
+                  />
             </div>
           }
           secondItem={

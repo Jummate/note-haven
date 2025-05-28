@@ -30,7 +30,7 @@ function SidebarTab({
       aria-selected={isActive}
     >
       <div
-        className={clsx("flex gap-3 items-center text-secondary-800", {
+        className={clsx("flex gap-3 items-center text-secondary-800 whitespace-nowrap", {
           "font-semibold": isActive,
         })}
       >

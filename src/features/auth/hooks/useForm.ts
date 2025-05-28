@@ -12,7 +12,7 @@ interface UseFormProps {
   initialValues: Record<string, string>;
   validationRules: Record<string, ValidationFunction>;
   //   onSubmit: (values: SignupType) => void;
-  onSubmit: (
+  onSubmit?: (
     values: Record<string, string>,
     navigate?: NavigateFunction
   ) => Promise<{ success: boolean; error?: string }>;
@@ -25,6 +25,7 @@ export function useForm({
   onSubmit,
   component,
 }: UseFormProps) {
+
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(false);
@@ -37,7 +38,7 @@ export function useForm({
     if (validationRules[name]) {
       const error = validationRules[name](
         value,
-        name === "confirmPassword" ? values.password : undefined,
+        name.startsWith("confirm") ? values.password || values.newPassword : undefined,
         component
       );
       setErrors((prev) => ({ ...prev, [name]: error || "" }));
@@ -57,7 +58,7 @@ export function useForm({
       if (validationRules[field]) {
         const error = validationRules[field](
           values[field],
-          field === "confirmPassword" ? values.password : undefined,
+          field.startsWith("confirm")  ? values.password || values.newPassword: undefined,
           component
         );
         if (error) newErrors[field] = error;
@@ -68,8 +69,8 @@ export function useForm({
       setErrors(newErrors);
     } else {
       setLoading(true);
-      const result = await onSubmit(values);
-      if (result.success) {
+      const result = onSubmit && await onSubmit(values);
+      if (result?.success) {
         if (component !== "forgotPassword") {
           setValues(initialValues);
         }

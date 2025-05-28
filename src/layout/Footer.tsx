@@ -1,6 +1,7 @@
 // import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IconType } from "react-icons";
+import clsx from "clsx";
 
 import { footerTabs, FooterTabKey } from "./constants/tabs";
 import { AppIcons } from "../shared/icons/Icons";
@@ -26,25 +27,26 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
     modifiedText = text;
   }
 
+
   return (
-    <div
-      className={`flex flex-col gap-1 items-center ${
-        isActive ? "bg-primary-50" : ""
-      } p-2 px-6 rounded-xl cursor-default`}
+    <button
+    type="button"
+      className={clsx("flex flex-col gap-1 items-center p-2 px-6 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500", {"bg-primary-50":isActive})}
       onClick={onClick}
+      aria-selected={isActive}
+      aria-label={modifiedText}
+      title={modifiedText}
     >
       <Icon
         size={20}
-        className={`${isActive ? "text-primary-500" : ""}`}
+        className={clsx({"text-primary-500":isActive})}
       />
-      <h1
-        className={`hidden sm:block text-lg ${
-          isActive ? "text-primary-500" : ""
-        }`}
+      <span
+        className={clsx("hidden sm:block text-lg", {"text-primary-500":isActive})}
       >
         {modifiedText}
-      </h1>
-    </div>
+      </span>
+    </button>
   );
 }
 
@@ -61,7 +63,7 @@ function Footer() {
     navigate(path);
   };
   return (
-    <div className="absolute left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
+    <div className="fixed left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
       {footerTabs.map(({ key, text, path }) => {
         return (
           <FooterTab

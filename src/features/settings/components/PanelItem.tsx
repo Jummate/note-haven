@@ -6,7 +6,6 @@ type PanelItemProps = {
   icon: IconType;
   itemLabel: string;
   itemTagLine: string;
-  indicator?: IconType;
   onSelect: () => void;
   isActive: boolean;
 };
@@ -15,12 +14,11 @@ function PanelItem({
   icon: ItemIcon,
   itemLabel,
   itemTagLine,
-  indicator: Indicator,
   isActive,
   onSelect,
 }: PanelItemProps) {
-  const SelectionDefault = AppIcons["selectionIndicator1"];
-  const SelectionActive = AppIcons["selectionIndicator2"];
+  const SelectionDefault = AppIcons.selectionIndicatorDefault
+  const SelectionActive = AppIcons.selectionIndicatorActive
   return (
     <div
       className={clsx(
