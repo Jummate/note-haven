@@ -31,11 +31,16 @@ function Header() {
               onChange={(e) => setSearchInput(e.target.value)}
               styles="py-3 text-2xl"
             />
-           <button type="button"> <SettingsIcon
-            aria-label="Setting Icon"
-              className="text-4xl text-secondary-500 cursor-pointer hover:bg-primary-500/80"
-              onClick={() => navigate("/settings")}
-            /></button>
+            <button
+              type="button"
+              aria-label="Setting Icon"
+            >
+              <SettingsIcon
+                className="text-4xl text-secondary-500 cursor-pointer hover:text-primary-500/80"
+                onClick={() => navigate("/settings")}
+                aria-hidden="true"
+              />
+            </button>
           </div>
         </div>
       </div>
