@@ -25,7 +25,7 @@ function ChangePassword() {
     <SettingsSection heading="Change Password">
       <FormWrapper onSubmit={handleSubmit} aria-busy={loading}>
         <VerticalWrapper styles="gap-1">
-          <Label htmlFor="oldPassword" isRequired>
+          <Label htmlFor="oldPassword" styles="font-semibold" isRequired>
             Old Password
           </Label>
           <Input
@@ -44,7 +44,7 @@ function ChangePassword() {
         </VerticalWrapper>
 
         <VerticalWrapper styles="gap-1">
-          <Label htmlFor="newPassword" isRequired>
+          <Label htmlFor="newPassword" styles="font-semibold" isRequired>
             New Password
           </Label>
           <Input
@@ -63,7 +63,7 @@ function ChangePassword() {
         </VerticalWrapper>
 
         <VerticalWrapper styles="gap-1">
-          <Label htmlFor="confirmNewPassword" isRequired>
+          <Label htmlFor="confirmNewPassword" styles="font-semibold" isRequired>
             Confirm New Password
           </Label>
           <Input

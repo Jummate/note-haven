@@ -11,7 +11,7 @@ function Label({ children, styles, htmlFor, isRequired }: LabelProps) {
   return (
     <label
       htmlFor={htmlFor}
-      className={clsx("text-secondary-950 font-bold", styles)}
+      className={clsx("text-secondary-950", styles)}
     >
       {children} {isRequired ?? <sup className="text-red-500">*</sup>}
     </label>

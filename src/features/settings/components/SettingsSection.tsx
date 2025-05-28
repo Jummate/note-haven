@@ -21,17 +21,16 @@ function SettingsSection({
   return (
     <section className={clsx("flex flex-col gap-7", styles)}>
       {isMobile && (
-        <div className="flex flex-1">
-          <div
-            className="flex gap-2 items-center text-2xl cursor-pointer"
-            role="button"
-            tabIndex={0}
+        // <div className="flex flex-1">
+          
+        // </div>
+        <button
+            className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80"
             aria-label="Go Back to Settings"
           >
-            <ChevronLeftIcon className="text-secondary-500 text-4xl" />
+            <ChevronLeftIcon className="text-secondary-500 text-4xl hover:text-primary-500/80" />
             Settings
-          </div>
-        </div>
+          </button>
       )}
 
       <h1 className="text-secondary-900 font-bold text-3xl">{heading}</h1>
