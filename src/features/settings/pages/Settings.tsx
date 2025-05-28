@@ -23,8 +23,7 @@ function Settings() {
 
   const handleClick = (activeTab: SettingsTabKey, path: string = "") => {
     setActiveTab("settings", activeTab);
-    if(path){
-
+    if (path) {
       navigate(path);
     }
   };
@@ -39,8 +38,8 @@ function Settings() {
           <div className="p-8 text-secondary-900 font-inter w-full bg-white">
             {isBaseSettings ? (
               <>
-                <h1 className="font-bold text-4xl font-inter mb-4">Settings</h1>
-                <div className="mb-12">
+                <h1 className="font-bold text-4xl font-inter mb-7">Settings</h1>
+                <div className="">
                   {settingsTabs.map(({ key, text, path }) => {
                     return (
                       <SidebarTab
@@ -53,6 +52,13 @@ function Settings() {
                     );
                   })}
                 </div>
+                <HorizontalLine styles="my-3" />
+                <SidebarTab
+                  text="Logout"
+                  icon={AppIcons["logout"]}
+                  isActive={activeTabs.settings == "logout"}
+                  onClick={() => handleClick("logout")}
+                />
               </>
             ) : (
               <Outlet />
@@ -78,13 +84,13 @@ function Settings() {
                   />
                 );
               })}
-              <HorizontalLine styles="mb-2"/>
+              <HorizontalLine styles="my-2" />
               <SidebarTab
-                    text="Logout"
-                    icon={AppIcons["logout"]}
-                    isActive={activeTabs.settings == "logout"}
-                    onClick={() => handleClick("logout")}
-                  />
+                text="Logout"
+                icon={AppIcons["logout"]}
+                isActive={activeTabs.settings == "logout"}
+                onClick={() => handleClick("logout")}
+              />
             </div>
           }
           secondItem={
