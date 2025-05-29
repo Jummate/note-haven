@@ -10,28 +10,45 @@ import { useNoteStore } from "../../notes/stores/noteStore";
 import NoContent from "../../../shared/components/NoContent";
 import { TAGS_URL } from "../../notes/constants/urls";
 import { useTabStore } from "../../notes/stores/tabStore";
-import { FooterTabKey } from "../../../layout/constants/tabs";
-import { SettingsTabKey } from "../../settings/constants/tabs";
+// import { FooterTabKey } from "../../../layout/constants/tabs";
+// import { SettingsTabKey } from "../../settings/constants/tabs";
 
 function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   const navigate = useNavigate();
   const { setHeaderText } = useHeaderStore();
   const { activeTabs, setActiveTab } = useTabStore();
-  const TagIcon = AppIcons["tags"];
+  const TagIcon = AppIcons.tags;
   const ChevRonRight = AppIcons.chevronRight;
 
-
-  function handleClick({path, headerText, footerActiveTab, settingActiveTab}:{path:string, headerText:string, footerActiveTab:FooterTabKey, settingActiveTab:SettingsTabKey}){
+  function handleClick({
+    path,
+    headerText,
+    footerActiveTab,
+    settingActiveTab,
+    sidebarActiveTab,
+  }: {
+    path: string;
+    headerText: string;
+    footerActiveTab: string;
+    settingActiveTab: string;
+    sidebarActiveTab: string;
+  }) {
     setActiveTab("footer", footerActiveTab);
-    setActiveTab("settings", settingActiveTab)
-    setHeaderText(headerText)
-    navigate(path)
+    setActiveTab("settings", settingActiveTab);
+    setActiveTab("sidebar", sidebarActiveTab);
+    setHeaderText(headerText);
+    navigate(path);
   }
 
   const tags = useNoteStore((state) => state.tagMap);
 
   if (!tags || tags.size == 0) {
-    return <NoContent text="No tags found" styles="pt-5" />;
+    return (
+      <NoContent
+        text="No tags found"
+        styles="pt-5"
+      />
+    );
     // return <p className="text-secondary-500 italic">No tags found</p>;
   }
   // const dividerStyles =
@@ -44,7 +61,6 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
     "divide-y divide-secondary-200": divider === "vertical",
     "divide-x divide-secondary-200": divider === "horizontal",
   });
-
 
   return (
     <section className={clsx("flex flex-col", styles)}>
@@ -63,19 +79,35 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
                 { "bg-primary-50": isActive },
                 listItemStyles
               )}
-              onKeyDown={(e) => 
-                {
+              onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  handleClick({path:`/${TAGS_URL}/${value.name}`, headerText:`Showing result for ${value.name}`, footerActiveTab:"tags", settingActiveTab:undefined})
+                  handleClick({
+                    path: `/${TAGS_URL}/${value.name}`,
+                    headerText: `Showing result for ${value.name}`,
+                    footerActiveTab: "Tags",
+                    settingActiveTab: "",
+                    sidebarActiveTab: value.name,
+                  });
                   // setHeaderText(`Showing result for ${value.name}`);
                   // setActiveTab("sidebar", value.name);
                   // navigate(`/${TAGS_URL}/${value.name}`);
                 }
+              }}
+              onClick={() =>
+                handleClick({
+                  path: `/${TAGS_URL}/${value.name}`,
+                  headerText: `Showing result for ${value.name}`,
+                  footerActiveTab: "Tags",
+                  settingActiveTab: "",
+                  sidebarActiveTab: value.name,
+                })
               }
-            }
-              onClick={() => handleClick({path:`/${TAGS_URL}/${value.name}`, headerText:`Showing result for ${value.name}`, footerActiveTab:"tags", settingActiveTab:undefined})}
             >
-              <span className={clsx("hover:text-primary-500/80",{"font-semibold":isActive})}>
+              <span
+                className={clsx("hover:text-primary-500/80", {
+                  "font-semibold": isActive,
+                })}
+              >
                 <TagIcon
                   className={clsx("inline mr-2", {
                     "text-primary-500": isActive,

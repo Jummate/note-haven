@@ -6,8 +6,10 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import ColorTheme from "../containers/ColorTheme";
 import FontTheme from "../containers/FontTheme";
 import ChangePassword from "../containers/ChangePassword";
-import { settingsTabs, SettingsTabKey } from "../constants/tabs";
+import { settingsTabs } from "../constants/tabs";
+// import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 // import SidebarTab from "../components/SidebarTab";
+import { SettingsLabel } from "../constants/labels";
 
 import { AppIcons } from "../../../shared/icons/Icons";
 import { useTabStore } from "../../notes/stores/tabStore";
@@ -16,20 +18,26 @@ import NoteLayout from "../../../shared/layouts/NoteLayout";
 import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import { HorizontalLine, VerticalWrapper } from "../../../shared/components";
+import { SETTINGS_URL } from "../constants/urls";
+import { LOGOUT_URL } from "../../auth/constants/urls";
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: SettingsTabKey, path: string = "") => {
+  // const handleClick = (activeTab: SettingsTabKey, path: string = "") => {
+  const handleClick = (activeTab: string, path: string | null = null) => {
     setActiveTab("settings", activeTab);
+    setActiveTab("footer", SettingsLabel.SETTINGS);
+    setActiveTab("sidebar", "");
+    // setHeaderText(headerText);
     if (path) {
       navigate(path);
     }
   };
 
   const location = useLocation();
-  const isBaseSettings = location.pathname === "/settings";
+  const isBaseSettings = location.pathname === SETTINGS_URL;
 
   return (
     <ResponsiveLayout
@@ -40,25 +48,29 @@ function Settings() {
               <>
                 <h1 className="font-bold text-4xl font-inter mb-7">Settings</h1>
                 <div className="">
-                  {settingsTabs.map(({ key, text, path }) => {
+                  {settingsTabs.map(({ icon, label, path }) => {
                     return (
-                      <SidebarTab
-                        key={key}
-                        text={text}
-                        icon={AppIcons[key]}
-                        isActive={activeTabs.settings == key}
-                        onClick={() => handleClick(key, path)}
-                      />
+                      <div>
+                        <SidebarTab
+                          key={label}
+                          text={label}
+                          icon={icon}
+                          isActive={activeTabs.settings == label}
+                          onClick={() => handleClick(label, path)}
+                        />
+                        {label === SettingsLabel.CHANGE_PASSWORD && (
+                          <HorizontalLine styles="my-3" />
+                        )}
+                      </div>
                     );
                   })}
                 </div>
-                <HorizontalLine styles="my-3" />
-                <SidebarTab
-                  text="Logout"
-                  icon={AppIcons["logout"]}
-                  isActive={activeTabs.settings == "logout"}
-                  onClick={() => handleClick("logout")}
-                />
+                {/* <SidebarTab
+                  text={SettingsLabel.LOGOUT}
+                  icon={AppIcons.logout}
+                  isActive={activeTabs.settings == SettingsLabel.LOGOUT}
+                  onClick={() => handleClick(LOGOUT_URL)}
+                /> */}
               </>
             ) : (
               <Outlet />
@@ -73,24 +85,37 @@ function Settings() {
 
             // </div>
             <div className="mb-12">
-              {settingsTabs.map(({ key, text, path }) => {
+              {settingsTabs.map(({ icon, label, path }) => {
+                console.log(label);
                 return (
-                  <SidebarTab
-                    key={key}
-                    text={text}
-                    icon={AppIcons[key]}
-                    isActive={activeTabs.settings == key}
-                    onClick={() => handleClick(key, path)}
-                  />
+                  <>
+                    <SidebarTab
+                      key={label}
+                      text={label}
+                      icon={icon}
+                      isActive={activeTabs.settings == label}
+                      onClick={() => handleClick(label, path)}
+                    />
+                    {label === SettingsLabel.CHANGE_PASSWORD && (
+                      <HorizontalLine styles="my-3" />
+                    )}
+                  </>
+                  // <SidebarTab
+                  //   key={label}
+                  //   text={label}
+                  //   icon={icon}
+                  //   isActive={activeTabs.settings == label}
+                  //   onClick={() => handleClick(label, path)}
+                  // />
                 );
               })}
-              <HorizontalLine styles="my-2" />
+              {/* <HorizontalLine styles="my-2" />
               <SidebarTab
-                text="Logout"
-                icon={AppIcons["logout"]}
-                isActive={activeTabs.settings == "logout"}
-                onClick={() => handleClick("logout")}
-              />
+                text={SettingsLabel.LOGOUT}
+                icon={AppIcons.logout}
+                isActive={activeTabs.settings == SettingsLabel.LOGOUT}
+                onClick={() => handleClick(SettingsLabel.LOGOUT)}
+              /> */}
             </div>
           }
           secondItem={

@@ -8,22 +8,24 @@ import PageHeader from "../features/notes/shared/components/PageHeader";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
 import { AppIcons } from "../shared/icons/Icons";
 import { useTabStore } from "../features/notes/stores/tabStore";
+import { SettingsLabel } from "../features/settings/constants/labels";
+import { SETTINGS_URL } from "../features/settings/constants/urls";
 
 function Header() {
   const [searchInput, setSearchInput] = useState<string>("");
-  const {setActiveTab} = useTabStore();
-  const {headerText, setHeaderText} = useHeaderStore();
+  const { setActiveTab } = useTabStore();
+  const { headerText, setHeaderText } = useHeaderStore();
 
   const navigate = useNavigate();
 
   const SettingsIcon = AppIcons["settings"];
 
-  function handleClick(){
+  function handleClick() {
     setActiveTab("sidebar", "");
-    setActiveTab("footer", "settings");
-    setActiveTab("settings", "color-theme")
-    setHeaderText("Settings")
-    navigate("/settings")
+    setActiveTab("footer", SettingsLabel.SETTINGS);
+    setActiveTab("settings", SettingsLabel.COLOR_THEME);
+    setHeaderText("Settings");
+    navigate(SETTINGS_URL);
   }
 
   return (

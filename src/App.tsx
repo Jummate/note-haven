@@ -16,6 +16,7 @@ import { noteRoutes } from "./features/notes/routes";
 import Settings from "./features/settings/pages/Settings";
 import { LOGIN_URL } from "./features/auth/constants/urls";
 import { settingsRoutes } from "./features/settings/routes";
+import { SETTINGS_URL } from "./features/settings/constants/urls";
 
 function App() {
   return (
@@ -111,18 +112,22 @@ function App() {
                   path="/settings"
                   element={<Settings />}
                 >
-                   <Route
-                  index
-                  element={<Settings.ColorTheme />}
-                />
+                  <Route
+                    index
+                    element={<Settings.ColorTheme />}
+                  />
 
-                  {settingsRoutes.map(({ path, component }) => (
-                    <Route
-                      key={path}
-                      path={path}
-                      element={component}
-                    />
-                  ))}
+                  {settingsRoutes.map(({ path, component }) => {
+                    if (path != SETTINGS_URL) {
+                      return (
+                        <Route
+                          key={path}
+                          path={path}
+                          element={component}
+                        />
+                      );
+                    }
+                  })}
                 </Route>
               </Route>
 

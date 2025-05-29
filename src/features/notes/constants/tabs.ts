@@ -1,10 +1,16 @@
-import { TabFrom, TabKeyFrom } from "../../../shared/utils/createTabMaps";
+import { AppIcons } from "../../../shared/icons/Icons";
+// import { TabFrom, TabKeyFrom } from "../../../shared/utils/createTabMaps";
+import { SidebarLabels } from "./labels";
 import { ARCHIVED_URL, NOTES_URL } from "./urls";
 
 export const sideBarTabs = [
-  { key: "notes", text: "All Notes", path: NOTES_URL },
-  { key: "archived", text: "Archived Notes", path: ARCHIVED_URL },
+  { icon: AppIcons.notes, label: SidebarLabels.ALL_NOTES, path: NOTES_URL },
+  {
+    icon: AppIcons.archived,
+    label: SidebarLabels.ARCHIVED_NOTES,
+    path: ARCHIVED_URL,
+  },
 ] as const;
 
-export type SideBarTab = TabFrom<typeof sideBarTabs>;
-export type SideBarTabKey = TabKeyFrom<typeof sideBarTabs>;
+// export type SideBarTab = TabFrom<typeof sideBarTabs>;
+// export type SideBarTabKey = TabKeyFrom<typeof sideBarTabs>;

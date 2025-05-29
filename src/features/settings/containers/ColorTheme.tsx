@@ -12,7 +12,7 @@ import SettingsSection from "../components/SettingsSection";
 type ColorThemeType = "light" | "dark" | "system" | null;
 
 function ColorTheme() {
-  const ColorThemeIcon = AppIcons["color-theme"];
+  const ColorThemeIcon = AppIcons.colorTheme;
   const MoonIcon = AppIcons["moon"];
   const SystemIcon = AppIcons["system"];
 

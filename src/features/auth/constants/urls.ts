@@ -1,4 +1,5 @@
 export const LOGIN_URL = "/auth/login";
+export const LOGOUT_URL = "/auth/logout";
 export const SIGNUP_URL = "/auth/signup";
 export const FORGOT_PASSWORD_URL = "/auth/forgot-password";
 export const RESET_PASSWORD_URL = "/auth/reset-password/:token";

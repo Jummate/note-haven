@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 import SidebarTab from "../shared/components/SidebarTab";
 import { useTabStore } from "../features/notes/stores/tabStore";
 import { sideBarTabs } from "../features/notes/constants/tabs";
-import { AppIcons } from "../shared/icons/Icons";
+// import { AppIcons } from "../shared/icons/Icons";
 import Tags from "../features/tags/components/Tags";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
 
@@ -16,13 +16,9 @@ function Sidebar() {
 
   const navigate = useNavigate();
 
-  const handleClick = (
-    activeTab: string,
-    path: string,
-    text: string
-  ) => {
+  const handleClick = (activeTab: string, path: string) => {
     setActiveTab("sidebar", activeTab);
-    setHeaderText(text);
+    setHeaderText(activeTab);
 
     navigate(path);
   };
@@ -36,14 +32,14 @@ function Sidebar() {
         />
       </div>
       <div className="py-4 border-b-2">
-        {sideBarTabs.map(({ key, text, path }) => {
+        {sideBarTabs.map(({ icon, label, path }) => {
           return (
             <SidebarTab
-              key={key}
-              text={text}
-              icon={AppIcons[key]}
-              isActive={activeTabs.sidebar == key}
-              onClick={() => handleClick(key, path, text)}
+              key={label}
+              text={label}
+              icon={icon}
+              isActive={activeTabs.sidebar == label}
+              onClick={() => handleClick(label, path)}
             />
           );
         })}
