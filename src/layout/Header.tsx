@@ -7,16 +7,24 @@ import { Input } from "../shared/components";
 import PageHeader from "../features/notes/shared/components/PageHeader";
 import { useHeaderStore } from "../features/notes/stores/headerStore";
 import { AppIcons } from "../shared/icons/Icons";
+import { useTabStore } from "../features/notes/stores/tabStore";
 
 function Header() {
   const [searchInput, setSearchInput] = useState<string>("");
-  // const activeTab = useTabStore((state) => state.activeTab);
-  // const { text: activeTabText } = tabsMap[activeTab];
+  const {setActiveTab} = useTabStore();
+  const {headerText, setHeaderText} = useHeaderStore();
 
-  const { headerText } = useHeaderStore();
   const navigate = useNavigate();
 
   const SettingsIcon = AppIcons["settings"];
+
+  function handleClick(){
+    setActiveTab("sidebar", "");
+    setActiveTab("footer", "settings");
+    setActiveTab("settings", "color-theme")
+    setHeaderText("Settings")
+    navigate("/settings")
+  }
 
   return (
     <div>
@@ -37,7 +45,7 @@ function Header() {
             >
               <SettingsIcon
                 className="text-4xl text-secondary-500 cursor-pointer hover:text-primary-500/80"
-                onClick={() => navigate("/settings")}
+                onClick={handleClick}
                 aria-hidden="true"
               />
             </button>

@@ -13,8 +13,10 @@ import { useNoteStore } from "../../notes/stores/noteStore";
 import NoContent from "../../../shared/components/NoContent";
 import { NOTES_URL } from "../../notes/constants/urls";
 
+
 function TagPage() {
   const { tagSlug } = useParams();
+  
 
   // const { noteId } = useParams();
 

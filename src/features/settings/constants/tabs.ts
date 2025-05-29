@@ -12,4 +12,4 @@ export const settingsTabs = [
 ] as const;
 
 export type SettingsTab = TabFrom<typeof settingsTabs>;
-export type SettingsTabKey = TabKeyFrom<typeof settingsTabs> | "logout";
+export type SettingsTabKey = TabKeyFrom<typeof settingsTabs> | "logout" | undefined;

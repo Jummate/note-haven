@@ -111,6 +111,11 @@ function App() {
                   path="/settings"
                   element={<Settings />}
                 >
+                   <Route
+                  index
+                  element={<Settings.ColorTheme />}
+                />
+
                   {settingsRoutes.map(({ path, component }) => (
                     <Route
                       key={path}

@@ -10,6 +10,8 @@ import { useNoteStore } from "../../notes/stores/noteStore";
 import NoContent from "../../../shared/components/NoContent";
 import { TAGS_URL } from "../../notes/constants/urls";
 import { useTabStore } from "../../notes/stores/tabStore";
+import { FooterTabKey } from "../../../layout/constants/tabs";
+import { SettingsTabKey } from "../../settings/constants/tabs";
 
 function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   const navigate = useNavigate();
@@ -17,6 +19,14 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   const { activeTabs, setActiveTab } = useTabStore();
   const TagIcon = AppIcons["tags"];
   const ChevRonRight = AppIcons.chevronRight;
+
+
+  function handleClick({path, headerText, footerActiveTab, settingActiveTab}:{path:string, headerText:string, footerActiveTab:FooterTabKey, settingActiveTab:SettingsTabKey}){
+    setActiveTab("footer", footerActiveTab);
+    setActiveTab("settings", settingActiveTab)
+    setHeaderText(headerText)
+    navigate(path)
+  }
 
   const tags = useNoteStore((state) => state.tagMap);
 
@@ -53,17 +63,17 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
                 { "bg-primary-50": isActive },
                 listItemStyles
               )}
-              onKeyDown={(e) => {
+              onKeyDown={(e) => 
+                {
                 if (e.key === "Enter") {
-                  setHeaderText(`Showing result for ${value.name}`);
-                  navigate(`/${TAGS_URL}/${value.name}`);
+                  handleClick({path:`/${TAGS_URL}/${value.name}`, headerText:`Showing result for ${value.name}`, footerActiveTab:"tags", settingActiveTab:undefined})
+                  // setHeaderText(`Showing result for ${value.name}`);
+                  // setActiveTab("sidebar", value.name);
+                  // navigate(`/${TAGS_URL}/${value.name}`);
                 }
-              }}
-              onClick={() => {
-                setHeaderText(`Showing result for ${value.name}`);
-                setActiveTab("sidebar", value.name);
-                navigate(`/${TAGS_URL}/${value.name}`);
-              }}
+              }
+            }
+              onClick={() => handleClick({path:`/${TAGS_URL}/${value.name}`, headerText:`Showing result for ${value.name}`, footerActiveTab:"tags", settingActiveTab:undefined})}
             >
               <span className={clsx("hover:text-primary-500/80",{"font-semibold":isActive})}>
                 <TagIcon
