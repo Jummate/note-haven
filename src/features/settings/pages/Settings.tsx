@@ -11,7 +11,6 @@ import { settingsTabs } from "../constants/tabs";
 // import SidebarTab from "../components/SidebarTab";
 import { SettingsLabel } from "../constants/labels";
 
-import { AppIcons } from "../../../shared/icons/Icons";
 import { useTabStore } from "../../notes/stores/tabStore";
 import SidebarTab from "../../../shared/components/SidebarTab";
 import NoteLayout from "../../../shared/layouts/NoteLayout";
@@ -19,7 +18,6 @@ import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
 import DesktopLayout from "../../../shared/layouts/DesktopLayout";
 import { HorizontalLine, VerticalWrapper } from "../../../shared/components";
 import { SETTINGS_URL } from "../constants/urls";
-import { LOGOUT_URL } from "../../auth/constants/urls";
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import logo from "../../assets/logo.svg";
 import clsx from "clsx";
+import AppLogo from "../components/AppLogo";
 
 type MobilelayoutProps = {
   children: ReactNode;
@@ -19,12 +19,7 @@ function MobileLayout({
     >
       {showHeader && (
         <div className="p-8">
-          <div className="">
-            <img
-              src={logo}
-              alt=""
-            />
-          </div>
+          <AppLogo />
         </div>
       )}
 
