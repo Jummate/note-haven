@@ -5,20 +5,20 @@ import {
   Label,
   ShowError,
   VerticalWrapper,
-} from "../../../shared/components";
-import { FormWrapper } from "../../../shared/components/FormWrapper";
-import { useForm } from "../../auth/hooks/useForm";
-import SettingsSection from "../components/SettingsSection";
-import { validationRules } from "../../auth/utils/validation";
+} from '../../../shared/components';
+import { FormWrapper } from '../../../shared/components/FormWrapper';
+import { useForm } from '../../auth/hooks/useForm';
+import SettingsSection from '../components/SettingsSection';
+import { validationRules } from '../../auth/utils/validation';
 
 function ChangePassword() {
   const { values, errors, handleChange, handleSubmit, loading } = useForm({
-    initialValues: { oldPassword: "", newPassword: "", confirmNewPassword: "" },
+    initialValues: { oldPassword: '', newPassword: '', confirmNewPassword: '' },
     validationRules,
     // onSubmit: (values) => {
     //   console.log("forgot");
     // },
-    component: "changePassword",
+    component: 'changePassword',
   });
 
   return (
@@ -34,9 +34,11 @@ function ChangePassword() {
             id="oldPassword"
             onChange={handleChange}
             value={values.oldPassword}
-            styles={errors.oldPassword ? "error-border" : ""}
-            aria-describedby={errors.oldPassword ? "oldPassword-error" : undefined}
-            aria-invalid={errors.oldPassword ? "true" : "false"}
+            styles={errors.oldPassword ? 'error-border' : ''}
+            aria-describedby={
+              errors.oldPassword ? 'oldPassword-error' : undefined
+            }
+            aria-invalid={errors.oldPassword ? 'true' : 'false'}
           />
           {errors.oldPassword && (
             <ShowError message={errors.oldPassword} id="oldPassword-error" />
@@ -53,9 +55,11 @@ function ChangePassword() {
             id="newPassword"
             onChange={handleChange}
             value={values.newPassword}
-            styles={errors.newPassword ? "error-border" : ""}
-            aria-describedby={errors.newPassword ? "newPassword-error" : undefined}
-            aria-invalid={errors.newPassword ? "true" : "false"}
+            styles={errors.newPassword ? 'error-border' : ''}
+            aria-describedby={
+              errors.newPassword ? 'newPassword-error' : undefined
+            }
+            aria-invalid={errors.newPassword ? 'true' : 'false'}
           />
           {errors.newPassword && (
             <ShowError message={errors.newPassword} id="newPassword-error" />
@@ -72,11 +76,11 @@ function ChangePassword() {
             id="confirmNewPassword"
             onChange={handleChange}
             value={values.confirmNewPassword}
-            styles={errors.confirmNewPassword ? "error-border" : ""}
+            styles={errors.confirmNewPassword ? 'error-border' : ''}
             aria-describedby={
-              errors.confirmNewPassword ? "confirmNewPassword-error" : undefined
+              errors.confirmNewPassword ? 'confirmNewPassword-error' : undefined
             }
-            aria-invalid={errors.confirmNewPassword ? "true" : "false"}
+            aria-invalid={errors.confirmNewPassword ? 'true' : 'false'}
           />
           {errors.confirmNewPassword && (
             <ShowError
@@ -93,7 +97,7 @@ function ChangePassword() {
               styles="font-bold hover:bg-opacity-95"
               disabled={loading}
             >
-              {loading ? "Processing..." : "Save Password"}
+              {loading ? 'Processing...' : 'Save Password'}
             </Button>
           </div>
         </HorizontalWrapper>

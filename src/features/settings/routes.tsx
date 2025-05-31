@@ -2,8 +2,8 @@ import {
   CHANGE_PASSWORD_URL,
   COLOR_THEME_URL,
   FONT_THEME_URL,
-} from "./constants/urls";
-import Settings from "./pages/Settings";
+} from './constants/urls';
+import Settings from './pages/Settings';
 
 export const settingsRoutes = [
   {

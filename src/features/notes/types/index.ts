@@ -1,6 +1,6 @@
-import { TagType } from "../../tags/types";
+import { TagType } from '../../tags/types';
 
-export type NoteType = "active" | "archived";
+export type NoteType = 'active' | 'archived';
 
 export type ActionButtons = {
   type: NoteType;
@@ -25,7 +25,7 @@ export type NoteProps = {
   tagIds: string[];
 };
 
-export interface PopulatedNote extends Omit<NoteProps, "tagIds"> {
+export interface PopulatedNote extends Omit<NoteProps, 'tagIds'> {
   tags: TagType[];
 }
 
@@ -38,12 +38,12 @@ export type NoteItem = {
 
 export type NoteInListType = Pick<
   PopulatedNote,
-  "title" | "tags" | "createdAt"
+  'title' | 'tags' | 'createdAt'
 >;
 
 export type NoteForReviewType = Pick<
   PopulatedNote,
-  "title" | "content" | "tags" | "updatedAt"
+  'title' | 'content' | 'tags' | 'updatedAt'
 >;
 // export type NoteItem = Pick<PopulatedNote, "title" | "tags" | "createdAt"> & {onNoteSelect: () => void;}
 // export type NotePreviewProps = Pick<PopulatedNote, "title" | "content" | "tags" | "updatedAt"> & {showNote?: boolean;}
@@ -59,8 +59,8 @@ export interface NoteInput {
 }
 
 export type EmptyPageProps = {
-  noteType: "active" | "archived";
+  noteType: 'active' | 'archived';
   activeTabText?: string;
 };
 
-export type EmptyNoteProps = Omit<EmptyPageProps, "activeTabText">;
+export type EmptyNoteProps = Omit<EmptyPageProps, 'activeTabText'>;

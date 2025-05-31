@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import clsx from "clsx";
-import AppLogo from "../components/AppLogo";
+import { ReactNode } from 'react';
+import clsx from 'clsx';
+import AppLogo from '../components/AppLogo';
 
 type MobilelayoutProps = {
   children: ReactNode;
@@ -15,7 +15,7 @@ function MobileLayout({
 }: MobilelayoutProps) {
   return (
     <div
-      className={clsx("flex flex-col flex-1 bg-secondary-100 relative", styles)}
+      className={clsx('flex flex-col flex-1 bg-secondary-100 relative', styles)}
     >
       {showHeader && (
         <div className="p-8">

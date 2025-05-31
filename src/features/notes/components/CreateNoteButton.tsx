@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import { Button } from "../../../shared/components";
-import { CREATE_NOTE_URL } from "../constants/urls";
+import { Button } from '../../../shared/components';
+import { CREATE_NOTE_URL } from '../constants/urls';
 
 function CreateNoteButton() {
   const navigate = useNavigate();

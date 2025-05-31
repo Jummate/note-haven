@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { useResponsive } from "../hooks/useResponsive";
+import { ReactNode } from 'react';
+import { useResponsive } from '../hooks/useResponsive';
 
 const ResponsiveLayout = ({
   mobile,

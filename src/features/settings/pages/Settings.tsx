@@ -1,23 +1,23 @@
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 // import MobileLayout from '../layouts/MobileLayout';
 // import NoteLayout from '../layouts/NoteLayout';
 // import DesktopLayout from '../layouts/DesktopLayout';
 
-import ColorTheme from "../containers/ColorTheme";
-import FontTheme from "../containers/FontTheme";
-import ChangePassword from "../containers/ChangePassword";
-import { settingsTabs } from "../constants/tabs";
+import ColorTheme from '../containers/ColorTheme';
+import FontTheme from '../containers/FontTheme';
+import ChangePassword from '../containers/ChangePassword';
+import { settingsTabs } from '../constants/tabs';
 // import { settingsTabs, SettingsTabKey } from "../constants/tabs";
 // import SidebarTab from "../components/SidebarTab";
-import { SettingsLabel } from "../constants/labels";
+import { SettingsLabel } from '../constants/labels';
 
-import { useTabStore } from "../../notes/stores/tabStore";
-import SidebarTab from "../../../shared/components/SidebarTab";
-import NoteLayout from "../../../shared/layouts/NoteLayout";
-import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
-import DesktopLayout from "../../../shared/layouts/DesktopLayout";
-import { HorizontalLine, VerticalWrapper } from "../../../shared/components";
-import { SETTINGS_URL } from "../constants/urls";
+import { useTabStore } from '../../notes/stores/tabStore';
+import SidebarTab from '../../../shared/components/SidebarTab';
+import NoteLayout from '../../../shared/layouts/NoteLayout';
+import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
+import DesktopLayout from '../../../shared/layouts/DesktopLayout';
+import { HorizontalLine, VerticalWrapper } from '../../../shared/components';
+import { SETTINGS_URL } from '../constants/urls';
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();
@@ -25,9 +25,9 @@ function Settings() {
 
   // const handleClick = (activeTab: SettingsTabKey, path: string = "") => {
   const handleClick = (activeTab: string, path: string | null = null) => {
-    setActiveTab("settings", activeTab);
-    setActiveTab("footer", SettingsLabel.SETTINGS);
-    setActiveTab("sidebar", "");
+    setActiveTab('settings', activeTab);
+    setActiveTab('footer', SettingsLabel.SETTINGS);
+    setActiveTab('sidebar', '');
     // setHeaderText(headerText);
     if (path) {
       navigate(path);
@@ -48,9 +48,8 @@ function Settings() {
                 <div className="">
                   {settingsTabs.map(({ icon, label, path }) => {
                     return (
-                      <div>
+                      <div key={label}>
                         <SidebarTab
-                          key={label}
                           text={label}
                           icon={icon}
                           isActive={activeTabs.settings == label}

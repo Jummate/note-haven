@@ -1,6 +1,6 @@
-import { IconType } from "react-icons";
-import { AppIcons } from "../../../shared/icons/Icons";
-import clsx from "clsx";
+import { IconType } from 'react-icons';
+import { AppIcons } from '../../../shared/icons/Icons';
+import clsx from 'clsx';
 
 type PanelItemProps = {
   icon: IconType;
@@ -17,18 +17,18 @@ function PanelItem({
   isActive,
   onSelect,
 }: PanelItemProps) {
-  const SelectionDefault = AppIcons.selectionIndicatorDefault
-  const SelectionActive = AppIcons.selectionIndicatorActive
+  const SelectionDefault = AppIcons.selectionIndicatorDefault;
+  const SelectionActive = AppIcons.selectionIndicatorActive;
   return (
     <div
       className={clsx(
-        "flex border border-secondary-200 rounded-xl justify-between items-center p-4 hover:bg-secondary-100",
-        { "bg-secondary-100": isActive }
+        'flex border border-secondary-200 rounded-xl justify-between items-center p-4 hover:bg-secondary-100',
+        { 'bg-secondary-100': isActive },
       )}
       onClick={onSelect}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => e.key === "Enter" && onSelect()}
+      onKeyDown={e => e.key === 'Enter' && onSelect()}
       aria-selected={isActive}
     >
       <div className="flex gap-10 items-center">
@@ -45,15 +45,9 @@ function PanelItem({
       </div>
 
       {isActive ? (
-        <SelectionActive
-          size={22}
-          className="text-primary-500"
-        />
+        <SelectionActive size={22} className="text-primary-500" />
       ) : (
-        <SelectionDefault
-          size={20}
-          className="p-1"
-        />
+        <SelectionDefault size={20} className="p-1" />
       )}
 
       {/* {Indicator && (

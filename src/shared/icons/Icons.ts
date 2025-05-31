@@ -1,25 +1,25 @@
-import { IoEyeOffOutline, IoHomeOutline, IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline, IoHomeOutline, IoEyeOutline } from 'react-icons/io5';
 import {
   MdOutlineArchive,
   MdSettingsBackupRestore,
   MdOutlineLightMode,
-} from "react-icons/md";
-import { CiSearch, CiLock } from "react-icons/ci";
-import { BsTag } from "react-icons/bs";
-import { LuSettings, LuClock4 } from "react-icons/lu";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { FaPlus } from "react-icons/fa";
+} from 'react-icons/md';
+import { CiSearch, CiLock } from 'react-icons/ci';
+import { BsTag } from 'react-icons/bs';
+import { LuSettings, LuClock4 } from 'react-icons/lu';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { FaPlus } from 'react-icons/fa';
 import {
   RiFontSize2,
   RiDeleteBin6Line,
   RiFontMono,
   RiFontSansSerif,
   RiFontSans,
-} from "react-icons/ri";
-import { TbLogout, TbMoon2 } from "react-icons/tb";
-import { GrSystem } from "react-icons/gr";
-import { CgShapeCircle } from "react-icons/cg";
-import { GoCircle } from "react-icons/go";
+} from 'react-icons/ri';
+import { TbLogout, TbMoon2 } from 'react-icons/tb';
+import { GrSystem } from 'react-icons/gr';
+import { CgShapeCircle } from 'react-icons/cg';
+import { GoCircle } from 'react-icons/go';
 
 export const AppIcons = {
   notes: IoHomeOutline,

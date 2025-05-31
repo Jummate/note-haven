@@ -1,30 +1,30 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { Input } from "../shared/components";
+import { Input } from '../shared/components';
 // import { useTabStore } from "../stores/tabStore";
 // import { tabsMap } from "../constants/tabs";
-import PageHeader from "../features/notes/shared/components/PageHeader";
-import { useHeaderStore } from "../features/notes/stores/headerStore";
-import { AppIcons } from "../shared/icons/Icons";
-import { useTabStore } from "../features/notes/stores/tabStore";
-import { SettingsLabel } from "../features/settings/constants/labels";
-import { SETTINGS_URL } from "../features/settings/constants/urls";
+import PageHeader from '../features/notes/shared/components/PageHeader';
+import { useHeaderStore } from '../features/notes/stores/headerStore';
+import { AppIcons } from '../shared/icons/Icons';
+import { useTabStore } from '../features/notes/stores/tabStore';
+import { SettingsLabel } from '../features/settings/constants/labels';
+import { SETTINGS_URL } from '../features/settings/constants/urls';
 
 function Header() {
-  const [searchInput, setSearchInput] = useState<string>("");
+  const [searchInput, setSearchInput] = useState<string>('');
   const { setActiveTab } = useTabStore();
   const { headerText, setHeaderText } = useHeaderStore();
 
   const navigate = useNavigate();
 
-  const SettingsIcon = AppIcons["settings"];
+  const SettingsIcon = AppIcons['settings'];
 
   function handleClick() {
-    setActiveTab("sidebar", "");
-    setActiveTab("footer", SettingsLabel.SETTINGS);
-    setActiveTab("settings", SettingsLabel.COLOR_THEME);
-    setHeaderText("Settings");
+    setActiveTab('sidebar', '');
+    setActiveTab('footer', SettingsLabel.SETTINGS);
+    setActiveTab('settings', SettingsLabel.COLOR_THEME);
+    setHeaderText('Settings');
     navigate(SETTINGS_URL);
   }
 
@@ -38,13 +38,10 @@ function Header() {
               name="search"
               type="search"
               value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
+              onChange={e => setSearchInput(e.target.value)}
               styles="py-3 text-2xl"
             />
-            <button
-              type="button"
-              aria-label="Setting Icon"
-            >
+            <button type="button" aria-label="Setting Icon">
               <SettingsIcon
                 className="text-4xl text-secondary-500 cursor-pointer hover:text-primary-500/80"
                 onClick={handleClick}

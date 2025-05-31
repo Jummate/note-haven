@@ -1,9 +1,9 @@
 // import { Link } from "react-router-dom";
-import EmptyNote from "./EmptyNote";
-import logo from "../../../assets/logo.svg";
-import FloatingCreateNoteButton from "./FloatingCreateNoteButton";
-import { EmptyPageProps } from "../types";
-import CreateNoteButton from "./CreateNoteButton";
+import EmptyNote from './EmptyNote';
+import logo from '../../../assets/logo.svg';
+import FloatingCreateNoteButton from './FloatingCreateNoteButton';
+import { EmptyPageProps } from '../types';
+import CreateNoteButton from './CreateNoteButton';
 
 function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
   return (
@@ -21,10 +21,7 @@ function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
       <div className="flex flex-col flex-1 lg:hidden bg-secondary-100">
         <div className="p-8">
           <div className="">
-            <img
-              src={logo}
-              alt="Note Haven Logo"
-            />
+            <img src={logo} alt="Note Haven Logo" />
           </div>
         </div>
         <div className="flex flex-1 justify-center">
@@ -33,7 +30,7 @@ function EmptyPage({ noteType, activeTabText }: EmptyPageProps) {
               {activeTabText}
             </h1>
             <EmptyNote noteType={noteType} />
-            {noteType == "active" && <hr className="hidden sm:block mt-7" />}
+            {noteType == 'active' && <hr className="hidden sm:block mt-7" />}
             <FloatingCreateNoteButton />
           </div>
         </div>

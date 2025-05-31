@@ -1,7 +1,7 @@
-import { IconType } from "react-icons";
-import clsx from "clsx";
+import { IconType } from 'react-icons';
+import clsx from 'clsx';
 
-import { AppIcons } from "../icons/Icons";
+import { AppIcons } from '../icons/Icons';
 
 type SidebarTabProps = {
   icon: IconType;
@@ -20,24 +20,24 @@ function SidebarTab({
   return (
     <div
       className={clsx(
-        "flex justify-between rounded-xl p-3 py-4 items-center cursor-pointer",
-        { "bg-primary-50": isActive }
+        'flex justify-between rounded-xl p-3 py-4 items-center cursor-pointer',
+        { 'bg-primary-50': isActive },
       )}
       onClick={onClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => e.key === "Enter" && onClick()}
+      onKeyDown={e => e.key === 'Enter' && onClick()}
       aria-selected={isActive}
     >
       <div
-        className={clsx("flex gap-3 items-center text-secondary-800 whitespace-nowrap hover:text-primary-500/80", {
-          "font-semibold": isActive,
-        })}
+        className={clsx(
+          'flex gap-3 items-center text-secondary-800 whitespace-nowrap hover:text-primary-500/80',
+          {
+            'font-semibold': isActive,
+          },
+        )}
       >
-        <Icon
-          className={clsx({ "text-primary-500": isActive })}
-          size={20}
-        />
+        <Icon className={clsx({ 'text-primary-500': isActive })} size={20} />
         {text}
       </div>
       {isActive && (

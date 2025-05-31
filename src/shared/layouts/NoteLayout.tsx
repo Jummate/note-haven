@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
 function NoteLayout({ children }: PropsWithChildren) {
   return <div className="flex-1 flex flex-col">{children}</div>;

@@ -1,15 +1,15 @@
 // import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import { AppIcons } from "../../../shared/icons/Icons";
-import { useHeaderStore } from "../../notes/stores/headerStore";
-import { TagsProps } from "../types";
-import { useNoteStore } from "../../notes/stores/noteStore";
-import NoContent from "../../../shared/components/NoContent";
-import { TAGS_URL } from "../../notes/constants/urls";
-import { useTabStore } from "../../notes/stores/tabStore";
+import { AppIcons } from '../../../shared/icons/Icons';
+import { useHeaderStore } from '../../notes/stores/headerStore';
+import { TagsProps } from '../types';
+import { useNoteStore } from '../../notes/stores/noteStore';
+import NoContent from '../../../shared/components/NoContent';
+import { TAGS_URL } from '../../notes/constants/urls';
+import { useTabStore } from '../../notes/stores/tabStore';
 // import { FooterTabKey } from "../../../layout/constants/tabs";
 // import { SettingsTabKey } from "../../settings/constants/tabs";
 
@@ -33,22 +33,17 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
     settingActiveTab: string;
     sidebarActiveTab: string;
   }) {
-    setActiveTab("footer", footerActiveTab);
-    setActiveTab("settings", settingActiveTab);
-    setActiveTab("sidebar", sidebarActiveTab);
+    setActiveTab('footer', footerActiveTab);
+    setActiveTab('settings', settingActiveTab);
+    setActiveTab('sidebar', sidebarActiveTab);
     setHeaderText(headerText);
     navigate(path);
   }
 
-  const tags = useNoteStore((state) => state.tagMap);
+  const tags = useNoteStore(state => state.tagMap);
 
   if (!tags || tags.size == 0) {
-    return (
-      <NoContent
-        text="No tags found"
-        styles="pt-5"
-      />
-    );
+    return <NoContent text="No tags found" styles="pt-5" />;
     // return <p className="text-secondary-500 italic">No tags found</p>;
   }
   // const dividerStyles =
@@ -58,15 +53,15 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   //     ? "divide-x divide-secondary-200"
   //     : "";
   const dividerStyles = clsx({
-    "divide-y divide-secondary-200": divider === "vertical",
-    "divide-x divide-secondary-200": divider === "horizontal",
+    'divide-y divide-secondary-200': divider === 'vertical',
+    'divide-x divide-secondary-200': divider === 'horizontal',
   });
 
   return (
-    <section className={clsx("flex flex-col", styles)}>
-      <h2 className={clsx("mb-5", titleStyles)}>Tags</h2>
+    <section className={clsx('flex flex-col', styles)}>
+      <h2 className={clsx('mb-5', titleStyles)}>Tags</h2>
 
-      <ul className={clsx("flex flex-col", dividerStyles)}>
+      <ul className={clsx('flex flex-col', dividerStyles)}>
         {Array.from(tags).map(([key, value]) => {
           const isActive = activeTabs.sidebar == value.name;
           return (
@@ -75,17 +70,17 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
               role="button"
               tabIndex={0}
               className={clsx(
-                "flex justify-between py-4 px-3 cursor-pointer rounded-xl",
-                { "bg-primary-50": isActive },
-                listItemStyles
+                'flex justify-between py-4 px-3 cursor-pointer rounded-xl',
+                { 'bg-primary-50': isActive },
+                listItemStyles,
               )}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
                   handleClick({
                     path: `/${TAGS_URL}/${value.name}`,
                     headerText: `Showing result for ${value.name}`,
-                    footerActiveTab: "Tags",
-                    settingActiveTab: "",
+                    footerActiveTab: 'Tags',
+                    settingActiveTab: '',
                     sidebarActiveTab: value.name,
                   });
                   // setHeaderText(`Showing result for ${value.name}`);
@@ -97,20 +92,20 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
                 handleClick({
                   path: `/${TAGS_URL}/${value.name}`,
                   headerText: `Showing result for ${value.name}`,
-                  footerActiveTab: "Tags",
-                  settingActiveTab: "",
+                  footerActiveTab: 'Tags',
+                  settingActiveTab: '',
                   sidebarActiveTab: value.name,
                 })
               }
             >
               <span
-                className={clsx("hover:text-primary-500/80", {
-                  "font-semibold": isActive,
+                className={clsx('hover:text-primary-500/80', {
+                  'font-semibold': isActive,
                 })}
               >
                 <TagIcon
-                  className={clsx("inline mr-2", {
-                    "text-primary-500": isActive,
+                  className={clsx('inline mr-2', {
+                    'text-primary-500': isActive,
                   })}
                 />
                 {value.name}

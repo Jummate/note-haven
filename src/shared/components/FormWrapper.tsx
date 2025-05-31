@@ -6,11 +6,7 @@ export function FormWrapper({
   ...props
 }: React.PropsWithChildren<FormWrapperProps>) {
   return (
-    <form
-      className="flex flex-col gap-6"
-      onSubmit={onSubmit}
-      {...props}
-    >
+    <form className="flex flex-col gap-6" onSubmit={onSubmit} {...props}>
       {children}
     </form>
   );

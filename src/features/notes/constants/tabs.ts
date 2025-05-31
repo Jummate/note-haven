@@ -1,7 +1,7 @@
-import { AppIcons } from "../../../shared/icons/Icons";
+import { AppIcons } from '../../../shared/icons/Icons';
 // import { TabFrom, TabKeyFrom } from "../../../shared/utils/createTabMaps";
-import { SidebarLabels } from "./labels";
-import { ARCHIVED_URL, NOTES_URL } from "./urls";
+import { SidebarLabels } from './labels';
+import { ARCHIVED_URL, NOTES_URL } from './urls';
 
 export const sideBarTabs = [
   { icon: AppIcons.notes, label: SidebarLabels.ALL_NOTES, path: NOTES_URL },

@@ -1,9 +1,9 @@
-import { useResponsive } from "../hooks/useResponsive";
-import ActionButtonsMobile from "../../features/notes/components/ActionButtonsMobile";
-import ActionButtonsDesktop from "../../features/notes/components/ActionButtonsDesktop";
+import { useResponsive } from '../hooks/useResponsive';
+import ActionButtonsMobile from '../../features/notes/components/ActionButtonsMobile';
+import ActionButtonsDesktop from '../../features/notes/components/ActionButtonsDesktop';
 
 type ActionButtonsPanelProps = {
-  type?: "active" | "archived";
+  type?: 'active' | 'archived';
   showNote?: boolean;
   showActionButtons?: boolean;
   styles?: string;
