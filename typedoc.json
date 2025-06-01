@@ -1,0 +1,14 @@
+{
+  "entryPoints": ["./src"],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "theme": "default",
+  // "plugin": ["typedoc-plugin-markdown"],
+  "excludeInternal": true,
+  "readme": "none"
+}

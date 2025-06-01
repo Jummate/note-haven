@@ -5,6 +5,8 @@ node_modules/
 dist/
 build/
 
+/docs
+
 # Coverage reports
 coverage/
 

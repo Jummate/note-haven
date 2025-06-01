@@ -8,7 +8,13 @@ import prettierConfig from 'eslint-config-prettier';
 // Your config will be an array of objects
 export default [
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '.github/'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+      '**/docs/**',
+      '.github/',
+    ],
   },
   {
     // Specify language options for TypeScript and JSX files
