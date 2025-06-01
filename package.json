@@ -17,8 +17,10 @@
     "build:staging": "tsc -b && vite build --mode staging",
     "preview:prod": "vite preview --port 8080",
     "preview:staging": "vite preview --port 8081",
-    "prepare": "husky",
-    "ggscan": "ggshield secret scan path . --recursive --yes"
+    "prepare": "husky install",
+    "ggscan": "ggshield secret scan path . --recursive --yes",
+    "docs:html": "typedoc",
+    "docs:md": "typedoc --plugin typedoc-plugin-markdown"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -49,17 +51,10 @@
     "postcss": "^8.5.1",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-markdown": "^4.6.3",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,css,md}": [
-      "prettier --write"
-    ]
   }
 }

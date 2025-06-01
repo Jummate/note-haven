@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 
+/docs
+
 .env
 .env.*
 !.env.example
