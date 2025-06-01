@@ -3,7 +3,7 @@ name: Deploy Docs
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build docs
-        run: npm run docs
+        run: npm run docs:html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
