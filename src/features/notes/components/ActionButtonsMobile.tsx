@@ -1,71 +1,59 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import { AppIcons } from "../../../shared/icons/Icons";
-import { ActionButtonsMobileProps } from "../types";
+import { AppIcons } from '../../../shared/icons/Icons';
+import { ActionButtonsMobileProps } from '../types';
 
 function ActionButtonsMobile({
   styles,
   type,
   showActionButtons,
 }: ActionButtonsMobileProps) {
-  const ArchivedIcon = AppIcons["archived"];
-  const DeleteIcon = AppIcons["delete"];
-  const RestoreIcon = AppIcons["restore"];
-  const ChevronLeftIcon = AppIcons["chevronLeft"];
+  const ArchivedIcon = AppIcons['archived'];
+  const DeleteIcon = AppIcons['delete'];
+  const RestoreIcon = AppIcons['restore'];
+  const ChevronLeftIcon = AppIcons['chevronLeft'];
   return (
-    <div className={clsx("flex gap-3", styles)}>
+    <div className={clsx('flex gap-3', styles)}>
       <div className="flex flex-1 justify-between">
-        <div
-          className="flex gap-2 items-center text-2xl cursor-pointer"
-          role="button"
-          tabIndex={0}
-          aria-label="Go Back"
-        >
-          <ChevronLeftIcon className="text-secondary-500 text-4xl" />
+        <button className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80">
+          <ChevronLeftIcon
+            aria-hidden="true"
+            className="text-secondary-500 text-4xl"
+          />
           Go Back
-        </div>
+        </button>
         {showActionButtons && (
           <div className="flex gap-5 items-center text-2xl">
             {type && (
-              <DeleteIcon
-                className="cursor-pointer"
-                role="button"
-                tabIndex={0}
+              <button
                 aria-label="Delete Note"
-              />
+                className="hover:text-primary-500/80"
+              >
+                <DeleteIcon className="cursor-pointer" />
+              </button>
             )}
-            {type === "active" && (
-              <ArchivedIcon
-                className="cursor-pointer"
-                role="button"
-                tabIndex={0}
+            {type === 'active' && (
+              <button
                 aria-label="Archive Note"
-              />
+                className="hover:text-primary-500/80"
+              >
+                <ArchivedIcon className="cursor-pointer" aria-hidden="true" />
+              </button>
             )}
-            {type === "archived" && (
-              <RestoreIcon
-                className="cursor-pointer"
-                role="button"
-                tabIndex={0}
+            {type === 'archived' && (
+              <button
                 aria-label="Restore Note"
-              />
+                className="hover:text-primary-500/80"
+              >
+                <RestoreIcon aria-hidden="true" className="cursor-pointer" />
+              </button>
             )}
-            <span
-              className="text-secondary-500 cursor-pointer"
-              role="button"
-              tabIndex={0}
-              aria-label="Cancel"
-            >
+            <button className="text-secondary-500 cursor-pointer hover:opacity-80">
               Cancel
-            </span>
-            <span
-              className="text-primary-500 cursor-pointer"
-              role="button"
-              tabIndex={0}
-              aria-label="Save Note"
-            >
+            </button>
+            <button className="text-primary-500 cursor-pointer">
               Save Note
-            </span>
+            </button>
           </div>
         )}
       </div>

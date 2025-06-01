@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import { VerticalWrapper } from "../../../shared/components";
-import logo from "../../../assets/logo.svg";
+import { VerticalWrapper } from '../../../shared/components';
+import logo from '../../../assets/logo.svg';
 
 type AuthLayoutProps = {
   heading: string;
@@ -20,10 +20,7 @@ function AuthLayout({
     <div className="rounded-xl w-[90%] max-w-2xl flex flex-col gap-6 bg-white p-10 md:p-20 py-32 shadow-all-edges">
       <div className="text-center mb-5">
         <VerticalWrapper styles="items-center">
-          <img
-            src={logo}
-            alt="Notes Haven logo"
-          />
+          <img src={logo} alt="Notes Haven logo" />
         </VerticalWrapper>
       </div>
 

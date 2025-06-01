@@ -1,8 +1,8 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode } from 'react';
 
-import clsx from "clsx";
+import clsx from 'clsx';
 
-type ButtonVariant = "primary" | "outline" | "danger" | "secondary";
+type ButtonVariant = 'primary' | 'outline' | 'danger' | 'secondary';
 // type ButtonType = "submit" | "reset" | "button";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -13,27 +13,27 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: "bg-primary-500 text-white",
-  secondary: "bg-secondary-200 text-secondary-800",
-  danger: "bg-red-500 text-white",
-  outline: "border border-secondary-300 text-secondary-800 bg-transparent",
+  primary: 'bg-primary-500 text-white',
+  secondary: 'bg-secondary-200 text-secondary-800',
+  danger: 'bg-red-500 text-white',
+  outline: 'border border-secondary-300 text-secondary-800 bg-transparent',
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      type = "button",
+      type = 'button',
       disabled = false,
       children,
       styles,
-      variant = "primary",
+      variant = 'primary',
       ...props
     },
-    ref
+    ref,
   ) => {
     const baseStyle =
-      "flex items-center gap-3 justify-center whitespace-nowrap rounded-xl p-4 w-full";
-    const cursorStyle = disabled ? "cursor-not-allowed" : "cursor-pointer";
+      'flex items-center gap-3 justify-center whitespace-nowrap rounded-xl p-4 w-full hover:opacity-80';
+    const cursorStyle = disabled ? 'cursor-not-allowed' : 'cursor-pointer';
     const variantClass = variantStyles[variant];
 
     return (
@@ -47,7 +47,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
       </button>
     );
-  }
+  },
 );
 
 // function Button({
@@ -77,5 +77,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 //     </button>
 //   );
 // }
+
+Button.displayName = 'Button';
 
 export default Button;

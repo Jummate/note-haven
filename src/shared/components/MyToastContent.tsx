@@ -6,7 +6,7 @@ function MyToastContent({ message }: MyToastContentProps) {
     <div>
       {message}
       <button>Retry</button>
-      <button onClick={() => console.log("okay")}>Close</button>
+      <button onClick={() => console.log('okay')}>Close</button>
     </div>
   );
 }

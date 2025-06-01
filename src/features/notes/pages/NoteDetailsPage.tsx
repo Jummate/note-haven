@@ -1,23 +1,23 @@
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
-import NoteLayout from "../../../shared/layouts/NoteLayout";
-import DesktopLayout from "../../../shared/layouts/DesktopLayout";
-import MobileLayout from "../../../shared/layouts/MobileLayout";
-import NoteList from "../components/NoteList";
-import CreateNoteButton from "../components/CreateNoteButton";
-import NotePreview from "../components/NotePreview";
-import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
-import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
-import NoteActionButtons from "../components/NoteActionButtons";
-import { NOTES_URL } from "../constants/urls";
-import { useNotes } from "../hooks/useNotes";
-import { NoteForReviewType, PopulatedNote } from "../types";
+import FloatingCreateNoteButton from '../components/FloatingCreateNoteButton';
+import NoteLayout from '../../../shared/layouts/NoteLayout';
+import DesktopLayout from '../../../shared/layouts/DesktopLayout';
+import MobileLayout from '../../../shared/layouts/MobileLayout';
+import NoteList from '../components/NoteList';
+import CreateNoteButton from '../components/CreateNoteButton';
+import NotePreview from '../components/NotePreview';
+import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
+import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
+import NoteActionButtons from '../components/NoteActionButtons';
+import { NOTES_URL } from '../constants/urls';
+import { useNotes } from '../hooks/useNotes';
+import { NoteForReviewType, PopulatedNote } from '../types';
 
 function NoteDetailsPage() {
   const { noteId } = useParams();
 
-  const activeNotes = useNotes({ type: "active" }) as
+  const activeNotes = useNotes({ type: 'active' }) as
     | PopulatedNote[]
     | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
@@ -42,10 +42,7 @@ function NoteDetailsPage() {
             firstItem={
               <>
                 <CreateNoteButton />
-                <NoteList
-                  data={activeNotes}
-                  path={NOTES_URL}
-                />
+                <NoteList data={activeNotes} path={NOTES_URL} styles="mt-4" />
               </>
             }
             secondItem={
@@ -55,8 +52,8 @@ function NoteDetailsPage() {
                   showNote={!!noteId && !!singleNote && hasNotes}
                 />
                 <NoteActionButtons
-                  onCancel={() => console.log("note cancelled")}
-                  onNoteSave={() => console.log("note saved")}
+                  onCancel={() => console.log('note cancelled')}
+                  onNoteSave={() => console.log('note saved')}
                 />
               </>
             }

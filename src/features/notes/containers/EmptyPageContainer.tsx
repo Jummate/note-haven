@@ -1,7 +1,7 @@
-import EmptyPage from "../components/EmptyPage";
+import EmptyPage from '../components/EmptyPage';
 
 type EmptyPageContainerProps = {
-  noteType: "active" | "archived";
+  noteType: 'active' | 'archived';
 };
 
 function EmptyPageContainer({ noteType }: EmptyPageContainerProps) {

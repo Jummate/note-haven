@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-import Sidebar from "./Sidebar";
+import Sidebar from './Sidebar';
 // import Display from "./Display";
-import Header from "./Header";
-import Footer from "./Footer";
-import { useResponsive } from "../shared/hooks/useResponsive";
+import Header from './Header';
+import Footer from './Footer';
+import { useResponsive } from '../shared/hooks/useResponsive';
 
 function DashboardLayout() {
   // const navigate = useNavigate();

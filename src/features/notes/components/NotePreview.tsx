@@ -1,14 +1,14 @@
 // import React from "react";
-import NoContent from "../../../shared/components/NoContent";
-import { AppIcons } from "../../../shared/icons/Icons";
-import { NotePreviewProps } from "../types";
+import NoContent from '../../../shared/components/NoContent';
+import { AppIcons } from '../../../shared/icons/Icons';
+import { NotePreviewProps } from '../types';
 // import { useLocation } from "react-router-dom";
 
 // type NotePreviewprops =
 
 function NotePreview({ note, showNote = true }: NotePreviewProps) {
-  const TagIcon = AppIcons["tags"];
-  const ClockIcon = AppIcons["clock"];
+  const TagIcon = AppIcons['tags'];
+  const ClockIcon = AppIcons['clock'];
 
   if (!showNote || !note) return <NoContent text="Select a note to preview" />;
 
@@ -25,7 +25,7 @@ function NotePreview({ note, showNote = true }: NotePreviewProps) {
           {/* <span>{note.tags.map((item) => item.name).toString()}</span> */}
           <span className="flex flex-wrap gap-2">
             {note.tags.length > 0 ? (
-              note.tags.map((tag) => (
+              note.tags.map(tag => (
                 <span
                   key={tag.id}
                   className="bg-secondary-200 text-secondary-800 px-2 py-1 rounded-md text-sm"
@@ -43,11 +43,11 @@ function NotePreview({ note, showNote = true }: NotePreviewProps) {
             <ClockIcon className="inline text-secondary-500" /> Last Edited
           </span>
           <span>
-            {" "}
+            {' '}
             {new Date(note.updatedAt).toLocaleDateString(undefined, {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
             })}
           </span>
         </div>

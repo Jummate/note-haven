@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import clsx from "clsx";
+import { ReactNode } from 'react';
+import clsx from 'clsx';
 
 type HorizontalWrapperProps = {
   styles?: string;
@@ -7,7 +7,7 @@ type HorizontalWrapperProps = {
 };
 
 function HorizontalWrapper({ children, styles }: HorizontalWrapperProps) {
-  return <div className={clsx("flex", styles)}>{children}</div>;
+  return <div className={clsx('flex', styles)}>{children}</div>;
 }
 
 export default HorizontalWrapper;

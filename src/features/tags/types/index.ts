@@ -1,5 +1,4 @@
-
-type Divider = "vertical" | "horizontal";
+type Divider = 'vertical' | 'horizontal';
 
 export type TagsProps = {
   divider?: Divider;
@@ -12,5 +11,3 @@ export type TagType = {
   id: number | string;
   name: string;
 };
-
-

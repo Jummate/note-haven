@@ -1,19 +1,19 @@
-import NoteLayout from "../../../shared/layouts/NoteLayout";
-import DesktopLayout from "../../../shared/layouts/DesktopLayout";
-import MobileLayout from "../../../shared/layouts/MobileLayout";
-import EmptyPageContainer from "../containers/EmptyPageContainer";
-import NoteList from "../components/NoteList";
-import CreateNoteButton from "../components/CreateNoteButton";
-import ResponsiveLayout from "../../../shared/layouts/ResponsiveLayout";
-import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
-import { NOTES_URL } from "../constants/urls";
-import NoteActionButtons from "../components/NoteActionButtons";
-import ActionButtonsPanel from "../../../shared/containers/ActionButtonsPanel";
-import { useNotes } from "../hooks/useNotes";
-import { PopulatedNote } from "../types";
+import NoteLayout from '../../../shared/layouts/NoteLayout';
+import DesktopLayout from '../../../shared/layouts/DesktopLayout';
+import MobileLayout from '../../../shared/layouts/MobileLayout';
+import EmptyPageContainer from '../containers/EmptyPageContainer';
+import NoteList from '../components/NoteList';
+import CreateNoteButton from '../components/CreateNoteButton';
+import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
+// import FloatingCreateNoteButton from "../components/FloatingCreateNoteButton";
+import { NOTES_URL } from '../constants/urls';
+import NoteActionButtons from '../components/NoteActionButtons';
+import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
+import { useNotes } from '../hooks/useNotes';
+import { PopulatedNote } from '../types';
 
 function CreateNotePage() {
-  const allNotes = useNotes({ type: "active" }) as PopulatedNote[] | undefined;
+  const allNotes = useNotes({ type: 'active' }) as PopulatedNote[] | undefined;
   const hasNotes = allNotes && allNotes.length > 0;
 
   if (!hasNotes) return <EmptyPageContainer noteType="active" />;
@@ -24,13 +24,13 @@ function CreateNotePage() {
         mobile={
           <MobileLayout>
             <div className="flex flex-1 justify-center">
-              <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+              <div className="p-4 text-secondary-900 font-inter w-full bg-white">
                 <ActionButtonsPanel />
                 <hr className=" bg-secondary-100 my-6 h-1" />
                 <p>I will create notes here</p>
               </div>
             </div>
-            <FloatingCreateNoteButton />
+            {/* <FloatingCreateNoteButton /> */}
           </MobileLayout>
         }
         desktop={
@@ -38,18 +38,15 @@ function CreateNotePage() {
             firstItem={
               <>
                 <CreateNoteButton />
-                <NoteList
-                  data={allNotes}
-                  path={NOTES_URL}
-                />
+                <NoteList data={allNotes} path={NOTES_URL} />
               </>
             }
             secondItem={
               <>
                 <p>I will create notes here</p>
                 <NoteActionButtons
-                  onCancel={() => console.log("note cancelled")}
-                  onNoteSave={() => console.log("note saved")}
+                  onCancel={() => console.log('note cancelled')}
+                  onNoteSave={() => console.log('note saved')}
                 />
               </>
             }

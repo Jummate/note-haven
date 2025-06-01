@@ -1,11 +1,13 @@
 // import React from "react";
-import { useNavigate } from "react-router-dom";
-import { IconType } from "react-icons";
+import { useNavigate } from 'react-router-dom';
+import { IconType } from 'react-icons';
+import clsx from 'clsx';
 
-import { footerTabs, FooterTabKey } from "./constants/tabs";
-import { AppIcons } from "../shared/icons/Icons";
-import { useTabStore } from "../features/notes/stores/tabStore";
-import { useHeaderStore } from "../features/notes/stores/headerStore";
+// import { footerTabs, FooterTabKey } from "./constants/tabs";
+import { footerTabs } from './constants/tabs';
+// import { AppIcons } from "../shared/icons/Icons";
+import { useTabStore } from '../features/notes/stores/tabStore';
+import { useHeaderStore } from '../features/notes/stores/headerStore';
 
 type FooterTabProps = {
   text: string;
@@ -16,35 +18,37 @@ type FooterTabProps = {
 };
 
 function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
-  let modifiedText = "";
+  let modifiedText = '';
 
-  if (text == "All Notes") {
-    modifiedText = "Home";
-  } else if (text == "Archived Notes") {
-    modifiedText = "Archived";
+  if (text == 'All Notes') {
+    modifiedText = 'Home';
+  } else if (text == 'Archived Notes') {
+    modifiedText = 'Archived';
   } else {
     modifiedText = text;
   }
 
   return (
-    <div
-      className={`flex flex-col gap-1 items-center ${
-        isActive ? "bg-primary-50" : ""
-      } p-2 px-6 rounded-xl cursor-default`}
+    <button
+      type="button"
+      className={clsx(
+        'flex flex-col gap-1 items-center p-2 px-6 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 hover:text-primary-500/80',
+        { 'bg-primary-50': isActive },
+      )}
       onClick={onClick}
+      aria-selected={isActive}
+      aria-label={modifiedText}
+      title={modifiedText}
     >
-      <Icon
-        size={20}
-        className={`${isActive ? "text-primary-500" : ""}`}
-      />
-      <h1
-        className={`hidden sm:block text-lg ${
-          isActive ? "text-primary-500" : ""
-        }`}
+      <Icon size={20} className={clsx({ 'text-primary-500': isActive })} />
+      <span
+        className={clsx('hidden sm:block text-lg', {
+          'text-primary-500': isActive,
+        })}
       >
         {modifiedText}
-      </h1>
-    </div>
+      </span>
+    </button>
   );
 }
 
@@ -55,22 +59,22 @@ function Footer() {
   const { setHeaderText } = useHeaderStore();
   const navigate = useNavigate();
 
-  const handleClick = (activeTab: FooterTabKey, path: string, text: string) => {
-    setActiveTab("footer", activeTab);
-    setHeaderText(text);
+  const handleClick = (activeTab: string, path: string) => {
+    setActiveTab('footer', activeTab);
+    setHeaderText(activeTab);
     navigate(path);
   };
   return (
-    <div className="absolute left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
-      {footerTabs.map(({ key, text, path }) => {
+    <div className="fixed left-0 bottom-0 w-full flex justify-evenly py-4 shadow-all-edges">
+      {footerTabs.map(({ icon, label, path }) => {
         return (
           <FooterTab
-            key={key}
-            text={text}
+            key={label}
+            text={label}
             path={path}
-            icon={AppIcons[key]}
-            isActive={activeTabs.footer == key}
-            onClick={() => handleClick(key, path, text)}
+            icon={icon}
+            isActive={activeTabs.footer == label}
+            onClick={() => handleClick(label, path)}
           />
         );
       })}

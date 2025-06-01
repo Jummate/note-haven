@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import clsx from "clsx";
+import { ReactNode } from 'react';
+import clsx from 'clsx';
 
 type VerticalWrapperProps = {
   children: ReactNode;
@@ -7,7 +7,7 @@ type VerticalWrapperProps = {
 };
 
 function VerticalWrapper({ children, styles }: VerticalWrapperProps) {
-  return <div className={clsx("flex flex-col gap-5", styles)}>{children}</div>;
+  return <div className={clsx('flex flex-col gap-5', styles)}>{children}</div>;
 }
 
 export default VerticalWrapper;

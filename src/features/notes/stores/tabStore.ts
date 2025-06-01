@@ -1,9 +1,9 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware"; // Correctly import the persist middleware
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware'; // Correctly import the persist middleware
+import { SettingsLabel } from '../../settings/constants/labels';
 
-import { FooterTabKey } from "../../../layout/constants/tabs";
-import { SideBarTabKey } from "../constants/tabs";
-import { SettingsTabKey } from "../../settings/constants/tabs";
+// import { FooterTabKey } from "../../../layout/constants/tabs";
+// import { SettingsTabKey } from "../../settings/constants/tabs";
 
 // import { TabKey } from "../constants/tabs";
 
@@ -14,10 +14,10 @@ import { SettingsTabKey } from "../../settings/constants/tabs";
 
 // type TabSection = "footer" | "sidebar" | "settings";
 
-type TabKeysBySection = {
-  footer: FooterTabKey;
-  sidebar: SideBarTabKey;
-  settings: SettingsTabKey;
+export type TabKeysBySection = {
+  footer: string;
+  sidebar: string;
+  settings: string;
 };
 
 interface TabStore {
@@ -26,28 +26,28 @@ interface TabStore {
   };
   setActiveTab: <T extends keyof TabKeysBySection>(
     section: T,
-    tab: TabKeysBySection[T]
+    tab: TabKeysBySection[T],
   ) => void;
 }
 
 export const useTabStore = create<TabStore>()(
   persist(
-    (set) => ({
+    set => ({
       activeTabs: {
-        footer: "home",
-        sidebar: "notes",
-        settings: "color-theme",
+        footer: 'home',
+        sidebar: 'notes',
+        settings: SettingsLabel.COLOR_THEME,
       },
       setActiveTab: (section, tab) =>
-        set((state) => ({
+        set(state => ({
           activeTabs: { ...state.activeTabs, [section]: tab },
         })),
     }),
     {
-      name: "tab-store",
+      name: 'tab-store',
       storage: createJSONStorage(() => sessionStorage),
-    }
-  )
+    },
+  ),
 );
 
 // export const useTabStore = create<TabStore>()(

@@ -1,5 +1,5 @@
-import { lazy } from "react";
-import NoteDetailsPage from "./pages/NoteDetailsPage";
+import { lazy } from 'react';
+import NoteDetailsPage from './pages/NoteDetailsPage';
 import {
   ARCHIVED_DETAILS_URL,
   ARCHIVED_URL,
@@ -8,14 +8,14 @@ import {
   NOTES_URL,
   TAG_DETAILS_URL,
   TAGS_URL,
-} from "./constants/urls";
-const NoteDashboard = lazy(() => import("./pages/NoteDashboard"));
-const ArchivedNotesPage = lazy(() => import("./pages/ArchivedNotesPage"));
+} from './constants/urls';
+const NoteDashboard = lazy(() => import('./pages/NoteDashboard'));
+const ArchivedNotesPage = lazy(() => import('./pages/ArchivedNotesPage'));
 const ArchivedNoteDetailsPage = lazy(
-  () => import("./pages/ArchivedNoteDetailsPage")
+  () => import('./pages/ArchivedNoteDetailsPage'),
 );
-const CreateNotePage = lazy(() => import("./pages/CreateNotePage"));
-const TagsPage = lazy(() => import("../tags/pages/TagsPage"));
+const CreateNotePage = lazy(() => import('./pages/CreateNotePage'));
+const TagsPage = lazy(() => import('../tags/pages/TagsPage'));
 // const SearchPage = lazy(() => import("./pages/SearchPage"));
 
 export const noteRoutes = [
