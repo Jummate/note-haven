@@ -17,7 +17,7 @@
     "build:staging": "tsc -b && vite build --mode staging",
     "preview:prod": "vite preview --port 8080",
     "preview:staging": "vite preview --port 8081",
-    "prepare": "husky",
+    "prepare": "husky install",
     "ggscan": "ggshield secret scan path . --recursive --yes"
   },
   "dependencies": {
@@ -52,14 +52,5 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,css,md}": [
-      "prettier --write"
-    ]
   }
 }
