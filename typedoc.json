@@ -2,7 +2,7 @@
   "entryPoints": ["./src"],
   "entryPointStrategy": "expand",
   "out": "docs",
-  "basePath": "/note-haven/",
+  "basePath": "src",
   "includeVersion": true,
   "excludePrivate": true,
   "excludeProtected": true,
