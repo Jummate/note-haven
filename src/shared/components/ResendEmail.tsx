@@ -12,7 +12,7 @@ function ResendEmail({ email, callback }: ResendEmailProps) {
 
   return (
     <div className="text-center">
-      <p className="mb-4">
+      <p className="mb-4" data-testid="reset-link-message">
         We sent a reset link to <b className="text-primary-500">{email}</b>.
         Please check your inbox and spam folder.
       </p>
