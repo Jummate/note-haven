@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# 📝 Notes Haven – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the Notes Haven built with **React**, **TypeScript**, and **Tailwind CSS**. It allows users to create, edit, archive, and manage their notes in a clean and responsive UI.
 
-Currently, two official plugins are available:
+The app, Notes Haven, itself is fullstack, but the frontend and the backend live in different repositories.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- 🧾 Create, read, update, and delete notes
+- 🗂️ Archive and view archived notes
+- 🔖 View notes with specific tags
+- 🔍 Search by title, tag, or content
+- 🎨 Select color and font themes
+- ⌨️ Fully keyboard navigable
+- 📱 Responsive layout for all device sizes
+- 🧪 Form validation messages
+- ✨ Hover and focus states on all elements
+- 🔐 Auth flow: register, login, change/reset password _(with backend)_
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## 💡 Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- React
+- TypeScript
+- Tailwind CSS
+- Axios (for API calls)
+- React Router DOM
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
+## 📦 Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- A running backend API (see: [Backend Repo](https://github.com/Jummate/note-haven-server))
+
+### Installation
+
+```bash
+git clone https://github.com/Jummate/note-haven.git
+cd note-haven
+npm install
 ```
