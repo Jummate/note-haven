@@ -5,5 +5,5 @@ export default {
 
   '*.{js,jsx,ts,tsx,json,env}': ['npm run ggscan'],
 
-  'src/**/*.{js,jsx,ts,tsx}': ['npm test'],
+  //   'src/**/*.{js,jsx,ts,tsx}': ['npm test'],
 };

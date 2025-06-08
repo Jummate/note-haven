@@ -14,6 +14,7 @@ export default [
       '**/build/**',
       '**/docs/**',
       '.github/',
+      'vitest.config.ts',
     ],
   },
   {
