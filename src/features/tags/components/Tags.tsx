@@ -10,6 +10,7 @@ import { useNoteStore } from '../../notes/stores/noteStore';
 import NoContent from '../../../shared/components/NoContent';
 import { TAGS_URL } from '../../notes/constants/urls';
 import { useTabStore } from '../../notes/stores/tabStore';
+import { Input } from '../../../shared/components';
 // import { FooterTabKey } from "../../../layout/constants/tabs";
 // import { SettingsTabKey } from "../../settings/constants/tabs";
 
@@ -61,7 +62,9 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
     <section className={clsx('flex flex-col', styles)}>
       <h2 className={clsx('mb-5', titleStyles)}>Tags</h2>
 
-      <ul className={clsx('flex flex-col', dividerStyles)}>
+      <Input type="search" placeholder="Search tags" />
+
+      <ul className={clsx('flex flex-col mt-5', dividerStyles)}>
         {Array.from(tags).map(([key, value]) => {
           const isActive = activeTabs.sidebar == value.name;
           return (
