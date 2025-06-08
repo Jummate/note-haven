@@ -1,11 +1,11 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import ForgotPassword from './ForgotPassword';
-import { forgotPassword } from '../services/authService';
+// import { forgotPassword } from '../services/authService';
 
 vi.mock('../services/authService', () => ({
-  forgotPassword: vi.fn().mockImplementation((values, callback) => {
+  forgotPassword: vi.fn().mockImplementation((_, callback) => {
     callback();
     return Promise.resolve({ success: true });
   }),
