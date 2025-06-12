@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { AppIcons } from '../../../shared/icons/Icons';
 import { useHeaderStore } from '../../notes/stores/headerStore';
-import { TagsProps, TagType } from '../types';
+import { TagsProps } from '../types';
 import { useNoteStore } from '../../notes/stores/noteStore';
 import NoContent from '../../../shared/components/NoContent';
 import { TAGS_URL } from '../../notes/constants/urls';

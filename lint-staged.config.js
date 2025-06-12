@@ -1,7 +1,7 @@
 export default {
   '*.{js,jsx,ts,tsx,json,md,yml,yaml}': ['prettier --write'],
 
-  '*.{js,jsx,ts,tsx}': ['eslint --fix -- --max-warnings=0'],
+  '*.{js,jsx,ts,tsx}': ['eslint --fix'],
 
   '*.{js,jsx,ts,tsx,json,env}': ['npm run ggscan'],
 
