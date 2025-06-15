@@ -12,6 +12,8 @@ import { TAGS_URL } from '../../notes/constants/urls';
 import { useTabStore } from '../../notes/stores/tabStore';
 import { HorizontalWrapper, Input } from '../../../shared/components';
 import { ChangeEvent, useState } from 'react';
+import { ErrorFallback } from '../../../shared/components/ErrorFallback';
+import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 // import { FooterTabKey } from "../../../layout/constants/tabs";
 // import { SettingsTabKey } from "../../settings/constants/tabs";
 
@@ -155,5 +157,11 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
     </section>
   );
 }
+
+const TagsWithErrorBoundary = withErrorBoundary(Tags, {
+  FallbackComponent: ErrorFallback,
+});
+
+Tags.WithErrorBoundary = TagsWithErrorBoundary;
 
 export default Tags;

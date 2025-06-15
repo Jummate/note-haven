@@ -8,8 +8,6 @@ import Tags from '../features/tags/components/Tags';
 import { useHeaderStore } from '../features/notes/stores/headerStore';
 import AppLogo from '../shared/components/AppLogo';
 
-// type SidebarProps = {};
-
 function Sidebar() {
   const { activeTabs, setActiveTab } = useTabStore();
   const { setHeaderText } = useHeaderStore();
@@ -41,7 +39,8 @@ function Sidebar() {
           );
         })}
       </div>
-      <Tags styles="py-8" />
+
+      <Tags.WithErrorBoundary styles="py-8" />
     </div>
   );
 }

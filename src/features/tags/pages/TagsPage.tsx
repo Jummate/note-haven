@@ -45,7 +45,7 @@ function TagPage() {
                   />
                 </>
               ) : (
-                <Tags
+                <Tags.WithErrorBoundary
                   divider="vertical"
                   styles="p-4"
                   titleStyles="font-bold text-3xl"
