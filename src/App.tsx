@@ -76,7 +76,7 @@ function App() {
               /> */}
 
               <Route path="/" element={<Dashboard />}>
-                <Route index element={<NoteDashboard />} />
+                <Route index element={<NoteDashboard.WithErrorBoundary />} />
 
                 {noteRoutes.map(({ path, component }) => (
                   <Route key={path} path={path} element={component} />

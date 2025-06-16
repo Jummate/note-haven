@@ -12,8 +12,10 @@ import FloatingCreateNoteButton from '../../notes/components/FloatingCreateNoteB
 import { useNoteStore } from '../../notes/stores/noteStore';
 import NoContent from '../../../shared/components/NoContent';
 import { NOTES_URL } from '../../notes/constants/urls';
+import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
+import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 
-function TagPage() {
+function TagsPage() {
   const { tagSlug } = useParams();
 
   // const { noteId } = useParams();
@@ -82,4 +84,9 @@ function TagPage() {
   );
 }
 
-export default TagPage;
+const TagPageWithErrorBoundary = withErrorBoundary(TagsPage, {
+  FallbackComponent: ErrorFallback,
+});
+
+TagsPage.WithErrorBoundary = TagPageWithErrorBoundary;
+export default TagsPage;
