@@ -14,6 +14,8 @@ import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { NOTES_URL } from '../constants/urls';
 import { useNotes } from '../hooks/useNotes';
 import { NoteForReviewType, PopulatedNote } from '../types';
+import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
+import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 
 function NoteDashboard() {
   const { noteId } = useParams();
@@ -65,5 +67,11 @@ function NoteDashboard() {
     </NoteLayout>
   );
 }
+
+const NoteDashboardWithErrorBoundary = withErrorBoundary(NoteDashboard, {
+  FallbackComponent: ErrorFallback,
+});
+
+NoteDashboard.WithErrorBoundary = NoteDashboardWithErrorBoundary;
 
 export default NoteDashboard;

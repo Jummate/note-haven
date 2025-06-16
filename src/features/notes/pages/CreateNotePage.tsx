@@ -11,6 +11,8 @@ import NoteActionButtons from '../components/NoteActionButtons';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { useNotes } from '../hooks/useNotes';
 import { PopulatedNote } from '../types';
+import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
+import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 
 function CreateNotePage() {
   const allNotes = useNotes({ type: 'active' }) as PopulatedNote[] | undefined;
@@ -98,5 +100,11 @@ function CreateNotePage() {
   //   </div>
   // );
 }
+
+const CreateNotePageWithErrorBoundary = withErrorBoundary(CreateNotePage, {
+  FallbackComponent: ErrorFallback,
+});
+
+CreateNotePage.WithErrorBoundary = CreateNotePageWithErrorBoundary;
 
 export default CreateNotePage;

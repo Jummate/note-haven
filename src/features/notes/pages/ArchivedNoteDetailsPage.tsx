@@ -12,6 +12,8 @@ import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
 import { ARCHIVED_URL } from '../constants/urls';
 import { NoteForReviewType, PopulatedNote } from '../types';
 import { useNotes } from '../hooks/useNotes';
+import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
+import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 
 function ArchivedNoteDetailsPage() {
   const { noteId } = useParams();
@@ -66,5 +68,15 @@ function ArchivedNoteDetailsPage() {
     </NoteLayout>
   );
 }
+
+const ArchivedNoteDetailsPageWithErrorBoundary = withErrorBoundary(
+  ArchivedNoteDetailsPage,
+  {
+    FallbackComponent: ErrorFallback,
+  },
+);
+
+ArchivedNoteDetailsPage.WithErrorBoundary =
+  ArchivedNoteDetailsPageWithErrorBoundary;
 
 export default ArchivedNoteDetailsPage;

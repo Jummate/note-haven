@@ -5,7 +5,7 @@ import Button from './Button';
 
 export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
-    <div className="p-4 text-center">
+    <div className="p-4 text-center max-w-md">
       <h2 className="text-lg font-semibold text-red-600 mb-2">
         Something went wrong:
       </h2>

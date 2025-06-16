@@ -1,4 +1,6 @@
 import { lazy } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+// import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import NoteDetailsPage from './pages/NoteDetailsPage';
 import {
   ARCHIVED_DETAILS_URL,
@@ -9,6 +11,7 @@ import {
   TAG_DETAILS_URL,
   TAGS_URL,
 } from './constants/urls';
+import { ErrorFallback } from '../../shared/components/ErrorFallback';
 const NoteDashboard = lazy(() => import('./pages/NoteDashboard'));
 const ArchivedNotesPage = lazy(() => import('./pages/ArchivedNotesPage'));
 const ArchivedNoteDetailsPage = lazy(
@@ -21,15 +24,23 @@ const TagsPage = lazy(() => import('../tags/pages/TagsPage'));
 export const noteRoutes = [
   {
     path: NOTES_URL,
-    component: <NoteDashboard />,
+    component: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <NoteDashboard />
+      </ErrorBoundary>
+    ),
   },
   {
     path: NOTES_DETAILS_URL,
-    component: <NoteDetailsPage />,
+    component: <NoteDetailsPage.WithErrorBoundary />,
   },
   {
     path: ARCHIVED_URL,
-    component: <ArchivedNotesPage />,
+    component: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <ArchivedNotesPage />
+      </ErrorBoundary>
+    ),
   },
   {
     path: ARCHIVED_DETAILS_URL,
@@ -37,16 +48,28 @@ export const noteRoutes = [
   },
   {
     path: CREATE_NOTE_URL,
-    component: <CreateNotePage />,
+    component: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <CreateNotePage />
+      </ErrorBoundary>
+    ),
   },
 
   {
     path: TAGS_URL,
-    component: <TagsPage />,
+    component: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <TagsPage />
+      </ErrorBoundary>
+    ),
   },
   {
     path: TAG_DETAILS_URL,
-    component: <TagsPage />,
+    component: (
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <TagsPage />
+      </ErrorBoundary>
+    ),
   },
   // {
   //   path: "search",

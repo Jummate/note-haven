@@ -13,6 +13,8 @@ import NoteActionButtons from '../components/NoteActionButtons';
 import { NOTES_URL } from '../constants/urls';
 import { useNotes } from '../hooks/useNotes';
 import { NoteForReviewType, PopulatedNote } from '../types';
+import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
+import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 
 function NoteDetailsPage() {
   const { noteId } = useParams();
@@ -68,5 +70,11 @@ function NoteDetailsPage() {
     </NoteLayout>
   );
 }
+
+const NoteDetailsPageWithErrorBoundary = withErrorBoundary(NoteDetailsPage, {
+  FallbackComponent: ErrorFallback,
+});
+
+NoteDetailsPage.WithErrorBoundary = NoteDetailsPageWithErrorBoundary;
 
 export default NoteDetailsPage;
