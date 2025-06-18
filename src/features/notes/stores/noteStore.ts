@@ -8,7 +8,7 @@ export const rawnotes: NoteProps[] = [
   {
     id: 'note1',
     userId: 'user1',
-    title: 'Buy groceries',
+    title: 'Buy Mangoes',
     content: 'Milk, eggs, bread',
     isArchived: false,
     createdAt: '2025-05-21T10:00:00Z',
@@ -18,7 +18,7 @@ export const rawnotes: NoteProps[] = [
   {
     id: 'note2',
     userId: 'user1',
-    title: 'Buy groceries',
+    title: 'Buy something',
     content: 'Milk, eggs, bread',
     isArchived: false,
     createdAt: '2025-05-21T10:00:00Z',
@@ -39,7 +39,7 @@ export const rawnotes: NoteProps[] = [
     id: 'note4',
     userId: 'user1',
     title: 'Buy groceries',
-    content: 'Milk, eggs, bread',
+    content: 'Milk, eggs, rice',
     isArchived: false,
     createdAt: '2025-05-21T10:00:00Z',
     updatedAt: '2025-05-21T10:00:00Z',
@@ -61,17 +61,21 @@ interface NoteState {
   notes: PopulatedNote[];
   activeNotes: PopulatedNote[];
   archivedNotes: PopulatedNote[];
+  filteredNotes: PopulatedNote[];
   tags: TagType[];
   notesById: Map<string | number, PopulatedNote>;
   tagMap: Map<string | number, TagType>;
   notesByTag: Map<string, PopulatedNote[]>;
+  filterQuery: string;
   getNotes: () => PopulatedNote[] | undefined;
   getNoteById: (id: string | number) => NoteForReviewType | undefined;
   setNotes: (notes: PopulatedNote[]) => void;
+  setFilteredNotes: (notes: PopulatedNote[]) => void;
   setTags: (tags: TagType[]) => void;
   getNotesByTag: (tag: string) => PopulatedNote[] | undefined;
   getActiveNotes: () => PopulatedNote[] | undefined;
   getArchivedNotes: () => PopulatedNote[] | undefined;
+  setFilterQuery: (query: string) => void;
 }
 
 export const useNoteStore = create<NoteState>((set, get) => {
@@ -101,10 +105,12 @@ export const useNoteStore = create<NoteState>((set, get) => {
     notes: populatedNotes,
     tags: initialTags,
     archivedNotes,
+    filteredNotes: [],
     activeNotes,
     notesById,
     tagMap,
     notesByTag,
+    filterQuery: '',
 
     getNotes: () => {
       return get().notes;
@@ -112,8 +118,14 @@ export const useNoteStore = create<NoteState>((set, get) => {
     getArchivedNotes: () => {
       return get().archivedNotes;
     },
+    getFilteredNotes: () => {
+      return get().filteredNotes;
+    },
     getActiveNotes: () => {
       return get().activeNotes;
+    },
+    getFilterQuery: () => {
+      return get().filterQuery;
     },
 
     getNoteById: (id: string | number) => {
@@ -125,6 +137,12 @@ export const useNoteStore = create<NoteState>((set, get) => {
         .filter(Boolean) as TagType[];
 
       return { ...note, tags };
+    },
+    setFilteredNotes: (filteredNotes: PopulatedNote[]) => {
+      set({ filteredNotes });
+    },
+    setFilterQuery: (query: string) => {
+      set({ filterQuery: query });
     },
 
     setNotes: (notes: PopulatedNote[]) => {
