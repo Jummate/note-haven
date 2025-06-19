@@ -13,29 +13,20 @@ import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { NOTES_URL } from '../constants/urls';
 import { useNotes } from '../hooks/useNotes';
-import { NoteForReviewType, PopulatedNote } from '../types';
+import { NoteForReviewType } from '../types';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
-import { useNoteStore } from '../stores/noteStore';
 import { SidebarLabels } from '../constants/labels';
+import { useFilteredNotes } from '../hooks/useFilteredNotes';
 
 function NoteDashboard() {
-  const { filterQuery, filteredNotes } = useNoteStore();
   const { noteId } = useParams();
+  const singleNote = useNotes({ noteId }) as NoteForReviewType;
 
-  const activeNotes = useNotes({ type: 'active' }) as
-    | PopulatedNote[]
-    | undefined;
-  const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
-  const noteToUse = filterQuery ? filteredNotes : activeNotes;
-  const hasNotes = activeNotes && activeNotes.length > 0;
+  const { searchQuery, noteToUse, hasNotes } = useFilteredNotes();
 
-  const matchingRecordsFound = filterQuery
-    ? filteredNotes && filteredNotes.length > 0
-    : activeNotes && activeNotes.length > 0;
-
-  const headerText = filterQuery
-    ? `Showing results for ${filterQuery}`
+  const headerText = searchQuery
+    ? `Showing results for ${searchQuery}`
     : SidebarLabels.ALL_NOTES.toString();
 
   if (!hasNotes) return <EmptyPageContainer noteType="active" />;
@@ -47,7 +38,7 @@ function NoteDashboard() {
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader headerText={headerText} />
-                {matchingRecordsFound ? (
+                {noteToUse.length > 0 ? (
                   <NoteList data={noteToUse} path={NOTES_URL} />
                 ) : (
                   <p>No matching records found</p>
@@ -60,7 +51,7 @@ function NoteDashboard() {
         desktop={
           <DesktopLayout
             firstItem={
-              matchingRecordsFound ? (
+              noteToUse.length > 0 ? (
                 <>
                   <CreateNoteButton />
                   <NoteList data={noteToUse} path={NOTES_URL} styles="mt-4" />
