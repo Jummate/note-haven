@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Input } from '../shared/components';
 // import { useTabStore } from "../stores/tabStore";
@@ -14,6 +14,7 @@ import { PopulatedNote } from '../features/notes/types';
 import { useNotes } from '../features/notes/hooks/useNotes';
 import { useNoteStore } from '../features/notes/stores/noteStore';
 import { SidebarLabels } from '../features/notes/constants/labels';
+import { NOTES_URL } from '../features/notes/constants/urls';
 
 function Header() {
   const { setActiveTab } = useTabStore();
@@ -24,6 +25,7 @@ function Header() {
   const { setFilteredNotes, setFilterQuery, filterQuery } = useNoteStore();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const SettingsIcon = AppIcons['settings'];
 
@@ -36,6 +38,12 @@ function Header() {
   }
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+    if (location.pathname !== NOTES_URL) {
+      setActiveTab('sidebar', '');
+      setActiveTab('footer', '');
+      setActiveTab('settings', '');
+      navigate(NOTES_URL);
+    }
     const input = e.target.value;
     setFilterQuery(input);
     if (!input) {
