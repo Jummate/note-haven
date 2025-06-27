@@ -33,7 +33,6 @@ function ArchivedNotes() {
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader headerText="Archived Notes" />
-                <Input type="search" />
                 <NoteList
                   data={archivedNotes}
                   path={ARCHIVED_URL}

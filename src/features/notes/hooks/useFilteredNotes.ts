@@ -37,6 +37,7 @@ export function useFilteredNotes() {
 
   return {
     searchQuery,
+    setFilterQuery,
     noteToUse,
     activeNotes,
     hasNotes: activeNotes.length > 0,
