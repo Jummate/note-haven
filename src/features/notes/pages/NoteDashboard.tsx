@@ -25,7 +25,8 @@ import { ChangeEvent, useState } from 'react';
 function NoteDashboard() {
   const { noteId } = useParams();
   const singleNote = useNotes({ noteId }) as NoteForReviewType;
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
 
   const { searchQuery, noteToUse, hasNotes } = useFilteredNotes();
   const [value, setValue] = useState<string>(searchQuery);

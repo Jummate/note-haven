@@ -12,7 +12,7 @@ import NoContent from '../../../shared/components/NoContent';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { useNotes } from '../hooks/useNotes';
 import { PopulatedNote } from '../types';
-import { Input } from '../../../shared/components';
+// import { Input } from '../../../shared/components';
 
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
