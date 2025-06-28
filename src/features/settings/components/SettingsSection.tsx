@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useResponsive } from '../../../shared/hooks/useResponsive';
 import { AppIcons } from '../../../shared/icons/Icons';
 import clsx from 'clsx';
@@ -17,6 +18,7 @@ function SettingsSection({
   children,
   styles,
 }: PropsWithChildren<SettingsSectionProps>) {
+  const navigate = useNavigate();
   const isMobile = useResponsive();
   return (
     <section className={clsx('flex flex-col gap-7', styles)}>
@@ -27,6 +29,7 @@ function SettingsSection({
         <button
           className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80"
           aria-label="Go Back to Settings"
+          onClick={() => navigate(-1)}
         >
           <ChevronLeftIcon className="text-secondary-500 text-4xl hover:text-primary-500/80" />
           Settings
