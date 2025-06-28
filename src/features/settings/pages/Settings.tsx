@@ -83,11 +83,10 @@ function Settings() {
             // </div>
             <div className="mb-12">
               {settingsTabs.map(({ icon, label, path }) => {
-                console.log(label);
                 return (
-                  <>
+                  <div key={label}>
                     <SidebarTab
-                      key={label}
+                      // key={label}
                       text={label}
                       icon={icon}
                       isActive={activeTabs.settings == label}
@@ -96,7 +95,7 @@ function Settings() {
                     {label === SettingsLabel.CHANGE_PASSWORD && (
                       <HorizontalLine styles="my-3" />
                     )}
-                  </>
+                  </div>
                   // <SidebarTab
                   //   key={label}
                   //   text={label}

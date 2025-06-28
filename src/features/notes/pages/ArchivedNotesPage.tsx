@@ -12,7 +12,7 @@ import NoContent from '../../../shared/components/NoContent';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { useNotes } from '../hooks/useNotes';
 import { PopulatedNote } from '../types';
-import { Input } from '../../../shared/components';
+// import { Input } from '../../../shared/components';
 
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
@@ -33,7 +33,6 @@ function ArchivedNotes() {
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader headerText="Archived Notes" />
-                <Input type="search" />
                 <NoteList
                   data={archivedNotes}
                   path={ARCHIVED_URL}

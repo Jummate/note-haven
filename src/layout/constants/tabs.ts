@@ -2,6 +2,7 @@ import { SidebarLabels } from '../../features/notes/constants/labels';
 import {
   ARCHIVED_URL,
   NOTES_URL,
+  SEARCH_URL,
   TAGS_URL,
 } from '../../features/notes/constants/urls';
 import { SettingsLabel } from '../../features/settings/constants/labels';
@@ -11,6 +12,11 @@ import { AppIcons } from '../../shared/icons/Icons';
 
 export const footerTabs = [
   { icon: AppIcons.home, label: SidebarLabels.ALL_NOTES, path: NOTES_URL },
+  {
+    icon: AppIcons.search,
+    label: 'Search',
+    path: SEARCH_URL,
+  },
   {
     icon: AppIcons.archived,
     label: SidebarLabels.ARCHIVED_NOTES,
