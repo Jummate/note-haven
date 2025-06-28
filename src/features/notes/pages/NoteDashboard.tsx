@@ -26,10 +26,9 @@ function NoteDashboard() {
   const { noteId } = useParams();
   const singleNote = useNotes({ noteId }) as NoteForReviewType;
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
 
   const { searchQuery, noteToUse, hasNotes } = useFilteredNotes();
-  const [value, setValue] = useState<string>(searchQuery);
+  const [value, setValue] = useState<string>(searchParams.get('search') || '');
 
   const headerText = searchQuery
     ? `Showing results for ${searchQuery}`
