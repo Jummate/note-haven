@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-
+import { useNavigate } from 'react-router-dom';
 import { AppIcons } from '../../../shared/icons/Icons';
 import { ActionButtonsMobileProps } from '../types';
 
@@ -8,6 +8,8 @@ function ActionButtonsMobile({
   type,
   showActionButtons,
 }: ActionButtonsMobileProps) {
+  const navigate = useNavigate();
+
   const ArchivedIcon = AppIcons['archived'];
   const DeleteIcon = AppIcons['delete'];
   const RestoreIcon = AppIcons['restore'];
@@ -15,7 +17,10 @@ function ActionButtonsMobile({
   return (
     <div className={clsx('flex gap-3', styles)}>
       <div className="flex flex-1 justify-between">
-        <button className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80">
+        <button
+          className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80"
+          onClick={() => navigate(-1)}
+        >
           <ChevronLeftIcon
             aria-hidden="true"
             className="text-secondary-500 text-4xl"
