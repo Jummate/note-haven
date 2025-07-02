@@ -18,6 +18,7 @@ import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
 import DesktopLayout from '../../../shared/layouts/DesktopLayout';
 import { HorizontalLine, VerticalWrapper } from '../../../shared/components';
 import { SETTINGS_URL } from '../constants/urls';
+import { logout } from '../../auth/services/authService';
 
 function Settings() {
   const { activeTabs, setActiveTab } = useTabStore();
@@ -53,7 +54,11 @@ function Settings() {
                           text={label}
                           icon={icon}
                           isActive={activeTabs.settings == label}
-                          onClick={() => handleClick(label, path)}
+                          onClick={
+                            label == SettingsLabel.LOGOUT
+                              ? () => logout(navigate)
+                              : () => handleClick(label, path)
+                          }
                         />
                         {label === SettingsLabel.CHANGE_PASSWORD && (
                           <HorizontalLine styles="my-3" />
@@ -90,7 +95,11 @@ function Settings() {
                       text={label}
                       icon={icon}
                       isActive={activeTabs.settings == label}
-                      onClick={() => handleClick(label, path)}
+                      onClick={
+                        label == SettingsLabel.LOGOUT
+                          ? () => logout(navigate)
+                          : () => handleClick(label, path)
+                      }
                     />
                     {label === SettingsLabel.CHANGE_PASSWORD && (
                       <HorizontalLine styles="my-3" />

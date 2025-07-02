@@ -61,7 +61,7 @@ function Login() {
             )}
           </VerticalWrapper>
           <Link
-            to={`/${FORGOT_PASSWORD_URL}`}
+            to={`${FORGOT_PASSWORD_URL}`}
             className="hover:text-primary-500 cursor-pointer -mb-7 self-end"
           >
             <small>Forgot Password?</small>
