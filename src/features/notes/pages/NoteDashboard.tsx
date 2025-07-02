@@ -20,16 +20,18 @@ import { SidebarLabels } from '../constants/labels';
 import { useFilteredNotes } from '../hooks/useFilteredNotes';
 import { Input } from '../../../shared/components';
 import { ChangeEvent, useState } from 'react';
+import { useCheckLocation } from '../../../shared/hooks/useCheckLocation';
 // import SearchBar from '../../../shared/components/SearchBar';
 
 function NoteDashboard() {
   const { noteId } = useParams();
   const singleNote = useNotes({ noteId }) as NoteForReviewType;
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+
+  const hasSearchParam = useCheckLocation('search');
 
   const { searchQuery, noteToUse, hasNotes } = useFilteredNotes();
-  const [value, setValue] = useState<string>(searchQuery);
+  const [value, setValue] = useState<string>(searchParams.get('search') || '');
 
   const headerText = searchQuery
     ? `Showing results for ${searchQuery}`
@@ -48,14 +50,20 @@ function NoteDashboard() {
           <MobileLayout>
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
-                <PageHeader headerText={searchQuery ? 'Search' : headerText} />
-                <Input
-                  type="search"
-                  value={value}
-                  onChange={handleChange}
-                  // value={searchQuery}
-                  // onChange={() => setFilterQuery('you')}
+                <PageHeader
+                  headerText={
+                    searchQuery || hasSearchParam ? 'Search' : headerText
+                  }
                 />
+                {hasSearchParam && (
+                  <Input
+                    type="search"
+                    value={value}
+                    onChange={handleChange}
+                    // value={searchQuery}
+                    // onChange={() => setFilterQuery('you')}
+                  />
+                )}
                 {/* <SearchBar /> */}
                 {noteToUse.length > 0 && searchQuery && (
                   <p className="my-5">
