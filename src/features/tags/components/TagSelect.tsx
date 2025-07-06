@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ActionMeta, SingleValue } from 'react-select';
+import { ActionMeta, MultiValue } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useNoteStore } from '../../notes/stores/noteStore';
 
@@ -8,21 +8,27 @@ type Option = {
   label: string;
 };
 
-function TagSelect() {
+type TagSelectProps = {
+  value: Option[];
+  onChange: (value: Option[]) => void;
+};
+
+function TagSelect({ value, onChange }: TagSelectProps) {
   const tags = useNoteStore(state => state.tagMap);
   const tagsObj = Array.from(tags).map(([_, value]) => {
     return { value: value.name, label: value.name };
   });
 
   const [options, setOptions] = useState<Option[]>(tagsObj);
-  const [selectedOption, setSelectedOption] =
-    useState<SingleValue<Option>>(null);
+  //   const [selectedOption, setSelectedOption] =
+  //     useState<SingleValue<Option>>(null);
 
   const handleChange = (
-    newValue: SingleValue<Option>,
+    newValue: MultiValue<Option>,
     _actionMeta: ActionMeta<Option>,
   ) => {
-    setSelectedOption(newValue);
+    // setSelectedOption(newValue);
+    onChange([...newValue]);
   };
 
   const handleCreate = (inputValue: string) => {
@@ -30,18 +36,22 @@ function TagSelect() {
       label: inputValue,
       value: inputValue.toLowerCase().replace(/\s+/g, '-'),
     };
-    setOptions(prev => [...prev, newOption]);
-    setSelectedOption(newOption);
+    const newOptions = [...options, newOption];
+    setOptions(newOptions);
+    // setOptions(prev => [...prev, newOption]);
+    // onChange(newOption);
+    onChange([...value, newOption]);
   };
   return (
     <div className="w-full py-0">
       <CreatableSelect
         inputId="tag-select"
         isClearable
+        isMulti
         onChange={handleChange}
         options={options}
         onCreateOption={handleCreate}
-        value={selectedOption}
+        value={value}
         placeholder="Select or create a tag..."
         theme={theme => ({
           ...theme,
