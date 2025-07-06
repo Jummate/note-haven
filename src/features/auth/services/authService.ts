@@ -10,7 +10,10 @@ import {
   SignupResponseData,
 } from '../types';
 import { apiCall } from '../utils/apiHelpers';
-import { DASHBOARD_URL } from '../../../shared/constants/urls';
+import {
+  DASHBOARD_URL,
+  LANDING_PAGE_URL,
+} from '../../../shared/constants/urls';
 import {
   API_FORGOT_PASSWORD_URL,
   API_LOGIN_URL,
@@ -99,7 +102,7 @@ export const logout = async (
     await apiClient.post(API_LOGOUT_URL, {}, { withCredentials: true });
     notify({
       message: 'Logged out succesfully',
-      action: () => navigate('/', { replace: true }),
+      action: () => navigate(LANDING_PAGE_URL, { replace: true }),
     });
     // navigate('/', { replace: true });
     return { data: null }; // match the return type expected by apiCall
