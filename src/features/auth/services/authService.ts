@@ -97,7 +97,11 @@ export const logout = async (
 ): Promise<ApiResponse<null>> => {
   return apiCall(async () => {
     await apiClient.post(API_LOGOUT_URL, {}, { withCredentials: true });
-    navigate(LOGIN_URL, { replace: true });
+    notify({
+      message: 'Logged out succesfully',
+      action: () => navigate('/', { replace: true }),
+    });
+    // navigate('/', { replace: true });
     return { data: null }; // match the return type expected by apiCall
   }, 'Failed to log out.');
 };

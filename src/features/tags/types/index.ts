@@ -10,4 +10,5 @@ export type TagsProps = {
 export type TagType = {
   id: number | string;
   name: string;
+  userId: number | string;
 };

@@ -17,7 +17,7 @@ export const rawnotes: NoteProps[] = [
   },
   {
     id: 'note2',
-    userId: 'user1',
+    userId: 'user2',
     title: 'Buy something',
     content: 'Milk, eggs, bread',
     isArchived: false,
@@ -188,8 +188,10 @@ export function populateNotesEfficiently(
 ): PopulatedNote[] {
   const map = tagMap ?? new Map(tags.map(tag => [tag.id, tag]));
 
-  return notes.map(note => ({
-    ...note,
-    tags: note.tagIds.map(id => map.get(id)).filter(Boolean) as TagType[],
-  }));
+  return notes
+    .filter(note => note.userId == 'user1')
+    .map(note => ({
+      ...note,
+      tags: note.tagIds.map(id => map.get(id)).filter(Boolean) as TagType[],
+    }));
 }
