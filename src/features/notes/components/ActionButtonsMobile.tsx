@@ -2,11 +2,13 @@ import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import { AppIcons } from '../../../shared/icons/Icons';
 import { ActionButtonsMobileProps } from '../types';
+// import { createNote } from '../services/noteService';
 
 function ActionButtonsMobile({
   styles,
   type,
   showActionButtons,
+  onNoteSave,
 }: ActionButtonsMobileProps) {
   const navigate = useNavigate();
 
@@ -56,7 +58,10 @@ function ActionButtonsMobile({
             <button className="text-secondary-500 cursor-pointer hover:opacity-80">
               Cancel
             </button>
-            <button className="text-primary-500 cursor-pointer">
+            <button
+              className="text-primary-500 cursor-pointer"
+              onClick={onNoteSave}
+            >
               Save Note
             </button>
           </div>

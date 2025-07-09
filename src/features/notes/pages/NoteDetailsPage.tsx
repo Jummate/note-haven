@@ -12,16 +12,14 @@ import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
 import NoteActionButtons from '../components/NoteActionButtons';
 import { NOTES_URL } from '../constants/urls';
 import { useNotes } from '../hooks/useNotes';
-import { NoteForReviewType, PopulatedNote } from '../types';
+import { NoteForReviewType, NoteProps } from '../types';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 
 function NoteDetailsPage() {
   const { noteId } = useParams();
 
-  const activeNotes = useNotes({ type: 'active' }) as
-    | PopulatedNote[]
-    | undefined;
+  const activeNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
   const hasNotes = activeNotes && activeNotes.length > 0;
 

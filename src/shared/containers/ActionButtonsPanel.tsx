@@ -7,6 +7,7 @@ type ActionButtonsPanelProps = {
   showNote?: boolean;
   showActionButtons?: boolean;
   styles?: string;
+  onNoteSave?: () => void;
 };
 
 function ActionButtonsPanel({
@@ -14,6 +15,7 @@ function ActionButtonsPanel({
   showNote = true,
   type,
   showActionButtons = true,
+  onNoteSave,
 }: ActionButtonsPanelProps) {
   const isMobile = useResponsive();
 
@@ -23,6 +25,7 @@ function ActionButtonsPanel({
       type={type}
       showActionButtons={showActionButtons}
       styles={styles}
+      onNoteSave={onNoteSave}
     />
   ) : (
     <ActionButtonsDesktop

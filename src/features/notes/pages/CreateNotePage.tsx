@@ -10,16 +10,44 @@ import { NOTES_URL } from '../constants/urls';
 import NoteActionButtons from '../components/NoteActionButtons';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { useNotes } from '../hooks/useNotes';
-import { PopulatedNote } from '../types';
+// import { PopulatedNote } from '../types';
+import { NoteProps } from '../types';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import NoteEditor from '../components/NoteEditor';
+import { createNote } from '../services/noteService';
+import { useState } from 'react';
+
+type Option = {
+  value: string;
+  label: string;
+};
+
+export type NoteDraft = {
+  title: string;
+  content: string;
+  tags: Option[];
+};
 
 function CreateNotePage() {
-  const allNotes = useNotes({ type: 'active' }) as PopulatedNote[] | undefined;
+  const allNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   const hasNotes = allNotes && allNotes.length > 0;
+  const [noteData, setNoteData] = useState<NoteDraft>({
+    title: '',
+    content: '',
+    tags: [],
+  });
 
   if (!hasNotes) return <EmptyPageContainer noteType="active" />;
+
+  const handleNoteSave = async () => {
+    const tagIds = noteData.tags.map(tag => tag.value);
+    await createNote({
+      title: noteData.title,
+      content: noteData.content,
+      tagIds,
+    });
+  };
 
   return (
     <NoteLayout>
@@ -28,9 +56,9 @@ function CreateNotePage() {
           <MobileLayout>
             <div className="flex flex-1 justify-center">
               <div className="p-4 text-secondary-900 font-inter w-full bg-white">
-                <ActionButtonsPanel />
+                <ActionButtonsPanel onNoteSave={handleNoteSave} />
                 <hr className=" bg-secondary-100 my-6 h-1" />
-                <NoteEditor />
+                <NoteEditor noteData={noteData} setNoteData={setNoteData} />
               </div>
             </div>
             {/* <FloatingCreateNoteButton /> */}
@@ -46,10 +74,10 @@ function CreateNotePage() {
             }
             secondItem={
               <>
-                <NoteEditor />
+                <NoteEditor noteData={noteData} setNoteData={setNoteData} />
                 <NoteActionButtons
                   onCancel={() => console.log('note cancelled')}
-                  onNoteSave={() => console.log('note saved')}
+                  onNoteSave={handleNoteSave}
                 />
               </>
             }

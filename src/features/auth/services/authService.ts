@@ -4,12 +4,12 @@ import apiClient from '../../../shared/services/apiClient';
 import { convertToSnakeCase } from '../../../shared/utils/conversion';
 import { notify } from '../../../shared/services/toastService';
 import {
-  ApiResponse,
   AuthResponseData,
   ResetPasswordResponseData,
   SignupResponseData,
 } from '../types';
-import { apiCall } from '../utils/apiHelpers';
+import { ApiResponse } from '../../../shared/types';
+import { apiCall } from '../../../shared/utils/apiHelpers';
 import {
   DASHBOARD_URL,
   LANDING_PAGE_URL,

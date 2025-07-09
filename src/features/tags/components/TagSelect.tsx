@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { ActionMeta, MultiValue } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useNoteStore } from '../../notes/stores/noteStore';
@@ -16,7 +17,7 @@ type TagSelectProps = {
 function TagSelect({ value, onChange }: TagSelectProps) {
   const tags = useNoteStore(state => state.tagMap);
   const tagsObj = Array.from(tags).map(([_, value]) => {
-    return { value: value.name, label: value.name };
+    return { value: value.id, label: value.name };
   });
 
   const [options, setOptions] = useState<Option[]>(tagsObj);
@@ -33,8 +34,8 @@ function TagSelect({ value, onChange }: TagSelectProps) {
 
   const handleCreate = (inputValue: string) => {
     const newOption: Option = {
+      value: uuidv4(),
       label: inputValue,
-      value: inputValue.toLowerCase().replace(/\s+/g, '-'),
     };
     const newOptions = [...options, newOption];
     setOptions(newOptions);
