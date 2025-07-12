@@ -4,11 +4,7 @@ import { AppIcons } from '../../../shared/icons/Icons';
 import TagSelect from '../../tags/components/TagSelect';
 import AutoResizeTextarea from '../../../shared/components/AutoResizeTextArea';
 import { NoteDraft } from '../pages/CreateNotePage';
-
-type Option = {
-  value: string;
-  label: string;
-};
+import { TagOption } from '../../tags/types';
 
 type NoteEditorProps = {
   noteData: NoteDraft;
@@ -34,7 +30,7 @@ function NoteEditor({ noteData, setNoteData }: NoteEditorProps) {
           </span>
           <TagSelect
             value={noteData.tags}
-            onChange={(value: Option[]) =>
+            onChange={(value: TagOption[]) =>
               setNoteData({ ...noteData, tags: value })
             }
           />

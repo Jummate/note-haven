@@ -6,12 +6,13 @@ import { API_NOTE_VIEW_URL } from '../constants/urls';
 import { convertToSnakeCase } from '../../../shared/utils/conversion';
 import { notify } from '../../../shared/services/toastService';
 // import { TagType } from '../../tags/types';
-import { Option } from '../pages/CreateNotePage';
+
+import { TagOption } from '../../tags/types';
 
 export type CreateNoteDTO = {
   title: string;
   content: string;
-  tags: Option[];
+  tags: TagOption[];
 };
 
 export const createNote = async (

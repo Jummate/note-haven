@@ -1,44 +1,37 @@
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { ActionMeta, MultiValue } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useNoteStore } from '../../notes/stores/noteStore';
-
-type Option = {
-  value: string;
-  label: string;
-};
+import { TagOption } from '../types';
 
 type TagSelectProps = {
-  value: Option[];
-  onChange: (value: Option[]) => void;
+  value: TagOption[];
+  onChange: (value: TagOption[]) => void;
 };
 
 function TagSelect({ value, onChange }: TagSelectProps) {
   const tags = useNoteStore(state => state.tagMap);
   const tagsObj = Array.from(tags).map(([_, value]) => {
-    return { value: value.id, label: value.name };
+    return { id: value.id, name: value.name };
   });
 
-  const [options, setOptions] = useState<Option[]>(tagsObj);
+  const [options, setOptions] = useState<TagOption[]>(tagsObj);
   //   const [selectedOption, setSelectedOption] =
   //     useState<SingleValue<Option>>(null);
 
   const handleChange = (
-    newValue: MultiValue<Option>,
-    _actionMeta: ActionMeta<Option>,
+    newValue: MultiValue<TagOption>,
+    _actionMeta: ActionMeta<TagOption>,
   ) => {
     // setSelectedOption(newValue);
     onChange([...newValue]);
   };
 
   const handleCreate = (inputValue: string) => {
-    const newOption: Option = {
-      value: uuidv4(),
-      label: inputValue,
+    const newOption: TagOption = {
+      name: inputValue,
     };
-    const newOptions = [...options, newOption];
-    setOptions(newOptions);
+    setOptions([...options, newOption]);
     // setOptions(prev => [...prev, newOption]);
     // onChange(newOption);
     onChange([...value, newOption]);
@@ -53,6 +46,8 @@ function TagSelect({ value, onChange }: TagSelectProps) {
         options={options}
         onCreateOption={handleCreate}
         value={value}
+        getOptionValue={option => option.name}
+        getOptionLabel={option => option.name}
         placeholder="Select or create a tag..."
         theme={theme => ({
           ...theme,

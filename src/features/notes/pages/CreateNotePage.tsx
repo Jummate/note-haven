@@ -17,16 +17,12 @@ import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import NoteEditor from '../components/NoteEditor';
 import { createNote } from '../services/noteService';
 import { useState } from 'react';
-
-type Option = {
-  value: string;
-  label: string;
-};
+import { TagOption } from '../../tags/types';
 
 export type NoteDraft = {
   title: string;
   content: string;
-  tags: Option[];
+  tags: TagOption[];
 };
 
 function CreateNotePage() {
@@ -41,11 +37,11 @@ function CreateNotePage() {
   if (!hasNotes) return <EmptyPageContainer noteType="active" />;
 
   const handleNoteSave = async () => {
-    const tagIds = noteData.tags.map(tag => tag.value);
+    // const tags = noteData.tags.map(tag => {id:tag.value, name:tag.label});
     await createNote({
       title: noteData.title,
       content: noteData.content,
-      tagIds,
+      tags: noteData.tags,
     });
   };
 

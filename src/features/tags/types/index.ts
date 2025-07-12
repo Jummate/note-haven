@@ -12,3 +12,8 @@ export type TagType = {
   name: string;
   userId: string;
 };
+
+export type TagOption = {
+  id?: string;
+  name: string;
+};
