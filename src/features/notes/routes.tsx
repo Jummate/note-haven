@@ -12,6 +12,7 @@ import {
   TAGS_URL,
 } from './constants/urls';
 import { ErrorFallback } from '../../shared/components/ErrorFallback';
+import ProtectedRoute from '../../shared/pages/ProtectedRoute';
 const NoteDashboard = lazy(() => import('./pages/NoteDashboard'));
 const ArchivedNotesPage = lazy(() => import('./pages/ArchivedNotesPage'));
 const ArchivedNoteDetailsPage = lazy(
@@ -19,56 +20,75 @@ const ArchivedNoteDetailsPage = lazy(
 );
 const CreateNotePage = lazy(() => import('./pages/CreateNotePage'));
 const TagsPage = lazy(() => import('../tags/pages/TagsPage'));
+
 // const SearchPage = lazy(() => import("./pages/SearchPage"));
 
 export const noteRoutes = [
   {
     path: NOTES_URL,
     component: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <NoteDashboard />
-      </ErrorBoundary>
+      <ProtectedRoute>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <NoteDashboard />
+        </ErrorBoundary>
+      </ProtectedRoute>
     ),
   },
   {
     path: NOTES_DETAILS_URL,
-    component: <NoteDetailsPage.WithErrorBoundary />,
+    component: (
+      <ProtectedRoute>
+        <NoteDetailsPage.WithErrorBoundary />
+      </ProtectedRoute>
+    ),
   },
   {
     path: ARCHIVED_URL,
     component: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <ArchivedNotesPage />
-      </ErrorBoundary>
+      <ProtectedRoute>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <ArchivedNotesPage />
+        </ErrorBoundary>
+      </ProtectedRoute>
     ),
   },
   {
     path: ARCHIVED_DETAILS_URL,
-    component: <ArchivedNoteDetailsPage />,
+    component: (
+      <ProtectedRoute>
+        <ArchivedNoteDetailsPage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: CREATE_NOTE_URL,
     component: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <CreateNotePage />
-      </ErrorBoundary>
+      <ProtectedRoute>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <CreateNotePage />
+        </ErrorBoundary>
+      </ProtectedRoute>
     ),
   },
 
   {
     path: TAGS_URL,
     component: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <TagsPage />
-      </ErrorBoundary>
+      <ProtectedRoute>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <TagsPage />
+        </ErrorBoundary>
+      </ProtectedRoute>
     ),
   },
   {
     path: TAG_DETAILS_URL,
     component: (
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <TagsPage />
-      </ErrorBoundary>
+      <ProtectedRoute>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <TagsPage />
+        </ErrorBoundary>
+      </ProtectedRoute>
     ),
   },
   // {

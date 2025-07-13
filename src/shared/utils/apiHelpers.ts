@@ -2,7 +2,9 @@
 
 import { AxiosError } from 'axios';
 
-import { notify } from '../../../shared/services/toastService';
+import { notify } from '../services/toastService';
+// import { ApiResponse, ErrorResponseData } from '../../features/auth/types';
+
 import { ApiResponse, ErrorResponseData } from '../types';
 
 export function handleApiError(

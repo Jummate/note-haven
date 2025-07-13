@@ -11,7 +11,7 @@ import { ARCHIVED_URL } from '../constants/urls';
 import NoContent from '../../../shared/components/NoContent';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import { useNotes } from '../hooks/useNotes';
-import { PopulatedNote } from '../types';
+import { NoteProps } from '../types';
 // import { Input } from '../../../shared/components';
 
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
@@ -19,7 +19,7 @@ import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary'
 
 function ArchivedNotes() {
   const archivedNotes = useNotes({ type: 'archived' }) as
-    | PopulatedNote[]
+    | NoteProps[]
     | undefined;
   const hasNotes = archivedNotes && archivedNotes.length > 0;
 

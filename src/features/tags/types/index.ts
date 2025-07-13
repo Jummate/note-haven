@@ -8,6 +8,12 @@ export type TagsProps = {
 };
 
 export type TagType = {
-  id: number | string;
+  id: string;
+  name: string;
+  userId: string;
+};
+
+export type TagOption = {
+  id?: string;
   name: string;
 };

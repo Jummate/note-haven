@@ -1,16 +1,16 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNoteStore } from '../stores/noteStore';
-import { PopulatedNote } from '../types';
+import { NoteProps } from '../types';
 import { useNotes } from './useNotes';
 
 export function useFilteredNotes() {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
 
-  //   const activeNotes = (useNotes({ type: 'active' }) as PopulatedNote[]) || [];
+  //   const activeNotes = (useNotes({ type: 'active' }) as NoteProps[]) || [];
 
-  const rawNotes = useNotes({ type: 'active' }) as PopulatedNote[] | undefined;
+  const rawNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   const activeNotes = useMemo(() => rawNotes || [], [rawNotes]);
 
   const { setFilterQuery, setFilteredNotes, filteredNotes } = useNoteStore();

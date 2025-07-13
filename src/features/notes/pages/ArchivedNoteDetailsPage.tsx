@@ -10,7 +10,7 @@ import NotePreview from '../components/NotePreview';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
 import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
 import { ARCHIVED_URL } from '../constants/urls';
-import { NoteForReviewType, PopulatedNote } from '../types';
+import { NoteForReviewType, NoteProps } from '../types';
 import { useNotes } from '../hooks/useNotes';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
@@ -18,9 +18,7 @@ import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 function ArchivedNoteDetailsPage() {
   const { noteId } = useParams();
 
-  const archivedNotes = useNotes({ type: 'active' }) as
-    | PopulatedNote[]
-    | undefined;
+  const archivedNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
   const hasNotes = archivedNotes && archivedNotes.length > 0;
 

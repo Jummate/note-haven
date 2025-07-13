@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { generateSlug } from '../../../shared/utils/slugify';
-import { NoteItem, PopulatedNote } from '../types';
+import { NoteItem, NoteProps } from '../types';
 import NoContent from '../../../shared/components/NoContent';
 
 function Note({ onNoteSelect, note: { tags, title, createdAt } }: NoteItem) {
@@ -37,7 +37,7 @@ function Note({ onNoteSelect, note: { tags, title, createdAt } }: NoteItem) {
   );
 }
 
-function NoteList<T extends PopulatedNote>({
+function NoteList<T extends NoteProps>({
   data,
   path,
   styles,

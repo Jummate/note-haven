@@ -6,6 +6,7 @@ export type ActionButtons = {
   type: NoteType;
   styles?: string;
   showActionButtons?: boolean;
+  onNoteSave?: () => void;
 };
 
 export type ActionButtonsMobileProps = Partial<ActionButtons>;
@@ -14,20 +15,31 @@ export type ActionButtonsDesktopProps = Partial<ActionButtons>;
 //   Omit<ActionButtons, "showActionButtons">
 // >;
 
+// export type NoteProps = {
+//   id: string;
+//   userId: string;
+//   title: string;
+//   content: string;
+//   isArchived: boolean;
+//   createdAt: string;
+//   updatedAt: string;
+//   tagIds: string[];
+// };
+
 export type NoteProps = {
-  id: number | string;
-  userId: number | string;
+  id: string;
+  userId: string;
   title: string;
   content: string;
   isArchived: boolean;
   createdAt: string;
   updatedAt: string;
-  tagIds: string[];
+  tags: TagType[];
 };
 
-export interface PopulatedNote extends Omit<NoteProps, 'tagIds'> {
-  tags: TagType[];
-}
+// export interface PopulatedNote extends Omit<NoteProps, 'tagIds'> {
+//   tags: TagType[];
+// }
 
 // type NoteItemKeys = "title" | "content" | "tags" | "updatedAt"
 
@@ -36,13 +48,10 @@ export type NoteItem = {
   onNoteSelect: () => void;
 };
 
-export type NoteInListType = Pick<
-  PopulatedNote,
-  'title' | 'tags' | 'createdAt'
->;
+export type NoteInListType = Pick<NoteProps, 'title' | 'tags' | 'createdAt'>;
 
 export type NoteForReviewType = Pick<
-  PopulatedNote,
+  NoteProps,
   'title' | 'content' | 'tags' | 'updatedAt'
 >;
 // export type NoteItem = Pick<PopulatedNote, "title" | "tags" | "createdAt"> & {onNoteSelect: () => void;}
@@ -64,3 +73,7 @@ export type EmptyPageProps = {
 };
 
 export type EmptyNoteProps = Omit<EmptyPageProps, 'activeTabText'>;
+
+export interface CreateNoteResponseData {
+  message: string;
+}

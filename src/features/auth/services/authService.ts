@@ -4,13 +4,16 @@ import apiClient from '../../../shared/services/apiClient';
 import { convertToSnakeCase } from '../../../shared/utils/conversion';
 import { notify } from '../../../shared/services/toastService';
 import {
-  ApiResponse,
   AuthResponseData,
   ResetPasswordResponseData,
   SignupResponseData,
 } from '../types';
-import { apiCall } from '../utils/apiHelpers';
-import { DASHBOARD_URL } from '../../../shared/constants/urls';
+import { ApiResponse } from '../../../shared/types';
+import { apiCall } from '../../../shared/utils/apiHelpers';
+import {
+  DASHBOARD_URL,
+  LANDING_PAGE_URL,
+} from '../../../shared/constants/urls';
 import {
   API_FORGOT_PASSWORD_URL,
   API_LOGIN_URL,
@@ -19,6 +22,7 @@ import {
   API_SIGNUP_URL,
   LOGIN_URL,
 } from '../constants/urls';
+import useAuthStore from '../stores/authStore';
 
 export const createUser = async (
   data: Record<string, string>,
@@ -46,8 +50,10 @@ export const login = async (
     () => apiClient.post(API_LOGIN_URL, convertToSnakeCase(data)),
     'Failed to log in.',
   );
-
   if (result.success) {
+    const { accessToken } = result.data;
+    useAuthStore.getState().setToken(accessToken);
+
     notify({
       message: 'You are now logged in',
       action: () => navigate(DASHBOARD_URL, { replace: true }),
@@ -97,7 +103,12 @@ export const logout = async (
 ): Promise<ApiResponse<null>> => {
   return apiCall(async () => {
     await apiClient.post(API_LOGOUT_URL, {}, { withCredentials: true });
-    navigate(LOGIN_URL, { replace: true });
+    useAuthStore.getState().setToken('');
+    notify({
+      message: 'Logged out succesfully',
+      action: () => navigate(LANDING_PAGE_URL, { replace: true }),
+    });
+    // navigate('/', { replace: true });
     return { data: null }; // match the return type expected by apiCall
   }, 'Failed to log out.');
 };
