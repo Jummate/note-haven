@@ -4,74 +4,75 @@ import { getAllTags } from '../../tags/stores/tagStore';
 import { TagType } from '../../tags/types';
 import { NoteForReviewType, NoteProps } from '../types';
 
-export const rawnotes: NoteProps[] = [
-  {
-    id: 'note1',
-    userId: 'user1',
-    title: 'Buy Mangoes',
-    content: 'Milk, eggs, bread',
-    isArchived: false,
-    createdAt: '2025-05-21T10:00:00Z',
-    updatedAt: '2025-05-21T10:00:00Z',
-    tags: [
-      { id: 'tag1', name: 'Dev', userId: 'user1' },
-      { id: 'tag2', name: 'React', userId: 'user1' },
-    ],
-  },
-  {
-    id: 'note2',
-    userId: 'user2',
-    title: 'Buy something',
-    content: 'Milk, eggs, bread',
-    isArchived: false,
-    createdAt: '2025-05-21T10:00:00Z',
-    updatedAt: '2025-05-21T10:00:00Z',
-    tags: [
-      { id: 'tag1', name: 'Dev', userId: 'user2' },
-      { id: 'tag3', name: 'Personal', userId: 'user2' },
-    ],
-  },
-  {
-    id: 'note3',
-    userId: 'user2',
-    title: 'Purchase at supermarket',
-    content: 'Tea butter rice',
-    isArchived: true,
-    createdAt: '2025-05-21T10:00:00Z',
-    updatedAt: '2025-05-21T10:00:00Z',
-    tags: [
-      { id: 'tag1', name: 'Dev', userId: 'user2' },
-      { id: 'tag2', name: 'React', userId: 'user2' },
-    ],
-  },
-  {
-    id: 'note4',
-    userId: 'user1',
-    title: 'Buy groceries',
-    content: 'Milk, eggs, rice',
-    isArchived: false,
-    createdAt: '2025-05-21T10:00:00Z',
-    updatedAt: '2025-05-21T10:00:00Z',
-    tags: [
-      { id: 'tag1', name: 'Dev', userId: 'user1' },
-      { id: 'tag2', name: 'React', userId: 'user1' },
-    ],
-  },
-  {
-    id: 'note5',
-    userId: 'user2',
-    title: 'Buy somethings',
-    content: 'Cereals wheat maize',
-    isArchived: true,
-    createdAt: '2025-05-21T10:00:00Z',
-    updatedAt: '2025-05-21T10:00:00Z',
-    tags: [
-      { id: 'tag1', name: 'Dev', userId: 'user2' },
-      { id: 'tag2', name: 'React', userId: 'user2' },
-    ],
-  },
-];
+// export const rawnotes: NoteProps[] = [
+//   {
+//     id: 'note1',
+//     userId: 'user1',
+//     title: 'Buy Mangoes',
+//     content: 'Milk, eggs, bread',
+//     isArchived: false,
+//     createdAt: '2025-05-21T10:00:00Z',
+//     updatedAt: '2025-05-21T10:00:00Z',
+//     tags: [
+//       { id: 'tag1', name: 'Dev', userId: 'user1' },
+//       { id: 'tag2', name: 'React', userId: 'user1' },
+//     ],
+//   },
+//   {
+//     id: 'note2',
+//     userId: 'user2',
+//     title: 'Buy something',
+//     content: 'Milk, eggs, bread',
+//     isArchived: false,
+//     createdAt: '2025-05-21T10:00:00Z',
+//     updatedAt: '2025-05-21T10:00:00Z',
+//     tags: [
+//       { id: 'tag1', name: 'Dev', userId: 'user2' },
+//       { id: 'tag3', name: 'Personal', userId: 'user2' },
+//     ],
+//   },
+//   {
+//     id: 'note3',
+//     userId: 'user2',
+//     title: 'Purchase at supermarket',
+//     content: 'Tea butter rice',
+//     isArchived: true,
+//     createdAt: '2025-05-21T10:00:00Z',
+//     updatedAt: '2025-05-21T10:00:00Z',
+//     tags: [
+//       { id: 'tag1', name: 'Dev', userId: 'user2' },
+//       { id: 'tag2', name: 'React', userId: 'user2' },
+//     ],
+//   },
+//   {
+//     id: 'note4',
+//     userId: 'user1',
+//     title: 'Buy groceries',
+//     content: 'Milk, eggs, rice',
+//     isArchived: false,
+//     createdAt: '2025-05-21T10:00:00Z',
+//     updatedAt: '2025-05-21T10:00:00Z',
+//     tags: [
+//       { id: 'tag1', name: 'Dev', userId: 'user1' },
+//       { id: 'tag2', name: 'React', userId: 'user1' },
+//     ],
+//   },
+//   {
+//     id: 'note5',
+//     userId: 'user2',
+//     title: 'Buy somethings',
+//     content: 'Cereals wheat maize',
+//     isArchived: true,
+//     createdAt: '2025-05-21T10:00:00Z',
+//     updatedAt: '2025-05-21T10:00:00Z',
+//     tags: [
+//       { id: 'tag1', name: 'Dev', userId: 'user2' },
+//       { id: 'tag2', name: 'React', userId: 'user2' },
+//     ],
+//   },
+// ];
 
+export const rawnotes: NoteProps[] = [];
 interface NoteState {
   notes: NoteProps[];
   activeNotes: NoteProps[];

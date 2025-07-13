@@ -18,6 +18,7 @@ import Settings from './features/settings/pages/Settings';
 import { settingsRoutes } from './features/settings/routes';
 import { SETTINGS_URL } from './features/settings/constants/urls';
 import LandingPage from './shared/pages/LandingPage';
+import ProtectedRoute from './shared/pages/ProtectedRoute';
 
 function App() {
   return (
@@ -41,14 +42,28 @@ function App() {
               ))}
 
               <Route path="/" element={<Dashboard />}>
-                <Route index element={<NoteDashboard.WithErrorBoundary />} />
+                <Route
+                  index
+                  element={
+                    <ProtectedRoute>
+                      <NoteDashboard.WithErrorBoundary />
+                    </ProtectedRoute>
+                  }
+                />
 
                 {noteRoutes.map(({ path, component }) => (
                   <Route key={path} path={path} element={component} />
                 ))}
 
                 <Route path="/settings" element={<Settings />}>
-                  <Route index element={<Settings.ColorTheme />} />
+                  <Route
+                    index
+                    element={
+                      <ProtectedRoute>
+                        <Settings.ColorTheme />
+                      </ProtectedRoute>
+                    }
+                  />
 
                   {settingsRoutes.map(({ path, component }) => {
                     if (path != SETTINGS_URL) {

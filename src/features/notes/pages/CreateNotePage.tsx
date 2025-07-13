@@ -1,7 +1,7 @@
 import NoteLayout from '../../../shared/layouts/NoteLayout';
 import DesktopLayout from '../../../shared/layouts/DesktopLayout';
 import MobileLayout from '../../../shared/layouts/MobileLayout';
-import EmptyPageContainer from '../containers/EmptyPageContainer';
+// import EmptyPageContainer from '../containers/EmptyPageContainer';
 import NoteList from '../components/NoteList';
 import CreateNoteButton from '../components/CreateNoteButton';
 import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
@@ -27,14 +27,14 @@ export type NoteDraft = {
 
 function CreateNotePage() {
   const allNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
-  const hasNotes = allNotes && allNotes.length > 0;
+  // const hasNotes = allNotes && allNotes.length > 0;
   const [noteData, setNoteData] = useState<NoteDraft>({
     title: '',
     content: '',
     tags: [],
   });
 
-  if (!hasNotes) return <EmptyPageContainer noteType="active" />;
+  // if (!hasNotes) return <EmptyPageContainer noteType="active" />;
 
   const handleNoteSave = async () => {
     // const tags = noteData.tags.map(tag => {id:tag.value, name:tag.label});

@@ -24,6 +24,7 @@
     "docs:md": "typedoc --plugin typedoc-plugin-markdown"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.83.0",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "react": "^18.3.1",

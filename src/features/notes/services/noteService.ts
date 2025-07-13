@@ -1,5 +1,4 @@
 // import { NavigateFunction } from 'react-router-dom';
-import apiClient from '../../../shared/services/apiClient';
 import { apiCall } from '../../../shared/utils/apiHelpers';
 import { CreateNoteResponseData } from '../types';
 import { API_NOTE_VIEW_URL } from '../constants/urls';
@@ -8,6 +7,7 @@ import { notify } from '../../../shared/services/toastService';
 // import { TagType } from '../../tags/types';
 
 import { TagOption } from '../../tags/types';
+import axiosAuth from '../../../shared/services/authenticatedApiClient';
 
 export type CreateNoteDTO = {
   title: string;
@@ -20,13 +20,15 @@ export const createNote = async (
   //   navigate: NavigateFunction,
 ) => {
   const result = await apiCall<CreateNoteResponseData>(
-    () => apiClient.post(API_NOTE_VIEW_URL, convertToSnakeCase(data)),
-    'Failed to create user.',
+    () => axiosAuth.post(API_NOTE_VIEW_URL, convertToSnakeCase(data)),
+    'Failed to create note.',
   );
+
+  console.log('resss', result);
 
   if (result.success) {
     notify({
-      message: 'Note successfully created',
+      message: result.data.message,
     });
   }
   return result;
