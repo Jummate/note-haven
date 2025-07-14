@@ -21,9 +21,11 @@ import { useFilteredNotes } from '../hooks/useFilteredNotes';
 import { Input } from '../../../shared/components';
 import { ChangeEvent, useState } from 'react';
 import { useCheckLocation } from '../../../shared/hooks/useCheckLocation';
+import { useSyncNotes } from '../hooks/useSyncNotes';
 // import SearchBar from '../../../shared/components/SearchBar';
 
 function NoteDashboard() {
+  const { isLoading, isError } = useSyncNotes();
   const { noteId } = useParams();
   const singleNote = useNotes({ noteId }) as NoteForReviewType;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,6 +44,10 @@ function NoteDashboard() {
     setValue(input);
     setSearchParams({ search: input });
   }
+
+  if (isLoading) return <p>Loading notes...</p>;
+  if (isError) return <p>Something went wrong while fetching notes.</p>;
+
   if (!hasNotes) return <EmptyPageContainer noteType="active" />;
   return (
     <NoteLayout>

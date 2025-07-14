@@ -118,7 +118,7 @@ export const useNoteStore = create<NoteState>((set, get) => {
   }
 
   return {
-    notes: rawnotes,
+    notes: [],
     tags: initialTags,
     archivedNotes,
     filteredNotes: [],

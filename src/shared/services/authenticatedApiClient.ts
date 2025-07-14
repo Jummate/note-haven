@@ -16,7 +16,6 @@ const axiosAuth = axios.create({
   withCredentials: true,
 });
 
-// Set up interceptors once (you can call this once from root like main.tsx if needed)
 axiosAuth.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = useAuthStore.getState().token;
