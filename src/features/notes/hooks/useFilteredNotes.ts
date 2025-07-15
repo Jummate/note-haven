@@ -8,10 +8,7 @@ export function useFilteredNotes() {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
 
-  //   const activeNotes = (useNotes({ type: 'active' }) as NoteProps[]) || [];
-
   const rawNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
-  console.log('rawNotes', rawNotes);
   const activeNotes = useMemo(() => rawNotes || [], [rawNotes]);
 
   const { setFilterQuery, setFilteredNotes, filteredNotes } = useNoteStore();

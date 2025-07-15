@@ -1,11 +1,23 @@
+import { create } from 'zustand';
 import { TagType } from '../types';
 
-export const tags: TagType[] = [
-  { id: 'tag1', name: 'Dev', userId: 'user1' },
-  { id: 'tag2', name: 'React', userId: 'user1' },
-  { id: 'tag3', name: 'Personal', userId: 'user2' },
-];
+interface TagState {
+  tags: TagType[];
+  tagMap: Map<string | number, TagType>;
+  setTags: (tags: TagType[]) => void;
+  getTagById: (id: string | number) => TagType | undefined;
+}
 
-export const getAllTags = (userId: string | number = 'user1') => {
-  return tags.filter(tag => tag.userId === userId);
-};
+export const useTagStore = create<TagState>((set, get) => ({
+  tags: [],
+  tagMap: new Map(),
+
+  setTags: (tags: TagType[]) => {
+    set({
+      tags,
+      tagMap: new Map(tags.map(tag => [tag.id, tag])),
+    });
+  },
+
+  getTagById: (id: string | number) => get().tagMap.get(id),
+}));

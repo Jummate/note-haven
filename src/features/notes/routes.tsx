@@ -96,38 +96,3 @@ export const noteRoutes = [
   //   component: <SearchPage />,
   // },
 ];
-
-// export const noteRoutes = [
-//   {
-//     path: "notes",
-//     component: <NoteDashboard />,
-//   },
-//   {
-//     path: ":id/:noteSlug",
-//     component: <NoteDetailsPage />,
-//   },
-//   {
-//     path: "archived",
-//     component: <ArchivedNotesPage />,
-//   },
-//   {
-//     path: "archived/:id/:noteSlug",
-//     component: <ArchivedNotesPage />,
-//   },
-//   {
-//     path: "create",
-//     component: <CreateNotePage />,
-//   },
-//   {
-//     path: "settings",
-//     component: <Settings />,
-//   },
-//   {
-//     path: "notes/tags",
-//     component: <TagsPage />,
-//   },
-//   // {
-//   //   path: "search",
-//   //   component: <SearchPage />,
-//   // },
-// ];

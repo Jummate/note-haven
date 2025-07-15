@@ -1,13 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
-// import Display from "./Display";
 import Header from './Header';
 import Footer from './Footer';
 import { useResponsive } from '../shared/hooks/useResponsive';
 
 function DashboardLayout() {
-  // const navigate = useNavigate();
   const isMobile = useResponsive();
   return (
     <div className="min-h-screen cont flex flex-col">

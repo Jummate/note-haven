@@ -50,34 +50,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   },
 );
 
-// function Button({
-//   type = "button",
-//   disabled = false,
-//   children,
-//   styles,
-//   variant = "primary",
-//   ref,
-//   ...props
-// }: ButtonProps) {
-//   const baseStyle =
-//     "flex items-center gap-3 justify-center whitespace-nowrap rounded-xl p-4 w-full";
-//   const cursorStyle = disabled ? "cursor-not-allowed" : "cursor-pointer";
-//   const variantClass = variantStyles[variant];
-
-//   return (
-//     <button
-//       type={type}
-//       disabled={disabled}
-//       // onClick={onClick}
-//       className={clsx(baseStyle, variantClass, cursorStyle, styles)}
-//       ref={ref}
-//       {...props}
-//     >
-//       {children}
-//     </button>
-//   );
-// }
-
 Button.displayName = 'Button';
 
 export default Button;

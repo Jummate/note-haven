@@ -9,7 +9,6 @@ export const useSyncNotes = () => {
 
   useEffect(() => {
     if (notes) {
-      console.log('myNotes', notes);
       setNotes(notes);
     }
   }, [notes, setNotes]);

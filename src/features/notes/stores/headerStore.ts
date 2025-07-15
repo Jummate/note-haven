@@ -6,6 +6,6 @@ interface HeaderStore {
 }
 
 export const useHeaderStore = create<HeaderStore>(set => ({
-  headerText: 'All Notes', // Default header text
+  headerText: 'All Notes',
   setHeaderText: text => set({ headerText: text }),
 }));

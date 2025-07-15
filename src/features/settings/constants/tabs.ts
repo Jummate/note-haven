@@ -1,6 +1,5 @@
 import { AppIcons } from '../../../shared/icons/Icons';
 import { SettingsLabel } from './labels';
-// import { TabFrom, TabKeyFrom } from "../../../shared/utils/createTabMaps";
 import { CHANGE_PASSWORD_URL, COLOR_THEME_URL, FONT_THEME_URL } from './urls';
 
 export const settingsTabs = [
@@ -25,6 +24,3 @@ export const settingsTabs = [
     path: null,
   },
 ] as const;
-
-// export type SettingsTab = TabFrom<typeof settingsTabs>;
-// export type SettingsTabKey = TabKeyFrom<typeof settingsTabs> | "logout" | undefined;

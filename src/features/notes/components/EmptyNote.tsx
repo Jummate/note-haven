@@ -36,22 +36,6 @@ function EmptyNote({ noteType }: EmptyNoteProps) {
       </div>
     </div>
   );
-
-  //   return <div>
-  //   All your archived notes are stored here. You can restore or delete them
-  //   anytime.
-  // </div>
-  // <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3 mt-6">
-  //   <p>
-  //     No notes have been archived yet. Move notes here for safekeeping, or
-  //     <Link
-  //       to="/notes/create"
-  //       className="underline"
-  //     >
-  //       create a new note.
-  //     </Link>
-  //   </p>
-  // </div>
 }
 
 export default EmptyNote;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ActionMeta, MultiValue } from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { useNoteStore } from '../../notes/stores/noteStore';
 import { TagOption } from '../types';
+import { useTagStore } from '../stores/tagStore';
 
 type TagSelectProps = {
   value: TagOption[];
@@ -10,20 +10,17 @@ type TagSelectProps = {
 };
 
 function TagSelect({ value, onChange }: TagSelectProps) {
-  const tags = useNoteStore(state => state.tagMap);
+  const tags = useTagStore(state => state.tagMap);
   const tagsObj = Array.from(tags).map(([_, value]) => {
     return { id: value.id, name: value.name };
   });
 
   const [options, setOptions] = useState<TagOption[]>(tagsObj);
-  //   const [selectedOption, setSelectedOption] =
-  //     useState<SingleValue<Option>>(null);
 
   const handleChange = (
     newValue: MultiValue<TagOption>,
     _actionMeta: ActionMeta<TagOption>,
   ) => {
-    // setSelectedOption(newValue);
     onChange([...newValue]);
   };
 
@@ -32,8 +29,7 @@ function TagSelect({ value, onChange }: TagSelectProps) {
       name: inputValue,
     };
     setOptions([...options, newOption]);
-    // setOptions(prev => [...prev, newOption]);
-    // onChange(newOption);
+
     onChange([...value, newOption]);
   };
   return (

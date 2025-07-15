@@ -6,8 +6,6 @@ import {
   TabKeysBySection,
   useTabStore,
 } from '../../features/notes/stores/tabStore';
-// import { SettingsTabKey } from "../../features/settings/constants/tabs";
-// import { FooterTabKey } from "../../layout/constants/tabs";
 
 export function useNavigateWithUIState() {
   const navigate = useNavigate();
