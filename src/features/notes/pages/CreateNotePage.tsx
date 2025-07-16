@@ -15,9 +15,10 @@ import { NoteProps } from '../types';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import NoteEditor from '../components/NoteEditor';
-import { createNote } from '../services/noteService';
 import { useState } from 'react';
 import { TagOption } from '../../tags/types';
+
+import useCreateNoteMutation from '../hooks/useCreateNoteMutation';
 
 export type NoteDraft = {
   title: string;
@@ -34,6 +35,7 @@ function CreateNotePage() {
     tags: [],
   });
 
+  const { mutateAsync: createNote } = useCreateNoteMutation();
   // if (!hasNotes) return <EmptyPageContainer noteType="active" />;
 
   const handleNoteSave = async () => {
@@ -41,7 +43,7 @@ function CreateNotePage() {
     await createNote({
       title: noteData.title,
       content: noteData.content,
-      tags: noteData.tags,
+      input_tags: noteData.tags,
     });
   };
 

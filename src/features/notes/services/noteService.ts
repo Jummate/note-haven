@@ -13,7 +13,7 @@ import axiosAuth from '../../../shared/services/authenticatedApiClient';
 export type CreateNoteDTO = {
   title: string;
   content: string;
-  tags: TagOption[];
+  input_tags: TagOption[];
 };
 
 export const createNote = async (data: CreateNoteDTO) => {
