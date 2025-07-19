@@ -42,3 +42,17 @@ export const fetchNotes = async (): Promise<NoteProps[]> => {
 
   return convertToCamelCase(result.data) as NoteProps[];
 };
+
+export const deleteNote = async (noteId: string) => {
+  const result = await apiCall<CreateNoteResponseData>(
+    () => axiosAuth.delete(`${API_NOTE_VIEW_URL}${noteId}/`),
+    'Failed to delete note.',
+  );
+
+  if (result.success) {
+    notify({
+      message: result.data.message,
+    });
+  }
+  return result;
+};

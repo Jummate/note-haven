@@ -12,6 +12,7 @@ interface NoteState {
   notesById: Map<string | number, NoteProps>;
   notesByTag: Map<string, NoteProps[]>;
   filterQuery: string;
+  selectedNoteId: string;
 
   getNotes: () => NoteProps[] | undefined;
   getNoteById: (id: string | number) => NoteForReviewType | undefined;
@@ -21,6 +22,8 @@ interface NoteState {
   getActiveNotes: () => NoteProps[] | undefined;
   getArchivedNotes: () => NoteProps[] | undefined;
   setFilterQuery: (query: string) => void;
+  getSelectedNoteId: () => string;
+  setSelectedNoteId: (id: string) => void;
 }
 
 export const useNoteStore = create<NoteState>((set, get) => {
@@ -33,6 +36,7 @@ export const useNoteStore = create<NoteState>((set, get) => {
     notesById: new Map(),
     notesByTag: new Map(),
     filterQuery: '',
+    selectedNoteId: '',
 
     getNotes: () => get().notes,
 
@@ -51,6 +55,7 @@ export const useNoteStore = create<NoteState>((set, get) => {
     getArchivedNotes: () => get().archivedNotes,
 
     getNotesByTag: (tagName: string) => get().notesByTag.get(tagName),
+    getSelectedNoteId: () => get().selectedNoteId,
 
     setNotes: (notes: NoteProps[]) => {
       const notesById = new Map(notes.map(note => [note.id, note]));
@@ -82,6 +87,10 @@ export const useNoteStore = create<NoteState>((set, get) => {
 
     setFilterQuery: (query: string) => {
       set({ filterQuery: query });
+    },
+
+    setSelectedNoteId: (id: string) => {
+      set({ selectedNoteId: id });
     },
   };
 });

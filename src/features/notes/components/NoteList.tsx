@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { generateSlug } from '../../../shared/utils/slugify';
 import { NoteItem, NoteProps } from '../types';
 import NoContent from '../../../shared/components/NoContent';
+import { useNoteStore } from '../stores/noteStore';
 
 function Note({ onNoteSelect, note: { tags, title, createdAt } }: NoteItem) {
   return (
@@ -47,6 +48,12 @@ function NoteList<T extends NoteProps>({
   styles?: string;
 }) {
   const navigate = useNavigate();
+  const { setSelectedNoteId } = useNoteStore();
+
+  function handleSelect(noteId: string, actualPath: string) {
+    setSelectedNoteId(noteId);
+    navigate(actualPath);
+  }
 
   if (!data || data.length < 1) {
     return <NoContent text="No note to display" styles="pt-12" />;
@@ -63,7 +70,7 @@ function NoteList<T extends NoteProps>({
         return (
           <Note
             key={item.id}
-            onNoteSelect={() => navigate(actualPath)}
+            onNoteSelect={() => handleSelect(item.id, actualPath)}
             note={item}
           />
         );
