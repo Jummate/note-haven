@@ -5,6 +5,7 @@ import { AppIcons } from '../../../shared/icons/Icons';
 import { ActionButtonsDesktopProps } from '../types';
 import { useNoteStore } from '../stores/noteStore';
 import useDeleteNoteMutation from '../hooks/useDeleteNoteMutation';
+import useArchiveNoteMutation from '../hooks/useArchiveNoteMutation';
 
 function ActionButtonsDesktop({
   styles,
@@ -13,6 +14,7 @@ function ActionButtonsDesktop({
 }: ActionButtonsDesktopProps) {
   const { selectedNoteId } = useNoteStore();
   const { mutateAsync: deleteNote } = useDeleteNoteMutation();
+  const { mutateAsync: archiveNote } = useArchiveNoteMutation();
   console.log('sele', selectedNoteId);
   const ArchivedIcon = AppIcons['archived'];
   const DeleteIcon = AppIcons['delete'];
@@ -24,6 +26,7 @@ function ActionButtonsDesktop({
         type="button"
         variant="outline"
         styles="md:text-md hover:bg-secondary-100"
+        onClick={async () => await archiveNote(selectedNoteId)}
       >
         {type == 'active' ? <ArchivedIcon size={20} /> : null}
         {type == 'archived' ? <RestoreIcon size={20} /> : null}
