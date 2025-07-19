@@ -56,6 +56,19 @@ export const archiveNote = async (noteId: string) => {
   return result;
 };
 
+export const restoreNote = async (noteId: string) => {
+  const result = await apiCall<CreateNoteResponseData>(
+    () => axiosAuth.patch(`${API_NOTE_VIEW_URL}${noteId}/restore`),
+    'Failed to archive note.',
+  );
+  if (result.success) {
+    notify({
+      message: result.data.message,
+    });
+  }
+  return result;
+};
+
 export const deleteNote = async (noteId: string) => {
   const result = await apiCall<CreateNoteResponseData>(
     () => axiosAuth.delete(`${API_NOTE_VIEW_URL}${noteId}/`),
