@@ -28,7 +28,7 @@ function NoteDetailsPage() {
       <ResponsiveLayout
         mobile={
           <MobileLayout>
-            <ActionButtonsPanel type="archived" />
+            <ActionButtonsPanel type="active" />
             <hr className=" bg-secondary-100 my-6 h-1" />
             <NotePreview
               note={singleNote}
