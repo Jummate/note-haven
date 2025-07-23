@@ -37,13 +37,18 @@ function Header() {
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target.value;
-    setSearchParams({ search: input });
+    if (input) {
+      setSearchParams({ search: input });
+    } else {
+      setSearchParams({});
+    }
+
     if (location.pathname !== NOTES_URL) {
       setActiveTab('sidebar', '');
       setActiveTab('footer', '');
       setActiveTab('settings', '');
       setHeaderText(SidebarLabels.ALL_NOTES.toString());
-      navigate(`${NOTES_URL}?search=${encodeURIComponent(input)}`);
+      if (input) navigate(`${NOTES_URL}?search=${encodeURIComponent(input)}`);
     }
   }
 

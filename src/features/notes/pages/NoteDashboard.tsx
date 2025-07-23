@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 
 import FloatingCreateNoteButton from '../components/FloatingCreateNoteButton';
 import NoteLayout from '../../../shared/layouts/NoteLayout';
@@ -11,7 +11,7 @@ import CreateNoteButton from '../components/CreateNoteButton';
 import NotePreview from '../components/NotePreview';
 import ResponsiveLayout from '../../../shared/layouts/ResponsiveLayout';
 import ActionButtonsPanel from '../../../shared/containers/ActionButtonsPanel';
-import { NOTES_URL } from '../constants/urls';
+import { NOTES_URL, SEARCH_URL } from '../constants/urls';
 import { useNotes } from '../hooks/useNotes';
 import { NoteForReviewType } from '../types';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
@@ -29,6 +29,7 @@ function NoteDashboard() {
   const { noteId } = useParams();
   const singleNote = useNotes({ noteId }) as NoteForReviewType;
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const hasSearchParam = useCheckLocation('search');
 
@@ -42,7 +43,13 @@ function NoteDashboard() {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target.value;
     setValue(input);
-    setSearchParams({ search: input });
+    if (input) {
+      setSearchParams({ search: input });
+      navigate(`/${NOTES_URL}?search=${encodeURIComponent(input)}`);
+    } else {
+      setSearchParams({});
+      navigate(`/${SEARCH_URL}`);
+    }
   }
 
   if (isLoading) return <p>Loading notes...</p>;
@@ -62,13 +69,16 @@ function NoteDashboard() {
                   }
                 />
                 {hasSearchParam && (
-                  <Input
-                    type="search"
-                    value={value}
-                    onChange={handleChange}
-                    // value={searchQuery}
-                    // onChange={() => setFilterQuery('you')}
-                  />
+                  <div className="mb-7">
+                    <Input
+                      type="search"
+                      value={value}
+                      onChange={handleChange}
+                      // styles="mb-7"
+                      // value={searchQuery}
+                      // onChange={() => setFilterQuery('you')}
+                    />
+                  </div>
                 )}
                 {/* <SearchBar /> */}
                 {noteToUse.length > 0 && searchQuery && (

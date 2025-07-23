@@ -8,6 +8,7 @@ import {
   CREATE_NOTE_URL,
   NOTES_DETAILS_URL,
   NOTES_URL,
+  SEARCH_URL,
   TAG_DETAILS_URL,
   TAGS_URL,
 } from './constants/urls';
@@ -91,8 +92,14 @@ export const noteRoutes = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "search",
-  //   component: <SearchPage />,
-  // },
+  {
+    path: SEARCH_URL,
+    component: (
+      <ProtectedRoute>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <NoteDashboard />
+        </ErrorBoundary>
+      </ProtectedRoute>
+    ),
+  },
 ];

@@ -17,7 +17,6 @@ function ActionButtonsDesktop({
   const { mutateAsync: deleteNote } = useDeleteNoteMutation();
   const { mutateAsync: archiveNote } = useArchiveNoteMutation();
   const { mutateAsync: restoreNote } = useRestoreNoteMutation();
-  console.log('sele', selectedNoteId);
   const ArchivedIcon = AppIcons['archived'];
   const DeleteIcon = AppIcons['delete'];
   const RestoreIcon = AppIcons['restore'];

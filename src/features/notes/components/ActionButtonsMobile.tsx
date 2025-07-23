@@ -18,8 +18,6 @@ function ActionButtonsMobile({
 }: ActionButtonsMobileProps) {
   const navigate = useNavigate();
 
-  console.log('type', type);
-
   const { selectedNoteId } = useNoteStore();
   const { mutateAsync: deleteNote } = useDeleteNoteMutation();
   const { mutateAsync: archiveNote } = useArchiveNoteMutation();
