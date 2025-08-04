@@ -35,6 +35,9 @@ function CreateNotePage() {
     tags: [],
   });
 
+  console.log('okay', noteData.content);
+  console.log('okay2', noteData.title);
+
   const { mutateAsync: createNote } = useCreateNoteMutation();
   // if (!hasNotes) return <EmptyPageContainer noteType="active" />;
 
