@@ -1,4 +1,3 @@
-// WithErrorBoundary.tsx
 import { ComponentType, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 

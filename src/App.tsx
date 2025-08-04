@@ -25,17 +25,8 @@ function App() {
     <>
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
-          {/* <div className="bg-secondary-100 min-h-screen flex items-center justify-center"> */}
           <div className="">
             <Routes>
-              {/* <Route
-                path={LOGIN_URL}
-                element={
-                  <Container>
-                    <Login />
-                  </Container>
-                }
-              /> */}
               <Route index element={<LandingPage />} />
               {authRoutes.map(({ path, component }) => (
                 <Route key={path} path={path} element={component} />

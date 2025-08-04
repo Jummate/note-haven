@@ -3,12 +3,20 @@ import clsx from 'clsx';
 import { Button } from '../../../shared/components';
 import { AppIcons } from '../../../shared/icons/Icons';
 import { ActionButtonsDesktopProps } from '../types';
+import { useNoteStore } from '../stores/noteStore';
+import useDeleteNoteMutation from '../hooks/useDeleteNoteMutation';
+import useArchiveNoteMutation from '../hooks/useArchiveNoteMutation';
+import useRestoreNoteMutation from '../hooks/useRestoreNoteMutation';
 
 function ActionButtonsDesktop({
   styles,
   type = 'active',
   showActionButtons,
 }: ActionButtonsDesktopProps) {
+  const { selectedNoteId } = useNoteStore();
+  const { mutateAsync: deleteNote } = useDeleteNoteMutation();
+  const { mutateAsync: archiveNote } = useArchiveNoteMutation();
+  const { mutateAsync: restoreNote } = useRestoreNoteMutation();
   const ArchivedIcon = AppIcons['archived'];
   const DeleteIcon = AppIcons['delete'];
   const RestoreIcon = AppIcons['restore'];
@@ -19,13 +27,22 @@ function ActionButtonsDesktop({
         type="button"
         variant="outline"
         styles="md:text-md hover:bg-secondary-100"
+        onClick={
+          type == 'active'
+            ? async () => await archiveNote(selectedNoteId)
+            : async () => await restoreNote(selectedNoteId)
+        }
       >
         {type == 'active' ? <ArchivedIcon size={20} /> : null}
         {type == 'archived' ? <RestoreIcon size={20} /> : null}
         {type === 'active' ? 'Archive Note' : ''}
         {type === 'archived' ? 'Restore Note' : ''}
       </Button>
-      <Button variant="outline" styles="md:text-md hover:bg-secondary-100">
+      <Button
+        variant="outline"
+        styles="md:text-md hover:bg-secondary-100"
+        onClick={async () => await deleteNote(selectedNoteId)}
+      >
         <DeleteIcon size={20} /> Delete Note
       </Button>
     </div>

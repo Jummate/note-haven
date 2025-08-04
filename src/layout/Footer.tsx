@@ -1,11 +1,8 @@
-// import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { IconType } from 'react-icons';
 import clsx from 'clsx';
 
-// import { footerTabs, FooterTabKey } from "./constants/tabs";
 import { footerTabs } from './constants/tabs';
-// import { AppIcons } from "../shared/icons/Icons";
 import { useTabStore } from '../features/notes/stores/tabStore';
 import { useHeaderStore } from '../features/notes/stores/headerStore';
 
@@ -53,8 +50,6 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
 }
 
 function Footer() {
-  // const {activeTab} = useTabStore((state) => state.activeTab);
-  // const setActiveTab = useTabStore((state) => state.setActiveTab);
   const { activeTabs, setActiveTab } = useTabStore();
   const { setHeaderText } = useHeaderStore();
   const navigate = useNavigate();

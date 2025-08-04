@@ -1,10 +1,6 @@
-// import React from "react";
 import NoContent from '../../../shared/components/NoContent';
 import { AppIcons } from '../../../shared/icons/Icons';
 import { NotePreviewProps } from '../types';
-// import { useLocation } from "react-router-dom";
-
-// type NotePreviewprops =
 
 function NotePreview({ note, showNote = true }: NotePreviewProps) {
   const TagIcon = AppIcons['tags'];

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import SidebarTab from '../shared/components/SidebarTab';
 import { useTabStore } from '../features/notes/stores/tabStore';
 import { sideBarTabs } from '../features/notes/constants/tabs';
-// import { AppIcons } from "../shared/icons/Icons";
 import Tags from '../features/tags/components/Tags';
 import { useHeaderStore } from '../features/notes/stores/headerStore';
 import AppLogo from '../shared/components/AppLogo';

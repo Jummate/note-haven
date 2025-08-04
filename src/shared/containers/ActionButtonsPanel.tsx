@@ -7,7 +7,7 @@ type ActionButtonsPanelProps = {
   showNote?: boolean;
   showActionButtons?: boolean;
   styles?: string;
-  onNoteSave?: () => void;
+  onNoteSave?: () => Promise<void>;
 };
 
 function ActionButtonsPanel({

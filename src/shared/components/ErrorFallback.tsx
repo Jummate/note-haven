@@ -1,5 +1,3 @@
-// shared/components/ErrorFallback.tsx
-
 import { FallbackProps } from 'react-error-boundary';
 import Button from './Button';
 

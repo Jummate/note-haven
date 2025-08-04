@@ -5,9 +5,6 @@ type ShowErrorProps = {
 
 function ShowError({ message, id }: ShowErrorProps) {
   return (
-    // <div>
-
-    // </div>
     <p
       id={id}
       className="error-text flex items-center gap-3"

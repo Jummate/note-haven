@@ -2,8 +2,7 @@ import { ChangeEvent } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import { Input } from '../shared/components';
-// import { useTabStore } from "../stores/tabStore";
-// import { tabsMap } from "../constants/tabs";
+
 import PageHeader from '../features/notes/shared/components/PageHeader';
 import { useHeaderStore } from '../features/notes/stores/headerStore';
 import { AppIcons } from '../shared/icons/Icons';
@@ -12,7 +11,6 @@ import { SettingsLabel } from '../features/settings/constants/labels';
 import { SETTINGS_URL } from '../features/settings/constants/urls';
 import { SidebarLabels } from '../features/notes/constants/labels';
 import { NOTES_URL } from '../features/notes/constants/urls';
-// import SearchBar from '../shared/components/SearchBar';
 
 function Header() {
   const { setActiveTab } = useTabStore();
@@ -39,13 +37,18 @@ function Header() {
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target.value;
-    setSearchParams({ search: input });
+    if (input) {
+      setSearchParams({ search: input });
+    } else {
+      setSearchParams({});
+    }
+
     if (location.pathname !== NOTES_URL) {
       setActiveTab('sidebar', '');
       setActiveTab('footer', '');
       setActiveTab('settings', '');
       setHeaderText(SidebarLabels.ALL_NOTES.toString());
-      navigate(`${NOTES_URL}?search=${encodeURIComponent(input)}`);
+      if (input) navigate(`${NOTES_URL}?search=${encodeURIComponent(input)}`);
     }
   }
 
@@ -62,7 +65,6 @@ function Header() {
               onChange={handleSearch}
               styles="py-3 text-2xl"
             />
-            {/* <SearchBar inputClassName="py-3 text-2xl" /> */}
             <button type="button" aria-label="Setting Icon">
               <SettingsIcon
                 className="text-4xl text-secondary-500 cursor-pointer hover:text-primary-500/80"

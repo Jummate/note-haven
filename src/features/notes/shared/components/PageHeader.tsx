@@ -12,7 +12,6 @@ function PageHeader({ headerText, styles }: PageHeaderProps) {
   //   const { headerText } = useHeaderStore();
   return (
     <>
-      {/* <h1 className="font-bold text-4xl font-inter mb-4">{activeTabText}</h1> */}
       <h1 className={clsx('font-bold text-4xl font-inter mb-4', styles)}>
         {headerText}
       </h1>

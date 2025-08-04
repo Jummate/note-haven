@@ -1,4 +1,3 @@
-// useCountdown.ts
 import { useEffect, useState } from 'react';
 
 export function useCountdown(start: number, onDone: () => void) {

@@ -8,8 +8,6 @@ export function useFilteredNotes() {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
 
-  //   const activeNotes = (useNotes({ type: 'active' }) as NoteProps[]) || [];
-
   const rawNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   const activeNotes = useMemo(() => rawNotes || [], [rawNotes]);
 

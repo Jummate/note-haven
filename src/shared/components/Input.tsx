@@ -95,27 +95,4 @@ function Input({ type = 'text', ...props }: InputProps) {
   }
 }
 
-// function Input({ type = "text", ...props }: InputProps) {
-//   let input = null;
-
-//   switch (type) {
-//     case "password":
-//       input = <PasswordInput {...props} />;
-//       break;
-//     case "search":
-//       input = <SearchInput {...props} />;
-//       break;
-//     default:
-//       input = (
-//         <TextInput
-//           type={type}
-//           {...props}
-//         />
-//       );
-//       break;
-//   }
-
-//   return input;
-// }
-
 export default Input;

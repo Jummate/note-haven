@@ -4,6 +4,12 @@ import { AppIcons } from '../../../shared/icons/Icons';
 import { ActionButtonsMobileProps } from '../types';
 // import { createNote } from '../services/noteService';
 
+import useDeleteNoteMutation from '../hooks/useDeleteNoteMutation';
+import useArchiveNoteMutation from '../hooks/useArchiveNoteMutation';
+import useRestoreNoteMutation from '../hooks/useRestoreNoteMutation';
+import { useNoteStore } from '../stores/noteStore';
+// import { archiveNote, deleteNote, restoreNote } from '../services/noteService';
+
 function ActionButtonsMobile({
   styles,
   type,
@@ -11,6 +17,11 @@ function ActionButtonsMobile({
   onNoteSave,
 }: ActionButtonsMobileProps) {
   const navigate = useNavigate();
+
+  const { selectedNoteId } = useNoteStore();
+  const { mutateAsync: deleteNote } = useDeleteNoteMutation();
+  const { mutateAsync: archiveNote } = useArchiveNoteMutation();
+  const { mutateAsync: restoreNote } = useRestoreNoteMutation();
 
   const ArchivedIcon = AppIcons['archived'];
   const DeleteIcon = AppIcons['delete'];
@@ -35,6 +46,7 @@ function ActionButtonsMobile({
               <button
                 aria-label="Delete Note"
                 className="hover:text-primary-500/80"
+                onClick={async () => await deleteNote(selectedNoteId)}
               >
                 <DeleteIcon className="cursor-pointer" />
               </button>
@@ -43,6 +55,7 @@ function ActionButtonsMobile({
               <button
                 aria-label="Archive Note"
                 className="hover:text-primary-500/80"
+                onClick={async () => await archiveNote(selectedNoteId)}
               >
                 <ArchivedIcon className="cursor-pointer" aria-hidden="true" />
               </button>
@@ -51,6 +64,7 @@ function ActionButtonsMobile({
               <button
                 aria-label="Restore Note"
                 className="hover:text-primary-500/80"
+                onClick={async () => await restoreNote(selectedNoteId)}
               >
                 <RestoreIcon aria-hidden="true" className="cursor-pointer" />
               </button>
