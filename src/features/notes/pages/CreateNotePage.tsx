@@ -21,22 +21,22 @@ import { TagOption } from '../../tags/types';
 import useCreateNoteMutation from '../hooks/useCreateNoteMutation';
 
 export type NoteDraft = {
-  title: string;
-  content: string;
-  tags: TagOption[];
+  noteTitle: string;
+  noteContent: string;
+  noteTags: TagOption[];
 };
 
 function CreateNotePage() {
   const allNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   // const hasNotes = allNotes && allNotes.length > 0;
   const [noteData, setNoteData] = useState<NoteDraft>({
-    title: '',
-    content: '',
-    tags: [],
+    noteTitle: '',
+    noteContent: '',
+    noteTags: [],
   });
 
-  console.log('okay', noteData.content);
-  console.log('okay2', noteData.title);
+  // console.log('okay', noteData.noteContent);
+  // console.log('okay2', noteData.noteTitle);
 
   const { mutateAsync: createNote } = useCreateNoteMutation();
   // if (!hasNotes) return <EmptyPageContainer noteType="active" />;
@@ -44,9 +44,9 @@ function CreateNotePage() {
   const handleNoteSave = async () => {
     // const tags = noteData.tags.map(tag => {id:tag.value, name:tag.label});
     await createNote({
-      title: noteData.title,
-      content: noteData.content,
-      input_tags: noteData.tags,
+      title: noteData.noteTitle,
+      content: noteData.noteContent,
+      input_tags: noteData.noteTags,
     });
   };
 
