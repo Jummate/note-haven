@@ -29,9 +29,7 @@ export async function apiCall<T>(
   fallbackMessage: string,
 ): Promise<ApiResponse<T>> {
   try {
-    console.log('Starting API call', fn);
     const response = await fn();
-    console.log('a res', response);
     return { success: true, data: response.data };
   } catch (error) {
     return handleApiError(error, fallbackMessage);
