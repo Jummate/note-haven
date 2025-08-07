@@ -19,6 +19,7 @@ import { settingsRoutes } from './features/settings/routes';
 import { SETTINGS_URL } from './features/settings/constants/urls';
 import LandingPage from './shared/pages/LandingPage';
 import ProtectedRoute from './shared/pages/ProtectedRoute';
+import Modal from './shared/components/Modal';
 
 function App() {
   return (
@@ -79,6 +80,8 @@ function App() {
         </Suspense>
       </Router>
       <ToastContainer position="top-center" />
+      {/* <p>Wooooooo qqqqqq</p> */}
+      <Modal />
     </>
   );
 }
