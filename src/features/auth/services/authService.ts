@@ -36,8 +36,9 @@ export const createUser = async (
   if (result.success) {
     notify({
       message: 'Account successfully created',
-      action: () => navigate(DASHBOARD_URL, { replace: true }),
+      // action: () => navigate(DASHBOARD_URL, { replace: true }),
     });
+    navigate(DASHBOARD_URL, { replace: true });
   }
   return result;
 };
@@ -56,8 +57,10 @@ export const login = async (
 
     notify({
       message: 'You are now logged in',
-      action: () => navigate(DASHBOARD_URL, { replace: true }),
+      // action: () => navigate(DASHBOARD_URL, { replace: true }),
     });
+
+    navigate(DASHBOARD_URL, { replace: true });
   }
   return result;
 };
@@ -70,8 +73,9 @@ export const logout = async (
     useAuthStore.getState().setToken('');
     notify({
       message: 'Logged out succesfully',
-      action: () => navigate(LANDING_PAGE_URL, { replace: true }),
+      // action: () => navigate(LANDING_PAGE_URL, { replace: true }),
     });
+    navigate(LANDING_PAGE_URL, { replace: true });
     return { data: null };
   }, 'Failed to log out.');
 };
