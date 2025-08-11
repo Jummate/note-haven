@@ -9,6 +9,7 @@ import { BsTag } from 'react-icons/bs';
 import { LuSettings, LuClock4 } from 'react-icons/lu';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { FaPlus } from 'react-icons/fa';
+import { PiSpinnerGap } from 'react-icons/pi';
 import {
   RiFontSize2,
   RiDeleteBin6Line,
@@ -47,4 +48,5 @@ export const AppIcons = {
   sansSerif: RiFontSans,
   serif: RiFontSansSerif,
   mono: RiFontMono,
+  spinnerGap: PiSpinnerGap,
 } as const;

@@ -59,6 +59,7 @@ export type NoteForReviewType = Pick<
 export type NotePreviewProps = {
   note: NoteForReviewType | undefined;
   showNote?: boolean;
+  type?: 'active' | 'archived';
 };
 
 export interface NoteInput {
