@@ -18,7 +18,9 @@ import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 function ArchivedNoteDetailsPage() {
   const { noteId } = useParams();
 
-  const archivedNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
+  const archivedNotes = useNotes({ type: 'archived' }) as
+    | NoteProps[]
+    | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
   const hasNotes = archivedNotes && archivedNotes.length > 0;
 
