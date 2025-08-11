@@ -9,10 +9,17 @@ import { NoteItem, NoteProps } from '../types';
 import NoContent from '../../../shared/components/NoContent';
 import { useNoteStore } from '../stores/noteStore';
 
-function Note({ onNoteSelect, note: { tags, title, createdAt } }: NoteItem) {
+function Note({
+  onNoteSelect,
+  note: { tags, title, createdAt },
+  isActive,
+}: NoteItem & { isActive: boolean }) {
   return (
     <div
-      className="flex flex-col gap-3 py-4 cursor-pointer hover:bg-secondary-100 rounded-lg px-3 transition-colors"
+      className={clsx(
+        'flex flex-col gap-3 py-4 cursor-pointer hover:bg-secondary-100 rounded-lg px-3 transition-colors',
+        { 'bg-secondary-100': isActive },
+      )}
       onClick={onNoteSelect}
     >
       <h1 className="font-bold text-2xl">{title}</h1>
@@ -48,7 +55,7 @@ function NoteList<T extends NoteProps>({
   styles?: string;
 }) {
   const navigate = useNavigate();
-  const { setSelectedNoteId } = useNoteStore();
+  const { setSelectedNoteId, selectedNoteId } = useNoteStore();
 
   function handleSelect(noteId: string, actualPath: string) {
     setSelectedNoteId(noteId);
@@ -58,9 +65,6 @@ function NoteList<T extends NoteProps>({
   if (!data || data.length < 1) {
     return <NoContent text="No note to display" styles="pt-12" />;
   }
-  // return (
-  //   <p className="text-center text-secondary-600 py-6">No note to display</p>
-  // );
 
   return (
     <div className={clsx('divide-y divide-secondary-200', styles)}>
@@ -72,6 +76,7 @@ function NoteList<T extends NoteProps>({
             key={item.id}
             onNoteSelect={() => handleSelect(item.id, actualPath)}
             note={item}
+            isActive={item.id === selectedNoteId}
           />
         );
       })}
