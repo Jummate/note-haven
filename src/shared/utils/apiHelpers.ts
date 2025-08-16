@@ -16,6 +16,8 @@ export function handleApiError(
   const message = axiosError?.response?.data?.message;
   const errorMessage = detail || message || fallbackMessage;
 
+  console.log('oaky there is an error');
+
   notify({ type: 'error', message: errorMessage });
 
   return {

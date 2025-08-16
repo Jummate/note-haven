@@ -10,15 +10,19 @@ import { FormWrapper } from '../../../shared/components/FormWrapper';
 import { useForm } from '../../auth/hooks/useForm';
 import SettingsSection from '../components/SettingsSection';
 import { validationRules } from '../../auth/utils/validation';
+import { changePassword } from '../../auth/services/authService';
+import { useNavigate } from 'react-router-dom';
 
 function ChangePassword() {
+  const navigate = useNavigate();
   const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { oldPassword: '', newPassword: '', confirmNewPassword: '' },
     validationRules,
-    onSubmit: _ => {
-      //this is just a placeholder body of the function just to prevent a linting error. It will be removed later
-      return Promise.resolve({ success: true });
-    },
+    // onSubmit: _ => {
+    //   //this is just a placeholder body of the function just to prevent a linting error. It will be removed later
+    //   return Promise.resolve({ success: true });
+    // },
+    onSubmit: values => changePassword(values, navigate),
     component: 'changePassword',
   });
 

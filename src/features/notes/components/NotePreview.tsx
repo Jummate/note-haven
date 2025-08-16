@@ -2,14 +2,19 @@ import NoContent from '../../../shared/components/NoContent';
 import { AppIcons } from '../../../shared/icons/Icons';
 import { NotePreviewProps } from '../types';
 
-function NotePreview({ note, showNote = true }: NotePreviewProps) {
+function NotePreview({
+  note,
+  type = 'active',
+  showNote = true,
+}: NotePreviewProps) {
   const TagIcon = AppIcons['tags'];
   const ClockIcon = AppIcons['clock'];
+  const SpinnerGapIcon = AppIcons['spinnerGap'];
 
   if (!showNote || !note) return <NoContent text="Select a note to preview" />;
 
   return (
-    <article className="flex flex-col flex-1 px-4 md:px-8 py-6">
+    <article className="flex flex-col flex-1 px-4">
       {/* <div className="flex flex-col gap-4"> */}
       <h1 className="font-bold text-3xl mb-6">{note.title}</h1>
 
@@ -34,6 +39,16 @@ function NotePreview({ note, showNote = true }: NotePreviewProps) {
             )}
           </span>
         </div>
+        {type == 'archived' && (
+          <div className="grid grid-cols-[120px_1fr]">
+            <span>
+              <SpinnerGapIcon className="inline text-secondary-500" /> Status
+            </span>
+            <span className="font-weight-bold text-secondary-500">
+              Archived
+            </span>
+          </div>
+        )}
         <div className="grid grid-cols-[120px_1fr]">
           <span className="flex items-center gap-2">
             <ClockIcon className="inline text-secondary-500" /> Last Edited

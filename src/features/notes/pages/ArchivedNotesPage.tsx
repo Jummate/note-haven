@@ -33,6 +33,10 @@ function ArchivedNotes() {
             <div className="flex flex-1 justify-center">
               <div className="p-8 text-secondary-900 font-inter w-full bg-white">
                 <PageHeader headerText="Archived Notes" />
+                <div>
+                  All your archived notes are stored here. You can restore or
+                  delete them anytime.
+                </div>
                 <NoteList
                   data={archivedNotes}
                   path={ARCHIVED_URL}
@@ -48,6 +52,10 @@ function ArchivedNotes() {
             firstItem={
               <>
                 <CreateNoteButton />
+                <div className="my-5">
+                  All your archived notes are stored here. You can restore or
+                  delete them anytime.
+                </div>
                 <NoteList
                   data={archivedNotes}
                   path={ARCHIVED_URL}

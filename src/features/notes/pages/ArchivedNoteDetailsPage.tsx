@@ -18,7 +18,9 @@ import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 function ArchivedNoteDetailsPage() {
   const { noteId } = useParams();
 
-  const archivedNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
+  const archivedNotes = useNotes({ type: 'archived' }) as
+    | NoteProps[]
+    | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
   const hasNotes = archivedNotes && archivedNotes.length > 0;
 
@@ -32,6 +34,7 @@ function ArchivedNoteDetailsPage() {
             <NotePreview
               note={singleNote}
               showNote={!!noteId && !!singleNote && hasNotes}
+              type="archived"
             />
             <FloatingCreateNoteButton />
           </MobileLayout>
@@ -41,6 +44,10 @@ function ArchivedNoteDetailsPage() {
             firstItem={
               <>
                 <CreateNoteButton />
+                <div className="my-5">
+                  All your archived notes are stored here. You can restore or
+                  delete them anytime.
+                </div>
                 <NoteList
                   data={archivedNotes}
                   path={ARCHIVED_URL}
@@ -52,6 +59,7 @@ function ArchivedNoteDetailsPage() {
               <NotePreview
                 note={singleNote}
                 showNote={!!noteId && !!singleNote && hasNotes}
+                type="archived"
               />
             }
             thirdItem={

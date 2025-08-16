@@ -19,10 +19,13 @@ import {
   API_LOGIN_URL,
   API_LOGOUT_URL,
   API_RESET_PASSWORD_URL,
+  API_CHANGE_PASSWORD_URL,
   API_SIGNUP_URL,
   LOGIN_URL,
 } from '../constants/urls';
 import useAuthStore from '../stores/authStore';
+
+import axiosAuth from '../../../shared/services/authenticatedApiClient';
 
 export const createUser = async (
   data: Record<string, string>,
@@ -95,6 +98,7 @@ export const forgotPassword = async (
 
   return result;
 };
+
 export const resetPassword = async (
   data: Record<string, string>,
   navigate: NavigateFunction,
@@ -112,6 +116,26 @@ export const resetPassword = async (
     notify({
       message:
         'Your password has been successfully reset. You can now log in with your new credentials',
+      action: () => navigate(LOGIN_URL, { replace: true }),
+    });
+  }
+
+  return result;
+};
+
+export const changePassword = async (
+  data: Record<string, string>,
+  navigate: NavigateFunction,
+) => {
+  const result = await apiCall<ResetPasswordResponseData>(
+    () => axiosAuth.post(API_CHANGE_PASSWORD_URL, convertToSnakeCase(data)),
+    'Password change unsuccessful.',
+  );
+
+  if (result.success) {
+    notify({
+      message:
+        'Your password has been successfully change. You can now log in with your new credentials',
       action: () => navigate(LOGIN_URL, { replace: true }),
     });
   }
