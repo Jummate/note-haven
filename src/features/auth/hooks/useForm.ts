@@ -172,6 +172,8 @@ export function useForm({
     setLoading(true);
     const result = await onSubmit(values);
 
+    console.log('successful');
+
     if (result.success && component !== 'forgotPassword') {
       setValues(initialValues);
     }
