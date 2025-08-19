@@ -12,11 +12,16 @@ export function handleApiError(
   fallbackMessage = 'An unexpected error occurred.',
 ): ApiResponse<never> {
   const axiosError = error as AxiosError<ErrorResponseData>;
-  const detail = axiosError?.response?.data?.detail;
+  const rawDetail = axiosError?.response?.data?.detail;
   const message = axiosError?.response?.data?.message;
-  const errorMessage = detail || message || fallbackMessage;
+  // const errorMessage = detail || message || fallbackMessage;
 
-  console.log('oaky there is an error');
+  let errorMessage: string;
+  if (Array.isArray(rawDetail)) {
+    errorMessage = rawDetail.join(', ');
+  } else {
+    errorMessage = rawDetail || message || fallbackMessage;
+  }
 
   notify({ type: 'error', message: errorMessage });
 
