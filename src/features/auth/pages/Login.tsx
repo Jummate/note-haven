@@ -62,7 +62,7 @@ function Login() {
           </VerticalWrapper>
           <Link
             to={`${FORGOT_PASSWORD_URL}`}
-            className="hover:text-primary-500 cursor-pointer -mb-7 self-end"
+            className="link-primary cursor-pointer -mb-7 self-end"
           >
             <small>Forgot Password?</small>
           </Link>
@@ -102,7 +102,7 @@ function Login() {
         <span className="text-secondary-600">Not have an account yet?</span>
         <Link
           to={SIGNUP_URL}
-          className="text-secondary-950 cursor-pointer hover:text-primary-500"
+          className="text-secondary-950 link-primary cursor-pointer"
         >
           Sign Up
         </Link>

@@ -121,7 +121,7 @@ function Signup() {
         <span className="text-secondary-600">Already have an account?</span>
         <Link
           to={LOGIN_URL}
-          className="text-secondary-950 cursor-pointer hover:text-primary-500"
+          className="text-secondary-950 cursor-pointer link-primary"
         >
           Log in
         </Link>

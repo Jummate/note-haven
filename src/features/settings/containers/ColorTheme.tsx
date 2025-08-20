@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import {
   Button,
@@ -8,15 +8,18 @@ import {
 import { AppIcons } from '../../../shared/icons/Icons';
 import PanelItem from '../components/PanelItem';
 import SettingsSection from '../components/SettingsSection';
+import useTheme from '../../../shared/hooks/useTheme';
 
-type ColorThemeType = 'light' | 'dark' | 'system' | null;
+// type ColorThemeType = 'light' | 'dark' | 'system' | null;
 
 function ColorTheme() {
   const ColorThemeIcon = AppIcons.colorTheme;
   const MoonIcon = AppIcons['moon'];
   const SystemIcon = AppIcons['system'];
 
-  const [colorTheme, setColorTheme] = useState<ColorThemeType>(null);
+  // const [colorTheme, setColorTheme] = useState<ColorThemeType>(null);
+
+  const [colorTheme, setColorTheme] = useTheme();
   // const [isActive, setIsActive] = useState<boolean>(false);
 
   return (

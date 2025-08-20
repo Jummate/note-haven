@@ -19,7 +19,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const defaultStyle =
-  'rounded-xl p-4 w-full bg-white border border-secondary-300 hover:bg-secondary-50 cursor-pointer focus:border-secondary-950 focus:outline-none';
+  'rounded-xl p-4 w-full bg-transparent border border-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 text-secondary-950 dark:text-secondary-50 cursor-pointer dark:focus:border-secondary-50 focus:border-secondary-950 focus:outline-none';
 const eyeStyle = 'absolute right-3 w-8 h-8 z-10 cursor-pointer';
 const searchStyle = 'absolute left-3 w-8 h-8 z-10 cursor-pointer';
 
