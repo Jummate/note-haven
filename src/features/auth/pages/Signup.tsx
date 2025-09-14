@@ -30,7 +30,7 @@ function Signup() {
     <AuthLayout
       heading="Create Your Account"
       firstItem={
-        <span className="text-secondary-600 text-center">
+        <span className="text-dim text-center">
           Sign up to start organizing your notes and boost your productivity
         </span>
       }
@@ -107,9 +107,7 @@ function Signup() {
           <Button
             type="submit"
             disabled={loading}
-            styles={`font-bold hover:bg-opacity-95 ${
-              loading ? 'disabled' : ''
-            }`}
+            styles={`font-bold hover:bg-primary-dark ${loading ? 'disabled' : ''}`}
           >
             {loading ? 'Processing...' : 'Sign up'}
           </Button>
@@ -118,10 +116,10 @@ function Signup() {
       }
     >
       <HorizontalWrapper styles="justify-center items-center gap-3">
-        <span className="text-secondary-600">Already have an account?</span>
+        <span className="text-dim">Already have an account?</span>
         <Link
           to={LOGIN_URL}
-          className="text-secondary-950 cursor-pointer link-primary"
+          className="cursor-pointer hover:text-primary text-default font-medium"
         >
           Log in
         </Link>

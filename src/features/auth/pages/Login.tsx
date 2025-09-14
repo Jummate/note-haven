@@ -27,11 +27,9 @@ function Login() {
 
   return (
     <AuthLayout
-      heading=" Welcome to Note Haven"
+      heading="Welcome to Note Haven"
       firstItem={
-        <span className="text-secondary-600 text-center">
-          Please log in to continue
-        </span>
+        <span className="text-dim text-center">Please log in to continue</span>
       }
       secondItem={
         <FormWrapper onSubmit={handleSubmit} aria-busy={loading}>
@@ -64,7 +62,9 @@ function Login() {
             to={`${FORGOT_PASSWORD_URL}`}
             className="link-primary cursor-pointer -mb-7 self-end"
           >
-            <small>Forgot Password?</small>
+            <small className="text-dim hover:text-primary underline">
+              Forgot Password?
+            </small>
           </Link>
           {/* <div className="text-right -mb-7">
         </div> */}
@@ -89,8 +89,8 @@ function Login() {
 
           <Button
             type="submit"
-            styles="font-bold hover:bg-opacity-95"
             disabled={loading}
+            styles={`font-bold hover:bg-primary-dark ${loading ? 'disabled' : ''}`}
           >
             {loading ? 'Processing...' : 'Login'}
           </Button>
@@ -99,10 +99,10 @@ function Login() {
       }
     >
       <HorizontalWrapper styles="justify-center items-center gap-3">
-        <span className="text-secondary-600">Not have an account yet?</span>
+        <span className="text-dim">Not have an account yet?</span>
         <Link
           to={SIGNUP_URL}
-          className="text-secondary-950 link-primary cursor-pointer"
+          className="hover:text-primary text-default font-medium cursor-pointer"
         >
           Sign Up
         </Link>

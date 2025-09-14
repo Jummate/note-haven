@@ -34,7 +34,7 @@ function ResetPassword() {
     <AuthLayout
       heading="Reset Your Password"
       firstItem={
-        <span className="text-secondary-600 text-center">
+        <span className="text-dim text-center">
           Choose a new password to secure your account.
         </span>
       }
@@ -90,7 +90,7 @@ function ResetPassword() {
 
           <Button
             type="submit"
-            styles="font-bold hover:bg-opacity-95"
+            styles={`font-bold hover:bg-primary-dark ${loading ? 'disabled' : ''}`}
             disabled={loading}
           >
             {loading ? 'Processing' : 'Reset Password'}

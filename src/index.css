@@ -15,6 +15,90 @@ body {
   font-size: 1.6rem;
 }
 
+@layer base {
+  :root {
+    --color-primary: theme(colors.blue.500);
+    --color-primary-light: theme(colors.blue.50);
+    --color-primary-dark: theme(colors.blue.700);
+    /* --color-primary: theme(colors.blue.500);
+    --color-primary-light: theme(colors.blue.50);
+    --color-primary-dark: theme(colors.blue.700);
+
+--color-secondary: theme(colors.neutral.950);
+  
+
+     --color-success: theme(colors.green.500);
+    --color-success-light: theme(colors.green.100);
+
+    --color-danger: theme(colors.red.500);
+    --color-danger-light: theme(colors.red.100);
+
+      --color-muted: theme(colors.neutral.500);
+    --color-muted-light: theme(colors.neutral.300);
+    --color-muted-dark: theme(colors.neutral.700);
+
+
+    --color-white: theme(colors.white);
+    --color-black: theme(colors.black); */
+
+    /* 🏷 Semantic Aliases (mapped from core palette) */
+    /* --color-text-default: var(--color-secondary);
+    --color-text-muted: var(--color-muted);
+    --color-text-strong: var(--color-muted-dark);
+    --color-text-inverted: var(--color-white);
+
+    --color-border: var(--color-muted-light);
+    --color-border-strong: var(--color-muted-dark);
+
+    --color-bg-surface: var(--color-white);
+    --color-bg-muted: var(--color-muted-light); */
+
+    --color-default: theme(colors.neutral.950);
+    --color-dim: theme(colors.neutral.600);
+    --color-secondary: theme(colors.neutral.700);
+    --color-muted: theme(colors.neutral.500);
+    --color-muted-light: theme(colors.neutral.300);
+    --color-inverted: theme(colors.neutral.0);
+    --color-secondary-light: theme(colors.neutral.100);
+    --color-surface: theme(colors.neutral.50);
+
+    --color-text-dim: theme(colors.neutral.600);
+    --color-text-muted: theme(colors.neutral.600);
+
+    /* Border */
+    --color-border-dim: theme(colors.neutral.300);
+    /* --color-border-strong: theme(colors.neutral.400); */
+  }
+
+  .dark {
+    --color-default: theme(colors.neutral.50);
+    --color-dim: theme(colors.neutral.300);
+    --color-secondary: theme(colors.neutral.200);
+    --color-muted: theme(colors.neutral.400);
+    --color-muted-light: theme(colors.neutral.600);
+    --color-inverted: theme(colors.neutral.950);
+    --color-secondary-light: theme(colors.neutral.700);
+    --color-surface: theme(colors.neutral.800);
+
+    --color-text-dim: theme(colors.neutral.300);
+
+    /* Border */
+    --color-border-dim: theme(colors.neutral.600);
+    /* --color-border-strong: theme(colors.neutral.500); */
+
+    /* --color-text-default: var(--color-white);
+    --color-text-muted: var(--color-muted-light);
+    --color-text-strong: var(--color-white);
+    --color-text-inverted: var(--color-black);
+
+    --color-border: var(--color-muted-dark);
+    --color-border-strong: var(--color-white);
+
+    --color-bg-surface: var(--color-black);
+    --color-bg-muted: var(--color-muted-dark); */
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -28,7 +112,12 @@ body {
   .disabled {
     @apply cursor-not-allowed bg-opacity-50 hover:opacity-50;
   }
-  .link-primary {
-    @apply hover:text-primary-500 dark:hover:text-secondary-50 dark:text-primary-500;
-  }
+
+  /* Text */
+  /* .text-primary {
+    color: var(--color-text-primary);
+  } */
+  /* .text-secondary { color: var(--color-text-secondary); }
+  .text-muted { color: var(--color-text-muted); }
+  .text-inverted { color: var(--color-text-inverted); } */
 }
