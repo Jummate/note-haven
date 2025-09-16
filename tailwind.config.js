@@ -15,6 +15,7 @@ export default {
         'muted-light': 'var(--color-muted-light)',
         inverted: 'var(--color-inverted)',
         'secondary-light': 'var(--color-secondary-light)',
+        'secondary-dark': 'var(--color-secondary-dark)',
         surface: 'var(--color-surface)',
 
         blue: {

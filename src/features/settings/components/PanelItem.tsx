@@ -22,8 +22,8 @@ function PanelItem({
   return (
     <div
       className={clsx(
-        'flex border border-secondary-200 rounded-xl justify-between items-center p-4 hover:bg-secondary-100',
-        { 'bg-secondary-100': isActive },
+        'flex border border-secondary rounded-xl justify-between items-center p-4 hover:bg-secondary-light',
+        { 'bg-secondary-light': isActive },
       )}
       onClick={onSelect}
       role="button"
@@ -35,7 +35,7 @@ function PanelItem({
         {ItemIcon && (
           <ItemIcon
             size={30}
-            className="border border-secondary-200 p-2 rounded-lg bg-white"
+            className="border border-secondary p-2 rounded-lg bg-inverted"
           />
         )}
         <div className="flex flex-col gap-2">
@@ -45,7 +45,7 @@ function PanelItem({
       </div>
 
       {isActive ? (
-        <SelectionActive size={22} className="text-primary-500" />
+        <SelectionActive size={22} className="text-primary" />
       ) : (
         <SelectionDefault size={20} className="p-1" />
       )}

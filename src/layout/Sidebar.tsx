@@ -21,11 +21,11 @@ function Sidebar() {
   };
 
   return (
-    <div className="h-full border border-r-1 border-y-0 border-l-0 border-gray-200 px-8">
+    <div className="h-full border border-r-1 border-y-0 border-l-0 border-secondary-dark px-8">
       <div className="py-12">
         <AppLogo />
       </div>
-      <div className="py-4 border-b-2">
+      <div className="py-4 border-b-2 border-secondary-dark">
         {sideBarTabs.map(({ icon, label, path }) => {
           return (
             <SidebarTab

@@ -99,7 +99,7 @@ function ChangePassword() {
           <div>
             <Button
               type="submit"
-              styles="font-bold hover:bg-opacity-95"
+              styles="font-bold hover:bg-primary-dark"
               disabled={loading}
             >
               {loading ? 'Processing...' : 'Save Password'}

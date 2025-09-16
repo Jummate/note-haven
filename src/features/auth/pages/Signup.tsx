@@ -42,8 +42,8 @@ function Signup() {
             </p>
           )}
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="email" isRequired>
-              Email
+            <Label htmlFor="email" styles="-mb-3" isRequired>
+              Email Address
             </Label>
             <Input
               type="email"
@@ -62,7 +62,7 @@ function Signup() {
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="password" isRequired>
+            <Label htmlFor="password" styles="-mb-3" isRequired>
               Password
             </Label>
             <Input
@@ -81,7 +81,7 @@ function Signup() {
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="confirmPassword" isRequired>
+            <Label htmlFor="confirmPassword" styles="-mb-3" isRequired>
               Confirm New Password
             </Label>
             <Input

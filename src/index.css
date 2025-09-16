@@ -60,6 +60,7 @@ body {
     --color-muted-light: theme(colors.neutral.300);
     --color-inverted: theme(colors.neutral.0);
     --color-secondary-light: theme(colors.neutral.100);
+    --color-secondary-dark: theme(colors.neutral.200);
     --color-surface: theme(colors.neutral.50);
 
     --color-text-dim: theme(colors.neutral.600);
@@ -78,6 +79,7 @@ body {
     --color-muted-light: theme(colors.neutral.600);
     --color-inverted: theme(colors.neutral.950);
     --color-secondary-light: theme(colors.neutral.700);
+    --color-secondary-dark: theme(colors.neutral.800);
     --color-surface: theme(colors.neutral.800);
 
     --color-text-dim: theme(colors.neutral.300);

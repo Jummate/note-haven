@@ -62,7 +62,7 @@ function NoteDashboard() {
         mobile={
           <MobileLayout>
             <div className="flex flex-1 justify-center">
-              <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+              <div className="p-8 text-secondary-900 font-inter w-full bg-inverted">
                 <PageHeader
                   headerText={
                     searchQuery || hasSearchParam ? 'Search' : headerText

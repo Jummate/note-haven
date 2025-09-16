@@ -67,7 +67,7 @@ function NoteList<T extends NoteProps>({
   }
 
   return (
-    <div className={clsx('divide-y divide-secondary-200', styles)}>
+    <div className={clsx('divide-y divide-secondary-dark', styles)}>
       {data.map(item => {
         const slug = generateSlug(item.title);
         const actualPath = `/${path}/${item.id}/${slug}`;

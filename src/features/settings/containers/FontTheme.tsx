@@ -42,7 +42,7 @@ function FontTheme() {
 
         <HorizontalWrapper styles="justify-end">
           <div>
-            <Button>Apply Changes</Button>
+            <Button styles="hover:bg-primary-dark">Apply Changes</Button>
           </div>
         </HorizontalWrapper>
       </VerticalWrapper>

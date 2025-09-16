@@ -27,20 +27,18 @@ function SettingsSection({
 
         // </div>
         <button
-          className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80"
+          className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary"
           aria-label="Go Back to Settings"
           onClick={() => navigate(-1)}
         >
-          <ChevronLeftIcon className="text-secondary-500 text-4xl hover:text-primary-500/80" />
+          <ChevronLeftIcon className="text-secondary text-4xl hover:text-primary" />
           Settings
         </button>
       )}
 
-      <h1 className="text-secondary-900 font-bold text-3xl">{heading}</h1>
+      <h1 className="text-default font-bold text-3xl">{heading}</h1>
 
-      {subHeading && (
-        <h2 className="text-secondary-600 text-2xl">{subHeading}</h2>
-      )}
+      {subHeading && <h2 className="text-secondary text-2xl">{subHeading}</h2>}
 
       {children}
     </section>

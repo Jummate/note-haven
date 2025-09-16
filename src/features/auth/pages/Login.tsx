@@ -40,8 +40,8 @@ function Login() {
           )}
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="email" isRequired>
-              Email
+            <Label htmlFor="email" styles="-mb-3" isRequired>
+              Email Address
             </Label>
             <Input
               type="email"
@@ -69,7 +69,7 @@ function Login() {
           {/* <div className="text-right -mb-7">
         </div> */}
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="password" isRequired>
+            <Label htmlFor="password" styles="-mb-3" isRequired>
               Password
             </Label>
             <Input

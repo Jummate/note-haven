@@ -46,7 +46,7 @@ function ResetPassword() {
             </p>
           )}
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="password" isRequired>
+            <Label htmlFor="password" styles="-mb-3" isRequired>
               New Password
             </Label>
             <Input
@@ -65,7 +65,7 @@ function ResetPassword() {
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="confirmPassword" isRequired>
+            <Label htmlFor="confirmPassword" styles="-mb-3" isRequired>
               Confirm New Password
             </Label>
             <Input
