@@ -26,7 +26,7 @@ function App() {
     <>
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
-          <div className="dark:bg-black dark:text-white">
+          <div className="bg-inverted text-default">
             <Routes>
               <Route index element={<LandingPage />} />
               {authRoutes.map(({ path, component }) => (

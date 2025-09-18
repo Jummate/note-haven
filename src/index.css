@@ -58,17 +58,11 @@ body {
     --color-secondary: theme(colors.neutral.700);
     --color-muted: theme(colors.neutral.500);
     --color-muted-light: theme(colors.neutral.300);
+    --color-muted-dark: theme(colors.neutral.100);
     --color-inverted: theme(colors.neutral.0);
     --color-secondary-light: theme(colors.neutral.100);
     --color-secondary-dark: theme(colors.neutral.200);
     --color-surface: theme(colors.neutral.50);
-
-    --color-text-dim: theme(colors.neutral.600);
-    --color-text-muted: theme(colors.neutral.600);
-
-    /* Border */
-    --color-border-dim: theme(colors.neutral.300);
-    /* --color-border-strong: theme(colors.neutral.400); */
   }
 
   .dark {
@@ -77,15 +71,12 @@ body {
     --color-secondary: theme(colors.neutral.200);
     --color-muted: theme(colors.neutral.400);
     --color-muted-light: theme(colors.neutral.600);
+    --color-muted-dark: theme(colors.neutral.500);
     --color-inverted: theme(colors.neutral.950);
     --color-secondary-light: theme(colors.neutral.700);
     --color-secondary-dark: theme(colors.neutral.800);
     --color-surface: theme(colors.neutral.800);
 
-    --color-text-dim: theme(colors.neutral.300);
-
-    /* Border */
-    --color-border-dim: theme(colors.neutral.600);
     /* --color-border-strong: theme(colors.neutral.500); */
 
     /* --color-text-default: var(--color-white);

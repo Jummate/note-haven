@@ -62,7 +62,7 @@ function NoteDashboard() {
         mobile={
           <MobileLayout>
             <div className="flex flex-1 justify-center">
-              <div className="p-8 text-secondary-900 font-inter w-full bg-inverted">
+              <div className="p-8 text-secondary font-inter w-full bg-inverted">
                 <PageHeader
                   headerText={
                     searchQuery || hasSearchParam ? 'Search' : headerText
@@ -82,7 +82,7 @@ function NoteDashboard() {
                 )}
                 {/* <SearchBar /> */}
                 {noteToUse.length > 0 && searchQuery && (
-                  <p className="my-5">
+                  <p className="my-5 text-dim">
                     All Notes matching "{searchQuery}" are displayed below.
                   </p>
                 )}

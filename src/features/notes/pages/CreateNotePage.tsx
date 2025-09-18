@@ -145,6 +145,7 @@ import { TagOption } from '../../tags/types';
 import useCreateNoteMutation from '../hooks/useCreateNoteMutation';
 import { useValidation } from '../hooks/useValidation';
 import { validationRules } from '../utils/validation';
+import { HorizontalLine } from '../../../shared/components';
 
 export type NoteDraft = {
   noteTitle: string;
@@ -180,9 +181,10 @@ function CreateNotePage() {
         mobile={
           <MobileLayout>
             <div className="flex flex-1 justify-center">
-              <div className="p-4 text-secondary-900 font-inter w-full bg-white">
+              <div className="p-4 text-default font-inter w-full bg-inverted">
                 <ActionButtonsPanel onNoteSave={validation.handleSubmit} />
-                <hr className="bg-secondary-100 my-6 h-1" />
+                {/* <hr className="bg-secondary-100 my-6 h-1" /> */}
+                <HorizontalLine styles="my-6" />
                 <NoteEditor
                   values={validation.values}
                   errors={validation.errors}

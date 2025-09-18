@@ -66,7 +66,7 @@ function ForgotPassword() {
           )}
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="email" isRequired>
+            <Label htmlFor="email" styles="-mb-3" isRequired>
               Email Address
             </Label>
             <Input

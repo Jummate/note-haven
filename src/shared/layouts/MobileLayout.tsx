@@ -27,7 +27,7 @@ function MobileLayout({
       )}
 
       <div className="flex flex-1 justify-center">
-        <div className="p-8 text-secondary-900 font-inter w-full bg-inverted">
+        <div className="p-8 text-default font-inter w-full bg-inverted">
           {children}
         </div>
       </div>

@@ -13,6 +13,7 @@ export default {
         default: 'var(--color-default)',
         muted: 'var(--color-muted)',
         'muted-light': 'var(--color-muted-light)',
+        'muted-dark': 'var(--color-muted-dark)',
         inverted: 'var(--color-inverted)',
         'secondary-light': 'var(--color-secondary-light)',
         'secondary-dark': 'var(--color-secondary-dark)',

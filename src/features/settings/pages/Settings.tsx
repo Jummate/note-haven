@@ -42,7 +42,7 @@ function Settings() {
     <ResponsiveLayout
       mobile={
         <NoteLayout>
-          <div className="p-8 text-secondary-900 font-inter w-full bg-inverted">
+          <div className="p-8 text-default font-inter w-full bg-inverted">
             {isBaseSettings ? (
               <>
                 <h1 className="font-bold text-4xl font-inter mb-7">Settings</h1>

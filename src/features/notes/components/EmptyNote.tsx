@@ -6,7 +6,7 @@ import { CREATE_NOTE_URL } from '../constants/urls';
 function EmptyNote({ noteType }: EmptyNoteProps) {
   if (noteType == 'active') {
     return (
-      <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-3">
+      <div className="rounded-xl bg-secondary border border-secondary-dark p-3">
         <p>
           You don’t have any notes yet. Start a new note to capture your
           thoughts and ideas.
@@ -16,18 +16,18 @@ function EmptyNote({ noteType }: EmptyNoteProps) {
   }
 
   return (
-    <div className="text-secondary-800">
+    <div className="text-default">
       <p>
         All your archived notes are stored here. You can restore or delete them
         anytime.
       </p>
-      <div className="rounded-xl bg-secondary-100 border border-secondary-200 p-4 mt-6">
+      <div className="rounded-xl bg-secondary border border-secondary-dark p-4 mt-6">
         <p>
           No notes have been archived yet. Move notes here for safekeeping, or{' '}
           <Link
             to={`/${CREATE_NOTE_URL}`}
             // to="/notes/create"
-            className="underline text-primary-600 hover:text-primary-700"
+            className="underline text-primary hover:text-primary-dark"
           >
             create a new note
           </Link>

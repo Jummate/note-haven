@@ -13,10 +13,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-white',
-  secondary: 'bg-secondary-200 text-secondary-800',
+  primary: 'bg-primary text-white hover:bg-primary-dark',
+  secondary: 'text-default',
+  // secondary: 'bg-secondary-light text-default',
   danger: 'bg-red-500 text-white',
-  outline: 'border border-secondary-300 text-secondary-800 bg-transparent',
+  outline: 'border border-muted-light text-default bg-transparent',
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

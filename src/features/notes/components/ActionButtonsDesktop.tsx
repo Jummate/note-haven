@@ -43,7 +43,7 @@ function ActionButtonsDesktop({
       <Button
         type="button"
         variant="outline"
-        styles="md:text-md hover:bg-secondary-100"
+        styles="md:text-md hover:bg-secondary-light"
         onClick={
           type == 'active'
             ? handleArchive
@@ -76,7 +76,7 @@ function ActionButtonsDesktop({
       </Button>
       <Button
         variant="outline"
-        styles="md:text-md hover:bg-secondary-100"
+        styles="md:text-md hover:bg-secondary-light"
         onClick={() => {
           setFn(async () => {
             await deleteNote(selectedNoteId);

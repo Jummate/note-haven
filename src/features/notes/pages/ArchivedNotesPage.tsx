@@ -31,9 +31,9 @@ function ArchivedNotes() {
         mobile={
           <MobileLayout>
             <div className="flex flex-1 justify-center">
-              <div className="p-8 text-secondary-900 font-inter w-full bg-white">
+              <div className="p-8 text-secondary font-inter w-full bg-inverted">
                 <PageHeader headerText="Archived Notes" />
-                <div>
+                <div className="text-dim">
                   All your archived notes are stored here. You can restore or
                   delete them anytime.
                 </div>
@@ -52,7 +52,7 @@ function ArchivedNotes() {
             firstItem={
               <>
                 <CreateNoteButton />
-                <div className="my-5">
+                <div className="my-5 text-dim">
                   All your archived notes are stored here. You can restore or
                   delete them anytime.
                 </div>

@@ -95,7 +95,12 @@
 
 // export default NoteEditor;
 
-import { Input, ShowError, VerticalWrapper } from '../../../shared/components';
+import {
+  HorizontalLine,
+  Input,
+  ShowError,
+  VerticalWrapper,
+} from '../../../shared/components';
 import { AppIcons } from '../../../shared/icons/Icons';
 import TagSelect from '../../tags/components/TagSelect';
 import AutoResizeTextarea from '../../../shared/components/AutoResizeTextArea';
@@ -119,7 +124,7 @@ function NoteEditor({ values, errors, handleChange }: NoteEditorProps) {
     <section className="w-full">
       <VerticalWrapper>
         <Input
-          styles="text-3xl placeholder:text-black placeholder:font-bold font-inter border-none text-black font-bold font-inter mb-3"
+          styles="text-3xl placeholder:text-default placeholder:font-bold font-inter border-none text-default font-bold font-inter mb-3"
           placeholder="Enter a title..."
           value={values.noteTitle as string}
           name="noteTitle"
@@ -130,10 +135,10 @@ function NoteEditor({ values, errors, handleChange }: NoteEditorProps) {
         )}
       </VerticalWrapper>
 
-      <section className="flex flex-col gap-6 text-secondary-700">
+      <section className="flex flex-col gap-6 text-dim">
         <div className="grid grid-cols-[120px_1fr] items-center">
           <span>
-            <TagIcon className="inline text-secondary-500" /> Tags
+            <TagIcon className="inline text-muted" /> Tags
           </span>
           <VerticalWrapper>
             <TagSelect
@@ -149,12 +154,13 @@ function NoteEditor({ values, errors, handleChange }: NoteEditorProps) {
 
         <div className="grid grid-cols-[120px_1fr]">
           <span className="flex items-center gap-2">
-            <ClockIcon className="inline text-secondary-500" /> Last Edited
+            <ClockIcon className="inline text-muted" /> Last Edited
           </span>
-          <span className="text-secondary-500">Not yet started</span>
+          <span className="text-muted">Not yet started</span>
         </div>
 
-        <hr className="border-secondary-200" />
+        {/* <hr className="border-secondary-200" /> */}
+        <HorizontalLine styles="my-6" />
 
         <VerticalWrapper>
           {errors.noteContent && (

@@ -67,7 +67,7 @@ function Header() {
             />
             <button type="button" aria-label="Setting Icon">
               <SettingsIcon
-                className="text-4xl text-secondary-500 cursor-pointer hover:text-primary-500/80"
+                className="text-4xl text-muted cursor-pointer hover:text-primary"
                 onClick={handleClick}
                 aria-hidden="true"
               />
