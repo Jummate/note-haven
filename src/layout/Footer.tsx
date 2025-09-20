@@ -29,18 +29,18 @@ function FooterTab({ text, icon: Icon, isActive, onClick }: FooterTabProps) {
     <button
       type="button"
       className={clsx(
-        'flex flex-col gap-1 items-center p-2 px-6 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 hover:text-primary-500/80',
-        { 'bg-primary-50': isActive },
+        'flex flex-col gap-1 items-center p-2 px-6 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary hover:text-primary-dark',
+        { 'bg-primary-light dark:bg-neutral-700': isActive },
       )}
       onClick={onClick}
       aria-selected={isActive}
       aria-label={modifiedText}
       title={modifiedText}
     >
-      <Icon size={20} className={clsx({ 'text-primary-500': isActive })} />
+      <Icon size={20} className={clsx({ 'text-primary': isActive })} />
       <span
         className={clsx('hidden sm:block text-lg', {
-          'text-primary-500': isActive,
+          'text-primary': isActive,
         })}
       >
         {modifiedText}

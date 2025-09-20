@@ -14,6 +14,7 @@ import { NoteForReviewType, NoteProps } from '../types';
 import { useNotes } from '../hooks/useNotes';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
+import { HorizontalLine } from '../../../shared/components';
 
 function ArchivedNoteDetailsPage() {
   const { noteId } = useParams();
@@ -30,7 +31,8 @@ function ArchivedNoteDetailsPage() {
         mobile={
           <MobileLayout>
             <ActionButtonsPanel type="archived" />
-            <hr className=" bg-secondary-100 my-6 h-1" />
+            {/* <hr className=" bg-secondary-100 my-6 h-1" /> */}
+            <HorizontalLine styles="my-6" />
             <NotePreview
               note={singleNote}
               showNote={!!noteId && !!singleNote && hasNotes}

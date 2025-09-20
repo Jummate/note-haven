@@ -1,3 +1,4 @@
+import { HorizontalLine } from '../../../shared/components';
 import NoContent from '../../../shared/components/NoContent';
 import { AppIcons } from '../../../shared/icons/Icons';
 import { NotePreviewProps } from '../types';
@@ -18,10 +19,10 @@ function NotePreview({
       {/* <div className="flex flex-col gap-4"> */}
       <h1 className="font-bold text-3xl mb-6">{note.title}</h1>
 
-      <section className="flex flex-col gap-4 text-secondary-700">
+      <section className="flex flex-col gap-4 text-secondary">
         <div className="grid grid-cols-[120px_1fr] items-start gap-2">
           <span>
-            <TagIcon className="inline text-secondary-500" /> Tags
+            <TagIcon className="inline text-muted" /> Tags
           </span>
           {/* <span>{note.tags.map((item) => item.name).toString()}</span> */}
           <span className="flex flex-wrap gap-2">
@@ -29,29 +30,27 @@ function NotePreview({
               note.tags.map(tag => (
                 <span
                   key={tag.id}
-                  className="bg-secondary-200 text-secondary-800 px-2 py-1 rounded-md text-sm"
+                  className="bg-secondary text-default px-2 py-1 rounded-md text-sm"
                 >
                   {tag.name}
                 </span>
               ))
             ) : (
-              <span className="italic text-secondary-400">No tags</span>
+              <span className="italic text-muted">No tags</span>
             )}
           </span>
         </div>
         {type == 'archived' && (
           <div className="grid grid-cols-[120px_1fr]">
             <span>
-              <SpinnerGapIcon className="inline text-secondary-500" /> Status
+              <SpinnerGapIcon className="inline text-muted" /> Status
             </span>
-            <span className="font-weight-bold text-secondary-500">
-              Archived
-            </span>
+            <span className="font-weight-bold text-muted">Archived</span>
           </div>
         )}
         <div className="grid grid-cols-[120px_1fr]">
           <span className="flex items-center gap-2">
-            <ClockIcon className="inline text-secondary-500" /> Last Edited
+            <ClockIcon className="inline text-muted" /> Last Edited
           </span>
           <span>
             {' '}
@@ -62,7 +61,8 @@ function NotePreview({
             })}
           </span>
         </div>
-        <hr className="border-secondary-200 mb-6" />
+        {/* <hr className="border-secondary-200 mb-6" /> */}
+        <HorizontalLine styles="my-6" />
       </section>
 
       <section className="text-xl leading-7 whitespace-pre-wrap">

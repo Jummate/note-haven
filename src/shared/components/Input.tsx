@@ -19,8 +19,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const defaultStyle =
-  'rounded-xl p-4 w-full bg-white border border-secondary-300 hover:bg-secondary-50 cursor-pointer focus:border-secondary-950 focus:outline-none';
-const eyeStyle = 'absolute right-3 w-8 h-8 z-10 cursor-pointer';
+  'rounded-xl p-4 w-full bg-transparent border border-muted-light hover:bg-surface text-default cursor-pointer focus:border-default focus:outline-none';
+const eyeStyle = 'absolute right-3 w-8 h-8 z-10 cursor-pointer text-muted';
 const searchStyle = 'absolute left-3 w-8 h-8 z-10 cursor-pointer';
 
 function TextInput({ styles, ...props }: InputProps) {

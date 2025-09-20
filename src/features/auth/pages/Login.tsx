@@ -27,11 +27,9 @@ function Login() {
 
   return (
     <AuthLayout
-      heading=" Welcome to Note Haven"
+      heading="Welcome to Note Haven"
       firstItem={
-        <span className="text-secondary-600 text-center">
-          Please log in to continue
-        </span>
+        <span className="text-dim text-center">Please log in to continue</span>
       }
       secondItem={
         <FormWrapper onSubmit={handleSubmit} aria-busy={loading}>
@@ -42,8 +40,8 @@ function Login() {
           )}
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="email" isRequired>
-              Email
+            <Label htmlFor="email" styles="-mb-3" isRequired>
+              Email Address
             </Label>
             <Input
               type="email"
@@ -62,14 +60,16 @@ function Login() {
           </VerticalWrapper>
           <Link
             to={`${FORGOT_PASSWORD_URL}`}
-            className="hover:text-primary-500 cursor-pointer -mb-7 self-end"
+            className="link-primary cursor-pointer -mb-7 self-end"
           >
-            <small>Forgot Password?</small>
+            <small className="text-dim hover:text-primary underline">
+              Forgot Password?
+            </small>
           </Link>
           {/* <div className="text-right -mb-7">
         </div> */}
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="password" isRequired>
+            <Label htmlFor="password" styles="-mb-3" isRequired>
               Password
             </Label>
             <Input
@@ -89,8 +89,8 @@ function Login() {
 
           <Button
             type="submit"
-            styles="font-bold hover:bg-opacity-95"
             disabled={loading}
+            styles={`font-bold hover:bg-primary-dark ${loading ? 'disabled' : ''}`}
           >
             {loading ? 'Processing...' : 'Login'}
           </Button>
@@ -99,10 +99,10 @@ function Login() {
       }
     >
       <HorizontalWrapper styles="justify-center items-center gap-3">
-        <span className="text-secondary-600">Not have an account yet?</span>
+        <span className="text-dim">Not have an account yet?</span>
         <Link
           to={SIGNUP_URL}
-          className="text-secondary-950 cursor-pointer hover:text-primary-500"
+          className="hover:text-primary text-default font-medium cursor-pointer"
         >
           Sign Up
         </Link>

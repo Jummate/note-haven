@@ -62,8 +62,8 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
   }
 
   const dividerStyles = clsx({
-    'divide-y divide-secondary-200': divider === 'vertical',
-    'divide-x divide-secondary-200': divider === 'horizontal',
+    'divide-y divide-secondary-dark': divider === 'vertical',
+    'divide-x divide-secondary-dark': divider === 'horizontal',
   });
 
   if (isLoading) return <p>Loading tags...</p>;
@@ -71,7 +71,7 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
 
   return (
     <section className={clsx('flex flex-col', styles)}>
-      <h2 className={clsx('mb-5', titleStyles)}>Tags</h2>
+      <h2 className={clsx('mb-5 text-neutral-500', titleStyles)}>Tags</h2>
 
       {!tags || tags.size == 0 ? (
         <NoContent text="No tags found" styles="pt-5" />
@@ -86,8 +86,8 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
 
           {query && searchedData?.size == 0 && (
             <HorizontalWrapper styles="mt-3 gap-3">
-              <span className="italic">No results found for </span>
-              <span className="font-bold">{query}</span>
+              <span className="italic text-default">No results found for </span>
+              <span className="font-bold text-default">{query}</span>
             </HorizontalWrapper>
           )}
 
@@ -101,7 +101,7 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
                   tabIndex={0}
                   className={clsx(
                     'flex justify-between py-4 px-3 cursor-pointer rounded-xl',
-                    { 'bg-primary-50': isActive },
+                    { 'bg-secondary-light': isActive },
                     listItemStyles,
                   )}
                   onKeyDown={e => {
@@ -126,18 +126,25 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
                   }
                 >
                   <span
-                    className={clsx('hover:text-primary-500/80', {
+                    className={clsx('text-secondary hover:text-primary', {
                       'font-semibold': isActive,
                     })}
                   >
                     <TagIcon
                       className={clsx('inline mr-2', {
-                        'text-primary-500': isActive,
+                        'text-primary': isActive,
                       })}
                     />
                     {value.name}
                   </span>
-                  <span> {isActive && <ChevRonRight size={20} />}</span>
+                  <span>
+                    {isActive && (
+                      <ChevRonRight
+                        className={clsx('text-default')}
+                        size={20}
+                      />
+                    )}
+                  </span>
                 </li>
               );
             })}

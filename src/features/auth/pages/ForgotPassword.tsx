@@ -50,7 +50,7 @@ function ForgotPassword() {
               callback={setEnableResend}
             />
           ) : (
-            <span className="text-secondary-600 text-center">
+            <span className="text-dim text-center">
               Enter your email below, and we'll send you a link to reset your
               password
             </span>
@@ -66,8 +66,8 @@ function ForgotPassword() {
           )}
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="email" isRequired>
-              Email
+            <Label htmlFor="email" styles="-mb-3" isRequired>
+              Email Address
             </Label>
             <Input
               type="email"
@@ -88,8 +88,8 @@ function ForgotPassword() {
           {submitted ? (
             <Button
               type="submit"
-              styles={`font-bold hover:bg-opacity-95 ${
-                !enableResend ? 'bg-gray-300' : ''
+              styles={`font-bold hover:bg-primary-dark ${
+                !enableResend ? 'disabled' : ''
               }`}
               disabled={!enableResend}
               onClick={() => setResendKey(prev => prev + 1)}
@@ -100,7 +100,7 @@ function ForgotPassword() {
           ) : (
             <Button
               type="submit"
-              styles="font-bold hover:bg-opacity-95"
+              styles={`font-bold hover:bg-primary-dark ${loading ? 'disabled' : ''}`}
               disabled={loading}
             >
               {loading ? 'Processing...' : 'Send Reset Link'}

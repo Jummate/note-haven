@@ -54,7 +54,7 @@ function Header() {
 
   return (
     <div>
-      <div className="px-8 py-12 border border-b-1 border-x-0 flex items-center">
+      <div className="px-8 py-12 border border-b-1 border-x-0 border-secondary-dark flex items-center">
         <div className="flex justify-between items-center flex-1">
           <PageHeader headerText={modifiedHeaderText} />
           <div className="flex justify-center items-center gap-8 w-[35%]">
@@ -67,7 +67,7 @@ function Header() {
             />
             <button type="button" aria-label="Setting Icon">
               <SettingsIcon
-                className="text-4xl text-secondary-500 cursor-pointer hover:text-primary-500/80"
+                className="text-4xl text-muted cursor-pointer hover:text-primary"
                 onClick={handleClick}
                 aria-hidden="true"
               />

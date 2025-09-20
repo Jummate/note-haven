@@ -26,7 +26,7 @@ function App() {
     <>
       <Router>
         <Suspense fallback={<div>Loading...</div>}>
-          <div className="">
+          <div className="bg-inverted text-default">
             <Routes>
               <Route index element={<LandingPage />} />
               {authRoutes.map(({ path, component }) => (
@@ -80,7 +80,6 @@ function App() {
         </Suspense>
       </Router>
       <ToastContainer position="top-center" />
-      {/* <p>Wooooooo qqqqqq</p> */}
       <Modal />
     </>
   );

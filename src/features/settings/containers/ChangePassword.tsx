@@ -18,10 +18,6 @@ function ChangePassword() {
   const { values, errors, handleChange, handleSubmit, loading } = useForm({
     initialValues: { oldPassword: '', newPassword: '', confirmNewPassword: '' },
     validationRules,
-    // onSubmit: _ => {
-    //   //this is just a placeholder body of the function just to prevent a linting error. It will be removed later
-    //   return Promise.resolve({ success: true });
-    // },
     onSubmit: values => changePassword(values, navigate),
     component: 'changePassword',
   });
@@ -99,7 +95,7 @@ function ChangePassword() {
           <div>
             <Button
               type="submit"
-              styles="font-bold hover:bg-opacity-95"
+              styles="font-bold hover:bg-primary-dark"
               disabled={loading}
             >
               {loading ? 'Processing...' : 'Save Password'}

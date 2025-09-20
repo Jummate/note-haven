@@ -31,12 +31,12 @@ function ActionButtonsMobile({
     <div className={clsx('flex gap-3', styles)}>
       <div className="flex flex-1 justify-between">
         <button
-          className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary-500/80"
+          className="flex gap-2 items-center text-2xl cursor-pointer hover:text-primary"
           onClick={() => navigate(-1)}
         >
           <ChevronLeftIcon
             aria-hidden="true"
-            className="text-secondary-500 text-4xl"
+            className="text-muted text-4xl hover:text-primary"
           />
           Go Back
         </button>
@@ -45,7 +45,7 @@ function ActionButtonsMobile({
             {type && (
               <button
                 aria-label="Delete Note"
-                className="hover:text-primary-500/80"
+                className="hover:text-primary"
                 onClick={async () => await deleteNote(selectedNoteId)}
               >
                 <DeleteIcon className="cursor-pointer" />
@@ -54,7 +54,7 @@ function ActionButtonsMobile({
             {type === 'active' && (
               <button
                 aria-label="Archive Note"
-                className="hover:text-primary-500/80"
+                className="hover:text-primary"
                 onClick={async () => await archiveNote(selectedNoteId)}
               >
                 <ArchivedIcon className="cursor-pointer" aria-hidden="true" />
@@ -63,17 +63,17 @@ function ActionButtonsMobile({
             {type === 'archived' && (
               <button
                 aria-label="Restore Note"
-                className="hover:text-primary-500/80"
+                className="hover:text-primary"
                 onClick={async () => await restoreNote(selectedNoteId)}
               >
                 <RestoreIcon aria-hidden="true" className="cursor-pointer" />
               </button>
             )}
-            <button className="text-secondary-500 cursor-pointer hover:opacity-80">
+            <button className="text-muted cursor-pointer hover:text-primary-dark">
               Cancel
             </button>
             <button
-              className="text-primary-500 cursor-pointer"
+              className="text-primary cursor-pointer hover:text-primary-dark"
               onClick={onNoteSave}
             >
               Save Note

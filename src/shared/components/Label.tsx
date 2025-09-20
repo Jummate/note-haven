@@ -9,7 +9,7 @@ interface LabelProps {
 }
 function Label({ children, styles, htmlFor, isRequired }: LabelProps) {
   return (
-    <label htmlFor={htmlFor} className={clsx('text-secondary-950', styles)}>
+    <label htmlFor={htmlFor} className={clsx('text-default', styles)}>
       {children} {isRequired ?? <sup className="text-red-500">*</sup>}
     </label>
   );

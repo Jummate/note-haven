@@ -30,7 +30,7 @@ function Signup() {
     <AuthLayout
       heading="Create Your Account"
       firstItem={
-        <span className="text-secondary-600 text-center">
+        <span className="text-dim text-center">
           Sign up to start organizing your notes and boost your productivity
         </span>
       }
@@ -42,8 +42,8 @@ function Signup() {
             </p>
           )}
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="email" isRequired>
-              Email
+            <Label htmlFor="email" styles="-mb-3" isRequired>
+              Email Address
             </Label>
             <Input
               type="email"
@@ -62,7 +62,7 @@ function Signup() {
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="password" isRequired>
+            <Label htmlFor="password" styles="-mb-3" isRequired>
               Password
             </Label>
             <Input
@@ -81,7 +81,7 @@ function Signup() {
           </VerticalWrapper>
 
           <VerticalWrapper styles="gap-1">
-            <Label htmlFor="confirmPassword" isRequired>
+            <Label htmlFor="confirmPassword" styles="-mb-3" isRequired>
               Confirm New Password
             </Label>
             <Input
@@ -107,9 +107,7 @@ function Signup() {
           <Button
             type="submit"
             disabled={loading}
-            styles={`font-bold hover:bg-opacity-95 ${
-              loading ? 'disabled' : ''
-            }`}
+            styles={`font-bold hover:bg-primary-dark ${loading ? 'disabled' : ''}`}
           >
             {loading ? 'Processing...' : 'Sign up'}
           </Button>
@@ -118,10 +116,10 @@ function Signup() {
       }
     >
       <HorizontalWrapper styles="justify-center items-center gap-3">
-        <span className="text-secondary-600">Already have an account?</span>
+        <span className="text-dim">Already have an account?</span>
         <Link
           to={LOGIN_URL}
-          className="text-secondary-950 cursor-pointer hover:text-primary-500"
+          className="cursor-pointer hover:text-primary text-default font-medium"
         >
           Log in
         </Link>
