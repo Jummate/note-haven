@@ -22,7 +22,7 @@ function PanelItem({
   return (
     <div
       className={clsx(
-        'flex border border-secondary rounded-xl justify-between items-center p-4 hover:bg-secondary-light',
+        'flex border border-secondary-dark rounded-xl justify-between items-center p-4 hover:bg-secondary-light',
         { 'bg-secondary-light': isActive },
       )}
       onClick={onSelect}
