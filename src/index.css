@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pacifico&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pacifico&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
 @tailwind base;
 
@@ -17,6 +19,8 @@ body {
 
 @layer base {
   :root {
+    --font-family-base: theme(fontFamily.sans);
+
     --color-primary: theme(colors.blue.500);
     --color-primary-light: theme(colors.blue.50);
     --color-primary-dark: theme(colors.blue.700);
@@ -63,6 +67,18 @@ body {
     --color-secondary-light: theme(colors.neutral.100);
     --color-secondary-dark: theme(colors.neutral.200);
     --color-surface: theme(colors.neutral.50);
+  }
+
+  .font-sans {
+    --font-family-base: theme(fontFamily.sans);
+  }
+
+  .font-serif {
+    --font-family-base: theme(fontFamily.serif);
+  }
+
+  .font-mono {
+    --font-family-base: theme(fontFamily.mono);
   }
 
   .dark {
