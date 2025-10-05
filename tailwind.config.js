@@ -70,8 +70,15 @@ export default {
         },
       },
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        pacifico: ['Pacifico', 'cursive'],
+        base: ['var(--font-family-base)'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Noto Serif', 'ui-serif', 'Georgia', 'serif'],
+        mono: [
+          'Source Code Pro',
+          'ui-monospace',
+          'SFMono-Regular',
+          'monospace',
+        ],
       },
       boxShadow: {
         'all-edges': '0 0 10px rgba(0, 0, 0, 0.25)',

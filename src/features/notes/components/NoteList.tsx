@@ -73,16 +73,15 @@ function NoteList<T extends NoteProps>({
         const slug = generateSlug(item.title);
         const actualPath = `/${path}/${item.id}/${slug}`;
         return (
-          <>
+          <div key={item.id}>
             <Note
-              key={item.id}
               onNoteSelect={() => handleSelect(item.id, actualPath)}
               note={item}
               isActive={item.id === selectedNoteId}
             />
 
             {index < arr.length - 1 && <HorizontalLine styles="my-1" />}
-          </>
+          </div>
         );
       })}
     </div>
