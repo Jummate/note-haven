@@ -56,6 +56,7 @@ export const login = async (
   );
   if (result.success) {
     const { accessToken } = result.data;
+    // console.log('ac => ', accessToken);
     useAuthStore.getState().setToken(accessToken);
 
     notify({
