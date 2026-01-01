@@ -1,3 +1,4 @@
+// useSyncTags.ts
 import { useEffect } from 'react';
 import { useTagsQuery } from './useTagsQuery';
 import { useTagStore } from '../stores/tagStore';

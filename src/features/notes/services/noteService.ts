@@ -23,10 +23,9 @@ export const createNote = async (data: CreateNoteDTO) => {
   );
 
   if (result.success) {
-    notify({
-      message: result.data.message,
-    });
+    notify({ message: result.data.message });
   }
+
   return result;
 };
 
@@ -36,9 +35,7 @@ export const fetchNotes = async (): Promise<NoteProps[]> => {
     'Failed to fetch notes.',
   );
 
-  if (!result.success) {
-    throw new Error(result.error);
-  }
+  if (!result.success) throw new Error(result.error);
 
   return convertToCamelCase(result.data) as NoteProps[];
 };
@@ -48,24 +45,20 @@ export const archiveNote = async (noteId: string) => {
     () => axiosAuth.patch(`${API_NOTE_VIEW_URL}${noteId}/archive`),
     'Failed to archive note.',
   );
-  if (result.success) {
-    notify({
-      message: result.data.message,
-    });
-  }
+
+  if (result.success) notify({ message: result.data.message });
+
   return result;
 };
 
 export const restoreNote = async (noteId: string) => {
   const result = await apiCall<CreateNoteResponseData>(
     () => axiosAuth.patch(`${API_NOTE_VIEW_URL}${noteId}/restore`),
-    'Failed to archive note.',
+    'Failed to restore note.',
   );
-  if (result.success) {
-    notify({
-      message: result.data.message,
-    });
-  }
+
+  if (result.success) notify({ message: result.data.message });
+
   return result;
 };
 
@@ -75,10 +68,7 @@ export const deleteNote = async (noteId: string) => {
     'Failed to delete note.',
   );
 
-  if (result.success) {
-    notify({
-      message: result.data.message,
-    });
-  }
+  if (result.success) notify({ message: result.data.message });
+
   return result;
 };

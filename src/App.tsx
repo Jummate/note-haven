@@ -20,65 +20,76 @@ import { SETTINGS_URL } from './features/settings/constants/urls';
 import LandingPage from './shared/pages/LandingPage';
 import ProtectedRoute from './shared/pages/ProtectedRoute';
 import Modal from './shared/components/Modal';
+// import axiosAuth from './shared/services/authenticatedApiClient';
+// import useAuthStore from './features/auth/stores/authStore';
+// import { API_REFRESH_URL } from './features/auth/constants/urls';
+import { AuthProvider } from './features/auth/AuthProvider';
+
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './shared/config/queryClient';
 
 function App() {
   return (
     <>
-      <Router>
-        <Suspense fallback={<div>Loading...</div>}>
-          <div className="bg-inverted text-default">
-            <Routes>
-              <Route index element={<LandingPage />} />
-              {authRoutes.map(({ path, component }) => (
-                <Route key={path} path={path} element={component} />
-              ))}
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <Router>
+            <Suspense fallback={<div>Loading...</div>}>
+              <div className="bg-inverted text-default">
+                <Routes>
+                  <Route index element={<LandingPage />} />
+                  {authRoutes.map(({ path, component }) => (
+                    <Route key={path} path={path} element={component} />
+                  ))}
 
-              <Route path="/" element={<Dashboard />}>
-                <Route
-                  index
-                  element={
-                    <ProtectedRoute>
-                      <NoteDashboard.WithErrorBoundary />
-                    </ProtectedRoute>
-                  }
-                />
+                  <Route path="/" element={<Dashboard />}>
+                    <Route
+                      index
+                      element={
+                        <ProtectedRoute>
+                          <NoteDashboard.WithErrorBoundary />
+                        </ProtectedRoute>
+                      }
+                    />
 
-                {noteRoutes.map(({ path, component }) => (
-                  <Route key={path} path={path} element={component} />
-                ))}
+                    {noteRoutes.map(({ path, component }) => (
+                      <Route key={path} path={path} element={component} />
+                    ))}
 
-                <Route path="/settings" element={<Settings />}>
+                    <Route path="/settings" element={<Settings />}>
+                      <Route
+                        index
+                        element={
+                          <ProtectedRoute>
+                            <Settings.ColorTheme />
+                          </ProtectedRoute>
+                        }
+                      />
+
+                      {settingsRoutes.map(({ path, component }) => {
+                        if (path != SETTINGS_URL) {
+                          return (
+                            <Route key={path} path={path} element={component} />
+                          );
+                        }
+                      })}
+                    </Route>
+                  </Route>
+
                   <Route
-                    index
+                    path="*"
                     element={
-                      <ProtectedRoute>
-                        <Settings.ColorTheme />
-                      </ProtectedRoute>
+                      <Container>
+                        <PageNotFound />
+                      </Container>
                     }
                   />
-
-                  {settingsRoutes.map(({ path, component }) => {
-                    if (path != SETTINGS_URL) {
-                      return (
-                        <Route key={path} path={path} element={component} />
-                      );
-                    }
-                  })}
-                </Route>
-              </Route>
-
-              <Route
-                path="*"
-                element={
-                  <Container>
-                    <PageNotFound />
-                  </Container>
-                }
-              />
-            </Routes>
-          </div>
-        </Suspense>
-      </Router>
+                </Routes>
+              </div>
+            </Suspense>
+          </Router>
+        </AuthProvider>
+      </QueryClientProvider>
       <ToastContainer position="top-center" />
       <Modal />
     </>

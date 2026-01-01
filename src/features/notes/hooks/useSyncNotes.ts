@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useNotesQuery } from './useNotesQuery';
 import { useNoteStore } from '../stores/noteStore';
+// import useAuthStore from '../../auth/stores/authStore';
 
 export const useSyncNotes = () => {
   const { data: notes, isLoading, isError } = useNotesQuery();
@@ -10,6 +11,7 @@ export const useSyncNotes = () => {
   useEffect(() => {
     if (notes) {
       setNotes(notes);
+    } else {
     }
   }, [notes, setNotes]);
 

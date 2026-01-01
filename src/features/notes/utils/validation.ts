@@ -15,7 +15,7 @@ export const validationRules: Record<
     return null;
   },
   noteContent: (value: TagOption[] | string) => {
-    if (!value) return 'Note Title is required.';
+    if (!value) return 'Note Content is required.';
     return null;
   },
 };

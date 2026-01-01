@@ -16,14 +16,18 @@ import { NoteForReviewType, NoteProps } from '../types';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import { HorizontalLine } from '../../../shared/components';
+import { useSyncNotes } from '../hooks/useSyncNotes';
 
 function NoteDetailsPage() {
   const { noteId } = useParams();
+  const { isLoading, isError } = useSyncNotes();
 
   const activeNotes = useNotes({ type: 'active' }) as NoteProps[] | undefined;
   const singleNote = useNotes({ noteId: noteId }) as NoteForReviewType;
   const hasNotes = activeNotes && activeNotes.length > 0;
 
+  if (isLoading) return <div>Loading notes...</div>;
+  if (isError) return <div>Error loading notes</div>;
   return (
     <NoteLayout>
       <ResponsiveLayout
