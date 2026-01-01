@@ -6,10 +6,10 @@ import axios, {
 } from 'axios';
 import useAuthStore from '../../features/auth/stores/authStore';
 import { API_REFRESH_URL } from '../../features/auth/constants/urls';
-import { BASE_URL } from '../constants/urls';
+import { API_BASE_URL } from '../constants/urls';
 
 const axiosAuth = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true, // allow HttpOnly cookie
 });
