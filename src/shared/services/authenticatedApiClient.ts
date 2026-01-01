@@ -1,95 +1,4 @@
-// import axios, {
-//   AxiosError,
-//   InternalAxiosRequestConfig,
-//   AxiosResponse,
-// } from 'axios';
-// import useAuthStore from '../../features/auth/stores/authStore';
-// import { API_REFRESH_URL } from '../../features/auth/constants/urls';
-// import { BASE_URL } from '../constants/urls';
-
-// const axiosAuth = axios.create({
-//   baseURL: BASE_URL,
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   withCredentials: true,
-// });
-
-// let isRefreshing = false;
-// let failedQueue: {
-//   resolve: (value?: unknown) => void;
-//   reject: (reason?: any) => void;
-//   originalRequest: InternalAxiosRequestConfig;
-// }[] = [];
-
-// // Helper to process the queue
-// const processQueue = (error: any, token: string | null = null) => {
-//   failedQueue.forEach(prom => {
-//     if (token) {
-//       if (prom.originalRequest.headers) {
-//         prom.originalRequest.headers.Authorization = `Bearer ${token}`;
-//       }
-//       prom.resolve(axiosAuth(prom.originalRequest));
-//     } else {
-//       prom.reject(error);
-//     }
-//   });
-//   failedQueue = [];
-// };
-
-// // Request interceptor: attach access token except for refresh endpoint
-// axiosAuth.interceptors.request.use(
-//   (config: InternalAxiosRequestConfig) => {
-//     const token = useAuthStore.getState().token;
-//     if (token && config.url !== API_REFRESH_URL) {
-//       if (config.headers) config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   error => Promise.reject(error)
-// );
-
-// // Response interceptor: handle 401, queue failed requests
-// axiosAuth.interceptors.response.use(
-//   (response: AxiosResponse) => response,
-//   async (error: AxiosError) => {
-//     const originalRequest = error.config as any;
-
-//     if (!error.response) return Promise.reject(error);
-
-//     if (error.response.status === 401 && originalRequest.url !== API_REFRESH_URL) {
-//       if (isRefreshing) {
-//         // Queue the request and wait for the refresh
-//         return new Promise((resolve, reject) => {
-//           failedQueue.push({ resolve, reject, originalRequest });
-//         });
-//       }
-
-//       originalRequest._retry = true;
-//       isRefreshing = true;
-
-//       try {
-//         const refreshResponse = await axiosAuth.get<{ accessToken: string }>(API_REFRESH_URL);
-//         const newToken = refreshResponse.data.accessToken;
-//         useAuthStore.getState().setToken(newToken);
-
-//         processQueue(null, newToken);
-//         return axiosAuth(originalRequest);
-//       } catch (refreshError) {
-//         processQueue(refreshError, null);
-//         useAuthStore.getState().logout();
-//         return Promise.reject(refreshError);
-//       } finally {
-//         isRefreshing = false;
-//       }
-//     }
-
-//     return Promise.reject(error);
-//   }
-// );
-
-// export default axiosAuth;
-
+// authenticatedApiClient.ts
 import axios, {
   AxiosError,
   InternalAxiosRequestConfig,
@@ -101,23 +10,20 @@ import { BASE_URL } from '../constants/urls';
 
 const axiosAuth = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true,
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true, // allow HttpOnly cookie
 });
 
 type RetriableRequest = InternalAxiosRequestConfig & { _retry?: boolean };
 
 let isRefreshing = false;
-
 let failedQueue: Array<{
   resolve: (value: AxiosResponse | PromiseLike<AxiosResponse>) => void;
   reject: (reason?: unknown) => void;
   originalRequest: RetriableRequest;
 }> = [];
 
-// Helper to process the queue
+// Process queued requests
 const processQueue = (error: unknown, token: string | null = null) => {
   failedQueue.forEach(item => {
     if (token) {
@@ -129,29 +35,24 @@ const processQueue = (error: unknown, token: string | null = null) => {
       item.reject(error);
     }
   });
-
   failedQueue = [];
 };
 
-// Request interceptor: attach access token except for refresh endpoint
+// Request interceptor: attach access token
 axiosAuth.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  config => {
     const token = useAuthStore.getState().token;
-
-    if (token && config.url !== API_REFRESH_URL) {
-      if (config.headers) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
+    if (token && config.url !== API_REFRESH_URL && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
   },
-  (error: AxiosError) => Promise.reject(error),
+  error => Promise.reject(error),
 );
 
-// Response interceptor: handle 401, queue failed requests
+// Response interceptor: handle 401 → refresh token
 axiosAuth.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  response => response,
   async (error: AxiosError) => {
     if (!error.response) return Promise.reject(error);
 
@@ -171,12 +72,16 @@ axiosAuth.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshResponse = await axiosAuth.get<{ accessToken: string }>(
-          API_REFRESH_URL,
-        );
+        // const refreshResponse = await axiosAuth.get<{ accessToken: string }>(API_REFRESH_URL);
+        // const newToken = refreshResponse.data.accessToken;
+        // useAuthStore.getState().setToken(newToken);
 
-        const newToken = refreshResponse.data.accessToken;
-        useAuthStore.getState().setToken(newToken);
+        const { data } = await axiosAuth.get<{
+          accessToken: string;
+          expiresIn: number;
+        }>(API_REFRESH_URL);
+        const newToken = data.accessToken;
+        useAuthStore.getState().setToken(newToken, data.expiresIn);
 
         processQueue(null, newToken);
 
@@ -185,7 +90,7 @@ axiosAuth.interceptors.response.use(
         }
 
         return axiosAuth(originalRequest);
-      } catch (refreshError: unknown) {
+      } catch (refreshError) {
         processQueue(refreshError, null);
         useAuthStore.getState().logout();
         return Promise.reject(refreshError);

@@ -9,6 +9,7 @@ export interface ErrorResponse {
 }
 
 export interface ErrorResponseData {
+  code?: string;
   detail?: string;
   message?: string;
 }

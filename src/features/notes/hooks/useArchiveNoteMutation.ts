@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { archiveNote, fetchNotes } from '../services/noteService';
-import { useNoteStore } from '../stores/noteStore';
+import { archiveNote } from '../services/noteService';
 
 const useArchiveNoteMutation = () => {
   const queryClient = useQueryClient();
@@ -8,11 +7,12 @@ const useArchiveNoteMutation = () => {
   return useMutation({
     mutationFn: (noteId: string) => archiveNote(noteId),
     onSuccess: async () => {
-      const notes = await queryClient.fetchQuery({
-        queryKey: ['notes'],
-        queryFn: fetchNotes,
-      });
-      useNoteStore.getState().setNotes(notes);
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
+      // const notes = await queryClient.fetchQuery({
+      //   queryKey: ['notes'],
+      //   queryFn: fetchNotes,
+      // });
+      // useNoteStore.getState().setNotes(notes);
     },
   });
 };

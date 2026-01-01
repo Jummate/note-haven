@@ -56,6 +56,7 @@ function NoteList<T extends NoteProps>({
   styles?: string;
 }) {
   const navigate = useNavigate();
+  // const { selectedNoteId } = useNoteStore();
   const { setSelectedNoteId, selectedNoteId } = useNoteStore();
 
   function handleSelect(noteId: string, actualPath: string) {
@@ -77,6 +78,7 @@ function NoteList<T extends NoteProps>({
             <Note
               onNoteSelect={() => handleSelect(item.id, actualPath)}
               note={item}
+              // isActive={actualPath === window.location.pathname}
               isActive={item.id === selectedNoteId}
             />
 

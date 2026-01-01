@@ -14,19 +14,6 @@ export const convertToSnakeCase = <T extends Record<string, unknown>>(
   );
 };
 
-// export const convertToCamelCase = (data: Record<string, any>): any => {
-//   if (Array.isArray(data)) {
-//     return data.map(convertToCamelCase);
-//   } else if (typeof data === 'object' && data !== null) {
-//     return Object.entries(data).reduce((acc, [key, value]) => {
-//       const camelKey = key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
-//       acc[camelKey] = convertToCamelCase(value);
-//       return acc;
-//     }, {} as Record<string, any>);
-//   }
-//   return data;
-// };
-
 export const convertToCamelCase = (data: unknown): unknown => {
   if (Array.isArray(data)) {
     return data.map(item => convertToCamelCase(item));

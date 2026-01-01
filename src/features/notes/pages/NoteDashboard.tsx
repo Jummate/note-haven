@@ -19,7 +19,7 @@ import { ErrorFallback } from '../../../shared/components/ErrorFallback';
 import { SidebarLabels } from '../constants/labels';
 import { useFilteredNotes } from '../hooks/useFilteredNotes';
 import { Input } from '../../../shared/components';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { useCheckLocation } from '../../../shared/hooks/useCheckLocation';
 import { useSyncNotes } from '../hooks/useSyncNotes';
 // import SearchBar from '../../../shared/components/SearchBar';
@@ -34,7 +34,7 @@ function NoteDashboard() {
   const hasSearchParam = useCheckLocation('search');
 
   const { searchQuery, noteToUse, hasNotes } = useFilteredNotes();
-  const [value, setValue] = useState<string>(searchParams.get('search') || '');
+  // const [value, setValue] = useState<string>(searchParams.get('search') || '');
 
   const headerText = searchQuery
     ? `Showing results for ${searchQuery}`
@@ -42,7 +42,7 @@ function NoteDashboard() {
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target.value;
-    setValue(input);
+    // setValue(input);
     if (input) {
       setSearchParams({ search: input });
       navigate(`/${NOTES_URL}?search=${encodeURIComponent(input)}`);
@@ -72,7 +72,8 @@ function NoteDashboard() {
                   <div className="mb-7">
                     <Input
                       type="search"
-                      value={value}
+                      // value={value}
+                      value={searchParams.get('search') || ''}
                       onChange={handleChange}
                       // styles="mb-7"
                       // value={searchQuery}

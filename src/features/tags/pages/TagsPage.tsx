@@ -14,18 +14,47 @@ import NoContent from '../../../shared/components/NoContent';
 import { NOTES_URL } from '../../notes/constants/urls';
 import { withErrorBoundary } from '../../../shared/components/WithErrorBoundary';
 import { ErrorFallback } from '../../../shared/components/ErrorFallback';
+import { useSyncNotes } from '../../notes/hooks/useSyncNotes';
+import { useSyncTags } from '../hooks/useSyncTags';
 
 function TagsPage() {
   const { tagSlug } = useParams();
 
   // const { noteId } = useParams();
 
-  const getNotes = useNoteStore(state => state.getNotes);
-  const allNotes = getNotes();
+  const { isLoading: notesLoading, isError: notesError } = useSyncNotes();
+  const { isLoading: tagsLoading, isError: tagsError } = useSyncTags();
 
-  const getNotesByTag = useNoteStore(state => state.getNotesByTag);
-  // const notesFilteredByTag = tagSlug ? getNotesByTag(tagSlug) : undefined;
-  const notesToShow = tagSlug ? getNotesByTag(tagSlug) : allNotes;
+  // const getNotes = useNoteStore(state => state.getNotes);
+  // const allNotes = getNotes();
+
+  // const getNotesByTag = useNoteStore(state => state.getNotesByTag);
+  // // const notesFilteredByTag = tagSlug ? getNotesByTag(tagSlug) : undefined;
+  // const notesToShow = tagSlug ? getNotesByTag(tagSlug) : allNotes;
+
+  const notesToShow = useNoteStore(state =>
+    tagSlug ? state.getNotesByTag(tagSlug) : state.notes,
+  );
+
+  console.log('🏷️ TagsPage render:', {
+    tagSlug,
+    notesLoading,
+    tagsLoading,
+    notesToShowCount: notesToShow?.length,
+  });
+
+  if (notesLoading || tagsLoading) {
+    console.log('⏳ TagsPage: Still loading...');
+    return <div>Loading...</div>;
+  }
+
+  if (notesError || tagsError) {
+    console.log('❌ TagsPage: Error!');
+    return <div>Error loading data</div>;
+  }
+
+  // if (notesLoading || tagsLoading) return <div>Loading...</div>;
+  // if (notesError || tagsError) return <div>Error loading data</div>;
 
   return (
     <NoteLayout>

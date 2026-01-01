@@ -6,8 +6,5 @@ export const useNotesQuery = () => {
   return useQuery({
     queryKey: ['notes'],
     queryFn: fetchNotes,
-    staleTime: 1000 * 60 * 5,
-    retry: 1,
-    // refetchOnWindowFocus: false,
   });
 };
