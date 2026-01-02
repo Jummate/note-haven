@@ -26,12 +26,10 @@ const useAuthStore = create<AuthState>(set => ({
   setInitialized: (initialized: boolean) => set({ isInitialized: initialized }),
 
   clearAuth: () => {
-    console.log('🔴 clearAuth called'); // ← ADD THIS
     set({ token: null, tokenExpiry: null });
   },
 
   logout: () => {
-    console.log('🔴 logout called, broadcasting...'); // ← ADD THIS
     set({ token: null, tokenExpiry: null });
     authChannel.postMessage('logout');
   },
