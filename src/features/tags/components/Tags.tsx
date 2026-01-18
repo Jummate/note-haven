@@ -117,7 +117,7 @@ function Tags({ styles, divider, titleStyles, listItemStyles }: TagsProps) {
                   }}
                   onClick={() =>
                     handleClick({
-                      path: `/${TAGS_URL}/${value.name}`,
+                      path: `/notes/${TAGS_URL}/${value.name}`,
                       headerText: `Showing result for ${value.name}`,
                       footerActiveTab: 'Tags',
                       settingActiveTab: '',

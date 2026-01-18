@@ -25,7 +25,7 @@ function EmptyNote({ noteType }: EmptyNoteProps) {
         <p>
           No notes have been archived yet. Move notes here for safekeeping, or{' '}
           <Link
-            to={`/${CREATE_NOTE_URL}`}
+            to={`/notes/${CREATE_NOTE_URL}`}
             // to="/notes/create"
             className="underline text-primary hover:text-primary-dark"
           >

@@ -26,7 +26,7 @@ export default function SearchBar({ inputClassName = '' }: SearchBarProps) {
     setSearchParams({ search: input });
 
     if (location.pathname !== NOTES_URL) {
-      navigate(`${NOTES_URL}?search=${encodeURIComponent(input)}`);
+      navigate(`/${NOTES_URL}?search=${encodeURIComponent(input)}`);
     }
   }
 

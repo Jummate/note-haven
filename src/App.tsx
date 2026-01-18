@@ -36,13 +36,13 @@ function App() {
           <Router>
             <Suspense fallback={<div>Loading...</div>}>
               <div className="bg-inverted text-default">
-                <Routes>
+                {/* <Routes>
                   <Route index element={<LandingPage />} />
                   {authRoutes.map(({ path, component }) => (
                     <Route key={path} path={path} element={component} />
                   ))}
 
-                  <Route path="/" element={<Dashboard />}>
+                  <Route path="/notes" element={<Dashboard />}>
                     <Route
                       index
                       element={
@@ -56,7 +56,7 @@ function App() {
                       <Route key={path} path={path} element={component} />
                     ))}
 
-                    <Route path="/settings" element={<Settings />}>
+                    <Route path="settings" element={<Settings />}>
                       <Route
                         index
                         element={
@@ -66,6 +66,60 @@ function App() {
                         }
                       />
 
+                      {settingsRoutes.map(({ path, component }) => {
+                        if (path != SETTINGS_URL) {
+                          return (
+                            <Route key={path} path={path} element={component} />
+                          );
+                        }
+                      })}
+                    </Route>
+                  </Route>
+
+                  <Route
+                    path="*"
+                    element={
+                      <Container>
+                        <PageNotFound />
+                      </Container>
+                    }
+                  />
+                </Routes> */}
+
+                <Routes>
+                  <Route index element={<LandingPage />} />
+
+                  {authRoutes.map(({ path, component }) => (
+                    <Route key={path} path={path} element={component} />
+                  ))}
+
+                  {/* Dashboard wrapper for authenticated pages */}
+                  <Route element={<Dashboard />}>
+                    {/* Notes section */}
+                    <Route path="/notes">
+                      <Route
+                        index
+                        element={
+                          <ProtectedRoute>
+                            <NoteDashboard.WithErrorBoundary />
+                          </ProtectedRoute>
+                        }
+                      />
+                      {noteRoutes.map(({ path, component }) => (
+                        <Route key={path} path={path} element={component} />
+                      ))}
+                    </Route>
+
+                    {/* Settings section - sibling to notes, not nested under it */}
+                    <Route path="/settings" element={<Settings />}>
+                      <Route
+                        index
+                        element={
+                          <ProtectedRoute>
+                            <Settings.ColorTheme />
+                          </ProtectedRoute>
+                        }
+                      />
                       {settingsRoutes.map(({ path, component }) => {
                         if (path != SETTINGS_URL) {
                           return (
