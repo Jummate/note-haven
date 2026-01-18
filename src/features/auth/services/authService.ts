@@ -11,10 +11,7 @@ import {
 } from '../types';
 import { ApiResponse } from '../../../shared/types';
 import { apiCall } from '../../../shared/utils/apiHelpers';
-import {
-  DASHBOARD_URL,
-  LANDING_PAGE_URL,
-} from '../../../shared/constants/urls';
+import { DASHBOARD_URL, HOMEPAGE_URL } from '../../../shared/constants/urls';
 import {
   API_FORGOT_PASSWORD_URL,
   API_LOGIN_URL,
@@ -84,7 +81,7 @@ export const logout = async (
     useAuthStore.getState().logout();
     // useAuthStore.getState().setToken(null);
     notify({ message: 'Logged out successfully' });
-    navigate(LANDING_PAGE_URL, { replace: true });
+    navigate(HOMEPAGE_URL, { replace: true });
     return { data: null };
   }, 'Failed to log out.');
 };
