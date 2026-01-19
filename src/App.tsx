@@ -110,16 +110,16 @@ function App() {
                       ))}
                     </Route>
 
-                    {/* Settings section - sibling to notes, not nested under it */}
-                    <Route path="/settings" element={<Settings />}>
-                      <Route
-                        index
-                        element={
-                          <ProtectedRoute>
-                            <Settings.ColorTheme />
-                          </ProtectedRoute>
-                        }
-                      />
+                    <Route
+                      path="/settings"
+                      element={
+                        <ProtectedRoute>
+                          <Settings />
+                        </ProtectedRoute>
+                      }
+                    >
+                      <Route index element={<Settings.ColorTheme />} />
+
                       {settingsRoutes.map(({ path, component }) => {
                         if (path != SETTINGS_URL) {
                           return (
