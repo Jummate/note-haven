@@ -36,56 +36,6 @@ function App() {
           <Router>
             <Suspense fallback={<div>Loading...</div>}>
               <div className="bg-inverted text-default">
-                {/* <Routes>
-                  <Route index element={<LandingPage />} />
-                  {authRoutes.map(({ path, component }) => (
-                    <Route key={path} path={path} element={component} />
-                  ))}
-
-                  <Route path="/notes" element={<Dashboard />}>
-                    <Route
-                      index
-                      element={
-                        <ProtectedRoute>
-                          <NoteDashboard.WithErrorBoundary />
-                        </ProtectedRoute>
-                      }
-                    />
-
-                    {noteRoutes.map(({ path, component }) => (
-                      <Route key={path} path={path} element={component} />
-                    ))}
-
-                    <Route path="settings" element={<Settings />}>
-                      <Route
-                        index
-                        element={
-                          <ProtectedRoute>
-                            <Settings.ColorTheme />
-                          </ProtectedRoute>
-                        }
-                      />
-
-                      {settingsRoutes.map(({ path, component }) => {
-                        if (path != SETTINGS_URL) {
-                          return (
-                            <Route key={path} path={path} element={component} />
-                          );
-                        }
-                      })}
-                    </Route>
-                  </Route>
-
-                  <Route
-                    path="*"
-                    element={
-                      <Container>
-                        <PageNotFound />
-                      </Container>
-                    }
-                  />
-                </Routes> */}
-
                 <Routes>
                   <Route index element={<LandingPage />} />
 

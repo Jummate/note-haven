@@ -50,12 +50,6 @@ function Modal() {
               {text}
             </Button>
           </div>
-          {/* <div className="flex justify-between items-center">
-            <Button onClick={() => setOpenModal(false)}>Cancel</Button>
-            <Button onClick={fn} styles={`${bgColor} text-white`}>
-              {text}
-            </Button>
-          </div> */}
         </div>
       </div>
     </article>

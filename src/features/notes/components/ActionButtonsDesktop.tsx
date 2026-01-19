@@ -49,25 +49,6 @@ function ActionButtonsDesktop({
             ? handleArchive
             : async () => await restoreNote(selectedNoteId)
         }
-        // onClick={
-        //   type == 'active'
-        //     ? async () => await archiveNote(selectedNoteId)
-        //     : async () => await restoreNote(selectedNoteId)
-        // }
-
-        //  onClick={() => {
-        //       setFn(async () => {
-        //          type == 'active'
-        //         ? await archiveNote(selectedNoteId)
-        //         : await restoreNote(selectedNoteId)
-        //         setOpenModal(false);
-        //       });
-        //       setMessage(
-        //         'Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.',
-        //       );
-        //       setType('Delete');
-        //       setOpenModal(true);
-        //     }}
       >
         {type == 'active' ? <ArchivedIcon size={20} /> : null}
         {type == 'archived' ? <RestoreIcon size={20} /> : null}
