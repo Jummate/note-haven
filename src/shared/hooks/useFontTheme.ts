@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 export type FontThemeType = 'serif' | 'sans' | 'mono';
 
 function detectSystemDefault(): FontThemeType {
-  // Simple heuristic – you can refine this
   const platform = window.navigator.platform.toLowerCase();
   if (platform.includes('win')) return 'sans';
   if (platform.includes('mac')) return 'sans';

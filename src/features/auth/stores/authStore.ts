@@ -7,15 +7,18 @@ interface AuthState {
   isInitialized: boolean;
   token: string | null;
   tokenExpiry: number | null;
+  isLoggingOut: boolean;
   setToken: (token: string | null, expiresIn?: number) => void;
   logout: () => void;
   clearAuth: () => void;
+  setLoggingOut: (value: boolean) => void;
 }
 
 const useAuthStore = create<AuthState>(set => ({
   token: null,
   tokenExpiry: null,
   isInitialized: false,
+  isLoggingOut: false,
 
   setToken: (token, expiresIn = 900) =>
     set({
@@ -24,6 +27,7 @@ const useAuthStore = create<AuthState>(set => ({
     }),
 
   setInitialized: (initialized: boolean) => set({ isInitialized: initialized }),
+  setLoggingOut: (value: boolean) => set({ isLoggingOut: value }),
 
   clearAuth: () => {
     set({ token: null, tokenExpiry: null });
@@ -36,7 +40,6 @@ const useAuthStore = create<AuthState>(set => ({
 }));
 
 authChannel.onmessage = ev => {
-  console.log('📡 Received broadcast message:', ev.data); // ← ADD THIS
   if (ev.data === 'logout') {
     useAuthStore.getState().clearAuth();
   }

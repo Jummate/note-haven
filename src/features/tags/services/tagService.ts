@@ -7,12 +7,11 @@ import { TagType } from '../types';
 export const fetchTags = async (): Promise<TagType[]> => {
   const result = await apiCall<TagType[]>(
     () => axiosAuth.get(API_TAGS_URL),
-    'Failed to fetch tags.', // fallback message in case API does not return code/message
+    'Failed to fetch tags.',
   );
 
-  // No need to throw raw errors anymore; handleApiError already notified the user
   if (!result.success) {
-    return []; // return empty array if fetching fails
+    return [];
   }
 
   return convertToCamelCase(result.data) as TagType[];

@@ -1,5 +1,3 @@
-// src/features/auth/services/authService.ts
-
 import { NavigateFunction } from 'react-router-dom';
 import apiClient from '../../../shared/services/apiClient';
 import { convertToSnakeCase } from '../../../shared/utils/conversion';
@@ -24,9 +22,6 @@ import {
 import useAuthStore from '../stores/authStore';
 import axiosAuth from '../../../shared/services/authenticatedApiClient';
 
-/**
- * Signup / Create User
- */
 export const createUser = async (
   data: Record<string, string>,
   navigate: NavigateFunction,
@@ -44,9 +39,6 @@ export const createUser = async (
   return result;
 };
 
-/**
- * Login
- */
 export const login = async (
   data: Record<string, string>,
   navigate: NavigateFunction,
@@ -57,9 +49,6 @@ export const login = async (
   );
 
   if (result.success) {
-    // const { accessToken } = result.data;
-    // useAuthStore.getState().setToken(accessToken);
-
     const { accessToken, expiresIn } = result.data;
     useAuthStore.getState().setToken(accessToken, expiresIn);
 
@@ -70,25 +59,24 @@ export const login = async (
   return result;
 };
 
-/**
- * Logout
- */
 export const logout = async (
   navigate: NavigateFunction,
 ): Promise<ApiResponse<null>> => {
+  useAuthStore.getState().setLoggingOut(true);
+
   return apiCall(async () => {
     await apiClient.post(API_LOGOUT_URL, {}, { withCredentials: true });
-    useAuthStore.getState().logout();
-    // useAuthStore.getState().setToken(null);
-    notify({ message: 'Logged out successfully' });
+
     navigate(HOMEPAGE_URL, { replace: true });
+
+    useAuthStore.getState().logout();
+
+    notify({ message: 'Logged out successfully' });
+
     return { data: null };
   }, 'Failed to log out.');
 };
 
-/**
- * Forgot Password
- */
 export const forgotPassword = async (
   data: Record<string, string>,
   callback: () => void,
@@ -103,9 +91,6 @@ export const forgotPassword = async (
   return result;
 };
 
-/**
- * Reset Password
- */
 export const resetPassword = async (
   data: Record<string, string>,
   navigate: NavigateFunction,
@@ -131,9 +116,6 @@ export const resetPassword = async (
   return result;
 };
 
-/**
- * Change Password
- */
 export const changePassword = async (
   data: Record<string, string>,
   navigate: NavigateFunction,

@@ -12,7 +12,7 @@ function FloatingCreateNoteButton() {
     <Button
       type="button"
       aria-label="Create New Note"
-      onClick={() => navigate(`/${CREATE_NOTE_URL}`)}
+      onClick={() => navigate(`/notes/${CREATE_NOTE_URL}`)}
       className="h-24 w-24 rounded-full bg-primary text-white flex items-center justify-center fixed p-4 bottom-40 right-8 shadow-lg hover:font-bold hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary"
     >
       <PlusIcon size={24} className="text-white font-thin" />

@@ -15,14 +15,14 @@ export const footerTabs = [
   {
     icon: AppIcons.search,
     label: 'Search',
-    path: SEARCH_URL,
+    path: `/notes/${SEARCH_URL}`,
   },
   {
     icon: AppIcons.archived,
     label: SidebarLabels.ARCHIVED_NOTES,
-    path: ARCHIVED_URL,
+    path: `/notes/${ARCHIVED_URL}`,
   },
-  { icon: AppIcons.tags, label: 'Tags', path: TAGS_URL },
+  { icon: AppIcons.tags, label: 'Tags', path: `/notes/${TAGS_URL}` },
   {
     icon: AppIcons.settings,
     label: SettingsLabel.SETTINGS,

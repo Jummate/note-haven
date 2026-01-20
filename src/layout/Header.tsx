@@ -48,7 +48,7 @@ function Header() {
       setActiveTab('footer', '');
       setActiveTab('settings', '');
       setHeaderText(SidebarLabels.ALL_NOTES.toString());
-      if (input) navigate(`${NOTES_URL}?search=${encodeURIComponent(input)}`);
+      if (input) navigate(`/${NOTES_URL}?search=${encodeURIComponent(input)}`);
     }
   }
 

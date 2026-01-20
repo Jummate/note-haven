@@ -3,6 +3,11 @@ import { LOGIN_URL, SIGNUP_URL } from '../../features/auth/constants/urls';
 import useAuthStore from '../../features/auth/stores/authStore';
 import { useEffect } from 'react';
 import { NOTES_URL } from '../../features/notes/constants/urls';
+import {
+  CONTACT_URL,
+  PRIVACY_POLICY_URL,
+  TERMS_OF_SERVICE_URL,
+} from '../constants/urls';
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -17,7 +22,7 @@ function LandingPage() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <section className="min-h-[85vh] md:min-h-[70vh] flex w-full items-center justify-center text-center">
+      <section className="min-h-screen flex w-full items-center justify-center text-center">
         <div className=" px-8">
           <div className="inline-flex items-center gap-2 mb-12">
             <svg
@@ -54,26 +59,26 @@ function LandingPage() {
             </svg>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-10">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold leading-tight mb-20">
             Write. Organize. Find.
           </h1>
 
-          <p className="text-md md:text-2xl text-[#666] mb-12">
-            The note-taking app that stays out of your way
+          <p className="text-3xl md:text-4xl text-[#666] mb-20 leading-relaxed text-center">
+            The minimalist note-taking app that stays out of your way
           </p>
 
           <Link
             to={SIGNUP_URL}
-            className="bg-primary text-white hover:bg-primary-dark px-20 py-5 rounded-full md:text-md text-nowrap font-semibold focus:outline-none focus:ring-2 focus:ring-primary hover:primary-dark"
+            className="bg-primary text-white hover:bg-primary-dark px-20 py-7 rounded-full md:text-md text-nowrap font-semibold focus:outline-none focus:ring-2 focus:ring-primary hover:primary-dark shadow-2xl"
           >
-            Get Started
+            Get Started for Free
           </Link>
 
           <div className="mt-12 text-md text-[#888]">
             No credit card required • Your notes stay private
           </div>
 
-          <div className="flex items-center justify-center gap-2 mt-5 text-[#666] text-base sm:text-2xl">
+          <div className="flex items-center justify-center gap-2 mt-32 text-[#666] text-2xl sm:text-2xl">
             Already have an account?
             <Link
               to={LOGIN_URL}
@@ -85,21 +90,31 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-[1200px] mx-auto px-8">
+      <section className="py-20 bg-white border-t border-[#e5e5e5]">
+        <div className="flex flex-col gap-12 items-center justify-center mb-20 max-w-7xl mx-auto px-8">
+          <h1 className="text-5xl font-bold text-center leading-tight">
+            Designed for Modern Productivity
+          </h1>
+
+          <p className="text-center">
+            Everything you need to stay organized without the clutter of
+            traditional apps.
+          </p>
+        </div>
+        <div className="max-w-7xl mx-auto px-8">
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12
-               max-w-[800px] mx-auto"
+               max-w-6xl mx-auto"
           >
             <div
-              className="p-10 rounded-2xl bg-[#fafafa]
+              className="p-10 rounded-3xl bg-[#f8f5f5] shadow-lg
                  transition-all duration-300
                  hover:bg-[#f5f5f5] hover:-translate-y-1.5"
             >
-              <span className="block text-[2.5rem] mb-5">⚡</span>
-              <div className="text-[1.3rem] font-semibold mb-3">
-                Blazing Fast
-              </div>
+              <span className="flex justify-center items-center w-10 h-10 p-10 text-[2.5rem] mb-5 rounded-full bg-white">
+                ⚡
+              </span>
+              <h2 className="text-3xl font-semibold mb-3">Blazing Fast</h2>
               <p className="text-[#666] leading-relaxed">
                 Open the app and start typing. No setup, no configuration, no
                 waiting.
@@ -107,14 +122,14 @@ function LandingPage() {
             </div>
 
             <div
-              className="p-10 rounded-2xl bg-[#fafafa]
+              className="p-10 rounded-3xl bg-[#f8f5f5] shadow-lg
                  transition-all duration-300
                  hover:bg-[#f5f5f5] hover:-translate-y-1.5"
             >
-              <span className="block text-[2.5rem] mb-5">🏷️</span>
-              <div className="text-[1.3rem] font-semibold mb-3">
-                Find Anything
-              </div>
+              <span className="flex justify-center items-center w-10 h-10 p-10 text-[2.5rem] mb-5 rounded-full bg-white">
+                🏷️
+              </span>
+              <div className="text-3xl font-semibold mb-3">Find Anything</div>
               <p className="text-[#666] leading-relaxed">
                 Search through all your notes instantly. Tags help you organize
                 and discover.
@@ -122,12 +137,14 @@ function LandingPage() {
             </div>
 
             <div
-              className="p-10 rounded-2xl bg-[#fafafa]
+              className="p-10 rounded-3xl bg-[#f8f5f5] shadow-lg
                  transition-all duration-300
                  hover:bg-[#f5f5f5] hover:-translate-y-1.5"
             >
-              <span className="block text-[2.5rem] mb-5">🔒</span>
-              <div className="text-[1.3rem] font-semibold mb-3">
+              <span className="flex justify-center items-center w-10 h-10 p-10 text-[2.5rem] mb-5 rounded-full bg-white">
+                🔒
+              </span>
+              <div className="text-3xl font-semibold mb-3">
                 Secure & Private
               </div>
               <p className="text-[#666] leading-relaxed">
@@ -137,14 +154,14 @@ function LandingPage() {
             </div>
 
             <div
-              className="p-10 rounded-2xl bg-[#fafafa]
+              className="p-10 rounded-3xl bg-[#f8f5f5] shadow-lg
                  transition-all duration-300
                  hover:bg-[#f5f5f5] hover:-translate-y-1.5"
             >
-              <span className="block text-[2.5rem] mb-5">☁️</span>
-              <div className="text-[1.3rem] font-semibold mb-3">
-                Sync Everywhere
-              </div>
+              <span className="flex justify-center items-center w-10 h-10 p-10 text-[2.5rem] mb-5 rounded-full bg-white">
+                ☁️
+              </span>
+              <div className="text-3xl font-semibold mb-3">Sync Everywhere</div>
               <p className="text-[#666] leading-relaxed">
                 Your notes sync across all your devices automatically and
                 seamlessly.
@@ -158,24 +175,24 @@ function LandingPage() {
       <footer className="mt-16 border-t border-[#e5e5e5] py-12 text-center w-full">
         <div className="max-w-[1200px] mx-auto px-8">
           <div className="flex flex-wrap justify-center gap-8">
-            <a
-              href="/privacy"
+            <Link
+              to={PRIVACY_POLICY_URL}
               className="text-[#888] text-xl hover:text-[#667eea]"
             >
               Privacy Policy
-            </a>
-            <a
-              href="/terms"
+            </Link>
+            <Link
+              to={TERMS_OF_SERVICE_URL}
               className="text-[#888] text-xl hover:text-[#667eea]"
             >
               Terms of Service
-            </a>
-            <a
-              href="/contact"
+            </Link>
+            <Link
+              to={CONTACT_URL}
               className="text-[#888] text-xl hover:text-[#667eea]"
             >
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </footer>

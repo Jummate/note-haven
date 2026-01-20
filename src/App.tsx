@@ -27,6 +27,14 @@ import { AuthProvider } from './features/auth/AuthProvider';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './shared/config/queryClient';
+import PrivacyPolicy from './shared/pages/PrivacyPolicy';
+import {
+  CONTACT_URL,
+  PRIVACY_POLICY_URL,
+  TERMS_OF_SERVICE_URL,
+} from './shared/constants/urls';
+import TermsOfService from './shared/pages/TermsOfService';
+import ContactPage from './shared/pages/ContactPage';
 
 function App() {
   return (
@@ -38,33 +46,37 @@ function App() {
               <div className="bg-inverted text-default">
                 <Routes>
                   <Route index element={<LandingPage />} />
+
                   {authRoutes.map(({ path, component }) => (
                     <Route key={path} path={path} element={component} />
                   ))}
 
-                  <Route path="/" element={<Dashboard />}>
-                    <Route
-                      index
-                      element={
-                        <ProtectedRoute>
-                          <NoteDashboard.WithErrorBoundary />
-                        </ProtectedRoute>
-                      }
-                    />
-
-                    {noteRoutes.map(({ path, component }) => (
-                      <Route key={path} path={path} element={component} />
-                    ))}
-
-                    <Route path="/settings" element={<Settings />}>
+                  {/* Dashboard wrapper for authenticated pages */}
+                  <Route element={<Dashboard />}>
+                    {/* Notes section */}
+                    <Route path="/notes">
                       <Route
                         index
                         element={
                           <ProtectedRoute>
-                            <Settings.ColorTheme />
+                            <NoteDashboard.WithErrorBoundary />
                           </ProtectedRoute>
                         }
                       />
+                      {noteRoutes.map(({ path, component }) => (
+                        <Route key={path} path={path} element={component} />
+                      ))}
+                    </Route>
+
+                    <Route
+                      path="/settings"
+                      element={
+                        <ProtectedRoute>
+                          <Settings />
+                        </ProtectedRoute>
+                      }
+                    >
+                      <Route index element={<Settings.ColorTheme />} />
 
                       {settingsRoutes.map(({ path, component }) => {
                         if (path != SETTINGS_URL) {
@@ -75,6 +87,16 @@ function App() {
                       })}
                     </Route>
                   </Route>
+
+                  <Route
+                    path={PRIVACY_POLICY_URL}
+                    element={<PrivacyPolicy />}
+                  />
+                  <Route
+                    path={TERMS_OF_SERVICE_URL}
+                    element={<TermsOfService />}
+                  />
+                  <Route path={CONTACT_URL} element={<ContactPage />} />
 
                   <Route
                     path="*"
