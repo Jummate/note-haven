@@ -27,6 +27,14 @@ import { AuthProvider } from './features/auth/AuthProvider';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './shared/config/queryClient';
+import PrivacyPolicy from './shared/pages/PrivacyPolicy';
+import {
+  CONTACT_URL,
+  PRIVACY_POLICY_URL,
+  TERMS_OF_SERVICE_URL,
+} from './shared/constants/urls';
+import TermsOfService from './shared/pages/TermsOfService';
+import ContactPage from './shared/pages/ContactPage';
 
 function App() {
   return (
@@ -79,6 +87,16 @@ function App() {
                       })}
                     </Route>
                   </Route>
+
+                  <Route
+                    path={PRIVACY_POLICY_URL}
+                    element={<PrivacyPolicy />}
+                  />
+                  <Route
+                    path={TERMS_OF_SERVICE_URL}
+                    element={<TermsOfService />}
+                  />
+                  <Route path={CONTACT_URL} element={<ContactPage />} />
 
                   <Route
                     path="*"
